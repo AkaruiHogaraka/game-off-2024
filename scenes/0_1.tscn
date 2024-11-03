@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/alternate_platform.tscn" id="6_8qwjj"]
 
 [node name="0_1" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_6o8kx")
 
 [node name="Door" parent="." instance=ExtResource("2_aty5s")]
@@ -32,10 +33,12 @@ scene_path = "res://scenes/start_screen.tscn"
 node_path = "Door2"
 
 [node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
 tile_map_data = PackedByteArray("AAACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAFAP//AgAAAAAAAQAGAP//AgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQABAAAAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAIAAgAAAAAAAQABAAIAAgAAAAAAAQACAAIAAgAAAAAAAQADAAIAAgAAAAAAAQAEAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQD//wAAAQAAAAAAAQAAAAAAAQAAAAAAAQA=")
 tile_set = ExtResource("3_t78un")
 
 [node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
 tile_map_data = PackedByteArray("AAACAP//BgAAAAAAAgD+/wAABwAAAAAAAgD//wEABwAAAAAAAgABAAAABgAAAAAAAgA=")
 tile_set = ExtResource("3_t78un")
 
@@ -45,6 +48,15 @@ position = Vector2(0, -24)
 [node name="AlternatePlatform2" parent="." instance=ExtResource("6_8qwjj")]
 position = Vector2(-32, -40)
 default_on = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+use_parent_material = true
+offset_left = -265.0
+offset_top = -173.0
+offset_right = 212.0
+offset_bottom = 130.0
+color = Color(0, 0, 0, 1)
 
 [editable path="Door"]
 [editable path="WalkLoadLeft"]

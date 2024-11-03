@@ -3,8 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://fw0revm4lsb8" path="res://sprites/wall.png" id="1_kappg"]
 
 [node name="RightWall" type="StaticBody2D"]
+use_parent_material = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = ExtResource("1_kappg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

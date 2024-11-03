@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu866m0a85b6r"]
+[gd_scene load_steps=4 format=3 uid="uid://cu866m0a85b6r"]
 
 [ext_resource type="PackedScene" uid="uid://c45wqwqxdhe8o" path="res://prefabs/player.tscn" id="1_4otbg"]
+[ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/colour_swap.tres" id="1_xameb"]
 [ext_resource type="PackedScene" uid="uid://8qk6vlxtge0" path="res://scenes/start_screen.tscn" id="2_thx8y"]
 
-[node name="Node" type="Node"]
+[node name="ShaderController" type="Node2D"]
+material = ExtResource("1_xameb")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_4otbg")]
 move_speed = 64.0

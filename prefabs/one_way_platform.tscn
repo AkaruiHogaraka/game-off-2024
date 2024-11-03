@@ -10,9 +10,11 @@ size = Vector2(16, 4)
 size = Vector2(8, 1)
 
 [node name="OneWayPlatform" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_c70p8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = ExtResource("2_71gxe")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

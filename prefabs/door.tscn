@@ -8,11 +8,13 @@
 size = Vector2(8, 26)
 
 [node name="Door" type="Node2D"]
+use_parent_material = true
 
 [node name="SceneConnection" type="Node" parent="."]
 script = ExtResource("1_lhr1r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = ExtResource("2_mjb6b")
 offset = Vector2(0, -16)
 
