@@ -16,6 +16,7 @@ jump_time_to_descent = 1.0
 [node name="Input" type="Node" parent="."]
 script = ExtResource("3_bhfk3")
 jump_buffer = 0.1
+coyote_buffer = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 5

@@ -46,6 +46,9 @@ func _gravity() -> Vector2:
 	_gravity_velocity += Vector2(0, _jump_gravity if _gravity_velocity.y < 0.0 else _fall_gravity) * get_process_delta_time()
 	return _gravity_velocity
 
+func is_valid_jump() -> bool:
+	return is_on_floor() or Input_Handler._can_coyote_jump()
+
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
 

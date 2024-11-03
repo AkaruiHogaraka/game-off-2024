@@ -14,7 +14,7 @@ func _ready() -> void:
 		toggle_state(1, 2)
 
 func toggle_state(_arg1, _arg2) -> void:
-	if not GlobalReference.Player.is_on_floor(): return
+	if not GlobalReference.Player.is_valid_jump(): return
 	
 	$OnSprite.set_visible(not $OnSprite.visible)
 	$OffSprite.set_visible(not $OffSprite.visible)

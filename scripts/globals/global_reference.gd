@@ -14,5 +14,5 @@ func connect_signal(connect_to: Signal, object: Object, function: String) -> voi
 	connect_to.connect(Callable(object, function))
 
 func _toggle_jump(_arg, _arg2) -> void:
-	if not Player.is_on_floor(): return
+	if not Player.is_valid_jump(): return
 	jump_toggle = not jump_toggle
