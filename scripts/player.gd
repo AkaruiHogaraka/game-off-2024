@@ -28,9 +28,6 @@ func _process(delta):
 	velocity = _walk() + _gravity()
 	move_and_slide()
 	
-	if is_on_floor():
-		global_position.y = int(global_position.y)
-	
 func _walk() -> Vector2:
 	_walk_velocity = _walk_velocity.move_toward(Vector2(_raw_input.x, 0) * move_speed, acceleration * get_process_delta_time())
 	return Vector2(_raw_input.x, 0) * move_speed

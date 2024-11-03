@@ -11,7 +11,6 @@ func _physics_process(delta: float) -> void:
 	if not in_area: return
 	
 	var dot: int = Vector2.RIGHT.dot((GlobalReference.Player.global_position * Vector2.RIGHT).direction_to(global_position * Vector2.RIGHT))
-	print("%s %s" % [dot, dot_last_frame])
 	if dot != 0 and dot_last_frame != 0 and dot != dot_last_frame:
 		GlobalScene.change_scene(get_parent().get_child(0))
 	
