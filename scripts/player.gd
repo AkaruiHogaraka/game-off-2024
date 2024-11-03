@@ -23,6 +23,7 @@ var _jump_time: float
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GlobalReference.Player = self
+	GlobalReference.PlayerParent = get_parent()
 
 func _process(delta):
 	velocity = _walk() + _gravity()
@@ -51,6 +52,7 @@ func is_valid_jump() -> bool:
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
+	if direction != 0: $Sprite.scale.x = $Sprite.scale.y * direction
 
 func on_jump(is_jumping: bool, direction: float) -> void:
 	_is_jumping = is_jumping

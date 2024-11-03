@@ -51,5 +51,6 @@ func _signal_jump() -> void:
 	_raw_input.y = 1
 	Jumping.emit(true, _raw_input.y)
 	_buffer_jump = false
+	
 func _is_movement_occuring() -> bool:
 	return abs(_raw_input.x) != 0 or abs(_raw_input.y) != 0

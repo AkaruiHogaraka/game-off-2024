@@ -3,6 +3,7 @@ extends Node
 var jump_toggle: bool
 
 var Player: PlayerController
+var PlayerParent: Node2D
 
 func _ready() -> void:
 	call_deferred("initialise")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://d14um11vet7xx"]
+[gd_scene load_steps=8 format=4 uid="uid://d14um11vet7xx"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6o8kx"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="2_aty5s"]
@@ -6,10 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/walk_load_left.tscn" id="4_1geuw"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="5_vjj2i"]
 [ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/alternate_platform.tscn" id="6_8qwjj"]
+[ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/moving_platform.tscn" id="7_l3kry"]
 
 [node name="0_1" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_6o8kx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+use_parent_material = true
+offset_left = -265.0
+offset_top = -173.0
+offset_right = 212.0
+offset_bottom = 130.0
+color = Color(0, 0, 0, 1)
 
 [node name="Door" parent="." instance=ExtResource("2_aty5s")]
 position = Vector2(72, -16)
@@ -49,15 +59,17 @@ position = Vector2(0, -24)
 position = Vector2(-32, -40)
 default_on = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -5
-use_parent_material = true
-offset_left = -265.0
-offset_top = -173.0
-offset_right = 212.0
-offset_bottom = 130.0
-color = Color(0, 0, 0, 1)
+[node name="MovingPlatform" parent="." instance=ExtResource("7_l3kry")]
+position = Vector2(21, -46)
+speed = 0.5
+
+[node name="Position1" parent="MovingPlatform" index="1"]
+position = Vector2(-21, 0)
+
+[node name="Position2" parent="MovingPlatform" index="2"]
+position = Vector2(30, 0)
 
 [editable path="Door"]
 [editable path="WalkLoadLeft"]
 [editable path="WalkLoadRight"]
+[editable path="MovingPlatform"]

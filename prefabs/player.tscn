@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=7 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="Texture2D" uid="uid://delo77n3jaa71" path="res://sprites/player.png" id="2_p7t0h"]
 [ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
 [ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/colour_swap.tres" id="3_wx6x8"]
+[ext_resource type="Texture2D" uid="uid://t06qkwtnaopj" path="res://sprites/player_left_arm.png" id="5_cjqrj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(7, 15)
@@ -20,12 +21,23 @@ script = ExtResource("3_bhfk3")
 jump_buffer = 0.1
 coyote_buffer = 0.1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
 z_index = 5
 material = ExtResource("3_wx6x8")
 use_parent_material = true
-position = Vector2(0, -16)
 texture = ExtResource("2_p7t0h")
+offset = Vector2(0, -16)
+
+[node name="LeftArm" type="Node2D" parent="Sprite"]
+use_parent_material = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite/LeftArm"]
+use_parent_material = true
+texture = ExtResource("5_cjqrj")
+offset = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -7.5)

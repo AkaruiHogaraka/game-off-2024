@@ -9,6 +9,15 @@
 use_parent_material = true
 script = ExtResource("1_c5whi")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+use_parent_material = true
+offset_left = -251.0
+offset_top = -196.0
+offset_right = 271.0
+offset_bottom = 187.0
+color = Color(0, 0, 0, 1)
+
 [node name="Door" parent="." instance=ExtResource("3_vamp0")]
 position = Vector2(-56, 0)
 
@@ -33,15 +42,6 @@ position = Vector2(75, 0)
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
 scene_path = "res://scenes/0_1.tscn"
 node_path = "WalkLoadLeft"
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -5
-use_parent_material = true
-offset_left = -251.0
-offset_top = -196.0
-offset_right = 271.0
-offset_bottom = 187.0
-color = Color(0, 0, 0, 1)
 
 [editable path="Door"]
 [editable path="Door2"]
