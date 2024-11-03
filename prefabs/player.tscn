@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c45wqwqxdhe8o"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
+[ext_resource type="Texture2D" uid="uid://delo77n3jaa71" path="res://sprites/player.png" id="2_p7t0h"]
+[ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
+size = Vector2(10, 15)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_2tfwj")
+jump_height = 1.0
+jump_time_to_peak = 0.2
+jump_time_to_descent = 0.2
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("3_bhfk3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(0, -16)
+texture = ExtResource("2_p7t0h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_qx8pn")
+
+[connection signal="DirectionInput" from="Input" to="." method="on_move"]
+[connection signal="Jumping" from="Input" to="." method="on_jump"]

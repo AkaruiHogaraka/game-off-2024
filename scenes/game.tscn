@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu866m0a85b6r"]
+
+[ext_resource type="PackedScene" uid="uid://c45wqwqxdhe8o" path="res://prefabs/player.tscn" id="1_4otbg"]
+[ext_resource type="PackedScene" uid="uid://8qk6vlxtge0" path="res://scenes/start_screen.tscn" id="2_thx8y"]
+
+[node name="Node" type="Node"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_4otbg")]
+move_speed = 64.0
+acceleration = 32.0
+jump_height = 24.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="start_screen" parent="." instance=ExtResource("2_thx8y")]

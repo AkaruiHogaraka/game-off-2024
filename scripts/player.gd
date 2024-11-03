@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name PlayerController extends CharacterBody2D
 
 @export var move_speed: float = 20
 @export var acceleration: float = 10
@@ -14,30 +14,22 @@ var _gravity_velocity: Vector2
 var _is_jumping: bool
 var _jump_time: float
 
+@onready var Input_Handler: InputHandler = $Input
+
 @onready var _jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var _fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GlobalReference.Player = self
 
 func _process(delta):
-	input()
-	
 	velocity = _walk() + _gravity()
 	move_and_slide()
 	
-func input() -> void:
-	_raw_input.x = Input.get_axis("move_left", "move_right")
-	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		_gravity_velocity.y = _jump_velocity
-		_raw_input.y = 1
-		_is_jumping = true
-	
-	if Input.is_action_just_released("jump"):
-		_raw_input.y = 0
-		_is_jumping = false
+	if is_on_floor():
+		global_position.y = int(global_position.y)
 	
 func _walk() -> Vector2:
 	_walk_velocity = _walk_velocity.move_toward(Vector2(_raw_input.x, 0) * move_speed, acceleration * get_process_delta_time())
@@ -53,3 +45,12 @@ func _gravity() -> Vector2:
 	
 	_gravity_velocity += Vector2(0, _jump_gravity if _gravity_velocity.y < 0.0 else _fall_gravity) * get_process_delta_time()
 	return _gravity_velocity
+	
+func on_move(direction: float) -> void:
+	_raw_input.x = direction
+
+func on_jump(is_jumping: bool, direction: float) -> void:
+	_is_jumping = is_jumping
+	_raw_input.y = direction
+	
+	if _is_jumping: _gravity_velocity.y = _jump_velocity
