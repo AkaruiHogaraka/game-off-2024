@@ -1,21 +1,25 @@
-extends Node2D
+extends Node
+
+@export var collision: CollisionShape2D
+@export var platform_position: Marker2D
 
 var in_area: bool 
 var process_platform: bool
 
 func _ready() -> void:
-	$Area2D.connect("body_entered", _on_body_entered)
-	$Area2D.connect("body_exited", _on_body_exited)
 	GlobalReference.Player.Input_Handler.DownJump.connect(_disable_collision)
 
 func _physics_process(delta: float) -> void:
+	var disabled: bool = GlobalReference.Player.global_position.y >= platform_position.global_position.y
+	if disabled: collision.set_disabled(disabled)
+	
 	if not process_platform: return
-	$StaticBody2D/CollisionShape2D.set_disabled(GlobalReference.Player.global_position.y >= $Marker2D.global_position.y)
+	collision.set_disabled(disabled)
 
 func _disable_collision() -> void:
-	$StaticBody2D/CollisionShape2D.set_disabled(true)
+	collision.set_disabled(true)
 	process_platform = false
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.1).timeout
 	process_platform = true
 
 func _on_body_entered(body: Node2D) -> void:

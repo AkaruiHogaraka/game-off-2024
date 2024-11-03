@@ -7,11 +7,15 @@
 size = Vector2(16, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ayxk7"]
-size = Vector2(8, 1)
+size = Vector2(16, 1)
 
 [node name="OneWayPlatform" type="Node2D"]
 use_parent_material = true
+
+[node name="OneWay" type="Node" parent="." node_paths=PackedStringArray("collision", "platform_position")]
 script = ExtResource("1_c70p8")
+collision = NodePath("../StaticBody2D/CollisionShape2D")
+platform_position = NodePath("../Marker2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -31,3 +35,6 @@ position = Vector2(0, -7)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -8.5)
 shape = SubResource("RectangleShape2D_ayxk7")
+
+[connection signal="body_entered" from="Area2D" to="OneWay" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="OneWay" method="_on_body_exited"]

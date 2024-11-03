@@ -10,14 +10,17 @@ var direction: int = 1
 var in_area: bool
 var reparent_once: bool
 
-@onready var distance_between: float = $Position1.global_position.distance_to($Position2.global_position)
+@onready var distance: float = point_a.distance_to(point_b)
 
 func _ready() -> void:
 	$Platform/Area2D.body_entered.connect(_on_body_entered)
 	$Platform/Area2D.body_exited.connect(_on_body_exited)
+	$TextureRect.size.x = $Position1.global_position.distance_to($Position2.global_position)
+	$TextureRect.global_position = $Position1.global_position + Vector2.UP
+	$TextureRect.rotation = ($Position2.global_position - $Position1.global_position).angle()
 
 func _physics_process(delta: float) -> void:
-	progress += speed * delta * direction
+	progress += (speed / distance) * delta * direction
 
 	if progress >= 1.0:
 		progress = 1.0
@@ -33,11 +36,11 @@ func _physics_process(delta: float) -> void:
 		GlobalReference.Player.reparent($Platform)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and not in_area:
+	if body.is_in_group("Player") and not in_area and body.is_on_floor():
 		in_area = true
 
 func _on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player") and in_area and reparent_once:
+	if body.is_in_group("Player"):
 		in_area = false
 		reparent_once = false
 		body.reparent(GlobalReference.PlayerParent)
