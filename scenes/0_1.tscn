@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=4 uid="uid://d14um11vet7xx"]
+[gd_scene load_steps=6 format=4 uid="uid://d14um11vet7xx"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6o8kx"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="2_aty5s"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="3_t78un"]
+[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/walk_load_left.tscn" id="4_1geuw"]
+[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="5_vjj2i"]
 
 [node name="0_1" type="Node2D"]
 script = ExtResource("1_6o8kx")
@@ -18,4 +20,20 @@ node_path = "Door"
 tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAFAP//AgAAAAAAAQD9/wAAAgAAAAAAAQAGAP//AgAAAAAAAQA=")
 tile_set = ExtResource("3_t78un")
 
+[node name="WalkLoadLeft" parent="." instance=ExtResource("4_1geuw")]
+position = Vector2(-43, 0)
+
+[node name="SceneConnection" parent="WalkLoadLeft" index="0"]
+scene_path = "res://scenes/start_screen.tscn"
+node_path = "WalkLoadRight"
+
+[node name="WalkLoadRight" parent="." instance=ExtResource("5_vjj2i")]
+position = Vector2(107, -16)
+
+[node name="SceneConnection" parent="WalkLoadRight" index="0"]
+scene_path = "res://scenes/start_screen.tscn"
+node_path = "Door2"
+
 [editable path="Door"]
+[editable path="WalkLoadLeft"]
+[editable path="WalkLoadRight"]
