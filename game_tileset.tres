@@ -8,15 +8,15 @@
 resource_name = "Floor"
 scenes/1/scene = ExtResource("1_166ev")
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7sxp3"]
-resource_name = "Left Wall"
-scenes/1/scene = ExtResource("2_ddnlk")
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4447c"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tbdsx"]
 resource_name = "Right Wall"
-scenes/1/scene = ExtResource("3_3tkyl")
+scenes/2/scene = ExtResource("3_3tkyl")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_upq0x"]
+resource_name = "Left Wall"
+scenes/2/scene = ExtResource("2_ddnlk")
 
 [resource]
 sources/2 = SubResource("TileSetScenesCollectionSource_ppg1w")
-sources/4 = SubResource("TileSetScenesCollectionSource_7sxp3")
-sources/5 = SubResource("TileSetScenesCollectionSource_4447c")
+sources/6 = SubResource("TileSetScenesCollectionSource_tbdsx")
+sources/7 = SubResource("TileSetScenesCollectionSource_upq0x")

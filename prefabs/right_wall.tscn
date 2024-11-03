@@ -1,13 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bp7kon05qm12x"]
 
-[ext_resource type="Texture2D" uid="uid://fw0revm4lsb8" path="res://sprites/wall.png" id="1_0kuxp"]
+[ext_resource type="Texture2D" uid="uid://fw0revm4lsb8" path="res://sprites/wall.png" id="1_kappg"]
 
-[node name="Wall" type="StaticBody2D"]
+[node name="RightWall" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0kuxp")
-flip_h = true
+texture = ExtResource("1_kappg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-rotation = 3.14159
-polygon = PackedVector2Array(-7, 8, -6, 8, -6, -8, -7, -8)
+polygon = PackedVector2Array(-8, 8, -2, 8, -2, -8, -8, -8)

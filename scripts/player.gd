@@ -36,13 +36,16 @@ func _gravity() -> Vector2:
 	if is_on_floor() and not _is_jumping:
 		_gravity_velocity = Vector2.ZERO
 		return _gravity_velocity
-		
+	
+	if is_on_floor() and _is_jumping:
+		_is_jumping = false
+	
 	if is_on_ceiling_only():
 		_gravity_velocity = Vector2.ZERO
 	
 	_gravity_velocity += Vector2(0, _jump_gravity if _gravity_velocity.y < 0.0 else _fall_gravity) * get_process_delta_time()
 	return _gravity_velocity
-	
+
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
 
