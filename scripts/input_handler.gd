@@ -1,5 +1,6 @@
 class_name InputHandler extends Node
 
+signal DownJump()
 signal Interaction()
 signal DirectionInput(_direction: float)
 signal Jumping(_jump: bool, _direction: float)
@@ -12,6 +13,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	_raw_input.x = Input.get_axis("move_left", "move_right")
 	DirectionInput.emit(_raw_input.x)
+	
+	if Input.is_action_pressed("jump") and Input.is_action_pressed("move_down"):
+		DownJump.emit()
+		return 
 	
 	if Input.is_action_just_pressed("jump") and GlobalReference.Player.is_on_floor():
 		_raw_input.y = 1

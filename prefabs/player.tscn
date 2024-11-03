@@ -9,9 +9,9 @@ size = Vector2(10, 15)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_2tfwj")
-jump_height = 1.0
-jump_time_to_peak = 0.2
-jump_time_to_descent = 0.2
+jump_height = 0.5
+jump_time_to_peak = 1.0
+jump_time_to_descent = 1.0
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("3_bhfk3")
