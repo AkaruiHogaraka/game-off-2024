@@ -13,6 +13,7 @@ var _gravity_velocity: Vector2
 
 var _is_jumping: bool
 var _jump_time: float
+var _can_dream: bool = true
 
 @onready var Input_Handler: InputHandler = $Input
 
@@ -57,8 +58,11 @@ func reset_velocities() -> void:
 	_raw_input = Vector2.ZERO
 	_walk_velocity = Vector2.ZERO
 
+func set_can_dream(value: bool) -> void:
+	_can_dream = value
+
 func _on_dream() -> void:
-	if is_on_floor() and _raw_input.x == 0:
+	if is_on_floor() and _raw_input.x == 0 and _can_dream:
 		GlobalScene.change_dream_scene(GlobalScene.CurrentScene.alternate_scene, not GlobalScene.CurrentScene.is_alternate_scene_dream)
 
 func on_move(direction: float) -> void:

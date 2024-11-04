@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 	if not reparent_once and in_area:
 		reparent_once = true
 		GlobalReference.Player.reparent($Platform)
+		GlobalReference.Player.set_can_dream(false)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and not in_area and body.is_on_floor():
@@ -44,3 +45,4 @@ func _on_body_exited(body: Node2D) -> void:
 		in_area = false
 		reparent_once = false
 		body.reparent(GlobalReference.PlayerParent)
+		body.set_can_dream(true)
