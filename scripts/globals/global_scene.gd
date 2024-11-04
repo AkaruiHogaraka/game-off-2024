@@ -42,11 +42,21 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	GlobalReference.Player.reset_velocities()
 	
+	var temp_clone = GlobalReference.Player.duplicate(0)
+	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
+	
 	var old_scene: Scene = CurrentScene
 	CurrentScene = scene.scene
 	
 	var node: Node2D
 	var tween: Tween
+	
+	if reality:
+		GlobalReference.Game.dream_node.add_child(temp_clone)
+		temp_clone.global_position = GlobalReference.Player.global_position
+	else:
+		GlobalReference.Game.reality_node.add_child(temp_clone)
+		temp_clone.global_position = GlobalReference.Player.global_position
 	
 	if reality:
 		node = GlobalReference.Game.reality_node
@@ -71,4 +81,5 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	
 	await tween.finished
 	old_scene.queue_free()
+	temp_clone.queue_free()
 	
