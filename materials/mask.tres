@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://qvu01kv17wav"]
+
+[ext_resource type="Shader" path="res://shaders/mask.gdshader" id="1_qfi74"]
+
+[resource]
+shader = ExtResource("1_qfi74")

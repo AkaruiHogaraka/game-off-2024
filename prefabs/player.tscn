@@ -5,14 +5,12 @@
 [ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
 [ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/reality_palette.tres" id="3_wx6x8"]
 [ext_resource type="Texture2D" uid="uid://t06qkwtnaopj" path="res://sprites/player_left_arm.png" id="5_cjqrj"]
-[ext_resource type="Shader" path="res://shaders/mask.gdshader" id="6_x65kq"]
+[ext_resource type="Material" uid="uid://qvu01kv17wav" path="res://materials/mask.tres" id="6_q67n2"]
 [ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="7_w3b51"]
+[ext_resource type="Script" path="res://scripts/line_of_sight_mesh_generation.gd" id="8_r7iuf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(7, 15)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uuqqt"]
-shader = ExtResource("6_x65kq")
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 z_index = 5
@@ -69,14 +67,26 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Circle" type="Control" parent="Fog"]
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Fog"]
+
+[node name="LoS" type="Node2D" parent="Fog/BackBufferCopy2"]
+visible = false
+script = ExtResource("8_r7iuf")
+radius = 50.0
+vertex_count = 100
+collision_layer = 2
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Fog/BackBufferCopy2/LoS"]
+material = ExtResource("6_q67n2")
+
+[node name="Circle" type="Control" parent="Fog/BackBufferCopy2"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="Fog/Circle"]
-material = SubResource("ShaderMaterial_uuqqt")
+[node name="TextureRect" type="TextureRect" parent="Fog/BackBufferCopy2/Circle"]
+material = ExtResource("6_q67n2")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -11,7 +11,7 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	var transition = load("res://prefabs/transition.tscn").instantiate()
 	GlobalReference.Player.get_parent().add_child(transition)
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
-	await transition.transition(1, 0, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO).finished
+	await transition.transition(1, 0, 0.3, Tween.EASE_OUT, Tween.TRANS_LINEAR).finished
 	
 	CurrentScene.queue_free()
 	CurrentScene = scene.scene
@@ -26,7 +26,7 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	
 	await get_tree().create_timer(0.2).timeout
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
-	transition.transition(0, 1, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
+	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	await get_tree().create_timer(0.2).timeout
 	

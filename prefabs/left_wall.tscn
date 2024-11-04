@@ -4,6 +4,7 @@
 
 [node name="LeftWall" type="StaticBody2D"]
 use_parent_material = true
+collision_layer = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

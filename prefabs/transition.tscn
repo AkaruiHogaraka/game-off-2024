@@ -11,7 +11,7 @@ shader = ExtResource("2_4djpg")
 z_index = 10
 use_parent_material = true
 script = ExtResource("1_6wg2g")
-max_size = Vector2(5, 5)
+max_size = Vector2(2, 2)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 use_parent_material = true
@@ -35,7 +35,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(20, 20)
+scale = Vector2(5, 5)
 
 [node name="TextureRect" type="TextureRect" parent="Circle"]
 material = SubResource("ShaderMaterial_hvar4")

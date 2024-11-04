@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://p6g573vayl4o"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://p6g573vayl4o"]
 
 [ext_resource type="PackedScene" uid="uid://oy4xjxihtqas" path="res://prefabs/floor.tscn" id="1_166ev"]
+[ext_resource type="Texture2D" uid="uid://bs1hhimrv5g1p" path="res://sprites/black_tile.png" id="1_p1luq"]
 [ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/one_way_platform.tscn" id="1_uubik"]
 [ext_resource type="PackedScene" uid="uid://dtihb1xej0822" path="res://prefabs/left_wall.tscn" id="2_ddnlk"]
 [ext_resource type="PackedScene" uid="uid://bp7kon05qm12x" path="res://prefabs/right_wall.tscn" id="3_3tkyl"]
@@ -12,6 +13,10 @@ scenes/1/scene = ExtResource("1_uubik")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ppg1w"]
 resource_name = "Floor"
 scenes/1/scene = ExtResource("1_166ev")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ba8k1"]
+texture = ExtResource("1_p1luq")
+0:0/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tbdsx"]
 resource_name = "Right Wall"
@@ -26,3 +31,4 @@ sources/2 = SubResource("TileSetScenesCollectionSource_ppg1w")
 sources/6 = SubResource("TileSetScenesCollectionSource_tbdsx")
 sources/7 = SubResource("TileSetScenesCollectionSource_upq0x")
 sources/1 = SubResource("TileSetScenesCollectionSource_ckbfh")
+sources/3 = SubResource("TileSetAtlasSource_ba8k1")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dnr0d35cetgsn"]
+[gd_scene load_steps=11 format=4 uid="uid://dnr0d35cetgsn"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_bp2l8"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_gsegj"]
@@ -8,6 +8,10 @@
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="6_5ovyd"]
 [ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/alternate_platform.tscn" id="7_f060y"]
 [ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/moving_platform.tscn" id="8_xpkcv"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/hidden_area.tscn" id="9_yw1gu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4l5a"]
+size = Vector2(128, 32)
 
 [node name="0_1_dream" type="Node2D" node_paths=PackedStringArray("alternate_scene")]
 use_parent_material = true
@@ -62,7 +66,19 @@ position = Vector2(-21, 0)
 [node name="Position2" parent="MovingPlatform" index="4"]
 position = Vector2(38, 0)
 
+[node name="HiddenArea" parent="." instance=ExtResource("9_yw1gu")]
+position = Vector2(3, 2)
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+visible = false
+tile_map_data = PackedByteArray("AAD//wAAAwAAAAAAAAD+/wAAAwAAAAAAAAAAAAAAAwAAAAAAAAABAAAAAwAAAAAAAAD//wEAAwAAAAAAAAAAAAEAAwAAAAAAAAABAAEAAwAAAAAAAAACAAEAAwAAAAAAAAADAAEAAwAAAAAAAAAEAAEAAwAAAAAAAAAFAAEAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAAAAwAAAAAAAAAFAAAAAwAAAAAAAAAEAAAAAwAAAAAAAAADAAAAAwAAAAAAAAACAAAAAwAAAAAAAAACAP//AwAAAAAAAAADAP//AwAAAAAAAAAEAP//AwAAAAAAAAAFAP//AwAAAAAAAAAGAP//AwAAAAAAAAAGAAIAAwAAAAAAAAAFAAIAAwAAAAAAAAAEAAIAAwAAAAAAAAADAAIAAwAAAAAAAAACAAIAAwAAAAAAAAABAAIAAwAAAAAAAAAAAAIAAwAAAAAAAAD//wIAAwAAAAAAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(45, 17)
+shape = SubResource("RectangleShape2D_c4l5a")
+
 [editable path="Door"]
 [editable path="WalkLoadLeft"]
 [editable path="WalkLoadRight"]
 [editable path="MovingPlatform"]
+[editable path="HiddenArea"]

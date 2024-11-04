@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://d14um11vet7xx"]
+[gd_scene load_steps=11 format=4 uid="uid://d14um11vet7xx"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6o8kx"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="2_aty5s"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="5_vjj2i"]
 [ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/alternate_platform.tscn" id="6_8qwjj"]
 [ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/moving_platform.tscn" id="7_l3kry"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/hidden_area.tscn" id="9_omc5c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34j2b"]
+size = Vector2(128, 32)
 
 [node name="0_1_reality" type="Node2D" node_paths=PackedStringArray("alternate_scene")]
 use_parent_material = true
@@ -75,7 +79,19 @@ position = Vector2(-21, 0)
 [node name="Position2" parent="MovingPlatform" index="4"]
 position = Vector2(38, 0)
 
+[node name="HiddenArea" parent="." instance=ExtResource("9_omc5c")]
+position = Vector2(3, 2)
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+visible = false
+tile_map_data = PackedByteArray("AAD//wAAAwAAAAAAAAD+/wAAAwAAAAAAAAAAAAAAAwAAAAAAAAABAAAAAwAAAAAAAAD//wEAAwAAAAAAAAAAAAEAAwAAAAAAAAABAAEAAwAAAAAAAAACAAEAAwAAAAAAAAADAAEAAwAAAAAAAAAEAAEAAwAAAAAAAAAFAAEAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAAAAwAAAAAAAAAFAAAAAwAAAAAAAAAEAAAAAwAAAAAAAAADAAAAAwAAAAAAAAACAAAAAwAAAAAAAAACAP//AwAAAAAAAAADAP//AwAAAAAAAAAEAP//AwAAAAAAAAAFAP//AwAAAAAAAAAGAP//AwAAAAAAAAAGAAIAAwAAAAAAAAAFAAIAAwAAAAAAAAAEAAIAAwAAAAAAAAADAAIAAwAAAAAAAAACAAIAAwAAAAAAAAABAAIAAwAAAAAAAAAAAAIAAwAAAAAAAAD//wIAAwAAAAAAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(45, 17)
+shape = SubResource("RectangleShape2D_34j2b")
+
 [editable path="Door"]
 [editable path="WalkLoadLeft"]
 [editable path="WalkLoadRight"]
 [editable path="MovingPlatform"]
+[editable path="HiddenArea"]
