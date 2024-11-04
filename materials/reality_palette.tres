@@ -1,14 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c2ux74cy0sbvl"]
 
-[ext_resource type="Shader" path="res://shaders/alter_colour.gdshader" id="1_2icul"]
+[ext_resource type="Shader" path="res://shaders/alter_colour.gdshader" id="1_li5jw"]
 
 [resource]
-shader = ExtResource("1_2icul")
+shader = ExtResource("1_li5jw")
 shader_parameter/colour_one = Color(0, 0, 0, 1)
 shader_parameter/replace_one = Color(0.0352941, 0.0392157, 0.0784314, 1)
 shader_parameter/colour_two = Color(0.33, 0.33, 0.33, 1)
-shader_parameter/replace_two = null
+shader_parameter/replace_two = Color(0, 0, 0, 1)
 shader_parameter/colour_three = Color(0.66, 0.66, 0.66, 1)
-shader_parameter/replace_three = null
+shader_parameter/replace_three = Color(0, 0, 0, 1)
 shader_parameter/colour_four = Color(1, 1, 1, 1)
 shader_parameter/replace_four = Color(0.921569, 0.929412, 0.913725, 1)

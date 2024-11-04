@@ -62,10 +62,10 @@ default_on = false
 [node name="MovingPlatform" parent="." instance=ExtResource("7_l3kry")]
 position = Vector2(21, -46)
 
-[node name="Position1" parent="MovingPlatform" index="1"]
+[node name="Position1" parent="MovingPlatform" index="3"]
 position = Vector2(-21, 0)
 
-[node name="Position2" parent="MovingPlatform" index="2"]
+[node name="Position2" parent="MovingPlatform" index="4"]
 position = Vector2(38, 0)
 
 [editable path="Door"]

@@ -26,6 +26,10 @@ func _ready():
 	GlobalReference.PlayerParent = get_parent()
 
 func _process(delta):
+	if not Input_Handler._can_input: 
+		reset_velocities()
+		return
+	
 	velocity = _walk() + _gravity()
 	move_and_slide()
 	
@@ -49,6 +53,12 @@ func _gravity() -> Vector2:
 
 func is_valid_jump() -> bool:
 	return is_on_floor() or Input_Handler._can_coyote_jump()
+
+func reset_velocities() -> void:
+	_gravity_velocity = Vector2.ZERO
+	_raw_input = Vector2.ZERO
+	_walk_velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction

@@ -13,8 +13,11 @@ var _jump_buffer_timer: float
 var _buffer_jump: bool
 var _coyote_buffer_timer: float
 var _coyote_jump: bool
+var _can_input: bool = true
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _can_input: return
+	
 	if event.is_action_pressed("interact"):
 		Interaction.emit()
 		
@@ -46,6 +49,9 @@ func _physics_process(delta: float) -> void:
 
 func _can_coyote_jump() -> bool:
 	return _coyote_buffer_timer <= coyote_buffer
+
+func toggle_inputs(enabled: bool) -> void:
+	_can_input = enabled
 
 func _signal_jump() -> void:
 	_raw_input.y = 1
