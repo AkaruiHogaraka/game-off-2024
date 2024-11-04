@@ -1,5 +1,6 @@
 class_name InputHandler extends Node
 
+signal Dream()
 signal DownJump()
 signal Interaction()
 signal DirectionInput(_direction: float)
@@ -20,6 +21,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact"):
 		Interaction.emit()
+		
+	if event.is_action_pressed("dream"):
+		Dream.emit()
 		
 	_raw_input.x = Input.get_axis("move_left", "move_right")
 	DirectionInput.emit(_raw_input.x)

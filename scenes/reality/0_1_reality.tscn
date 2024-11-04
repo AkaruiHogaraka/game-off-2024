@@ -1,16 +1,23 @@
-[gd_scene load_steps=8 format=4 uid="uid://d14um11vet7xx"]
+[gd_scene load_steps=9 format=4 uid="uid://d14um11vet7xx"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6o8kx"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="2_aty5s"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_osygx"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="3_t78un"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/walk_load_left.tscn" id="4_1geuw"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="5_vjj2i"]
 [ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/alternate_platform.tscn" id="6_8qwjj"]
 [ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/moving_platform.tscn" id="7_l3kry"]
 
-[node name="0_1" type="Node2D"]
+[node name="0_1_reality" type="Node2D" node_paths=PackedStringArray("alternate_scene")]
 use_parent_material = true
 script = ExtResource("1_6o8kx")
+alternate_scene = NodePath("DreamConnection")
+is_alternate_scene_dream = true
+
+[node name="DreamConnection" type="Node" parent="."]
+script = ExtResource("2_osygx")
+scene_path = "res://scenes/dream/0_1_dream.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -5
@@ -25,21 +32,21 @@ color = Color(0, 0, 0, 1)
 position = Vector2(72, -16)
 
 [node name="SceneConnection" parent="Door" index="0"]
-scene_path = "res://scenes/start_screen.tscn"
+scene_path = "res://scenes/reality/start_screen_reality.tscn"
 node_path = "Door"
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("4_1geuw")]
 position = Vector2(-43, 0)
 
 [node name="SceneConnection" parent="WalkLoadLeft" index="0"]
-scene_path = "res://scenes/start_screen.tscn"
+scene_path = "res://scenes/reality/start_screen_reality.tscn"
 node_path = "WalkLoadRight"
 
 [node name="WalkLoadRight" parent="." instance=ExtResource("5_vjj2i")]
 position = Vector2(107, -16)
 
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
-scene_path = "res://scenes/start_screen.tscn"
+scene_path = "res://scenes/reality/start_screen_reality.tscn"
 node_path = "Door2"
 
 [node name="Floor" type="TileMapLayer" parent="."]

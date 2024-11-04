@@ -21,14 +21,13 @@ var _jump_time: float
 @onready var _fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GlobalReference.Player = self
 	GlobalReference.PlayerParent = get_parent()
 
 func _process(delta):
 	if not Input_Handler._can_input: 
 		reset_velocities()
-		return
 	
 	velocity = _walk() + _gravity()
 	move_and_slide()
@@ -55,10 +54,12 @@ func is_valid_jump() -> bool:
 	return is_on_floor() or Input_Handler._can_coyote_jump()
 
 func reset_velocities() -> void:
-	_gravity_velocity = Vector2.ZERO
 	_raw_input = Vector2.ZERO
 	_walk_velocity = Vector2.ZERO
-	velocity = Vector2.ZERO
+
+func _on_dream() -> void:
+	if is_on_floor() and _raw_input.x == 0:
+		GlobalScene.change_dream_scene(GlobalScene.CurrentScene.alternate_scene, not GlobalScene.CurrentScene.is_alternate_scene_dream)
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction

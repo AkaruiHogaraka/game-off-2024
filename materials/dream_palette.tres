@@ -1,3 +1,14 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://dlr0mqnvald1e"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dlr0mqnvald1e"]
+
+[ext_resource type="Shader" path="res://shaders/alter_colour.gdshader" id="1_ym522"]
 
 [resource]
+shader = ExtResource("1_ym522")
+shader_parameter/colour_one = Color(0, 0, 0, 1)
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0.33, 0.33, 0.33, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(0.66, 0.66, 0.66, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)

@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=4 uid="uid://8qk6vlxtge0"]
+[gd_scene load_steps=6 format=4 uid="uid://8qk6vlxtge0"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_c5whi"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="2_7o7vx"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_jykn3"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="3_vamp0"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="4_n1yxc"]
 
-[node name="start_screen" type="Node2D"]
+[node name="start_screen_reality" type="Node2D" node_paths=PackedStringArray("alternate_scene")]
 use_parent_material = true
 script = ExtResource("1_c5whi")
+alternate_scene = NodePath("DreamConnection")
+is_alternate_scene_dream = true
+
+[node name="DreamConnection" type="Node" parent="."]
+script = ExtResource("2_jykn3")
+scene_path = "res://scenes/dream/start_screen_dream.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -5
@@ -22,13 +29,13 @@ color = Color(0, 0, 0, 1)
 position = Vector2(-56, 0)
 
 [node name="SceneConnection" parent="Door" index="0"]
-scene_path = "res://scenes/0_1.tscn"
+scene_path = "res://scenes/reality/0_1_reality.tscn"
 node_path = "Door"
 
 [node name="Door2" parent="." instance=ExtResource("3_vamp0")]
 
 [node name="SceneConnection" parent="Door2" index="0"]
-scene_path = "res://scenes/0_1.tscn"
+scene_path = "res://scenes/reality/0_1_reality.tscn"
 node_path = "WalkLoadRight"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -40,7 +47,7 @@ tile_set = ExtResource("2_7o7vx")
 position = Vector2(75, 0)
 
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
-scene_path = "res://scenes/0_1.tscn"
+scene_path = "res://scenes/reality/0_1_reality.tscn"
 node_path = "WalkLoadLeft"
 
 [editable path="Door"]

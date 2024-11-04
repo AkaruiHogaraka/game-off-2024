@@ -4,6 +4,9 @@ var jump_toggle: bool
 
 var Player: PlayerController
 var PlayerParent: Node2D
+var PlayerRealityPosition: Vector2
+
+var Game: GameManager
 
 func _ready() -> void:
 	call_deferred("initialise")

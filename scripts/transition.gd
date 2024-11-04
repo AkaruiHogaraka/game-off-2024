@@ -1,7 +1,5 @@
 extends Node2D
 
-signal move_on()
-
 @export var min_size: Vector2 = Vector2.ZERO
 @export var max_size: Vector2 = Vector2.ONE * 10
 

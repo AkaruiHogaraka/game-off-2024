@@ -44,4 +44,5 @@ position = Vector2(-0.5, -7.5)
 shape = SubResource("RectangleShape2D_qx8pn")
 
 [connection signal="DirectionInput" from="Input" to="." method="on_move"]
+[connection signal="Dream" from="Input" to="." method="_on_dream"]
 [connection signal="Jumping" from="Input" to="." method="on_jump"]

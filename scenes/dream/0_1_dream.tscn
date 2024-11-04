@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=4 uid="uid://dnr0d35cetgsn"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_bp2l8"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_gsegj"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="3_e2h2u"]
+[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/walk_load_left.tscn" id="4_h53h4"]
+[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="5_pdvbv"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="6_5ovyd"]
+[ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/alternate_platform.tscn" id="7_f060y"]
+[ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/moving_platform.tscn" id="8_xpkcv"]
+
+[node name="0_1_dream" type="Node2D" node_paths=PackedStringArray("alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_bp2l8")
+alternate_scene = NodePath("RealityConnection")
+
+[node name="RealityConnection" type="Node" parent="."]
+script = ExtResource("2_gsegj")
+scene_path = "res://scenes/reality/0_1_reality.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+use_parent_material = true
+offset_left = -265.0
+offset_top = -173.0
+offset_right = 212.0
+offset_bottom = 130.0
+color = Color(0, 0, 0, 1)
+
+[node name="Door" parent="." instance=ExtResource("3_e2h2u")]
+position = Vector2(72, -16)
+
+[node name="WalkLoadLeft" parent="." instance=ExtResource("4_h53h4")]
+position = Vector2(-43, 0)
+
+[node name="WalkLoadRight" parent="." instance=ExtResource("5_pdvbv")]
+position = Vector2(107, -16)
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAFAP//AgAAAAAAAQAGAP//AgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQABAAAAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAIAAgAAAAAAAQABAAIAAgAAAAAAAQACAAIAAgAAAAAAAQADAAIAAgAAAAAAAQAEAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQD//wAAAQAAAAAAAQAAAAAAAQAAAAAAAQA=")
+tile_set = ExtResource("6_5ovyd")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAACAP//BgAAAAAAAgD+/wAABwAAAAAAAgD//wEABwAAAAAAAgABAAAABgAAAAAAAgA=")
+tile_set = ExtResource("6_5ovyd")
+
+[node name="AlternatePlatform" parent="." instance=ExtResource("7_f060y")]
+position = Vector2(0, -24)
+
+[node name="AlternatePlatform2" parent="." instance=ExtResource("7_f060y")]
+position = Vector2(-32, -40)
+default_on = false
+
+[node name="MovingPlatform" parent="." instance=ExtResource("8_xpkcv")]
+position = Vector2(21, -46)
+
+[node name="Position1" parent="MovingPlatform" index="3"]
+position = Vector2(-21, 0)
+
+[node name="Position2" parent="MovingPlatform" index="4"]
+position = Vector2(38, 0)
+
+[editable path="Door"]
+[editable path="WalkLoadLeft"]
+[editable path="WalkLoadRight"]
+[editable path="MovingPlatform"]

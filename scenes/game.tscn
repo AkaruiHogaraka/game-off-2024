@@ -1,16 +1,120 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu866m0a85b6r"]
+[gd_scene load_steps=14 format=3 uid="uid://cu866m0a85b6r"]
 
 [ext_resource type="Material" uid="uid://dlr0mqnvald1e" path="res://materials/dream_palette.tres" id="1_02dv4"]
 [ext_resource type="PackedScene" uid="uid://c45wqwqxdhe8o" path="res://prefabs/player.tscn" id="1_4otbg"]
-[ext_resource type="PackedScene" uid="uid://8qk6vlxtge0" path="res://scenes/start_screen.tscn" id="2_thx8y"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_rtecv"]
+[ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/reality_palette.tres" id="1_xameb"]
+[ext_resource type="Shader" path="res://shaders/mask.gdshader" id="2_tgptw"]
+[ext_resource type="PackedScene" uid="uid://8qk6vlxtge0" path="res://scenes/reality/start_screen_reality.tscn" id="2_thx8y"]
+[ext_resource type="Shader" path="res://shaders/display_viewport.gdshader" id="2_y5a2i"]
+[ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="3_irauh"]
 
-[node name="Game" type="Node"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_d1ipr"]
+viewport_path = NodePath("DreamContainer/Dream")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lie70"]
+resource_local_to_scene = true
+shader = ExtResource("2_y5a2i")
+shader_parameter/main_texture = SubResource("ViewportTexture_d1ipr")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_efxym"]
+viewport_path = NodePath("RealityContainer/Reality")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_paoke"]
+resource_local_to_scene = true
+shader = ExtResource("2_y5a2i")
+shader_parameter/main_texture = SubResource("ViewportTexture_efxym")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4x3nc"]
+shader = ExtResource("2_tgptw")
+
+[node name="Game" type="Node" node_paths=PackedStringArray("screen", "reality_viewport", "reality_node", "reality_display", "dream_viewport", "dream_node", "dream_display", "transition_node")]
+script = ExtResource("1_rtecv")
+screen = NodePath("Screen")
+reality_viewport = NodePath("RealityContainer/Reality")
+reality_node = NodePath("RealityShaderController")
+reality_display = NodePath("Screen/Control/BackBufferCopy2/RealityDisplay")
+dream_viewport = NodePath("DreamContainer/Dream")
+dream_node = NodePath("DreamShaderController")
+dream_display = NodePath("Screen/Control/DreamDisplay")
+transition_node = NodePath("Screen/Control/BackBufferCopy2/BackBufferCopy/Circle/Circle")
+
+[node name="Screen" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="Screen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DreamDisplay" type="ColorRect" parent="Screen/Control"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_lie70")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Screen/Control"]
+modulate = Color(1, 1, 1, 0.105882)
+copy_mode = 2
+
+[node name="RealityDisplay" type="ColorRect" parent="Screen/Control/BackBufferCopy2"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_paoke")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 952.0
+offset_bottom = 448.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Screen/Control/BackBufferCopy2"]
+copy_mode = 0
+rect = Rect2(0, 0, 0, 0)
+
+[node name="Circle" type="Node2D" parent="Screen/Control/BackBufferCopy2/BackBufferCopy"]
+
+[node name="Circle" type="Control" parent="Screen/Control/BackBufferCopy2/BackBufferCopy/Circle"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Screen/Control/BackBufferCopy2/BackBufferCopy/Circle/Circle"]
+material = SubResource("ShaderMaterial_4x3nc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_irauh")
+stretch_mode = 2
 
 [node name="RealityShaderController" type="Node2D" parent="."]
-material = ExtResource("1_02dv4")
+material = ExtResource("1_xameb")
+
+[node name="Camera2D" type="Camera2D" parent="RealityShaderController"]
+zoom = Vector2(3, 3)
 
 [node name="CharacterBody2D" parent="RealityShaderController" instance=ExtResource("1_4otbg")]
 move_speed = 64.0
@@ -19,6 +123,79 @@ jump_height = 20.0
 jump_time_to_peak = 0.2
 jump_time_to_descent = 0.2
 
-[node name="start_screen" parent="RealityShaderController" instance=ExtResource("2_thx8y")]
+[node name="start_screen_reality" parent="RealityShaderController" instance=ExtResource("2_thx8y")]
 
 [node name="DreamShaderController" type="Node2D" parent="."]
+material = ExtResource("1_02dv4")
+
+[node name="Camera2D" type="Camera2D" parent="DreamShaderController"]
+zoom = Vector2(3, 3)
+
+[node name="RealityContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Reality" type="SubViewport" parent="RealityContainer"]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RealityContainer/Reality"]
+
+[node name="Control" type="Control" parent="RealityContainer/Reality/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="RealityContainer/Reality/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.5
+offset_top = 143.0
+offset_right = 26.5
+offset_bottom = 166.0
+grow_horizontal = 2
+text = "Reality"
+
+[node name="DreamContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dream" type="SubViewport" parent="DreamContainer"]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="DreamContainer/Dream"]
+
+[node name="Control" type="Control" parent="DreamContainer/Dream/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="DreamContainer/Dream/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.5
+offset_top = 143.0
+offset_right = 26.5
+offset_bottom = 166.0
+grow_horizontal = 2
+text = "Dream"

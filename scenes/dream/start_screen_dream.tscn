@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=4 uid="uid://bgnknq113jfek"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_2bcbt"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_mscbn"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="3_367df"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="4_s3tjp"]
+[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="5_cwqbn"]
+
+[node name="start_screen_dream" type="Node2D" node_paths=PackedStringArray("alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_2bcbt")
+alternate_scene = NodePath("RealityConnection")
+
+[node name="RealityConnection" type="Node" parent="."]
+script = ExtResource("2_mscbn")
+scene_path = "res://scenes/reality/start_screen_reality.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+use_parent_material = true
+offset_left = -251.0
+offset_top = -196.0
+offset_right = 271.0
+offset_bottom = 187.0
+color = Color(0, 0, 0, 1)
+
+[node name="Door" parent="." instance=ExtResource("3_367df")]
+position = Vector2(-56, 0)
+
+[node name="Door2" parent="." instance=ExtResource("3_367df")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQA=")
+tile_set = ExtResource("4_s3tjp")
+
+[node name="WalkLoadRight" parent="." instance=ExtResource("5_cwqbn")]
+position = Vector2(75, 0)
+
+[editable path="Door"]
+[editable path="Door2"]
+[editable path="WalkLoadRight"]
