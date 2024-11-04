@@ -43,7 +43,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	GlobalReference.Player.reset_velocities()
 	
 	var temp_clone = GlobalReference.Player.duplicate(0)
-	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 2))
+	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
 	
 	var old_scene: Scene = CurrentScene
 	CurrentScene = scene.scene

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=14 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="Texture2D" uid="uid://delo77n3jaa71" path="res://sprites/player.png" id="2_p7t0h"]
@@ -6,8 +6,37 @@
 [ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/reality_palette.tres" id="3_wx6x8"]
 [ext_resource type="Texture2D" uid="uid://t06qkwtnaopj" path="res://sprites/player_left_arm.png" id="5_cjqrj"]
 [ext_resource type="Material" uid="uid://qvu01kv17wav" path="res://materials/mask.tres" id="6_q67n2"]
-[ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="7_w3b51"]
 [ext_resource type="Script" path="res://scripts/line_of_sight_mesh_generation.gd" id="8_r7iuf"]
+[ext_resource type="Texture2D" uid="uid://s5e5fo4uuuld" path="res://sprites/circle-sheet.png" id="9_6d0xi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4l31"]
+atlas = ExtResource("9_6d0xi")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrqwh"]
+atlas = ExtResource("9_6d0xi")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7fil"]
+atlas = ExtResource("9_6d0xi")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii8mt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4l31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrqwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7fil")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(7, 15)
@@ -16,9 +45,11 @@ size = Vector2(7, 15)
 z_index = 5
 use_parent_material = true
 script = ExtResource("1_2tfwj")
-jump_height = 0.5
-jump_time_to_peak = 1.0
-jump_time_to_descent = 1.0
+move_speed = 64.0
+acceleration = 32.0
+jump_height = 24.0
+jump_time_to_peak = 0.25
+jump_time_to_descent = 0.25
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("3_bhfk3")
@@ -41,10 +72,6 @@ use_parent_material = true
 use_parent_material = true
 texture = ExtResource("5_cjqrj")
 offset = Vector2(0, -16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -7.5)
-shape = SubResource("RectangleShape2D_qx8pn")
 
 [node name="Fog" type="Node2D" parent="."]
 use_parent_material = true
@@ -79,26 +106,20 @@ collision_layer = 2
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Fog/BackBufferCopy2/LoS"]
 material = ExtResource("6_q67n2")
 
-[node name="Circle" type="Control" parent="Fog/BackBufferCopy2"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Circle" type="Node2D" parent="Fog/BackBufferCopy2"]
 
-[node name="TextureRect" type="TextureRect" parent="Fog/BackBufferCopy2/Circle"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fog/BackBufferCopy2/Circle"]
 material = ExtResource("6_q67n2")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_w3b51")
-stretch_mode = 2
+sprite_frames = SubResource("SpriteFrames_ii8mt")
+autoplay = "default"
+frame_progress = 0.903174
+
+[node name="FogFollowPoint" type="Node2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -7.5)
+shape = SubResource("RectangleShape2D_qx8pn")
 
 [connection signal="DirectionInput" from="Input" to="." method="on_move"]
 [connection signal="Dream" from="Input" to="." method="_on_dream"]

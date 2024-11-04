@@ -117,11 +117,6 @@ material = ExtResource("1_xameb")
 zoom = Vector2(3, 3)
 
 [node name="CharacterBody2D" parent="RealityShaderController" instance=ExtResource("1_4otbg")]
-move_speed = 64.0
-acceleration = 32.0
-jump_height = 20.0
-jump_time_to_peak = 0.2
-jump_time_to_descent = 0.2
 
 [node name="start_screen_reality" parent="RealityShaderController" instance=ExtResource("2_thx8y")]
 
