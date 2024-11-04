@@ -27,10 +27,10 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	await get_tree().create_timer(0.2).timeout
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
 	transition.transition(0, 1, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
+	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	await get_tree().create_timer(0.2).timeout
 	
 	transition.queue_free()
-	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 
 func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	if scene == null:
@@ -43,7 +43,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	GlobalReference.Player.reset_velocities()
 	
 	var temp_clone = GlobalReference.Player.duplicate(0)
-	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
+	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 2))
 	
 	var old_scene: Scene = CurrentScene
 	CurrentScene = scene.scene
@@ -62,10 +62,12 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 		node = GlobalReference.Game.reality_node
 		tween = GlobalReference.Game.transition(1, 0, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
 		GlobalReference.Player.global_position = GlobalReference.PlayerRealityPosition
+		GlobalReference.Player.toggle_fog(true)
 	else:
 		node = GlobalReference.Game.dream_node
 		tween = GlobalReference.Game.transition(0, 1, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
 		GlobalReference.PlayerRealityPosition = GlobalReference.Player.global_position
+		GlobalReference.Player.toggle_fog(false)
 	
 	GlobalReference.Game.transition_node.set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
 	

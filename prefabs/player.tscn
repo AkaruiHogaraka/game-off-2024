@@ -1,15 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=10 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="Texture2D" uid="uid://delo77n3jaa71" path="res://sprites/player.png" id="2_p7t0h"]
 [ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
 [ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/reality_palette.tres" id="3_wx6x8"]
 [ext_resource type="Texture2D" uid="uid://t06qkwtnaopj" path="res://sprites/player_left_arm.png" id="5_cjqrj"]
+[ext_resource type="Shader" path="res://shaders/mask.gdshader" id="6_x65kq"]
+[ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="7_w3b51"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(7, 15)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uuqqt"]
+shader = ExtResource("6_x65kq")
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
+z_index = 5
 use_parent_material = true
 script = ExtResource("1_2tfwj")
 jump_height = 0.5
@@ -25,7 +31,6 @@ coyote_buffer = 0.1
 use_parent_material = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite"]
-z_index = 5
 material = ExtResource("3_wx6x8")
 use_parent_material = true
 texture = ExtResource("2_p7t0h")
@@ -42,6 +47,48 @@ offset = Vector2(0, -16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -7.5)
 shape = SubResource("RectangleShape2D_qx8pn")
+
+[node name="Fog" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -7)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Fog"]
+use_parent_material = true
+copy_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Fog/BackBufferCopy"]
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -765.0
+offset_top = -458.0
+offset_right = 588.0
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Circle" type="Control" parent="Fog"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Fog/Circle"]
+material = SubResource("ShaderMaterial_uuqqt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_w3b51")
+stretch_mode = 2
 
 [connection signal="DirectionInput" from="Input" to="." method="on_move"]
 [connection signal="Dream" from="Input" to="." method="_on_dream"]

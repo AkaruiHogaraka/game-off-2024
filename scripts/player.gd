@@ -65,6 +65,9 @@ func _on_dream() -> void:
 	if is_on_floor() and _raw_input.x == 0 and _can_dream:
 		GlobalScene.change_dream_scene(GlobalScene.CurrentScene.alternate_scene, not GlobalScene.CurrentScene.is_alternate_scene_dream)
 
+func toggle_fog(value: bool) -> void:
+	$Fog.set_visible(value)
+
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
 	if direction != 0: $Sprite.scale.x = $Sprite.scale.y * direction
