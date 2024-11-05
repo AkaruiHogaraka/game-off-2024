@@ -46,3 +46,14 @@ func _on_body_exited(body: Node2D) -> void:
 		reparent_once = false
 		body.reparent(GlobalReference.PlayerParent)
 		body.set_can_dream(true)
+		
+func save_data() -> Dictionary:
+	var data: Dictionary = {
+		"path": get_path(),
+		"progress": progress
+	}
+	
+	return data
+
+func load_data(data: Dictionary) -> void:
+	progress = data["progress"]

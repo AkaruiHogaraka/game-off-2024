@@ -2,11 +2,15 @@ extends Node
 
 var CurrentScene: Scene
 
+var SaveData: Array[Dictionary]
+
 func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	if not scene.preload_connected_scene(): return
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	GlobalReference.Player.reset_velocities()
+	
+	save_nodes()
 	
 	var transition = load("res://prefabs/transition.tscn").instantiate()
 	GlobalReference.Player.get_parent().add_child(transition)
@@ -23,6 +27,8 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	
 	var position: Vector2 = scene.node.get_global_position()
 	GlobalReference.Player.set_global_position(Vector2(position.x, position.y))
+	
+	load_nodes()
 	
 	await get_tree().create_timer(0.2).timeout
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
@@ -41,6 +47,8 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	GlobalReference.Player.reset_velocities()
+	
+	save_nodes()
 	
 	var temp_clone = GlobalReference.Player.duplicate(0)
 	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
@@ -79,9 +87,40 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	GlobalReference.Player.reparent(node)
 	GlobalReference.PlayerParent = node
 	
+	load_nodes()
+	
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
 	await tween.finished
 	old_scene.queue_free()
 	temp_clone.queue_free()
-	
+
+func save_nodes() -> void:
+	var save_nodes = get_tree().get_nodes_in_group("Save")
+	for node in save_nodes:
+		if not node.has_method("save_data"): 
+			push_warning("%s is marked to save but doesn't have a save function" % node)
+			continue
+		
+		var new_data = node.call("save_data")
+		
+		print(new_data)
+		
+		for i in SaveData.size():
+			if SaveData[i]["path"] == new_data["path"]:
+				SaveData.remove_at(i)
+				break
+		
+		SaveData.push_back(new_data)
+		
+func load_nodes() -> void:
+	var save_nodes = get_tree().get_nodes_in_group("Save")
+	for node in save_nodes:
+		if not node.has_method("load_data"):
+			push_warning("%s is marked to save but doesn't have a load function" % node)
+			continue
+		
+		for i in SaveData.size():
+			if SaveData[i]["path"] == node.get_path():
+				node.call("load_data", SaveData[i])
+				break

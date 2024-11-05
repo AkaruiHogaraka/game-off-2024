@@ -66,7 +66,7 @@ position = Vector2(-21, 0)
 [node name="Position2" parent="MovingPlatform" index="4"]
 position = Vector2(38, 0)
 
-[node name="HiddenArea" parent="." instance=ExtResource("9_yw1gu")]
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("9_yw1gu")]
 position = Vector2(3, 2)
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]

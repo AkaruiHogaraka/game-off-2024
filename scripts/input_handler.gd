@@ -22,15 +22,21 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		Interaction.emit()
 		
-	if event.is_action_pressed("dream"):
+	if Input.is_action_pressed("move_up") and Input.is_action_just_pressed("jump"):
 		Dream.emit()
+		return
+		
+	if Input.is_action_pressed("move_down"):
+		if Input.is_action_pressed("jump"):
+			DownJump.emit()
+			return
+		
+		if GlobalReference.Player.is_on_floor():
+			DirectionInput.emit(0)
+			return
 		
 	_raw_input.x = Input.get_axis("move_left", "move_right")
 	DirectionInput.emit(_raw_input.x)
-	
-	if Input.is_action_pressed("jump") and Input.is_action_pressed("move_down"):
-		DownJump.emit()
-		return 
 	
 	if Input.is_action_just_pressed("jump"):
 		if _can_coyote_jump(): _signal_jump()

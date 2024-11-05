@@ -11,7 +11,7 @@ size = Vector2(16, 3)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ve5lf"]
 size = Vector2(15, 1)
 
-[node name="MovingPlatform" type="Node2D"]
+[node name="MovingPlatform" type="Node2D" groups=["Save"]]
 use_parent_material = true
 script = ExtResource("1_ajf61")
 

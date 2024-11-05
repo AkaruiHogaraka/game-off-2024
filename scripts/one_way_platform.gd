@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 func _disable_collision() -> void:
 	collision.set_disabled(true)
 	process_platform = false
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.06).timeout
 	process_platform = true
 
 func _on_body_entered(body: Node2D) -> void:
