@@ -116,14 +116,8 @@ stretch_mode = 2
 [node name="RealityShaderController" type="Node2D" parent="."]
 material = ExtResource("1_xameb")
 
-[node name="Camera2D" type="Camera2D" parent="RealityShaderController"]
-zoom = Vector2(3, 3)
-
 [node name="DreamShaderController" type="Node2D" parent="."]
 material = ExtResource("1_02dv4")
-
-[node name="Camera2D" type="Camera2D" parent="DreamShaderController"]
-zoom = Vector2(3, 3)
 
 [node name="RealityReference" parent="DreamShaderController" instance=ExtResource("9_vh44e")]
 

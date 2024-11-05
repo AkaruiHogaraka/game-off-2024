@@ -91,7 +91,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 		GlobalReference.PlayerRealityPosition = GlobalReference.Player.global_position
 		GlobalReference.Player.toggle_fog(false)
 	
-	GlobalReference.Game.transition_node.set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
+	GlobalReference.Game.transition_node.set_position(((get_tree().root.get_final_transform() * (old_scene.scene_camera.get_global_transform_with_canvas()).origin)))
 	
 	if node == null: 
 		push_warning("Something went wrong while dreaming!")

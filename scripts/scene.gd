@@ -1,5 +1,7 @@
 class_name Scene extends Node2D
 
+@export var scene_camera: Node2D
+
 @export var alternate_scene: SceneConnection
 @export var is_alternate_scene_dream: bool
 

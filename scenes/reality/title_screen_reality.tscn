@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=6 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="2_0g32y"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="3_qoxx3"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="5_vqsba"]
 
-[node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("alternate_scene") groups=["Save"]]
+[node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
 script = ExtResource("1_05neq")
+scene_camera = NodePath("Camera")
 alternate_scene = NodePath("DreamConnection")
 is_alternate_scene_dream = true
 
@@ -38,3 +40,5 @@ tile_set = ExtResource("2_0g32y")
 position = Vector2(-40, 0)
 
 [node name="CameraPosition" type="Marker2D" parent="."]
+
+[node name="Camera" parent="." instance=ExtResource("5_vqsba")]
