@@ -8,6 +8,7 @@ signal Jumping(_jump: bool, _direction: float)
 
 @export var jump_buffer: float = 0.2
 @export var coyote_buffer: float = 0.2
+@export var dream_cooldown: float = 0.5
 
 var _raw_input: Vector2
 var _jump_buffer_timer: float
@@ -15,6 +16,7 @@ var _buffer_jump: bool
 var _coyote_buffer_timer: float
 var _coyote_jump: bool
 var _can_input: bool = true
+var _dream_cooldown: float
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not _can_input: return
@@ -23,7 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		Interaction.emit()
 		
 	if Input.is_action_pressed("move_up") and Input.is_action_just_pressed("jump"):
-		Dream.emit()
+		if _dream_cooldown <= 0:
+			_dream_cooldown = dream_cooldown
+			Dream.emit()
 		return
 		
 	if Input.is_action_pressed("move_down"):
@@ -45,6 +49,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			_jump_buffer_timer = 0
 
 func _physics_process(delta: float) -> void:
+	_dream_cooldown -= delta
+	
 	if not GlobalReference.Player.is_on_floor():
 		_coyote_buffer_timer += delta
 	

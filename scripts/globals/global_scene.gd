@@ -34,6 +34,7 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
 	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	GlobalReference.Player.set_collision_layer_value(3, true)
 	await get_tree().create_timer(0.2).timeout
 	
 	transition.queue_free()
@@ -42,6 +43,8 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	if scene == null:
 		push_warning("There is no dream for this scene! Skipping...")
 		return
+	
+	GlobalReference.Player.set_collision_layer_value(3, false)
 	
 	scene.preload_connected_scene()
 	
@@ -52,6 +55,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	
 	var temp_clone = GlobalReference.Player.duplicate(0)
 	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
+	temp_clone.set_collision_layer_value(3, false)
 	
 	var old_scene: Scene = CurrentScene
 	CurrentScene = scene.scene
@@ -92,6 +96,9 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
 	await tween.finished
+	
+	GlobalReference.Player.set_collision_layer_value(3, true)
+	
 	old_scene.queue_free()
 	temp_clone.queue_free()
 
