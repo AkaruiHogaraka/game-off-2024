@@ -16,6 +16,7 @@ class_name GameManager extends Node
 
 @export var min_size: Vector2 = Vector2.ZERO
 @export var max_size: Vector2 = Vector2.ONE * 20
+@export_range(0, 1) var start_progress: int
 
 var progress: float
 
@@ -31,6 +32,11 @@ func _ready() -> void:
 	dream_viewport.size = dream_display.size
 	
 	screen.set_visible(true)
+	
+	progress = start_progress
+	transition_node.set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
+	
+	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 
 func _physics_process(delta: float) -> void:
 	transition_node.set_scale(min_size.lerp(max_size, progress))

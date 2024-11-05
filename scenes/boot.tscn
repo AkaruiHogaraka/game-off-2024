@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://kx2iudvkc7i4"]
+
+[ext_resource type="Script" path="res://scripts/boot.gd" id="1_fj7bh"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_wo5m8"]
+[ext_resource type="Script" path="res://scripts/transition.gd" id="3_a6ddd"]
+[ext_resource type="Texture2D" uid="uid://bgccud5xt8kge" path="res://sprites/logo.png" id="3_p5016"]
+[ext_resource type="Material" uid="uid://qvu01kv17wav" path="res://materials/mask.tres" id="5_evgic"]
+[ext_resource type="Texture2D" uid="uid://1faim6vj51bi" path="res://sprites/godot_splash.png" id="6_6ov2o"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_o1mpb"]
+radius = 50.0
+height = 100.0
+
+[node name="Boot" type="Node2D"]
+z_index = 100
+script = ExtResource("1_fj7bh")
+
+[node name="SceneConnection" type="Node" parent="."]
+script = ExtResource("2_wo5m8")
+scene_path = "res://scenes/game.tscn"
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Transition" type="Node2D" parent="CanvasLayer"]
+z_index = 100
+use_parent_material = true
+position = Vector2(576, 324)
+script = ExtResource("3_a6ddd")
+max_size = Vector2(2, 2)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="CanvasLayer/Transition"]
+use_parent_material = true
+copy_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Transition/BackBufferCopy"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_p5016")
+
+[node name="Circle" type="Control" parent="CanvasLayer/Transition"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/Transition/Circle"]
+material = ExtResource("5_evgic")
+mesh = SubResource("SphereMesh_o1mpb")
+
+[node name="Transition2" type="Node2D" parent="CanvasLayer"]
+z_index = 100
+use_parent_material = true
+position = Vector2(576, 324)
+script = ExtResource("3_a6ddd")
+max_size = Vector2(2, 2)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="CanvasLayer/Transition2"]
+use_parent_material = true
+copy_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Transition2/BackBufferCopy"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -626.0
+offset_top = -344.0
+offset_right = 322.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.075, 1.075)
+texture = ExtResource("6_6ov2o")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Transition2/BackBufferCopy"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -575.0
+offset_top = -323.0
+offset_right = 373.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_6ov2o")
+
+[node name="Circle" type="Control" parent="CanvasLayer/Transition2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/Transition2/Circle"]
+material = ExtResource("5_evgic")
+mesh = SubResource("SphereMesh_o1mpb")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

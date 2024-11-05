@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="game-off-2024"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/boot.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://sprites/icon.svg"
+boot_splash/minimum_display_time=3000
 
 [autoload]
 
@@ -69,6 +70,11 @@ move_up={
 
 2d_physics/layer_2="LoSMask"
 2d_physics/layer_3="PlayerDiscover"
+
+[physics]
+
+common/physics_jitter_fix=0.0
+common/physics_interpolation=true
 
 [rendering]
 

@@ -18,6 +18,9 @@ var _coyote_jump: bool
 var _can_input: bool = true
 var _dream_cooldown: float
 
+func _ready() -> void:
+	Jumping.connect(GlobalReference._toggle_jump)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not _can_input: return
 	

@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_rtecv"]
 [ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/reality_palette.tres" id="1_xameb"]
 [ext_resource type="Shader" path="res://shaders/mask.gdshader" id="2_tgptw"]
-[ext_resource type="PackedScene" uid="uid://8qk6vlxtge0" path="res://scenes/reality/start_screen_reality.tscn" id="2_thx8y"]
 [ext_resource type="Shader" path="res://shaders/display_viewport.gdshader" id="2_y5a2i"]
 [ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="3_irauh"]
+[ext_resource type="PackedScene" uid="uid://clppcvnfhiaja" path="res://scenes/dream/title_screen_dream.tscn" id="9_36ubo"]
 [ext_resource type="PackedScene" uid="uid://d0ma2r2g22w5r" path="res://prefabs/reality_reference.tscn" id="9_vh44e"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_d1ipr"]
@@ -40,6 +40,7 @@ dream_node = NodePath("DreamShaderController")
 dream_display = NodePath("Screen/Control/DreamDisplay")
 transition_node = NodePath("Screen/Control/BackBufferCopy2/BackBufferCopy/Circle/Circle")
 reality_reference = NodePath("DreamShaderController/RealityReference")
+start_progress = 1
 
 [node name="Screen" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -118,10 +119,6 @@ material = ExtResource("1_xameb")
 [node name="Camera2D" type="Camera2D" parent="RealityShaderController"]
 zoom = Vector2(3, 3)
 
-[node name="CharacterBody2D" parent="RealityShaderController" instance=ExtResource("1_4otbg")]
-
-[node name="start_screen_reality" parent="RealityShaderController" instance=ExtResource("2_thx8y")]
-
 [node name="DreamShaderController" type="Node2D" parent="."]
 material = ExtResource("1_02dv4")
 
@@ -129,6 +126,10 @@ material = ExtResource("1_02dv4")
 zoom = Vector2(3, 3)
 
 [node name="RealityReference" parent="DreamShaderController" instance=ExtResource("9_vh44e")]
+
+[node name="CharacterBody2D" parent="DreamShaderController" instance=ExtResource("1_4otbg")]
+
+[node name="TitleScreenDream" parent="DreamShaderController" instance=ExtResource("9_36ubo")]
 
 [node name="RealityContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0

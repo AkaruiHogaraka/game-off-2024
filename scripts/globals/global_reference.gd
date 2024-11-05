@@ -9,12 +9,6 @@ var PlayerRealityReference: Node2D
 
 var Game: GameManager
 
-func _ready() -> void:
-	call_deferred("initialise")
-
-func initialise() -> void:
-	Player.Input_Handler.Jumping.connect(_toggle_jump)
-
 func connect_signal(connect_to: Signal, object: Object, function: String) -> void:
 	connect_to.connect(Callable(object, function))
 

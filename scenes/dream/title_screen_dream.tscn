@@ -1,0 +1,178 @@
+[gd_scene load_steps=7 format=4 uid="uid://clppcvnfhiaja"]
+
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="1_1ormn"]
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5t00n"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="2_3rp26"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_iswqo"]
+[ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="4_pshte"]
+
+[node name="TitleScreenDream" type="Node2D" node_paths=PackedStringArray("alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_5n13v")
+alternate_scene = NodePath("RealityConnection")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+use_parent_material = true
+offset_left = -278.0
+offset_top = -228.0
+offset_right = 260.0
+offset_bottom = 140.0
+color = Color(0, 0, 0, 1)
+
+[node name="RealityConnection" type="Node" parent="."]
+script = ExtResource("2_iswqo")
+scene_path = "res://scenes/reality/title_screen_reality.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("markers", "buttons", "menu_cusor") groups=["Save"]]
+script = ExtResource("1_5t00n")
+markers = [NodePath("Control/Marker1"), NodePath("Control/Marker2"), NodePath("Control/Marker3")]
+buttons = [NodePath("Control/Play"), NodePath("Control/Settings"), NodePath("Control/Quit")]
+menu_cusor = NodePath("Cursor")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -201.0
+offset_right = 62.0
+offset_bottom = -178.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dreamers Wake"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -95.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Marker1" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -34.0
+offset_right = -58.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Marker2" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 1.0
+offset_right = -53.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Marker3" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 37.0
+offset_right = -35.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -50.0
+offset_right = 38.5
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wake Up"
+
+[node name="Settings" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -15.5
+offset_right = 35.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.5
+offset_top = 20.0
+offset_right = 18.5
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+
+[node name="Cursor" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 518.0
+offset_top = 195.0
+offset_right = 558.0
+offset_bottom = 235.0
+scale = Vector2(0.04, 0.04)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Cursor"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("4_pshte")
+
+[node name="Ground" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7////AgAAAAAAAQD6//7/AgAAAAAAAQD5//z/AgAAAAAAAQA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgAHAPv/BgAAAAAAAgAHAPr/BgAAAAAAAgAHAPn/BgAAAAAAAgD7////BwAAAAAAAgD6//7/BwAAAAAAAgD5//3/BwAAAAAAAgD5//z/BwAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="Door" parent="." instance=ExtResource("2_3rp26")]
+position = Vector2(-40, 0)
+
+[node name="CameraPosition" type="Marker2D" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/Control/Play" to="CanvasLayer" method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Settings" to="CanvasLayer" method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Quit" to="CanvasLayer" method="_on_quit_pressed"]

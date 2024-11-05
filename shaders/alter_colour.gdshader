@@ -13,15 +13,15 @@ void fragment() {
 	if (colour_one.rgb == COLOR.rgb) {
 		COLOR.rgb = replace_one.rgb;
 	}
-	
+
 	if (colour_two.rgb == COLOR.rgb) {
 		COLOR.rgb = replace_two.rgb;
 	}
-	
+
 	if (colour_three.rgb == COLOR.rgb) {
 		COLOR.rgb = replace_three.rgb;
 	}
-	
+
 	if (colour_four.rgb == COLOR.rgb) {
 		COLOR.rgb = replace_four.rgb;
 	}

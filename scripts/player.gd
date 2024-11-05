@@ -25,6 +25,7 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	GlobalReference.Player = self
 	GlobalReference.PlayerParent = get_parent()
+	toggle_fog(false)
 
 func _process(delta):
 	if not Input_Handler._can_input: 
