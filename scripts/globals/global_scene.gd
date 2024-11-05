@@ -69,6 +69,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	else:
 		GlobalReference.Game.reality_node.add_child(temp_clone)
 		temp_clone.global_position = GlobalReference.Player.global_position
+		GlobalReference.PlayerRealityReference.global_position = GlobalReference.Player.global_position
 	
 	if reality:
 		node = GlobalReference.Game.reality_node

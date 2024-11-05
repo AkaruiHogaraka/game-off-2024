@@ -12,6 +12,8 @@ class_name GameManager extends Node
 
 @export var transition_node: Control
 
+@export var reality_reference: Node2D
+
 @export var min_size: Vector2 = Vector2.ZERO
 @export var max_size: Vector2 = Vector2.ONE * 20
 
@@ -19,6 +21,7 @@ var progress: float
 
 func _ready() -> void:
 	GlobalReference.Game = self
+	GlobalReference.PlayerRealityReference = reality_reference
 	
 	reality_node.reparent(reality_viewport)
 	reality_viewport.size = reality_display.size

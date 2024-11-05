@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0ma2r2g22w5r"]
+
+[ext_resource type="Texture2D" uid="uid://delo77n3jaa71" path="res://sprites/player.png" id="1_sewwq"]
+
+[node name="RealityReference" type="Node2D"]
+use_parent_material = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("1_sewwq")
+offset = Vector2(0, -16)

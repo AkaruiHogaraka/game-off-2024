@@ -5,6 +5,7 @@ var jump_toggle: bool
 var Player: PlayerController
 var PlayerParent: Node2D
 var PlayerRealityPosition: Vector2
+var PlayerRealityReference: Node2D
 
 var Game: GameManager
 

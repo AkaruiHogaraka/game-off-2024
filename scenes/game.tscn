@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cu866m0a85b6r"]
+[gd_scene load_steps=15 format=3 uid="uid://cu866m0a85b6r"]
 
 [ext_resource type="Material" uid="uid://dlr0mqnvald1e" path="res://materials/dream_palette.tres" id="1_02dv4"]
 [ext_resource type="PackedScene" uid="uid://c45wqwqxdhe8o" path="res://prefabs/player.tscn" id="1_4otbg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8qk6vlxtge0" path="res://scenes/reality/start_screen_reality.tscn" id="2_thx8y"]
 [ext_resource type="Shader" path="res://shaders/display_viewport.gdshader" id="2_y5a2i"]
 [ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="3_irauh"]
+[ext_resource type="PackedScene" uid="uid://d0ma2r2g22w5r" path="res://prefabs/reality_reference.tscn" id="9_vh44e"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_d1ipr"]
 viewport_path = NodePath("DreamContainer/Dream")
@@ -28,7 +29,7 @@ shader_parameter/main_texture = SubResource("ViewportTexture_efxym")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4x3nc"]
 shader = ExtResource("2_tgptw")
 
-[node name="Game" type="Node" node_paths=PackedStringArray("screen", "reality_viewport", "reality_node", "reality_display", "dream_viewport", "dream_node", "dream_display", "transition_node")]
+[node name="Game" type="Node" node_paths=PackedStringArray("screen", "reality_viewport", "reality_node", "reality_display", "dream_viewport", "dream_node", "dream_display", "transition_node", "reality_reference")]
 script = ExtResource("1_rtecv")
 screen = NodePath("Screen")
 reality_viewport = NodePath("RealityContainer/Reality")
@@ -38,6 +39,7 @@ dream_viewport = NodePath("DreamContainer/Dream")
 dream_node = NodePath("DreamShaderController")
 dream_display = NodePath("Screen/Control/DreamDisplay")
 transition_node = NodePath("Screen/Control/BackBufferCopy2/BackBufferCopy/Circle/Circle")
+reality_reference = NodePath("DreamShaderController/RealityReference")
 
 [node name="Screen" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -125,6 +127,8 @@ material = ExtResource("1_02dv4")
 
 [node name="Camera2D" type="Camera2D" parent="DreamShaderController"]
 zoom = Vector2(3, 3)
+
+[node name="RealityReference" parent="DreamShaderController" instance=ExtResource("9_vh44e")]
 
 [node name="RealityContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0
