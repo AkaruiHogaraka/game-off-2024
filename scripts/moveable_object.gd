@@ -48,3 +48,14 @@ func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"): 
 		_let_go_interaction()
 		in_area = false
+		
+func save_data() -> Dictionary:
+	var data: Dictionary = {
+		"path": get_path(),
+		"position": moveable_parent.global_position
+	}
+	
+	return data
+
+func load_data(data: Dictionary) -> void:
+	moveable_parent.global_position = data["position"]
