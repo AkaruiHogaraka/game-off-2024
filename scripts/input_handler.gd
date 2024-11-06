@@ -3,6 +3,7 @@ class_name InputHandler extends Node
 signal Dream()
 signal DownJump()
 signal Interaction()
+signal InteractionLetGo()
 signal DirectionInput(_direction: float)
 signal Jumping(_jump: bool, _direction: float)
 
@@ -17,6 +18,7 @@ var _coyote_buffer_timer: float
 var _coyote_jump: bool
 var _can_input: bool = true
 var _dream_cooldown: float
+var _can_jump: bool = true
 
 func _ready() -> void:
 	Jumping.connect(GlobalReference._toggle_jump)
@@ -26,15 +28,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact"):
 		Interaction.emit()
+	if event.is_action_released("interact"):
+		InteractionLetGo.emit()
 		
-	if Input.is_action_pressed("move_up") and Input.is_action_just_pressed("jump"):
+	if Input.is_action_pressed("move_up") and Input.is_action_just_pressed("jump") and _can_jump:
 		if _dream_cooldown <= 0:
 			_dream_cooldown = dream_cooldown
 			Dream.emit()
 		return
 		
 	if Input.is_action_pressed("move_down"):
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_pressed("jump") and _can_jump:
 			DownJump.emit()
 			return
 		
@@ -45,7 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	_raw_input.x = Input.get_axis("move_left", "move_right")
 	DirectionInput.emit(_raw_input.x)
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and _can_jump:
 		if _can_coyote_jump(): _signal_jump()
 		else: 
 			_buffer_jump = true
@@ -71,6 +75,9 @@ func _can_coyote_jump() -> bool:
 
 func toggle_inputs(enabled: bool) -> void:
 	_can_input = enabled
+
+func set_can_jump(value: bool) -> void:
+	_can_jump = value
 
 func _signal_jump() -> void:
 	_raw_input.y = 1

@@ -19,6 +19,8 @@ func _play_end_scene() -> void:
 	camera.set_enabled(true)
 	
 	var tween: Tween = get_tree().create_tween()
+	camera.get_parent().global_position = GlobalScene.CurrentScene.scene_camera.global_position
+	next_label.get_parent().global_position.x = GlobalScene.CurrentScene.scene_camera.global_position.x
 	tween.tween_property(camera.get_parent(), "global_position:y", camera_destination.global_position.y, camera_time)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	
