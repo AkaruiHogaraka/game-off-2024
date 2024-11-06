@@ -40,6 +40,8 @@ dream_node = NodePath("DreamShaderController")
 dream_display = NodePath("Screen/Control/DreamDisplay")
 transition_node = NodePath("Screen/Control/BackBufferCopy2/BackBufferCopy/Circle/Circle")
 reality_reference = NodePath("DreamShaderController/RealityReference")
+camera_come_from = Vector2(0, 50)
+camera_tween_time = 1.0
 start_progress = 1
 
 [node name="Screen" type="CanvasLayer" parent="."]

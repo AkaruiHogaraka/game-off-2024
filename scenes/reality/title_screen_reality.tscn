@@ -13,15 +13,6 @@ scene_camera = NodePath("Camera")
 alternate_scene = NodePath("DreamConnection")
 is_alternate_scene_dream = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -5
-use_parent_material = true
-offset_left = -230.0
-offset_top = -219.0
-offset_right = 213.0
-offset_bottom = 100.0
-color = Color(0, 0, 0, 1)
-
 [node name="DreamConnection" type="Node" parent="."]
 script = ExtResource("1_en6ue")
 scene_path = "res://scenes/dream/title_screen_dream.tscn"
@@ -42,3 +33,4 @@ position = Vector2(-40, 0)
 [node name="CameraPosition" type="Marker2D" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("5_vqsba")]
+position = Vector2(0, -32)

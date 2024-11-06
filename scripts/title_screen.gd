@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 var menu_active: bool = true
 
@@ -7,6 +7,9 @@ var menu_active: bool = true
 @export var menu_cusor: Control
 
 var index: int
+
+func _ready() -> void:
+	menu_cusor.set_global_position(markers[index].global_position)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not menu_active: return
@@ -21,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	index = index % markers.size()
 	
-	menu_cusor.set_position(markers[index].global_position)
+	menu_cusor.set_global_position(markers[index].global_position)
 
 func save_data() -> Dictionary:
 	var data: Dictionary = {

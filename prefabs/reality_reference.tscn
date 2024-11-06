@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://delo77n3jaa71" path="res://sprites/player.png" id="1_sewwq"]
 
 [node name="RealityReference" type="Node2D"]
+z_index = 3
 use_parent_material = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

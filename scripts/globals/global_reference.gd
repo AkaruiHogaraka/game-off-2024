@@ -7,6 +7,9 @@ var PlayerParent: Node2D
 var PlayerRealityPosition: Vector2
 var PlayerRealityReference: Node2D
 
+var DreamMaterial: Material
+var RealityMaterial: Material
+
 var Game: GameManager
 
 func connect_signal(connect_to: Signal, object: Object, function: String) -> void:

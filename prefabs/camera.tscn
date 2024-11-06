@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://cuguybm5sutw1"]
 
 [node name="Camera" type="Node2D"]
+use_parent_material = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -100
+use_parent_material = true
+offset_left = -278.0
+offset_top = -228.0
+offset_right = 260.0
+offset_bottom = 140.0
+color = Color(0, 0, 0, 1)

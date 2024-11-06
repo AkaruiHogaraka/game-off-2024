@@ -5,6 +5,7 @@ var CurrentScene: Scene
 var SaveData: Array[Dictionary]
 
 var internal_scene_change_cooldown: bool
+var IsRestarting: bool
 
 func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	if not scene.preload_connected_scene() or internal_scene_change_cooldown: return
@@ -91,7 +92,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 		GlobalReference.PlayerRealityPosition = GlobalReference.Player.global_position
 		GlobalReference.Player.toggle_fog(false)
 	
-	GlobalReference.Game.transition_node.set_position(((get_tree().root.get_final_transform() * (old_scene.scene_camera.get_global_transform_with_canvas()).origin)))
+	GlobalReference.Game.transition_node.set_position(((get_tree().root.get_final_transform() * (GlobalReference.Player.get_global_transform_with_canvas()).origin)))
 	
 	if node == null: 
 		push_warning("Something went wrong while dreaming!")
@@ -112,7 +113,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	
 	internal_scene_change_cooldown = false
 	
-	old_scene.queue_free()
+	if old_scene != null: old_scene.queue_free()
 	temp_clone.queue_free()
 
 func save_nodes() -> void:

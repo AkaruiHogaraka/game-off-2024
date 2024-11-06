@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0xj0bpy4qsax"]
+
+[ext_resource type="Script" path="res://scripts/end_trigger.gd" id="1_m2nkv"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="2_0ytfn"]
+[ext_resource type="Texture2D" uid="uid://dkbl4r2irkvm4" path="res://sprites/player_lantern.png" id="3_fangi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqeu"]
+
+[node name="EndScene" type="Node2D" node_paths=PackedStringArray("camera", "camera_destination", "time_label", "collectables_label", "next_label")]
+use_parent_material = true
+script = ExtResource("1_m2nkv")
+camera = NodePath("Camera/Camera2D")
+camera_destination = NodePath("CameraDestination")
+time_label = NodePath("Elements/TimePivot/Time")
+collectables_label = NodePath("Elements/CollectablePivot/HBoxContainer/Collectables")
+next_label = NodePath("Elements/Next")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3gqeu")
+
+[node name="Camera" parent="." instance=ExtResource("2_0ytfn")]
+
+[node name="Camera2D" parent="Camera" index="0"]
+enabled = false
+
+[node name="CameraDestination" type="Marker2D" parent="."]
+position = Vector2(0, -360)
+
+[node name="Elements" type="Control" parent="."]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -322.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credit" type="Label" parent="Elements"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -83.0
+offset_right = 67.5
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A game by Akarui"
+
+[node name="TimePivot" type="Control" parent="Elements"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -11.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Time" type="Label" parent="Elements/TimePivot"]
+visible = false
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -11.5
+offset_right = 35.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0:00:00"
+horizontal_alignment = 1
+
+[node name="CollectablePivot" type="Control" parent="Elements"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -38.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Elements/CollectablePivot"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -22.0
+offset_right = 34.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Elements/CollectablePivot/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("3_fangi")
+
+[node name="Collectables" type="Label" parent="Elements/CollectablePivot/HBoxContainer"]
+visible = false
+use_parent_material = true
+layout_mode = 2
+text = "x 10"
+
+[node name="Next" type="Label" parent="Elements"]
+visible = false
+use_parent_material = true
+layout_mode = 0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = 49.0
+offset_bottom = 24.0
+text = "z to continue"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Camera"]
