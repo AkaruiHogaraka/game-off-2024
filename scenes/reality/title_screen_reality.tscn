@@ -42,11 +42,9 @@ position = Vector2(-40, 0)
 position = Vector2(0, -32)
 
 [node name="Moveable" parent="." instance=ExtResource("6_bxn3r")]
-
-[node name="Body" parent="Moveable" index="0"]
 position = Vector2(59, 0)
 
-[node name="Moveable" parent="Moveable/Body" index="1" groups=["Save"]]
+[node name="Moveable" parent="Moveable" index="1" groups=["Save"]]
 
 [node name="OneWayPlatform" parent="." instance=ExtResource("7_2pbud")]
 position = Vector2(-56, 8)

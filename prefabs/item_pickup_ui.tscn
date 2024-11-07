@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://buao37mj0e24d"]
+[gd_scene load_steps=6 format=3 uid="uid://buao37mj0e24d"]
 
 [ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_3ybvd"]
+[ext_resource type="Script" path="res://scripts/pickup_ui_adjust.gd" id="1_aw5qc"]
 [ext_resource type="Texture2D" uid="uid://dfvoiojl3kjdf" path="res://sprites/nine-rect.png" id="2_vlxdb"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="3_f4dyt"]
 
@@ -8,15 +9,30 @@
 atlas = ExtResource("1_3ybvd")
 region = Rect2(3, 4, 8, 8)
 
-[node name="ItemPickupUI" type="Control"]
+[node name="ItemPickupUI" type="Control" node_paths=PackedStringArray("item_texture_rect", "item_label", "text_nine_rect", "texture_nine_rect", "main_container")]
+z_index = 4
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_aw5qc")
+item_texture_rect = NodePath("HBoxContainer2/TextureRect")
+item_label = NodePath("HBoxContainer2/HBoxContainer/Label")
+text_nine_rect = NodePath("HBoxContainer2/HBoxContainer/Label/NinePatchRect")
+texture_nine_rect = NodePath("HBoxContainer2/TextureRect/NinePatchRect")
+main_container = NodePath("HBoxContainer2")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 57.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.5
+offset_top = -8.0
+offset_right = 28.5
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
 use_parent_material = true
@@ -56,7 +72,7 @@ layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("3_f4dyt")
 theme_override_font_sizes/font_size = 8
-text = "Dream Gem"
+text = "Item Name"
 vertical_alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer2/HBoxContainer/Label"]
@@ -65,9 +81,9 @@ use_parent_material = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-offset_left = -1.5
+offset_left = -1.0
 offset_top = -2.0
-offset_right = 0.5
+offset_right = 1.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2

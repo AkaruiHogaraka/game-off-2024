@@ -16,64 +16,61 @@ size = Vector2(10, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_minoj"]
 size = Vector2(8, 15)
 
-[node name="Moveable" type="Node2D"]
-use_parent_material = true
-
-[node name="Body" type="StaticBody2D" parent="."]
+[node name="Body" type="StaticBody2D"]
 use_parent_material = true
 collision_layer = 0
 collision_mask = 8
 
-[node name="OneWayPlatform" type="Node" parent="Body" node_paths=PackedStringArray("collision", "platform_position")]
+[node name="OneWayPlatform" type="Node" parent="." node_paths=PackedStringArray("collision", "platform_position")]
 script = ExtResource("1_lh5xt")
 collision = NodePath("../OneWayReferences/StaticBody2D/CollisionShape2D")
 platform_position = NodePath("../OneWayReferences/Marker2D")
 
-[node name="Moveable" type="Node" parent="Body" node_paths=PackedStringArray("moveable_parent")]
+[node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent")]
 script = ExtResource("2_2g878")
 parent_radius = 4.0
 moveable_parent = NodePath("..")
 speed_penalty_multiplier = 0.5
 
-[node name="Sprite2D" type="Sprite2D" parent="Body"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
 texture = ExtResource("3_x1h62")
 offset = Vector2(0, -8)
 
-[node name="OneWayReferences" type="Node2D" parent="Body"]
+[node name="OneWayReferences" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Body/OneWayReferences"]
+[node name="StaticBody2D" type="StaticBody2D" parent="OneWayReferences"]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/OneWayReferences/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayReferences/StaticBody2D"]
 position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_mawdp")
 
-[node name="Marker2D" type="Marker2D" parent="Body/OneWayReferences"]
+[node name="Marker2D" type="Marker2D" parent="OneWayReferences"]
 position = Vector2(0, -15)
 
-[node name="Area2D" type="Area2D" parent="Body/OneWayReferences"]
+[node name="Area2D" type="Area2D" parent="OneWayReferences"]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/OneWayReferences/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayReferences/Area2D"]
 position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_014ak")
 
-[node name="MoveableReferences" type="Node2D" parent="Body"]
+[node name="MoveableReferences" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Body/MoveableReferences"]
+[node name="Area2D" type="Area2D" parent="MoveableReferences"]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/MoveableReferences/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableReferences/Area2D"]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_tl3lc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8.5)
 shape = SubResource("RectangleShape2D_minoj")
 
-[connection signal="body_entered" from="Body/OneWayReferences/Area2D" to="Body/OneWayPlatform" method="_on_body_entered"]
-[connection signal="body_exited" from="Body/OneWayReferences/Area2D" to="Body/OneWayPlatform" method="_on_body_exited"]
-[connection signal="body_entered" from="Body/MoveableReferences/Area2D" to="Body/Moveable" method="_on_body_entered"]
-[connection signal="body_exited" from="Body/MoveableReferences/Area2D" to="Body/Moveable" method="_on_body_exited"]
+[connection signal="body_entered" from="OneWayReferences/Area2D" to="OneWayPlatform" method="_on_body_entered"]
+[connection signal="body_exited" from="OneWayReferences/Area2D" to="OneWayPlatform" method="_on_body_exited"]
+[connection signal="body_entered" from="MoveableReferences/Area2D" to="Moveable" method="_on_body_entered"]
+[connection signal="body_exited" from="MoveableReferences/Area2D" to="Moveable" method="_on_body_exited"]

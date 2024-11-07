@@ -19,6 +19,8 @@ var _is_jumping: bool
 var _jump_time: float
 var _can_dream: bool = true
 var _is_interacting: bool
+var _is_in_interaction_area: bool
+var _current_area: Node
 
 @onready var Input_Handler: InputHandler = $Input
 
@@ -79,8 +81,17 @@ func set_speed_multiplier(multiplier: float) -> void:
 	_speed_multiplier = multiplier
 
 func set_interaction_display(enabled: bool) -> void:
-	if enabled and _is_interacting: return
+	if _is_interacting and enabled: return
+	if _is_in_interaction_area: return 
 	interaction_sprite.set_visible(enabled)
+
+func set_is_in_interaction_area(value: bool, node: Node, override: bool) -> void:
+	if not override:
+		if _current_area != node and _current_area != null: 
+			return
+			
+	_current_area = node
+	_is_in_interaction_area = value
 
 func on_interaction() -> void:
 	_is_interacting = true

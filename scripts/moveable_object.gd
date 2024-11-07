@@ -33,13 +33,16 @@ func _on_interaction() -> void:
 	holding_interaction = true
 	GlobalReference.Player.Input_Handler.set_can_jump(false)
 	distance_to_maintain = moveable_parent.global_position - GlobalReference.Player.global_position
+	GlobalReference.Player.set_is_in_interaction_area(false, self, false)
 	GlobalReference.Player.set_interaction_display(false)
 
 func _let_go_interaction() -> void:
+	if not in_area: return
 	holding_interaction = false
 	GlobalReference.Player.set_speed_multiplier(1.0)
 	GlobalReference.Player.Input_Handler.set_can_jump(true)
 	GlobalReference.Player.set_interaction_display(true)
+	GlobalReference.Player.set_is_in_interaction_area(true, self, false)
 	
 func save_data() -> Dictionary:
 	var data: Dictionary = {
