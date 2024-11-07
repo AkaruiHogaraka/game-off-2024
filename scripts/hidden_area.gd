@@ -4,6 +4,7 @@ extends Node2D
 @export var permanent: bool = true
 
 func _ready() -> void:
+	set_visible(true)
 	$TileMapLayer.set_visible(true)
 	
 	if discovered:

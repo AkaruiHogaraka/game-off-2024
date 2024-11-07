@@ -49,3 +49,4 @@ func _on_play_pressed() -> void:
 	menu_active = false
 	set_process_unhandled_input(false)
 	GlobalScene.change_dream_scene(get_parent().alternate_scene, true)
+	GlobalReference.start_game_time()

@@ -20,6 +20,7 @@ boot_splash/minimum_display_time=3000
 
 GlobalReference="*res://scripts/globals/global_reference.gd"
 GlobalScene="*res://scripts/globals/global_scene.gd"
+GlobalItems="*res://scripts/globals/global_items.gd"
 
 [global_group]
 

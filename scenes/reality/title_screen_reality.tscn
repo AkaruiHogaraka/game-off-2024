@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=13 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/moveable.tscn" id="6_bxn3r"]
 [ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/one_way_platform.tscn" id="7_2pbud"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/hidden_area.tscn" id="8_cdvcs"]
-[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/chest.tscn" id="9_4l5rm"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/gem_chest.tscn" id="9_4l5rm"]
+[ext_resource type="Resource" uid="uid://bfuwg0b2s4tk8" path="res://resources/Gems/red_gem.tres" id="10_dbg65"]
+[ext_resource type="Resource" uid="uid://dlna8d8mwb4sh" path="res://resources/Gems/green_gem.tres" id="11_va6uf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y45yj"]
 
@@ -50,6 +52,7 @@ position = Vector2(59, 0)
 position = Vector2(-56, 8)
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_cdvcs")]
+visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
 position = Vector2(0, 2)
@@ -62,5 +65,16 @@ shape = SubResource("RectangleShape2D_y45yj")
 [node name="Chest" parent="." instance=ExtResource("9_4l5rm")]
 position = Vector2(-98, -48)
 
+[node name="Pickup" parent="Chest" index="1"]
+gem = ExtResource("10_dbg65")
+
+[node name="Chest2" parent="." instance=ExtResource("9_4l5rm")]
+position = Vector2(-56, 16)
+
+[node name="Pickup" parent="Chest2" index="1"]
+gem = ExtResource("11_va6uf")
+
 [editable path="Moveable"]
 [editable path="HiddenArea"]
+[editable path="Chest"]
+[editable path="Chest2"]

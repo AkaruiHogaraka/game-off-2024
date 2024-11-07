@@ -1,19 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://de2gkqkiailjq"]
+[gd_scene load_steps=6 format=3 uid="uid://de2gkqkiailjq"]
 
 [ext_resource type="Script" path="res://scripts/interactable_pickup.gd" id="1_81gmj"]
 [ext_resource type="Texture2D" uid="uid://bso22ca4w6k5" path="res://sprites/chest.png" id="2_8s1uw"]
-[ext_resource type="Script" path="res://scripts/base_pickup_item.gd" id="2_fa8kx"]
-[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="3_f8reu"]
+[ext_resource type="Script" path="res://scripts/gem_pickup.gd" id="2_w2sx7"]
 [ext_resource type="PackedScene" uid="uid://buao37mj0e24d" path="res://prefabs/item_pickup_ui.tscn" id="4_btw0m"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bds2j"]
-atlas = ExtResource("3_f8reu")
-region = Rect2(3, 4, 8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_il8xv"]
 size = Vector2(10, 10)
 
-[node name="Chest" type="Node2D"]
+[node name="GemChest" type="Node2D"]
 use_parent_material = true
 
 [node name="InteractablePickup" type="Node" parent="." node_paths=PackedStringArray("collision", "item") groups=["Save"]]
@@ -22,9 +17,7 @@ collision = NodePath("../Area2D/CollisionShape2D")
 item = NodePath("../Pickup")
 
 [node name="Pickup" type="Node" parent="." node_paths=PackedStringArray("ui")]
-script = ExtResource("2_fa8kx")
-item_name = "Test Item"
-item_texture = SubResource("AtlasTexture_bds2j")
+script = ExtResource("2_w2sx7")
 ui = NodePath("../ItemPickupUI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

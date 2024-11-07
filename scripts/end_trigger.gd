@@ -61,6 +61,9 @@ func reset_game() -> void:
 	GlobalReference.PlayerRealityPosition = Vector2.ZERO
 	GlobalScene.CurrentScene = null
 	
+	GlobalItems.reset_items()
+	GlobalReference.end_game_time()
+	
 	GlobalScene.IsRestarting = true
 	get_tree().current_scene.queue_free()
 	var game = load("res://scenes/game.tscn").instantiate()

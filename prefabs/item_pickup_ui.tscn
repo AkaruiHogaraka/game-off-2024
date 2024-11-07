@@ -10,7 +10,7 @@ atlas = ExtResource("1_3ybvd")
 region = Rect2(3, 4, 8, 8)
 
 [node name="ItemPickupUI" type="Control" node_paths=PackedStringArray("item_texture_rect", "item_label", "text_nine_rect", "texture_nine_rect", "main_container")]
-z_index = 4
+z_index = 10
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0

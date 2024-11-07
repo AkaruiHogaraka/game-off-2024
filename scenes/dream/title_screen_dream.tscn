@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://clppcvnfhiaja"]
+[gd_scene load_steps=15 format=4 uid="uid://clppcvnfhiaja"]
 
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/moveable.tscn" id="8_8iaug"]
 [ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/one_way_platform.tscn" id="10_wxac7"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/hidden_area.tscn" id="11_57pea"]
-[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/chest.tscn" id="12_5x1x4"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/gem_chest.tscn" id="12_5x1x4"]
+[ext_resource type="Resource" uid="uid://k5ijowqaw4i1" path="res://resources/Gems/dream_gem.tres" id="13_0wo8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mk4j"]
 
@@ -195,6 +196,7 @@ position = Vector2(-59, 0)
 position = Vector2(-56, 8)
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("11_57pea")]
+visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
 position = Vector2(0, 2)
@@ -207,9 +209,22 @@ shape = SubResource("RectangleShape2D_7mk4j")
 [node name="Chest" parent="." instance=ExtResource("12_5x1x4")]
 position = Vector2(-98, -48)
 
+[node name="Pickup" parent="Chest" index="1"]
+gem = ExtResource("13_0wo8m")
+dream_gem = true
+
+[node name="Chest2" parent="." instance=ExtResource("12_5x1x4")]
+position = Vector2(-56, 16)
+
+[node name="Pickup" parent="Chest2" index="1"]
+gem = ExtResource("13_0wo8m")
+dream_gem = true
+
 [connection signal="pressed" from="Menu/Control/Play" to="Menu" method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/Control/Settings" to="Menu" method="_on_settings_pressed"]
 [connection signal="pressed" from="Menu/Control/Quit" to="Menu" method="_on_quit_pressed"]
 
 [editable path="Moveable"]
 [editable path="HiddenArea"]
+[editable path="Chest"]
+[editable path="Chest2"]
