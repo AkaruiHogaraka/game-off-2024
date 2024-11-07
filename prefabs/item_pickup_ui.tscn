@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://buao37mj0e24d"]
+
+[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_3ybvd"]
+[ext_resource type="Texture2D" uid="uid://dfvoiojl3kjdf" path="res://sprites/nine-rect.png" id="2_vlxdb"]
+[ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="3_f4dyt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ctke"]
+atlas = ExtResource("1_3ybvd")
+region = Rect2(3, 4, 8, 8)
+
+[node name="ItemPickupUI" type="Control"]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 57.0
+offset_bottom = 8.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
+use_parent_material = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_4ctke")
+stretch_mode = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer2/TextureRect"]
+show_behind_parent = true
+use_parent_material = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 9.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vlxdb")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2"]
+use_parent_material = true
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer2/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("3_f4dyt")
+theme_override_font_sizes/font_size = 8
+text = "Dream Gem"
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer2/HBoxContainer/Label"]
+show_behind_parent = true
+use_parent_material = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -1.5
+offset_top = -2.0
+offset_right = 0.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vlxdb")
+region_rect = Rect2(1, 0, 15, 16)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

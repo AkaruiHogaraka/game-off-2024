@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=11 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="3_qoxx3"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="5_vqsba"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/moveable.tscn" id="6_bxn3r"]
+[ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/one_way_platform.tscn" id="7_2pbud"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/hidden_area.tscn" id="8_cdvcs"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/chest.tscn" id="9_4l5rm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y45yj"]
 
 [node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -20,12 +25,12 @@ scene_path = "res://scenes/dream/title_screen_dream.tscn"
 
 [node name="Ground" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7//7/AgAAAAAAAQD6//3/AgAAAAAAAQD5//3/AgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7//7/AgAAAAAAAQD6//3/AgAAAAAAAQD5//3/AgAAAAAAAQD8/wEAAgAAAAAAAQA=")
 tile_set = ExtResource("2_0g32y")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgAHAPv/BgAAAAAAAgAHAPr/BgAAAAAAAgAHAPn/BgAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgD7//7/BwAAAAAAAgD7////BwAAAAAAAgD6//3/BwAAAAAAAgD4//z/BwAAAAAAAgD4//j/BwAAAAAAAgD4//f/BwAAAAAAAgAHAPj/BgAAAAAAAgAHAPf/BgAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgAHAPv/BgAAAAAAAgAHAPr/BgAAAAAAAgAHAPn/BgAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgD7//7/BwAAAAAAAgD7////BwAAAAAAAgD6//3/BwAAAAAAAgD4//z/BwAAAAAAAgD4//j/BwAAAAAAAgD4//f/BwAAAAAAAgAHAPj/BgAAAAAAAgAHAPf/BgAAAAAAAgD9/wAABgAAAAAAAgD7/wAABwAAAAAAAgA=")
 tile_set = ExtResource("2_0g32y")
 
 [node name="Door" parent="." instance=ExtResource("3_qoxx3")]
@@ -43,4 +48,21 @@ position = Vector2(59, 0)
 
 [node name="Moveable" parent="Moveable/Body" index="1" groups=["Save"]]
 
+[node name="OneWayPlatform" parent="." instance=ExtResource("7_2pbud")]
+position = Vector2(-56, 8)
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_cdvcs")]
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+position = Vector2(0, 2)
+tile_map_data = PackedByteArray("AAD7/wAAAwAAAAAAAAD8/wEAAwAAAAAAAAD9/wAAAwAAAAAAAAD8/wAAAwAAAAAAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(-56, 12)
+shape = SubResource("RectangleShape2D_y45yj")
+
+[node name="Chest" parent="." instance=ExtResource("9_4l5rm")]
+position = Vector2(-98, -48)
+
 [editable path="Moveable"]
+[editable path="HiddenArea"]

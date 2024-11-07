@@ -13,14 +13,19 @@ use_parent_material = true
 [node name="SceneConnection" type="Node" parent="."]
 script = ExtResource("1_lhr1r")
 
+[node name="Interaction" type="Node" parent="."]
+script = ExtResource("3_7qiik")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
 texture = ExtResource("2_mjb6b")
 offset = Vector2(0, -16)
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("3_7qiik")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_lll0c")
+
+[connection signal="body_entered" from="Area2D" to="Interaction" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Interaction" method="_on_body_exited"]

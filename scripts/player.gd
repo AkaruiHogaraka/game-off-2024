@@ -7,6 +7,8 @@ class_name PlayerController extends CharacterBody2D
 @export var jump_time_to_peak: float
 @export var jump_time_to_descent: float
 
+@export var interaction_sprite: Sprite2D
+
 var _speed_multiplier: float = 1.0
 
 var _raw_input: Vector2
@@ -16,6 +18,7 @@ var _gravity_velocity: Vector2
 var _is_jumping: bool
 var _jump_time: float
 var _can_dream: bool = true
+var _is_interacting: bool
 
 @onready var Input_Handler: InputHandler = $Input
 
@@ -28,6 +31,7 @@ func _ready():
 	GlobalReference.Player = self
 	GlobalReference.PlayerParent = get_parent()
 	toggle_fog(false)
+	set_interaction_display(false)
 
 func _process(delta):
 	if not Input_Handler._can_input: 
@@ -73,6 +77,16 @@ func toggle_fog(value: bool) -> void:
 
 func set_speed_multiplier(multiplier: float) -> void:
 	_speed_multiplier = multiplier
+
+func set_interaction_display(enabled: bool) -> void:
+	if enabled and _is_interacting: return
+	interaction_sprite.set_visible(enabled)
+
+func on_interaction() -> void:
+	_is_interacting = true
+
+func on_interaction_let_go() -> void:
+	_is_interacting = false
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
