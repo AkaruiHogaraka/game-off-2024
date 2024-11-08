@@ -10,16 +10,12 @@ class_name GameManager extends Node
 @export var dream_node: Node2D
 @export var dream_display: ColorRect
 
-@export var transition_node: Control
+@export var transition_node: Transition
 
 @export var reality_reference: Node2D
 
 @export var camera_come_from: Vector2
 @export var camera_tween_time: float
-
-@export var min_size: Vector2 = Vector2.ZERO
-@export var max_size: Vector2 = Vector2.ONE * 20
-@export_range(0, 1) var start_progress: int
 
 var progress: float
 
@@ -39,8 +35,8 @@ func _ready() -> void:
 	screen.set_visible(true)
 	get_tree().set_current_scene(self)
 	
-	progress = start_progress
-	transition_node.set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
+	transition_node.mask.get_parent().set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
+	transition_node.transition(0, 1, 0, Tween.EASE_IN, Tween.TRANS_EXPO)
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	if GlobalScene.IsRestarting: pan_camera()
@@ -51,16 +47,3 @@ func pan_camera() -> void:
 	GlobalScene.CurrentScene.scene_camera.global_position.y = camera_come_from.y
 	tween.tween_property(GlobalScene.CurrentScene.scene_camera, "global_position:y", destination.y, camera_tween_time)
 	tween.set_ease(Tween.EASE_IN_OUT)
-
-func _physics_process(delta: float) -> void:
-	transition_node.set_scale(min_size.lerp(max_size, progress))
-
-func transition(from: int, to: int, duration: float, ease_mode: Tween.EaseType, trans_mode) -> Tween:
-	progress = from
-	transition_node.set_scale(min_size.lerp(max_size, progress))
-	var tween: Tween = create_tween()
-	tween.tween_property(self, "progress", to, duration)
-	tween.set_ease(ease_mode)
-	tween.set_trans(trans_mode)
-	
-	return tween

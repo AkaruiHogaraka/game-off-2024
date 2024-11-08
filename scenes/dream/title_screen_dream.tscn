@@ -29,8 +29,8 @@ scene_path = "res://scenes/reality/title_screen_reality.tscn"
 [node name="Menu" type="Control" parent="." node_paths=PackedStringArray("markers", "buttons", "menu_cusor") groups=["Save"]]
 layout_mode = 3
 anchors_preset = 0
-offset_top = -16.0
-offset_bottom = -16.0
+offset_top = 8.0
+offset_bottom = 8.0
 script = ExtResource("1_5t00n")
 markers = [NodePath("Control/Marker1"), NodePath("Control/Marker2"), NodePath("Control/Marker3")]
 buttons = [NodePath("Control/Play"), NodePath("Control/Settings"), NodePath("Control/Quit")]
@@ -173,12 +173,17 @@ texture = ExtResource("4_pshte")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7//7/AgAAAAAAAQD6//3/AgAAAAAAAQD5//3/AgAAAAAAAQD8/wEAAgAAAAAAAQD9/wAAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7//7/AgAAAAAAAQD6//3/AgAAAAAAAQD5//3/AgAAAAAAAQD8/wEAAgAAAAAAAQD9/wAAAgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQA=")
 tile_set = ExtResource("1_1ormn")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgAHAPv/BgAAAAAAAgAHAPr/BgAAAAAAAgAHAPn/BgAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgD7//7/BwAAAAAAAgD7////BwAAAAAAAgD6//3/BwAAAAAAAgD4//z/BwAAAAAAAgD4//j/BwAAAAAAAgD4//f/BwAAAAAAAgAHAPj/BgAAAAAAAgAHAPf/BgAAAAAAAgD9/wAABgAAAAAAAgD7/wAABwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgAHAPn/BgAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgD7//7/BwAAAAAAAgD7////BwAAAAAAAgD6//3/BwAAAAAAAgD4//z/BwAAAAAAAgD4//j/BwAAAAAAAgAHAPj/BgAAAAAAAgD9/wAABgAAAAAAAgD7/wAABwAAAAAAAgA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAP//AAABAAEAAAAFAP7/AAABAAEAAAAGAPz/AAABAAEAAAD6//3/AAAFAAEAAAD7//7/AAAFAAEAAAAEAAAAAAAEAAQAAAAFAP//AAAEAAQAAAAGAP7/AAAEAAQAAAD6//7/AAACAAQAAAD4//3/AAACAAQAAAAGAP3/AAABAAIAAAAHAPn/AAABAAIAAAAHAPj/AAABAAIAAAADAAAAAAADAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAAAAAAAAAACAAEAAAD//wAAAAADAAEAAAD+/wAAAAADAAEAAAD9/wAAAAABAAEAAAADAP//AAADAAAAAAACAP//AAADAAAAAAABAP//AAACAAAAAAD+////AAADAAAAAAD/////AAACAAAAAAD7////AAAFAAIAAAD5//3/AAACAAEAAAD4//z/AAAFAAIAAAD4//v/AAAFAAIAAAD4//r/AAAFAAIAAAD4//n/AAAFAAIAAAD4//j/AAAFAAIAAAAHAPz/AAACAAEAAAAIAPz/AAADAAEAAAAIAPv/AAADAAAAAAAHAPv/AAADAAAAAAAGAPv/AAACAAAAAAAFAP3/AAACAAAAAAAEAP7/AAADAAAAAAD7//3/AAACAAAAAAD5//z/AAADAAAAAAD8/wEAAAADAAEAAAD7/wAAAAAFAAIAAAD9/wEAAAAEAAQAAAD7/wEAAAACAAQAAAA=")
 tile_set = ExtResource("1_1ormn")
 
 [node name="Door" parent="." instance=ExtResource("2_3rp26")]
@@ -199,8 +204,7 @@ position = Vector2(-56, 8)
 visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
-position = Vector2(0, 2)
-tile_map_data = PackedByteArray("AAD7/wAAAwAAAAAAAAD8/wEAAwAAAAAAAAD9/wAAAwAAAAAAAAD8/wAAAwAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wEAAwAAAAAAAAD9/wEAAwAAAAAAAAD7/wEAAwAAAAAAAAD7/wAAAwAAAAAAAAD8/wAAAwAAAAAAAAD9/wAAAwAAAAAAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
 position = Vector2(-57, 12)
@@ -219,6 +223,10 @@ position = Vector2(-56, 16)
 [node name="Pickup" parent="Chest2" index="1"]
 gem = ExtResource("13_0wo8m")
 dream_gem = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="Menu/Control/Play" to="Menu" method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/Control/Settings" to="Menu" method="_on_settings_pressed"]

@@ -83,16 +83,16 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	
 	if reality:
 		node = GlobalReference.Game.reality_node
-		tween = GlobalReference.Game.transition(1, 0, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
+		tween = GlobalReference.Game.transition_node.transition(1, 0, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
 		GlobalReference.Player.global_position = GlobalReference.PlayerRealityPosition
 		GlobalReference.Player.toggle_fog(true)
 	else:
 		node = GlobalReference.Game.dream_node
-		tween = GlobalReference.Game.transition(0, 1, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
+		tween = GlobalReference.Game.transition_node.transition(0, 1, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
 		GlobalReference.PlayerRealityPosition = GlobalReference.Player.global_position
 		GlobalReference.Player.toggle_fog(false)
 	
-	GlobalReference.Game.transition_node.set_position(((get_tree().root.get_final_transform() * (GlobalReference.Player.get_global_transform_with_canvas()).origin)))
+	GlobalReference.Game.transition_node.mask.get_parent().set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
 	
 	if node == null: 
 		push_warning("Something went wrong while dreaming!")

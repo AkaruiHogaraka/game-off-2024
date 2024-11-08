@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cu866m0a85b6r"]
+[gd_scene load_steps=18 format=3 uid="uid://cu866m0a85b6r"]
 
 [ext_resource type="Material" uid="uid://dlr0mqnvald1e" path="res://materials/dream_palette.tres" id="1_02dv4"]
 [ext_resource type="PackedScene" uid="uid://c45wqwqxdhe8o" path="res://prefabs/player.tscn" id="1_4otbg"]
@@ -6,7 +6,10 @@
 [ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/reality_palette.tres" id="1_xameb"]
 [ext_resource type="Shader" path="res://shaders/mask.gdshader" id="2_tgptw"]
 [ext_resource type="Shader" path="res://shaders/display_viewport.gdshader" id="2_y5a2i"]
+[ext_resource type="Script" path="res://scripts/transition.gd" id="3_8ox42"]
 [ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="3_irauh"]
+[ext_resource type="Material" uid="uid://ban8rwomfkgij" path="res://materials/circular_noise_mask.tres" id="4_mc6ad"]
+[ext_resource type="PackedScene" uid="uid://bygelm8avfpe6" path="res://mask.tscn" id="5_66ic6"]
 [ext_resource type="PackedScene" uid="uid://clppcvnfhiaja" path="res://scenes/dream/title_screen_dream.tscn" id="9_36ubo"]
 [ext_resource type="PackedScene" uid="uid://d0ma2r2g22w5r" path="res://prefabs/reality_reference.tscn" id="9_vh44e"]
 
@@ -38,14 +41,12 @@ reality_display = NodePath("Screen/Control/BackBufferCopy2/RealityDisplay")
 dream_viewport = NodePath("DreamContainer/Dream")
 dream_node = NodePath("DreamShaderController")
 dream_display = NodePath("Screen/Control/DreamDisplay")
-transition_node = NodePath("Screen/Control/BackBufferCopy2/BackBufferCopy/Circle/Circle")
+transition_node = NodePath("Screen/Control/BackBufferCopy2/Transition")
 reality_reference = NodePath("DreamShaderController/RealityReference")
 camera_come_from = Vector2(0, 200)
 camera_tween_time = 1.0
-start_progress = 1
 
 [node name="Screen" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
 [node name="Control" type="Control" parent="Screen"]
 layout_mode = 3
@@ -57,6 +58,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="DreamDisplay" type="ColorRect" parent="Screen/Control"]
+light_mask = 0
 texture_filter = 1
 material = SubResource("ShaderMaterial_lie70")
 layout_mode = 1
@@ -73,6 +75,7 @@ modulate = Color(1, 1, 1, 0.105882)
 copy_mode = 2
 
 [node name="RealityDisplay" type="ColorRect" parent="Screen/Control/BackBufferCopy2"]
+light_mask = 0
 texture_filter = 1
 material = SubResource("ShaderMaterial_paoke")
 anchors_preset = 15
@@ -84,13 +87,52 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Transition" type="Node2D" parent="Screen/Control/BackBufferCopy2" node_paths=PackedStringArray("mask")]
+z_index = 10
+use_parent_material = true
+script = ExtResource("3_8ox42")
+min_size = Vector2(-0.05, 0)
+max_size = Vector2(0.5, 1)
+mask = NodePath("BackBufferCopy/Circle/ColorRect")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Screen/Control/BackBufferCopy2/Transition"]
+use_parent_material = true
+copy_mode = 0
+
+[node name="Circle" type="Control" parent="Screen/Control/BackBufferCopy2/Transition/BackBufferCopy"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(5, 5)
+
+[node name="ColorRect" type="ColorRect" parent="Screen/Control/BackBufferCopy2/Transition/BackBufferCopy/Circle"]
+material = ExtResource("4_mc6ad")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mask" parent="Screen/Control/BackBufferCopy2/Transition" instance=ExtResource("5_66ic6")]
+visible = false
+
+[node name="Sprite2D" parent="Screen/Control/BackBufferCopy2/Transition/Mask" index="0"]
+visible = false
+
 [node name="BackBufferCopy" type="BackBufferCopy" parent="Screen/Control/BackBufferCopy2"]
+visible = false
 copy_mode = 0
 rect = Rect2(0, 0, 0, 0)
 
 [node name="Circle" type="Node2D" parent="Screen/Control/BackBufferCopy2/BackBufferCopy"]
+visible = false
 
 [node name="Circle" type="Control" parent="Screen/Control/BackBufferCopy2/BackBufferCopy/Circle"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,6 +143,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Screen/Control/BackBufferCopy2/BackBufferCopy/Circle/Circle"]
+visible = false
 material = SubResource("ShaderMaterial_4x3nc")
 layout_mode = 1
 anchors_preset = 15
@@ -195,3 +238,5 @@ offset_right = 26.5
 offset_bottom = 166.0
 grow_horizontal = 2
 text = "Dream"
+
+[editable path="Screen/Control/BackBufferCopy2/Transition/Mask"]

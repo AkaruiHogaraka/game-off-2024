@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=19 format=4 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="Texture2D" uid="uid://delo77n3jaa71" path="res://sprites/player.png" id="2_p7t0h"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="2_pmu0y"]
 [ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
 [ext_resource type="Material" uid="uid://c2ux74cy0sbvl" path="res://materials/reality_palette.tres" id="3_wx6x8"]
 [ext_resource type="Texture2D" uid="uid://t06qkwtnaopj" path="res://sprites/player_left_arm.png" id="5_cjqrj"]
@@ -9,6 +10,8 @@
 [ext_resource type="Material" uid="uid://qvu01kv17wav" path="res://materials/mask.tres" id="6_q67n2"]
 [ext_resource type="Script" path="res://scripts/line_of_sight_mesh_generation.gd" id="8_r7iuf"]
 [ext_resource type="Texture2D" uid="uid://s5e5fo4uuuld" path="res://sprites/circle-sheet.png" id="9_6d0xi"]
+[ext_resource type="Shader" path="res://shaders/circular_band_noise_mask.gdshader" id="11_0xflg"]
+[ext_resource type="Texture2D" uid="uid://d2c4473xu60u2" path="res://sprites/240x160.png" id="11_5chh3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4l31"]
 atlas = ExtResource("9_6d0xi")
@@ -39,6 +42,21 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y323w"]
+shader = ExtResource("11_0xflg")
+shader_parameter/radius_inner = 0.2
+shader_parameter/radius_middle = 0.3
+shader_parameter/radius_outer = 0.4
+shader_parameter/noise_strength = 0.03
+shader_parameter/noise_scale = 10.0
+shader_parameter/colour_tolerance = 0.01
+shader_parameter/texture_size = Vector2(240, 160)
+shader_parameter/pixel_resolution = Vector2(1, 1)
+shader_parameter/colour_0 = Color(0.25098, 0.2, 0.180392, 1)
+shader_parameter/colour_1 = Color(0.521569, 0.431373, 0.321569, 1)
+shader_parameter/colour_2 = Color(0.580392, 0.780392, 0.6, 1)
+shader_parameter/colour_3 = Color(0.980392, 1, 0.878431, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(8, 15)
 
@@ -54,6 +72,12 @@ jump_height = 24.0
 jump_time_to_peak = 0.25
 jump_time_to_descent = 0.25
 interaction_sprite = NodePath("Sprite/Interaction")
+
+[node name="Debug" type="TileMapLayer" parent="."]
+visible = false
+material = ExtResource("3_wx6x8")
+tile_map_data = PackedByteArray("AAAEAP//AAABAAEAAAAFAP7/AAABAAEAAAAGAPz/AAABAAEAAAD6//3/AAAFAAEAAAD7//7/AAAFAAEAAAAEAAAAAAAEAAQAAAAFAP//AAAEAAQAAAAGAP7/AAAEAAQAAAD6//7/AAACAAQAAAD4//3/AAACAAQAAAAGAP3/AAABAAIAAAAHAPn/AAABAAIAAAAHAPj/AAABAAIAAAADAAAAAAADAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAAAAAAAAAACAAEAAAD//wAAAAADAAEAAAD+/wAAAAADAAEAAAD9/wAAAAABAAEAAAADAP//AAADAAAAAAACAP//AAADAAAAAAABAP//AAACAAAAAAD+////AAADAAAAAAD/////AAACAAAAAAD7////AAAFAAIAAAD5//3/AAACAAEAAAD4//z/AAAFAAIAAAD4//v/AAAFAAIAAAD4//r/AAAFAAIAAAD4//n/AAAFAAIAAAD4//j/AAAFAAIAAAAHAPz/AAACAAEAAAAIAPz/AAADAAEAAAAIAPv/AAADAAAAAAAHAPv/AAADAAAAAAAGAPv/AAACAAAAAAAFAP3/AAACAAAAAAAEAP7/AAADAAAAAAD7//3/AAACAAAAAAD5//z/AAADAAAAAAD8/wEAAAADAAEAAAD7/wAAAAAFAAIAAAD9/wEAAAAEAAQAAAD7/wEAAAACAAQAAAA=")
+tile_set = ExtResource("2_pmu0y")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("3_bhfk3")
@@ -116,12 +140,20 @@ collision_layer = 2
 material = ExtResource("6_q67n2")
 
 [node name="Circle" type="Node2D" parent="Fog/BackBufferCopy2"]
+visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fog/BackBufferCopy2/Circle"]
+visible = false
 material = ExtResource("6_q67n2")
 sprite_frames = SubResource("SpriteFrames_ii8mt")
 autoplay = "default"
 frame_progress = 0.903174
+
+[node name="Mask" type="Node2D" parent="Fog/BackBufferCopy2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Fog/BackBufferCopy2/Mask"]
+material = SubResource("ShaderMaterial_y323w")
+texture = ExtResource("11_5chh3")
 
 [node name="FogFollowPoint" type="Node2D" parent="."]
 position = Vector2(0, -7)

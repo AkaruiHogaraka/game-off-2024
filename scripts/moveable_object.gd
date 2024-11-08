@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	GlobalReference.Player.set_speed_multiplier(speed_penalty_multiplier)
-	moveable_parent.global_position = moveable_parent.global_position.move_toward(position, 100 * delta)
+	moveable_parent.global_position = moveable_parent.global_position.move_toward(position, 200 * delta)
 
 func _on_interaction() -> void:
 	if not in_area or not GlobalReference.Player.is_on_floor(): return 

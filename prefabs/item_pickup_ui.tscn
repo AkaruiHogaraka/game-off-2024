@@ -22,6 +22,7 @@ texture_nine_rect = NodePath("HBoxContainer2/TextureRect/NinePatchRect")
 main_container = NodePath("HBoxContainer2")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -30,7 +31,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -28.5
 offset_top = -8.0
-offset_right = 28.5
+offset_right = 31.5
 grow_horizontal = 2
 grow_vertical = 0
 

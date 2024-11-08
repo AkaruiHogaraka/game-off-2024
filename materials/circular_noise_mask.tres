@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ban8rwomfkgij"]
+
+[ext_resource type="Shader" path="res://circular_noise.gdshader" id="1_47oo8"]
+
+[resource]
+shader = ExtResource("1_47oo8")
+shader_parameter/radius = 0.405
+shader_parameter/noise_strength = 0.05
+shader_parameter/noise_scale = 10.0
+shader_parameter/texture_size = Vector2(288, 162)
+shader_parameter/pixel_resolution = Vector2(0.2, 0.2)

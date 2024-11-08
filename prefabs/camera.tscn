@@ -4,7 +4,7 @@
 use_parent_material = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -100
