@@ -3,7 +3,9 @@ shader_type canvas_item;
 uniform float radius_inner = 0.1;      // Radius of the center circle
 uniform float radius_middle = 0.2;     // Radius of the second band
 uniform float radius_outer = 0.3;      // Radius of the outer band
-uniform float noise_strength = 0.05;   // Noise amount for edge
+uniform float noise_strength_inner = 0.05;   // Noise strength for inner band
+uniform float noise_strength_middle = 0.03;  // Noise strength for middle band
+uniform float noise_strength_outer = 0.02;   // Noise strength for outer band
 uniform float noise_scale = 10.0;      // Scale for noise effect
 uniform float colour_tolerance = 0.01;
 uniform sampler2D screen_texture : hint_screen_texture;
@@ -51,6 +53,9 @@ void fragment() {
 
     // Calculate distance from the center of the pixel to the circle center
     float dist = distance(vec2((pixel_uv.x - center.x) * aspect_ratio + center.x, pixel_uv.y), center);
+    float noise_strength = dist < radius_inner ? noise_strength_inner
+                        : (dist < radius_middle ? noise_strength_middle
+                        : (dist < radius_outer ? noise_strength_outer : 0.0));
 
     // Generate noise for the edge of each band
     float noise = (random(pixel_uv * noise_scale) - 0.5) * noise_strength;

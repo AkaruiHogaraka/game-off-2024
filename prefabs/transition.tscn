@@ -1,16 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbncrxjwuns5b"]
+[gd_scene load_steps=3 format=3 uid="uid://cbncrxjwuns5b"]
 
 [ext_resource type="Script" path="res://scripts/transition.gd" id="1_6wg2g"]
 [ext_resource type="Material" uid="uid://ban8rwomfkgij" path="res://materials/circular_noise_mask.tres" id="2_ldon1"]
-[ext_resource type="PackedScene" uid="uid://bygelm8avfpe6" path="res://mask.tscn" id="4_bbbxq"]
 
 [node name="Transition" type="Node2D" node_paths=PackedStringArray("mask")]
 z_index = 10
 use_parent_material = true
 script = ExtResource("1_6wg2g")
 min_size = Vector2(-0.05, 0)
-max_size = Vector2(1.1, 1)
-mask = NodePath("CanvasLayer/Circle/ColorRect")
+max_size = Vector2(0.6, 1)
+mask = NodePath("Circle/ColorRect")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 use_parent_material = true
@@ -29,9 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Circle" type="Control" parent="CanvasLayer"]
+[node name="Circle" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,19 +37,15 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Circle"]
+[node name="ColorRect" type="ColorRect" parent="Circle"]
 material = ExtResource("2_ldon1")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -81.0
+offset_right = 144.0
+offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Mask" parent="." instance=ExtResource("4_bbbxq")]
-visible = false
-
-[node name="Sprite2D" parent="Mask" index="0"]
-visible = false
-
-[editable path="Mask"]

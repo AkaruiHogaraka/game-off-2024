@@ -10,9 +10,12 @@ var IsRestarting: bool
 func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	if not scene.preload_connected_scene() or internal_scene_change_cooldown: return
 	
+	GlobalReference.Game.transition_node.set_visible(false)
+	
 	internal_scene_change_cooldown = true
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	GlobalReference.Player.reset_velocities()
+	GlobalReference.Player.on_interaction_let_go()
 	
 	save_nodes()
 	
@@ -34,25 +37,25 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> void:
 	
 	load_nodes()
 	
-	await get_tree().create_timer(0.2).timeout
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
 	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
 	
 	GlobalReference.Player.set_collision_layer_value(3, true)
-	await get_tree().create_timer(0.2).timeout
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	await get_tree().create_timer(0.3).timeout
 	internal_scene_change_cooldown = false
 	transition.queue_free()
 
 func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
-	if scene == null:
+	if scene == null or scene.scene_path.is_empty():
 		push_warning("There is no dream for this scene! Skipping...")
 		return
 		
 	if internal_scene_change_cooldown: return
 	
 	internal_scene_change_cooldown = true
+	GlobalReference.Game.transition_node.set_visible(true)
 	
 	GlobalReference.Player.set_collision_layer_value(3, false)
 	

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cag86bn1hnx2a"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_85pyj"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_vvyhx"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="3_f3q7p"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="3_lvude"]
+
+[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_85pyj")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("2_vvyhx")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_set = ExtResource("3_lvude")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_set = ExtResource("3_lvude")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("3_lvude")
+
+[node name="Camera" parent="." instance=ExtResource("3_f3q7p")]

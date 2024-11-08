@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=4 uid="uid://cl4d4xy1m4xlh"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_ge8jf"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_vasy4"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="3_qtvv1"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="4_27ykw"]
+[ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/one_way_platform.tscn" id="5_2moix"]
+[ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="6_n7ipc"]
+[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="7_7qv2s"]
+[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/walk_load_left.tscn" id="8_xmmfa"]
+
+[node name="Tutorial01Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_ge8jf")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("DreamConnection")
+
+[node name="DreamConnection" type="Node" parent="."]
+script = ExtResource("2_vasy4")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAIAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAEAAIAAgAAAAAAAQADAAIAAgAAAAAAAQACAAIAAgAAAAAAAQABAAIAAgAAAAAAAQAAAAIAAgAAAAAAAQD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD//wMAAgAAAAAAAQD+/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQA=")
+tile_set = ExtResource("3_qtvv1")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAIABgAAAAAAAgD8/wIABwAAAAAAAgD8/wEABwAAAAAAAgD8/wAABwAAAAAAAgA=")
+tile_set = ExtResource("3_qtvv1")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAIAAAABAAEAAAD8/wAAAAAFAAEAAAAAAAMAAAAEAAQAAAD8/wMAAAACAAQAAAD8/wIAAAAFAAIAAAD8/wEAAAAFAAIAAAAIAAIAAAADAAEAAAAHAAIAAAACAAEAAAAGAAIAAAACAAEAAAAFAAIAAAADAAEAAAAEAAIAAAACAAEAAAADAAIAAAADAAEAAAACAAIAAAADAAEAAAABAAIAAAACAAEAAAD//wMAAAACAAEAAAD+/wMAAAACAAEAAAD9/wMAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAADAAEAAAD5/wAAAAACAAEAAAD4/wAAAAACAAEAAAD3/wAAAAADAAEAAAD//wIAAAADAAAAAAD+/wIAAAADAAAAAAD9/wIAAAADAAAAAAABAAEAAAADAAAAAAAAAAEAAAACAAAAAAAHAAEAAAADAAAAAAAIAAEAAAADAAAAAAAGAAEAAAACAAAAAAD6////AAACAAAAAAD5////AAADAAAAAAD4////AAADAAAAAAD3////AAADAAAAAAA=")
+tile_set = ExtResource("3_qtvv1")
+
+[node name="Camera" parent="." instance=ExtResource("4_27ykw")]
+
+[node name="OneWayPlatform" parent="." instance=ExtResource("5_2moix")]
+position = Vector2(-24, 27)
+
+[node name="Label" type="Label" parent="."]
+use_parent_material = true
+offset_top = 11.0
+offset_right = 71.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("6_n7ipc")
+theme_override_font_sizes/font_size = 8
+text = "Spacebar - Jump"
+
+[node name="WalkLoadRight" parent="." instance=ExtResource("7_7qv2s")]
+position = Vector2(139, 32)
+
+[node name="SceneConnection" parent="WalkLoadRight" index="0"]
+scene_path = "res://scenes/reality/title_screen_reality.tscn"
+node_path = "Door"
+
+[node name="WalkLoadLeft" parent="." instance=ExtResource("8_xmmfa")]
+position = Vector2(-139, 0)
+
+[editable path="WalkLoadRight"]
+[editable path="WalkLoadLeft"]

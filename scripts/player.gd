@@ -36,6 +36,8 @@ func _ready():
 	set_interaction_display(false)
 
 func _process(delta):
+	$Fog/BackBufferCopy2/Mask.global_position = round($FogFollowPoint.global_position)
+	
 	if not Input_Handler._can_input: 
 		reset_velocities()
 	
