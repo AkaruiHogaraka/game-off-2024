@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=13 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="2_0g32y"]
-[ext_resource type="PackedScene" uid="uid://bygelm8avfpe6" path="res://mask.tscn" id="2_q2cvw"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="3_qoxx3"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="5_vqsba"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/moveable.tscn" id="6_bxn3r"]
@@ -21,8 +20,6 @@ script = ExtResource("1_05neq")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("DreamConnection")
 is_alternate_scene_dream = true
-
-[node name="Mask" parent="." instance=ExtResource("2_q2cvw")]
 
 [node name="DreamConnection" type="Node" parent="."]
 script = ExtResource("1_en6ue")

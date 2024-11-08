@@ -7,7 +7,7 @@
 z_index = 10
 use_parent_material = true
 script = ExtResource("1_6wg2g")
-min_size = Vector2(-0.05, 0)
+min_size = Vector2(-0.03, 0)
 max_size = Vector2(0.6, 1)
 mask = NodePath("Circle/ColorRect")
 

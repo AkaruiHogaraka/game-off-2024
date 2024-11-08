@@ -124,8 +124,8 @@ material = ExtResource("1_02dv4")
 [node name="TitleScreenDream" parent="DreamShaderController" instance=ExtResource("9_36ubo")]
 
 [node name="RealityContainer" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 648.0
 mouse_filter = 2
 
 [node name="Reality" type="SubViewport" parent="RealityContainer"]
@@ -159,8 +159,8 @@ grow_horizontal = 2
 text = "Reality"
 
 [node name="DreamContainer" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
 [node name="Dream" type="SubViewport" parent="DreamContainer"]
 disable_3d = true
