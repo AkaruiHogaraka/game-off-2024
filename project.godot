@@ -78,6 +78,7 @@ move_up={
 2d_physics/layer_3="PlayerDiscover"
 2d_physics/layer_4="Ground"
 2d_physics/layer_5="SafeGround"
+2d_physics/layer_6="PlayerHurt"
 
 [physics]
 

@@ -72,6 +72,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	GlobalReference.Game.transition_node.set_visible(true)
 	
 	GlobalReference.Player.set_collision_layer_value(3, false)
+	GlobalReference.Player.set_collision_layer_value(6, false)
 	
 	scene.preload_connected_scene()
 	
@@ -128,12 +129,14 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	
 	load_nodes()
 	
+	GlobalReference.Player.set_collision_layer_value(3, true)
+	GlobalReference.Player.set_collision_layer_value(6, true)
+	
 	if not reality: GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
 	await tween.finished
 	
 	if reality: GlobalReference.Player.Input_Handler.toggle_inputs(true)
-	GlobalReference.Player.set_collision_layer_value(3, true)
 	
 	internal_scene_change_cooldown = false
 	
@@ -142,6 +145,11 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 
 func soft_respawn(position: Vector2) -> void:
 	if is_soft_respawning: return
+	
+	if not GlobalReference.Game.reality_node == GlobalReference.Player.get_parent():
+		await change_dream_scene(CurrentScene.alternate_scene, true)
+		return
+	
 	is_soft_respawning = true
 	
 	if not GlobalReference.Player.reduce_health(1): return
@@ -155,7 +163,7 @@ func soft_respawn(position: Vector2) -> void:
 	
 	var transition = load("res://prefabs/misc/transition.tscn").instantiate()
 	transition.set_visible(false)
-	GlobalReference.Game.reality_node.call_deferred("add_child", transition)
+	GlobalReference.Player.get_parent().call_deferred("add_child", transition)
 	await get_tree().physics_frame
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
 	transition.transition(1, 0, 0.3, Tween.EASE_OUT, Tween.TRANS_LINEAR)
@@ -188,6 +196,7 @@ func last_door_respawn(pos, scene_path) -> void:
 	new_scene.set_visible(false)
 	
 	GlobalReference.Player.process = false
+	GlobalReference.Game.transition_node.set_visible(false)
 	
 	internal_scene_change_cooldown = true
 	is_respawning = true
