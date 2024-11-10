@@ -26,6 +26,7 @@ var _can_dream: bool = true
 var _is_interacting: bool
 var _is_in_interaction_area: bool
 var _current_area: Node
+var _is_currently_interacting: bool = false
 
 var mask: Sprite2D
 
@@ -50,6 +51,7 @@ func _ready():
 	mask = $Fog/BackBufferCopy2/Mask/Sprite2D
 	set_interaction_display(false)
 	process = true
+	_is_currently_interacting = false
 	current_health = starting_health
 	Dead.connect(_on_dead)
 

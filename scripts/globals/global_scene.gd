@@ -158,6 +158,7 @@ func soft_respawn(position: Vector2) -> void:
 	internal_scene_change_cooldown = true
 	
 	GlobalReference.Player.process = false
+	GlobalReference.Player.global_position = round(GlobalReference.Player.global_position)
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	
@@ -169,7 +170,7 @@ func soft_respawn(position: Vector2) -> void:
 	transition.transition(1, 0, 0.3, Tween.EASE_OUT, Tween.TRANS_LINEAR)
 	await get_tree().physics_frame
 	transition.set_visible(true)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.3).timeout
 	
 	GlobalReference.Player.global_position = position
 	GlobalReference.Player.reset_velocities()
@@ -196,6 +197,7 @@ func last_door_respawn(pos, scene_path) -> void:
 	new_scene.set_visible(false)
 	
 	GlobalReference.Player.process = false
+	GlobalReference.Player.global_position = round(GlobalReference.Player.global_position)
 	GlobalReference.Game.transition_node.set_visible(false)
 	
 	internal_scene_change_cooldown = true
@@ -217,6 +219,9 @@ func last_door_respawn(pos, scene_path) -> void:
 	GlobalReference.Player.global_position = pos
 	new_scene.set_mask()
 	new_scene.set_visible(true)
+	
+	clear_temp_data()
+	load_nodes()
 	
 	GlobalReference.Player.current_health = GlobalReference.Player.starting_health
 	GlobalReference.Game.reality_heart_ui.reset_hearts()
@@ -268,3 +273,12 @@ func load_nodes() -> void:
 			if SaveData[i]["path"] == node.get_path():
 				node.call("load_data", SaveData[i])
 				break
+
+func clear_temp_data() -> void:
+	var keywords: Array[String] = ["HealthHeal"]
+	var remove_at: Array[int]
+	
+	for data in SaveData:
+		for keyword in keywords:
+			if String(data["path"]).contains(keyword):
+				SaveData.erase(data)

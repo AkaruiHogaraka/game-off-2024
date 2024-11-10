@@ -17,21 +17,22 @@ func _physics_process(delta: float) -> void:
 	var position: Vector2 = GlobalReference.Player.global_position + distance_to_maintain
 	var collision_info: KinematicCollision2D = KinematicCollision2D.new()
 	
-	if GlobalReference.Player._raw_input.x == 0: return
+	#if GlobalReference.Player._raw_input.x == 0: return
 	
 	if moveable_parent.test_move(moveable_parent.transform, GlobalReference.Player._raw_input.x * Vector2(0.5, 0), collision_info):
 		GlobalReference.Player.set_speed_multiplier(0.0)
-		get_tree().create_tween().tween_property(moveable_parent, "global_position", Vector2(round(moveable_parent.global_position.x), moveable_parent.global_position.y), 0.2)
+		get_tree().create_tween().tween_property(moveable_parent, "global_position", round(moveable_parent.global_position), 0.1)
 		
 		return
 	
 	GlobalReference.Player.set_speed_multiplier(speed_penalty_multiplier)
-	moveable_parent.global_position = moveable_parent.global_position.move_toward(position, 200 * delta)
+	moveable_parent.global_position = moveable_parent.global_position.move_toward(position, 1000 * delta)
 
 func _on_interaction() -> void:
-	if not in_area or not GlobalReference.Player.is_on_floor(): return 
+	if not in_area or not GlobalReference.Player.is_on_floor() or GlobalReference.Player._is_currently_interacting: return 
 	holding_interaction = true
 	GlobalReference.Player.Input_Handler.set_can_jump(false)
+	GlobalReference.Player._is_currently_interacting = true
 	distance_to_maintain = moveable_parent.global_position - GlobalReference.Player.global_position
 	GlobalReference.Player.set_is_in_interaction_area(false, self, false)
 	GlobalReference.Player.set_interaction_display(false)
@@ -39,6 +40,7 @@ func _on_interaction() -> void:
 func _let_go_interaction() -> void:
 	if not in_area: return
 	holding_interaction = false
+	GlobalReference.Player._is_currently_interacting = false
 	GlobalReference.Player.set_speed_multiplier(1.0)
 	GlobalReference.Player.Input_Handler.set_can_jump(true)
 	GlobalReference.Player.set_interaction_display(true)

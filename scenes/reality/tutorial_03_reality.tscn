@@ -30,10 +30,12 @@ mask_settings = ExtResource("2_wlpyv")
 script = ExtResource("2_rghfj")
 
 [node name="Floor" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAIAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQD//wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD7////AgAAAAAAAQD6////AgAAAAAAAQD5////AgAAAAAAAQD4////AgAAAAAAAQD3////AgAAAAAAAQD8////AgAAAAAAAQABAAQAAgAAAAAAAQAAAAQAAgAAAAAAAQD//wQAAgAAAAAAAQD+/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQD//wIABQAAAAAAAQA=")
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQD//wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD7////AgAAAAAAAQD6////AgAAAAAAAQD5////AgAAAAAAAQD4////AgAAAAAAAQD3////AgAAAAAAAQD8////AgAAAAAAAQABAAQAAgAAAAAAAQAAAAQAAgAAAAAAAQD//wQAAgAAAAAAAQD+/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQD//wIABQAAAAAAAQACAAAABQAAAAAAAQA=")
 tile_set = ExtResource("3_mqxj0")
 
 [node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
 tile_map_data = PackedByteArray("AAAFAAEABgAAAAAAAgAFAAIABgAAAAAAAgABAAEABwAAAAAAAgD8////BwAAAAAAAgD8/wAABwAAAAAAAgAFAAMABgAAAAAAAgAFAAQABgAAAAAAAgABAAQABwAAAAAAAgD+/wMABwAAAAAAAgD8/wEABwAAAAAAAgD8/wIABwAAAAAAAgA=")
 tile_set = ExtResource("3_mqxj0")
 
@@ -64,6 +66,10 @@ tile_map_data = PackedByteArray("AAABAAIAAwAAAAAAAAACAAIAAwAAAAAAAAADAAIAAwAAAAA
 position = Vector2(56, 35.5)
 shape = SubResource("RectangleShape2D_6rjxc")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HiddenArea/Area2D" index="1"]
+position = Vector2(-8.5, 41)
+shape = SubResource("RectangleShape2D_d0l14")
+
 [node name="AlternatePlatform" parent="." instance=ExtResource("6_tlin1")]
 position = Vector2(72, 24)
 
@@ -74,8 +80,12 @@ default_on = false
 [node name="Body" parent="." instance=ExtResource("7_8qtl1")]
 position = Vector2(0, 16)
 
+[node name="Moveable" parent="Body" index="1" groups=["Save"]]
+
 [node name="Body2" parent="." instance=ExtResource("7_8qtl1")]
 position = Vector2(-23, 48)
+
+[node name="Moveable" parent="Body2" index="1" groups=["Save"]]
 
 [node name="Label" type="Label" parent="."]
 use_parent_material = true
@@ -107,6 +117,8 @@ node_path = "WalkLoadLeft"
 
 [editable path="HiddenArea2"]
 [editable path="HiddenArea"]
+[editable path="Body"]
+[editable path="Body2"]
 [editable path="DisableTutorialTrigger"]
 [editable path="WalkLoadLeft"]
 [editable path="WalkLoadRight"]

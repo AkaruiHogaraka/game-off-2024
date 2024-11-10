@@ -15,9 +15,11 @@ alternate_scene = NodePath("AltConnection")
 script = ExtResource("2_vvyhx")
 
 [node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
 tile_set = ExtResource("3_lvude")
 
 [node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
 tile_set = ExtResource("3_lvude")
 
 [node name="Overlay" type="TileMapLayer" parent="."]

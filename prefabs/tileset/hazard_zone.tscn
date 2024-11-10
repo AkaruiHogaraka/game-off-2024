@@ -5,25 +5,27 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw858"]
 atlas = ExtResource("2_hs2yb")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83h54"]
-size = Vector2(16, 1)
+size = Vector2(16, 7)
 
 [node name="HazardZone" type="Node2D"]
+use_parent_material = true
 
 [node name="DamageAndReturn" type="Node" parent="."]
 script = ExtResource("1_molt4")
 internal_cooldown = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = SubResource("AtlasTexture_dw858")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 7.5)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_83h54")
 
 [connection signal="body_entered" from="Area2D" to="DamageAndReturn" method="_on_body_entered"]
