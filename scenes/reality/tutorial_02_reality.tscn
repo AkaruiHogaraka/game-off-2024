@@ -43,17 +43,20 @@ tile_set = ExtResource("3_hdptf")
 
 [node name="AlternatePlatform" parent="." instance=ExtResource("5_poxdu")]
 position = Vector2(-16, 8)
+default_on = false
 
 [node name="AlternatePlatform2" parent="." instance=ExtResource("5_poxdu")]
 position = Vector2(16, 8)
-default_on = false
 
 [node name="AlternatePlatform4" parent="." instance=ExtResource("5_poxdu")]
 position = Vector2(-104, 24)
-default_on = false
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("6_o6vbl")]
-position = Vector2(-139, 16)
+position = Vector2(-139, 15)
+
+[node name="SceneConnection" parent="WalkLoadLeft" index="0"]
+scene_path = "res://scenes/reality/tutorial_03_reality.tscn"
+node_path = "WalkLoadRight"
 
 [node name="WalkLoadRight" parent="." instance=ExtResource("7_k1whv")]
 position = Vector2(139, 0)

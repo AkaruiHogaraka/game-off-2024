@@ -79,6 +79,7 @@ move_up={
 2d_physics/layer_4="Ground"
 2d_physics/layer_5="SafeGround"
 2d_physics/layer_6="PlayerHurt"
+2d_physics/layer_7="InvisibleMoveableBlock"
 
 [physics]
 

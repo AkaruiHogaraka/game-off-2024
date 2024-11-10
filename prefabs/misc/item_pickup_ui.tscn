@@ -7,7 +7,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ctke"]
 atlas = ExtResource("1_3ybvd")
-region = Rect2(3, 4, 8, 8)
+region = Rect2(2, 4, 9, 8)
 
 [node name="ItemPickupUI" type="Control" node_paths=PackedStringArray("item_texture_rect", "item_label", "text_nine_rect", "texture_nine_rect", "main_container")]
 z_index = 10
@@ -29,9 +29,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -28.5
+offset_left = -28.75
 offset_top = -8.0
-offset_right = 31.5
+offset_right = 31.25
 grow_horizontal = 2
 grow_vertical = 0
 
