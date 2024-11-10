@@ -142,9 +142,11 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 
 func soft_respawn(position: Vector2) -> void:
 	if is_soft_respawning: return
+	is_soft_respawning = true
+	
+	if not GlobalReference.Player.reduce_health(1): return
 	
 	GlobalReference.Game.transition_node.set_visible(false)
-	is_soft_respawning = true
 	internal_scene_change_cooldown = true
 	
 	GlobalReference.Player.process = false
@@ -185,6 +187,8 @@ func last_door_respawn(pos, scene_path) -> void:
 	new_scene.current_scene_path = scene_path
 	new_scene.set_visible(false)
 	
+	GlobalReference.Player.process = false
+	
 	internal_scene_change_cooldown = true
 	is_respawning = true
 	
@@ -205,16 +209,22 @@ func last_door_respawn(pos, scene_path) -> void:
 	new_scene.set_mask()
 	new_scene.set_visible(true)
 	
+	GlobalReference.Player.current_health = GlobalReference.Player.starting_health
+	GlobalReference.Game.reality_heart_ui.reset_hearts()
+	GlobalReference.Game.dream_heart_ui.reset_hearts()
+	
 	old_scene.set_visible(false)
 	old_scene.scene_camera.get_child(0).set_enabled(false)
 	
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
 	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
 	
+	GlobalReference.Player.process = true
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	await get_tree().create_timer(0.3).timeout
 	internal_scene_change_cooldown = false
 	is_respawning = false
+	is_soft_respawning = false
 	old_scene.queue_free()
 	CurrentScene = new_scene
 	transition.queue_free()

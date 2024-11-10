@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfrxpkeo372po"]
+
+[ext_resource type="Script" path="res://scripts/heart_container_ui.gd" id="1_0v8uo"]
+[ext_resource type="Texture2D" uid="uid://dqfhtmjof1qm" path="res://sprites/heart.png" id="2_i8t5d"]
+[ext_resource type="Texture2D" uid="uid://mign0pkptqqq" path="res://sprites/empty_heart.png" id="3_c6rrr"]
+[ext_resource type="Texture2D" uid="uid://w400q5l2bv58" path="res://sprites/heart_extra.png" id="4_a1fwt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oupwh"]
+atlas = ExtResource("2_i8t5d")
+region = Rect2(4, 3, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq6l0"]
+atlas = ExtResource("3_c6rrr")
+region = Rect2(4, 3, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cyot"]
+atlas = ExtResource("4_a1fwt")
+region = Rect2(4, 3, 8, 8)
+
+[node name="HeartContainer" type="HBoxContainer" node_paths=PackedStringArray("texture_one", "texture_two")]
+use_parent_material = true
+offset_right = 40.0
+offset_bottom = 8.0
+script = ExtResource("1_0v8uo")
+texture_one = NodePath("Prefab/TextureOne")
+texture_two = NodePath("Prefab/TextureTwo")
+heart_full_texture = SubResource("AtlasTexture_oupwh")
+heart_empty_texture = SubResource("AtlasTexture_pq6l0")
+heart_extra_texture = SubResource("AtlasTexture_0cyot")
+
+[node name="Prefab" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="TextureOne" type="TextureRect" parent="Prefab"]
+use_parent_material = true
+texture = SubResource("AtlasTexture_oupwh")
+stretch_mode = 2
+
+[node name="TextureTwo" type="TextureRect" parent="Prefab"]
+use_parent_material = true
+texture = SubResource("AtlasTexture_oupwh")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="TextureOne" type="TextureRect" parent="."]
+use_parent_material = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_oupwh")
+stretch_mode = 2
+
+[node name="TextureTwo" type="TextureRect" parent="."]
+use_parent_material = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_oupwh")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="TextureOne2" type="TextureRect" parent="."]
+use_parent_material = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_oupwh")
+stretch_mode = 2

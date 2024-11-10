@@ -9,11 +9,12 @@
 [ext_resource type="Material" uid="uid://ban8rwomfkgij" path="res://materials/circular_noise_mask.tres" id="4_mc6ad"]
 [ext_resource type="PackedScene" uid="uid://clppcvnfhiaja" path="res://scenes/dream/title_screen_dream.tscn" id="9_36ubo"]
 [ext_resource type="PackedScene" uid="uid://d0ma2r2g22w5r" path="res://prefabs/misc/reality_reference.tscn" id="9_vh44e"]
+[ext_resource type="PackedScene" uid="uid://dfrxpkeo372po" path="res://prefabs/misc/heart_container.tscn" id="10_npg0v"]
+[ext_resource type="Texture2D" uid="uid://dkpplfqtonug2" path="res://sprites/ui.png" id="10_tk8eq"]
 [ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="11_cqasm"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="11_uotu8"]
 [ext_resource type="Texture2D" uid="uid://bw51vmk2wlrke" path="res://sprites/dream.png" id="12_w4d5w"]
 [ext_resource type="Texture2D" uid="uid://ctnorvookgayo" path="res://sprites/reality.png" id="12_yhcyn"]
-[ext_resource type="Texture2D" uid="uid://dqfhtmjof1qm" path="res://sprites/heart.png" id="13_s4dan"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bqiy1"]
 viewport_path = NodePath("CombinedViewportContainer/CombinedViewprot")
@@ -39,21 +40,19 @@ resource_local_to_scene = true
 shader = ExtResource("2_y5a2i")
 shader_parameter/main_texture = SubResource("ViewportTexture_efxym")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ptpd"]
-atlas = ExtResource("13_s4dan")
-region = Rect2(4, 3, 8, 8)
-
-[node name="Game" type="Node" node_paths=PackedStringArray("screen", "reality_viewport", "reality_node", "reality_display", "reality_gem_count", "dream_viewport", "dream_node", "dream_display", "dream_gem_count", "transition_node", "reality_reference")]
+[node name="Game" type="Node" node_paths=PackedStringArray("screen", "reality_viewport", "reality_node", "reality_display", "reality_gem_count", "reality_heart_ui", "dream_viewport", "dream_node", "dream_display", "dream_gem_count", "dream_heart_ui", "transition_node", "reality_reference")]
 script = ExtResource("1_rtecv")
 screen = NodePath("CombinedViewportContainer/CombinedViewprot/Combined")
 reality_viewport = NodePath("RealityContainer/Reality")
 reality_node = NodePath("RealityShaderController")
 reality_display = NodePath("CombinedViewportContainer/CombinedViewprot/Combined/Control/BackBufferCopy2/RealityDisplay")
 reality_gem_count = NodePath("RealityShaderController/RealityUI/Control2/Label")
+reality_heart_ui = NodePath("RealityShaderController/RealityUI/Control2/HeartContainer")
 dream_viewport = NodePath("DreamContainer/Dream")
 dream_node = NodePath("DreamShaderController")
 dream_display = NodePath("CombinedViewportContainer/CombinedViewprot/Combined/Control/DreamDisplay")
 dream_gem_count = NodePath("DreamShaderController/DreamUI/Control2/Label")
+dream_heart_ui = NodePath("DreamShaderController/DreamUI/Control2/HeartContainer")
 transition_node = NodePath("CombinedViewportContainer/CombinedViewprot/Combined/Control/BackBufferCopy2/Transition")
 reality_reference = NodePath("DreamShaderController/RealityReference")
 camera_come_from = Vector2(0, 200)
@@ -181,41 +180,6 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RealityShaderController/RealityUI/Control2"]
-visible = false
-use_parent_material = true
-layout_mode = 0
-offset_left = -142.0
-offset_top = 81.0
-offset_right = -102.0
-offset_bottom = 89.0
-
-[node name="TextureRect" type="TextureRect" parent="RealityShaderController/RealityUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="RealityShaderController/RealityUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-expand_mode = 1
-stretch_mode = 3
-
-[node name="TextureRect3" type="TextureRect" parent="RealityShaderController/RealityUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-stretch_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="RealityShaderController/RealityUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-expand_mode = 1
-stretch_mode = 3
-
 [node name="Label" type="Label" parent="RealityShaderController/RealityUI/Control2"]
 use_parent_material = true
 layout_mode = 1
@@ -262,6 +226,28 @@ texture = ExtResource("12_yhcyn")
 stretch_mode = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="TextureRect3" type="TextureRect" parent="RealityShaderController/RealityUI/Control2"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = 54.0
+offset_right = -112.0
+offset_bottom = 86.0
+grow_vertical = 0
+texture = ExtResource("10_tk8eq")
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HeartContainer" parent="RealityShaderController/RealityUI/Control2" instance=ExtResource("10_npg0v")]
+layout_mode = 0
+offset_left = -142.0
+offset_top = 61.0
+offset_right = -102.0
+offset_bottom = 69.0
+
 [node name="DreamShaderController" type="Node2D" parent="."]
 material = ExtResource("1_02dv4")
 
@@ -290,41 +276,6 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DreamShaderController/DreamUI/Control2"]
-visible = false
-use_parent_material = true
-layout_mode = 0
-offset_left = -142.0
-offset_top = 81.0
-offset_right = -102.0
-offset_bottom = 89.0
-
-[node name="TextureRect" type="TextureRect" parent="DreamShaderController/DreamUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="DreamShaderController/DreamUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-expand_mode = 1
-stretch_mode = 3
-
-[node name="TextureRect3" type="TextureRect" parent="DreamShaderController/DreamUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-stretch_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="DreamShaderController/DreamUI/Control2/HBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-texture = SubResource("AtlasTexture_7ptpd")
-expand_mode = 1
-stretch_mode = 3
 
 [node name="Label" type="Label" parent="DreamShaderController/DreamUI/Control2"]
 use_parent_material = true
@@ -371,6 +322,28 @@ grow_vertical = 0
 texture = ExtResource("12_w4d5w")
 stretch_mode = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect3" type="TextureRect" parent="DreamShaderController/DreamUI/Control2"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = 54.0
+offset_right = -112.0
+offset_bottom = 86.0
+grow_vertical = 0
+texture = ExtResource("10_tk8eq")
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HeartContainer" parent="DreamShaderController/DreamUI/Control2" instance=ExtResource("10_npg0v")]
+layout_mode = 0
+offset_left = -142.0
+offset_top = 61.0
+offset_right = -102.0
+offset_bottom = 69.0
 
 [node name="RealityContainer" type="SubViewportContainer" parent="."]
 offset_right = 1152.0

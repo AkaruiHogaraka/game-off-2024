@@ -1,5 +1,9 @@
 class_name PlayerController extends CharacterBody2D
 
+signal Dead()
+
+@export var starting_health: int = 3
+
 @export var move_speed: float = 20
 @export var acceleration: float = 10
 @export var gravity: float = 10
@@ -25,6 +29,8 @@ var _current_area: Node
 
 var mask: Sprite2D
 
+var current_health: int
+
 var last_safe_position: Vector2
 var last_door_position: Vector2
 var last_door_scene: String
@@ -44,6 +50,8 @@ func _ready():
 	mask = $Fog/BackBufferCopy2/Mask/Sprite2D
 	set_interaction_display(false)
 	process = true
+	current_health = starting_health
+	Dead.connect(_on_dead)
 
 func _process(delta):
 	if not process: return
@@ -138,6 +146,31 @@ func update_last_safe_position() -> void:
 func update_last_door_position(pos: Vector2, path: String) -> void:
 	last_door_position = pos
 	last_door_scene = path
+
+func add_health(value: int) -> void:
+	current_health += value
+	
+	for i in value:
+		GlobalReference.Game.dream_heart_ui.add_heart()
+		GlobalReference.Game.reality_heart_ui.add_heart()
+
+func reduce_health(value: int) -> bool:
+	current_health -= value
+	if current_health < 0: current_health = 0
+	
+	var dead: bool = current_health <= 0
+	
+	GlobalReference.Game.dream_heart_ui.update_heart_display()
+	GlobalReference.Game.reality_heart_ui.update_heart_display()
+	
+	if dead: 
+		Dead.emit()
+		return false
+	
+	return true
+
+func _on_dead() -> void:
+	GlobalScene.last_door_respawn(last_door_position, last_door_scene)
 
 func on_interaction() -> void:
 	_is_interacting = true
