@@ -13,6 +13,7 @@ config_version=5
 config/name="game-off-2024"
 run/main_scene="res://scenes/boot.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=120
 config/icon="res://sprites/icon.svg"
 boot_splash/minimum_display_time=3000
 
@@ -21,6 +22,10 @@ boot_splash/minimum_display_time=3000
 GlobalReference="*res://scripts/globals/global_reference.gd"
 GlobalScene="*res://scripts/globals/global_scene.gd"
 GlobalItems="*res://scripts/globals/global_items.gd"
+
+[display]
+
+window/size/resizable=false
 
 [global_group]
 
@@ -72,6 +77,7 @@ move_up={
 2d_physics/layer_2="LoSMask"
 2d_physics/layer_3="PlayerDiscover"
 2d_physics/layer_4="Ground"
+2d_physics/layer_5="SafeGround"
 
 [physics]
 

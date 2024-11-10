@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5fu8emxebicb"]
+
+[ext_resource type="Script" path="res://scripts/disable_tutorial_trigger.gd" id="1_ldlwe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qglu"]
+size = Vector2(14, 12)
+
+[node name="DisableTutorialTrigger" type="Node2D"]
+
+[node name="Trigger" type="Node" parent="." node_paths=PackedStringArray("areas") groups=["Save"]]
+script = ExtResource("1_ldlwe")
+areas = [NodePath("../Area2D")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6qglu")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_85pyj"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_vvyhx"]
-[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="3_f3q7p"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="3_f3q7p"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="3_lvude"]
 
 [node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]

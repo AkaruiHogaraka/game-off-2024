@@ -1,19 +1,23 @@
-[gd_scene load_steps=9 format=4 uid="uid://cl4d4xy1m4xlh"]
+[gd_scene load_steps=12 format=4 uid="uid://cl4d4xy1m4xlh"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_ge8jf"]
+[ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_nnrvd"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_vasy4"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="3_qtvv1"]
-[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="4_27ykw"]
-[ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/one_way_platform.tscn" id="5_2moix"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="4_27ykw"]
+[ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/level_objects/one_way_platform.tscn" id="5_2moix"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="6_n7ipc"]
-[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="7_7qv2s"]
-[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/walk_load_left.tscn" id="8_xmmfa"]
+[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_7qv2s"]
+[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="8_xmmfa"]
+[ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="10_75fwq"]
+[ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="11_4g0vb"]
 
 [node name="Tutorial01Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
 script = ExtResource("1_ge8jf")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("DreamConnection")
+mask_settings = ExtResource("2_nnrvd")
 
 [node name="DreamConnection" type="Node" parent="."]
 script = ExtResource("2_vasy4")
@@ -38,12 +42,25 @@ position = Vector2(-24, 27)
 
 [node name="Label" type="Label" parent="."]
 use_parent_material = true
-offset_top = 11.0
-offset_right = 71.0
-offset_bottom = 34.0
+offset_left = -23.0
+offset_top = -15.0
+offset_right = 48.0
+offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("6_n7ipc")
 theme_override_font_sizes/font_size = 8
 text = "Spacebar - Jump"
+
+[node name="DisableTutorialTrigger" parent="." instance=ExtResource("10_75fwq")]
+
+[node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
+tutorial = NodePath("../../Label")
+
+[node name="Area2D" parent="DisableTutorialTrigger" index="1"]
+position = Vector2(-24, 17)
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="DisableTutorialTrigger/Area2D" index="0"]
+position = Vector2(0, -12)
 
 [node name="WalkLoadRight" parent="." instance=ExtResource("7_7qv2s")]
 position = Vector2(139, 32)
@@ -55,5 +72,16 @@ node_path = "Door"
 [node name="WalkLoadLeft" parent="." instance=ExtResource("8_xmmfa")]
 position = Vector2(-139, 0)
 
+[node name="SceneConnection" parent="WalkLoadLeft" index="0"]
+scene_path = "res://scenes/reality/tutorial_02_reality.tscn"
+node_path = "WalkLoadRight"
+
+[node name="Body" parent="." instance=ExtResource("11_4g0vb")]
+position = Vector2(48, 32)
+
+[node name="Body2" parent="." instance=ExtResource("11_4g0vb")]
+position = Vector2(101, 32)
+
+[editable path="DisableTutorialTrigger"]
 [editable path="WalkLoadRight"]
 [editable path="WalkLoadLeft"]

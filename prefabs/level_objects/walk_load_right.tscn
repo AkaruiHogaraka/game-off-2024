@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://scripts/walk_scene_connection.gd" id="2_ckc75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uy0dc"]
-size = Vector2(16, 16)
+size = Vector2(8, 16)
 
-[node name="WalkLoadLeft" type="Node2D"]
+[node name="WalkLoadRight" type="Node2D"]
 
 [node name="SceneConnection" type="Node" parent="."]
 script = ExtResource("1_4cukw")
@@ -16,9 +16,10 @@ position = Vector2(5, 0)
 script = ExtResource("2_ckc75")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -8)
+position = Vector2(4, -8)
 shape = SubResource("RectangleShape2D_uy0dc")
 
 [node name="Line2D" type="Line2D" parent="Area2D"]
+visible = false
 points = PackedVector2Array(0, 0, 0, -1)
 width = 1.0

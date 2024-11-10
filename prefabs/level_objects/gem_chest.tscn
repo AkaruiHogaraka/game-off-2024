@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/interactable_pickup.gd" id="1_81gmj"]
 [ext_resource type="Texture2D" uid="uid://bso22ca4w6k5" path="res://sprites/chest.png" id="2_8s1uw"]
 [ext_resource type="Script" path="res://scripts/gem_pickup.gd" id="2_w2sx7"]
-[ext_resource type="PackedScene" uid="uid://buao37mj0e24d" path="res://prefabs/item_pickup_ui.tscn" id="4_btw0m"]
+[ext_resource type="PackedScene" uid="uid://buao37mj0e24d" path="res://prefabs/misc/item_pickup_ui.tscn" id="4_btw0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_il8xv"]
 size = Vector2(10, 10)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx5jp6asn06qx"]
 
-[ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_c70p8"]
-[ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="2_71gxe"]
+[ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_grtn8"]
+[ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="2_4k8no"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gix7a"]
 size = Vector2(16, 4)
@@ -13,13 +13,13 @@ size = Vector2(16, 1)
 use_parent_material = true
 
 [node name="OneWay" type="Node" parent="." node_paths=PackedStringArray("collision", "platform_position")]
-script = ExtResource("1_c70p8")
+script = ExtResource("1_grtn8")
 collision = NodePath("../StaticBody2D/CollisionShape2D")
 platform_position = NodePath("../Marker2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 use_parent_material = true
-texture = ExtResource("2_71gxe")
+texture = ExtResource("2_4k8no")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 8
@@ -28,6 +28,7 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_gix7a")
+one_way_collision = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -7)

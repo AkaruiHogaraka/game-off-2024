@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_bp2l8"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_gsegj"]
-[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/door.tscn" id="3_e2h2u"]
-[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/walk_load_left.tscn" id="4_h53h4"]
-[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/walk_load_right.tscn" id="5_pdvbv"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="3_e2h2u"]
+[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="4_h53h4"]
+[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="5_pdvbv"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="6_5ovyd"]
-[ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/alternate_platform.tscn" id="7_f060y"]
-[ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/moving_platform.tscn" id="8_xpkcv"]
-[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/hidden_area.tscn" id="9_yw1gu"]
+[ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/level_objects/alternate_platform.tscn" id="7_f060y"]
+[ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/level_objects/moving_platform.tscn" id="8_xpkcv"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="9_yw1gu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4l5a"]
 size = Vector2(128, 32)

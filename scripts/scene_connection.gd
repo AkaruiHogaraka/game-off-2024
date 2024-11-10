@@ -13,5 +13,6 @@ func preload_connected_scene() -> bool:
 	
 	var scene_resource: Resource = load(scene_path)
 	scene = scene_resource.instantiate()
+	scene.current_scene_path = scene_path
 	node = GlobalReference.Player if node_path.is_empty() else scene.get_node(NodePath(node_path))
 	return true

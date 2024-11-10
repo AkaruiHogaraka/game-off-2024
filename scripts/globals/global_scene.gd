@@ -6,6 +6,8 @@ var SaveData: Array[Dictionary]
 
 var internal_scene_change_cooldown: bool
 var IsRestarting: bool
+var is_soft_respawning: bool
+var is_respawning: bool
 
 func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	if internal_scene_change_cooldown or not scene.preload_connected_scene(): return false
@@ -21,7 +23,7 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	
 	save_nodes()
 	
-	var transition = load("res://prefabs/transition.tscn").instantiate()
+	var transition = load("res://prefabs/misc/transition.tscn").instantiate()
 	transition.set_visible(false)
 	GlobalReference.Game.reality_node.call_deferred("add_child", transition)
 	await get_tree().physics_frame
@@ -39,6 +41,7 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	await get_tree().physics_frame
 	
 	GlobalReference.Player.set_global_position(Vector2(position.x, position.y))
+	new_scene.set_mask()
 	
 	old_scene.set_visible(false)
 	old_scene.scene_camera.get_child(0).set_enabled(false)
@@ -56,10 +59,11 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	old_scene.queue_free()
 	CurrentScene = new_scene
 	transition.queue_free()
+	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	return true
 
-func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
-	if internal_scene_change_cooldown: return
+func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bool = false) -> void:
+	if internal_scene_change_cooldown or is_soft_respawning: return
 	if scene == null or scene.scene_path.is_empty():
 		push_warning("There is no dream for this scene! Skipping...")
 		return
@@ -91,6 +95,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 		temp_clone.global_position = GlobalReference.Player.global_position
 		node = GlobalReference.Game.reality_node
 	else:
+		GlobalReference.Game.dream_gem_count.get_parent().set_visible(true)
 		GlobalReference.Game.reality_node.add_child(temp_clone)
 		temp_clone.global_position = GlobalReference.Player.global_position
 		GlobalReference.PlayerRealityReference.global_position = GlobalReference.Player.global_position
@@ -109,8 +114,10 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	if reality:
 		GlobalReference.Player.global_position = GlobalReference.PlayerRealityPosition
 		GlobalReference.Game.transition_node.mask.get_parent().set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
+		if initial_setup: GlobalReference.Game.transition_node.mask.get_parent().position.y = 420
 		tween = GlobalReference.Game.transition_node.transition(1, 0, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
 		GlobalReference.Player.toggle_fog(true)
+		CurrentScene.set_mask()
 	else:
 		GlobalReference.Game.transition_node.mask.get_parent().set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
 		tween = GlobalReference.Game.transition_node.transition(0, 1, 0.5, Tween.EASE_OUT, Tween.TRANS_EXPO)
@@ -132,6 +139,86 @@ func change_dream_scene(scene: SceneConnection, reality: bool) -> void:
 	
 	if old_scene != null: old_scene.queue_free()
 	temp_clone.queue_free()
+
+func soft_respawn(position: Vector2) -> void:
+	if is_soft_respawning: return
+	
+	GlobalReference.Game.transition_node.set_visible(false)
+	is_soft_respawning = true
+	internal_scene_change_cooldown = true
+	
+	GlobalReference.Player.process = false
+	
+	GlobalReference.Player.Input_Handler.toggle_inputs(false)
+	
+	var transition = load("res://prefabs/misc/transition.tscn").instantiate()
+	transition.set_visible(false)
+	GlobalReference.Game.reality_node.call_deferred("add_child", transition)
+	await get_tree().physics_frame
+	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
+	transition.transition(1, 0, 0.3, Tween.EASE_OUT, Tween.TRANS_LINEAR)
+	await get_tree().physics_frame
+	transition.set_visible(true)
+	await get_tree().create_timer(0.5).timeout
+	
+	GlobalReference.Player.global_position = position
+	GlobalReference.Player.reset_velocities()
+	
+	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
+	var tween: Tween = transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_LINEAR)
+	
+	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	GlobalReference.Player.process = true
+	is_soft_respawning = false
+	
+	await tween.finished
+	
+	internal_scene_change_cooldown = false
+	transition.queue_free()
+
+func last_door_respawn(pos, scene_path) -> void:
+	if is_respawning: return
+	
+	var scene_resource: Resource = load(scene_path)
+	var old_scene: Scene = CurrentScene
+	var new_scene: Scene = scene_resource.instantiate()
+	new_scene.current_scene_path = scene_path
+	new_scene.set_visible(false)
+	
+	internal_scene_change_cooldown = true
+	is_respawning = true
+	
+	var transition = load("res://prefabs/misc/transition.tscn").instantiate()
+	transition.set_visible(false)
+	GlobalReference.Game.reality_node.call_deferred("add_child", transition)
+	await get_tree().physics_frame
+	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
+	transition.transition(1, 0, 0.3, Tween.EASE_OUT, Tween.TRANS_LINEAR)
+	await get_tree().physics_frame
+	transition.set_visible(true)
+	await get_tree().create_timer(0.3).timeout
+	
+	GlobalReference.Game.reality_node.call_deferred("add_child", new_scene)
+	await get_tree().physics_frame
+	
+	GlobalReference.Player.global_position = pos
+	new_scene.set_mask()
+	new_scene.set_visible(true)
+	
+	old_scene.set_visible(false)
+	old_scene.scene_camera.get_child(0).set_enabled(false)
+	
+	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
+	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
+	
+	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	await get_tree().create_timer(0.3).timeout
+	internal_scene_change_cooldown = false
+	is_respawning = false
+	old_scene.queue_free()
+	CurrentScene = new_scene
+	transition.queue_free()
+	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 
 func save_nodes() -> void:
 	var save_nodes = get_tree().get_nodes_in_group("Save")

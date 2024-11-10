@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0xj0bpy4qsax"]
 
 [ext_resource type="Script" path="res://scripts/end_trigger.gd" id="1_m2nkv"]
-[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/camera.tscn" id="2_0ytfn"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="2_0ytfn"]
 [ext_resource type="Texture2D" uid="uid://dkbl4r2irkvm4" path="res://sprites/player_lantern.png" id="3_fangi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqeu"]
@@ -30,6 +30,7 @@ enabled = false
 position = Vector2(0, -360)
 
 [node name="Elements" type="Control" parent="."]
+z_index = 11
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 15

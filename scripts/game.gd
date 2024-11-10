@@ -5,10 +5,12 @@ class_name GameManager extends Node
 @export var reality_viewport: SubViewport
 @export var reality_node: Node2D
 @export var reality_display: ColorRect
+@export var reality_gem_count: Label
 
 @export var dream_viewport: SubViewport
 @export var dream_node: Node2D
 @export var dream_display: ColorRect
+@export var dream_gem_count: Label
 
 @export var transition_node: Transition
 
@@ -40,6 +42,10 @@ func _ready() -> void:
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	if GlobalScene.IsRestarting: pan_camera()
+	
+	dream_gem_count.text = "x%s" % GlobalItems.gems
+	reality_gem_count.text = "x%s" % GlobalItems.dream_gems
+	dream_gem_count.get_parent().set_visible(false)
 
 func pan_camera() -> void:
 	var tween: Tween = get_tree().create_tween()

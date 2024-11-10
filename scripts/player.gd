@@ -8,6 +8,7 @@ class_name PlayerController extends CharacterBody2D
 @export var jump_time_to_descent: float
 
 @export var interaction_sprite: Sprite2D
+@export var sprite: AnimatedSprite2D
 
 var _speed_multiplier: float = 1.0
 
@@ -22,6 +23,13 @@ var _is_interacting: bool
 var _is_in_interaction_area: bool
 var _current_area: Node
 
+var mask: Sprite2D
+
+var last_safe_position: Vector2
+var last_door_position: Vector2
+var last_door_scene: String
+var process: bool
+
 @onready var Input_Handler: InputHandler = $Input
 
 @onready var _jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
@@ -33,10 +41,15 @@ func _ready():
 	GlobalReference.Player = self
 	GlobalReference.PlayerParent = get_parent()
 	toggle_fog(false)
+	mask = $Fog/BackBufferCopy2/Mask/Sprite2D
 	set_interaction_display(false)
+	process = true
 
 func _process(delta):
-	$Fog/BackBufferCopy2/Mask.global_position = round($FogFollowPoint.global_position)
+	if not process: return
+	$Fog/BackBufferCopy2/Mask.call_deferred("set_global_position", round($FogFollowPoint.global_position))
+	
+	animate_sprite()
 	
 	if not Input_Handler._can_input: 
 		reset_velocities()
@@ -44,6 +57,15 @@ func _process(delta):
 	velocity = _walk() + _gravity()
 	move_and_slide()
 	
+	update_last_safe_position()
+	
+	if _raw_input == Vector2.ZERO:
+		global_position = round(global_position)
+
+func animate_sprite() -> void:
+	if _raw_input.x != 0: sprite.play("walk")
+	elif _raw_input.x == 0: sprite.play("default")
+
 func _walk() -> Vector2:
 	_walk_velocity = _walk_velocity.move_toward(Vector2(_raw_input.x, 0) * (move_speed * _speed_multiplier), acceleration * get_process_delta_time())
 	return _walk_velocity
@@ -94,6 +116,28 @@ func set_is_in_interaction_area(value: bool, node: Node, override: bool) -> void
 			
 	_current_area = node
 	_is_in_interaction_area = value
+
+func update_last_safe_position() -> void:
+	if not is_on_floor(): return
+	var space_state = get_world_2d().direct_space_state
+	var query_one = PhysicsRayQueryParameters2D.create(global_position + Vector2.UP + ((Vector2.RIGHT * _raw_input.x) * 10), global_position + Vector2.DOWN * 5, 16, [get_rid()])
+	var result_one = space_state.intersect_ray(query_one)
+	
+	var query_two = PhysicsRayQueryParameters2D.create(global_position + Vector2.UP + ((Vector2.RIGHT * -_raw_input.x) * 10), global_position + Vector2.DOWN * 5, 16, [get_rid()])
+	var result_two = space_state.intersect_ray(query_two)
+	
+	if result_one.is_empty() or result_two.is_empty(): return
+	
+	var query_three = PhysicsRayQueryParameters2D.create(global_position + Vector2.UP, global_position + Vector2.DOWN * 5, 16, [get_rid()])
+	var result_three = space_state.intersect_ray(query_three)
+	
+	if result_three.is_empty(): return
+	
+	last_safe_position = result_three["position"]
+
+func update_last_door_position(pos: Vector2, path: String) -> void:
+	last_door_position = pos
+	last_door_scene = path
 
 func on_interaction() -> void:
 	_is_interacting = true

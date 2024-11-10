@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://di6ccivy4cvxe"]
+
+[ext_resource type="Shader" path="res://shaders/circular_band_noise_mask.gdshader" id="1_mn0tx"]
+
+[resource]
+shader = ExtResource("1_mn0tx")
+shader_parameter/radius_inner = 0.08
+shader_parameter/radius_middle = 0.1
+shader_parameter/radius_outer = 0.11
+shader_parameter/noise_strength_inner = 0.0
+shader_parameter/noise_strength_middle = 0.0
+shader_parameter/noise_strength_outer = 0.0
+shader_parameter/noise_scale = 10.0
+shader_parameter/colour_tolerance = 0.01
+shader_parameter/texture_size = Vector2(720, 480)
+shader_parameter/pixel_resolution = Vector2(1, 1)
+shader_parameter/colour_0 = Color(0.25098, 0.2, 0.180392, 1)
+shader_parameter/colour_1 = Color(0.521569, 0.431373, 0.321569, 1)
+shader_parameter/colour_2 = Color(0.580392, 0.780392, 0.6, 1)
+shader_parameter/colour_3 = Color(0.980392, 1, 0.878431, 1)

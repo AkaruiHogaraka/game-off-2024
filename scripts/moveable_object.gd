@@ -44,6 +44,8 @@ func _let_go_interaction() -> void:
 	GlobalReference.Player.set_interaction_display(true)
 	GlobalReference.Player.set_is_in_interaction_area(true, self, false)
 	
+	moveable_parent.global_position = round(moveable_parent.global_position)
+	
 func save_data() -> Dictionary:
 	var data: Dictionary = {
 		"path": get_path(),
