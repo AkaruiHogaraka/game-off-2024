@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=4 uid="uid://dahccry50sl2n"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_7wipd"]
+[ext_resource type="Resource" uid="uid://bbuimr2ci8b2u" path="res://resources/mask/depth_3.tres" id="2_1m5ix"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_vbgd7"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="4_jv102"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_frody"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="6_5oxme"]
+
+[node name="EndReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_7wipd")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
+mask_settings = ExtResource("2_1m5ix")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("3_vbgd7")
+scene_path = "res://scenes/dream/end_dream.tscn"
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAIAAgAAAAAAAQABAAIAAgAAAAAAAQACAAIAAgAAAAAAAQD//wIAAgAAAAAAAQD+/wIAAgAAAAAAAQD9/wIAAgAAAAAAAQD8/wIAAgAAAAAAAQD7/wIAAgAAAAAAAQD6/wIAAgAAAAAAAQD5/wIAAgAAAAAAAQADAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQAFAP3/AgAAAAAAAQD4////AgAAAAAAAQA=")
+tile_set = ExtResource("4_jv102")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAADAAEABgAAAAAAAgADAAAABgAAAAAAAgAFAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAFAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgAGAPv/BgAAAAAAAgAGAPr/BgAAAAAAAgD4/wEABwAAAAAAAgD4/wAABwAAAAAAAgD4////BwAAAAAAAgD3//7/BwAAAAAAAgD3//3/BwAAAAAAAgD3//z/BwAAAAAAAgD3//v/BwAAAAAAAgD3//r/BwAAAAAAAgA=")
+tile_set = ExtResource("4_jv102")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD4////AAAFAAEAAAADAAAAAAABAAEAAAAFAP3/AAABAAEAAAADAAEAAAABAAIAAAAFAP//AAABAAIAAAAFAP7/AAABAAMAAAAGAPz/AAABAAMAAAAGAPv/AAABAAIAAAAGAPr/AAABAAIAAAD4/wAAAAAFAAMAAAD4/wEAAAAFAAIAAAD3//7/AAAFAAIAAAD3//3/AAAFAAMAAAD3//z/AAAFAAMAAAD3//v/AAAFAAIAAAD3//r/AAAFAAIAAAAEAAAAAAADAAEAAAACAAIAAAADAAEAAAABAAIAAAACAAEAAAAAAAIAAAADAAEAAAD//wIAAAACAAEAAAD+/wIAAAADAAEAAAD9/wIAAAADAAEAAAD8/wIAAAACAAEAAAD7/wIAAAACAAEAAAD6/wIAAAADAAEAAAD5/wIAAAADAAEAAAADAAIAAAAEAAQAAAD4/wIAAAACAAQAAAD3////AAACAAQAAAAFAAAAAAAEAAQAAAAGAP3/AAAEAAQAAAA=")
+tile_set = ExtResource("4_jv102")
+
+[node name="Camera" parent="." instance=ExtResource("5_frody")]
+
+[node name="Door" parent="." instance=ExtResource("6_5oxme")]
+position = Vector2(64, 0)
+
+[node name="SceneConnection" parent="Door" index="0"]
+scene_path = "res://scenes/reality/title_screen_reality.tscn"
+node_path = "Door"
+
+[editable path="Door"]
