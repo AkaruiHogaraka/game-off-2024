@@ -1,33 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdwpalvuv5n77"]
+[gd_scene load_steps=9 format=3 uid="uid://67fgfij3dqpo"]
 
-[ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_lh5xt"]
-[ext_resource type="Script" path="res://scripts/moveable_object.gd" id="2_2g878"]
-[ext_resource type="Texture2D" uid="uid://bmujdb5i8gs74" path="res://sprites/moveable.png" id="3_x1h62"]
+[ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_21ein"]
+[ext_resource type="Script" path="res://scripts/moveable_object.gd" id="2_raml8"]
+[ext_resource type="Texture2D" uid="uid://mrt58kkku1dk" path="res://sprites/tileset.png" id="3_oec7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci844"]
+atlas = ExtResource("3_oec7r")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mawdp"]
 size = Vector2(8, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6g20q"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_014ak"]
 size = Vector2(6, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbcd1"]
-size = Vector2(10, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tl3lc"]
+size = Vector2(10, 7)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_37l8h"]
-size = Vector2(8, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_minoj"]
+size = Vector2(8, 7)
 
-[node name="Body" type="StaticBody2D"]
+[node name="Body" type="StaticBody2D" groups=["RemoveOnLoad"]]
 use_parent_material = true
 collision_layer = 128
-collision_mask = 200
+collision_mask = 136
 
 [node name="OneWayPlatform" type="Node" parent="." node_paths=PackedStringArray("collision", "platform_position")]
-script = ExtResource("1_lh5xt")
+script = ExtResource("1_21ein")
 collision = NodePath("../OneWayReferences/StaticBody2D/CollisionShape2D")
 platform_position = NodePath("../OneWayReferences/Marker2D")
 
 [node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent", "left_ray", "right_ray", "ground_ray")]
-script = ExtResource("2_2g878")
+script = ExtResource("2_raml8")
 parent_radius = 4.0
 moveable_parent = NodePath("..")
 speed_penalty_multiplier = 0.5
@@ -37,7 +41,7 @@ ground_ray = NodePath("../GroundRay")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
-texture = ExtResource("3_x1h62")
+texture = SubResource("AtlasTexture_ci844")
 offset = Vector2(0, -8)
 
 [node name="OneWayReferences" type="Node2D" parent="."]
@@ -47,19 +51,19 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayReferences/StaticBody2D"]
-position = Vector2(0, -15.5)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_mawdp")
 one_way_collision = true
 
 [node name="Marker2D" type="Marker2D" parent="OneWayReferences"]
-position = Vector2(0, -15)
+position = Vector2(0, -7.9)
 
 [node name="Area2D" type="Area2D" parent="OneWayReferences"]
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayReferences/Area2D"]
-position = Vector2(0, -16.5)
-shape = SubResource("RectangleShape2D_6g20q")
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_014ak")
 
 [node name="MoveableReferences" type="Node2D" parent="."]
 
@@ -67,22 +71,22 @@ shape = SubResource("RectangleShape2D_6g20q")
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableReferences/Area2D"]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_hbcd1")
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_tl3lc")
 
 [node name="LeftRay" type="RayCast2D" parent="MoveableReferences"]
 position = Vector2(-4.6, -1)
 target_position = Vector2(0, 1.2)
-collision_mask = 24
+collision_mask = 152
 
 [node name="RightRay" type="RayCast2D" parent="MoveableReferences"]
 position = Vector2(4.6, -1)
 target_position = Vector2(0, 1.2)
-collision_mask = 24
+collision_mask = 152
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_37l8h")
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_minoj")
 
 [node name="GroundRay" type="RayCast2D" parent="."]
 position = Vector2(0, -2)

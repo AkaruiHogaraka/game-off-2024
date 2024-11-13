@@ -7,12 +7,14 @@ class_name GameManager extends Node
 @export var reality_display: ColorRect
 @export var reality_gem_count: Label
 @export var reality_heart_ui: HeartUI
+@export var reality_inventory_ui: TextureRect
 
 @export var dream_viewport: SubViewport
 @export var dream_node: Node2D
 @export var dream_display: ColorRect
 @export var dream_gem_count: Label
 @export var dream_heart_ui: HeartUI
+@export var dream_inventory_ui: TextureRect
 
 @export var transition_node: Transition
 

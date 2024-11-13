@@ -12,4 +12,4 @@ use_parent_material = true
 texture = ExtResource("1_kappg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-8, 8, -7, 8, -7, -8, -8, -8)
+polygon = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)

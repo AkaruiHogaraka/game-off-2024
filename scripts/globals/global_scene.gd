@@ -47,19 +47,29 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	old_scene.scene_camera.get_child(0).set_enabled(false)
 	
 	load_nodes()
+	remove_nodes()
 	
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
 	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
 	
 	GlobalReference.Player.set_collision_layer_value(3, true)
-	
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	GlobalReference.Player.set_speed_multiplier(1.0)
+	
+	if GlobalReference.Player._interaction_object != null:
+		if GlobalReference.Player._interaction_object.has_method("_let_go_interaction"):
+			GlobalReference.Player._interaction_object._let_go_interaction(true)
+	
 	await get_tree().create_timer(0.3).timeout
 	internal_scene_change_cooldown = false
 	old_scene.queue_free()
 	CurrentScene = new_scene
 	transition.queue_free()
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	GlobalReference.Player._is_currently_interacting = false
+	GlobalReference.Player.set_speed_multiplier(1.0)
+	GlobalReference.Player.Input_Handler.set_can_jump(true)
+	GlobalReference.Player.set_interaction_display(false)
 	return true
 
 func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bool = false) -> void:
@@ -131,11 +141,17 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	
 	GlobalReference.Player.set_collision_layer_value(3, true)
 	GlobalReference.Player.set_collision_layer_value(6, true)
+	GlobalReference.Player.set_speed_multiplier(1.0)
+	
+	if GlobalReference.Player._interaction_object != null:
+		if GlobalReference.Player._interaction_object.has_method("_let_go_interaction"):
+			GlobalReference.Player._interaction_object._let_go_interaction(true)
 	
 	if not reality: GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
 	await tween.finished
 	
+	remove_nodes()
 	if reality: GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
 	internal_scene_change_cooldown = false
@@ -180,6 +196,12 @@ func soft_respawn(position: Vector2) -> void:
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	GlobalReference.Player.process = true
+	GlobalReference.Player.set_speed_multiplier(1.0)
+	
+	if GlobalReference.Player._interaction_object != null:
+		if GlobalReference.Player._interaction_object.has_method("_let_go_interaction"):
+			GlobalReference.Player._interaction_object._let_go_interaction(true)
+	
 	is_soft_respawning = false
 	
 	await tween.finished
@@ -222,6 +244,7 @@ func last_door_respawn(pos, scene_path) -> void:
 	
 	clear_temp_data()
 	load_nodes()
+	remove_nodes()
 	
 	GlobalReference.Player.current_health = GlobalReference.Player.starting_health
 	GlobalReference.Game.reality_heart_ui.reset_hearts()
@@ -234,7 +257,13 @@ func last_door_respawn(pos, scene_path) -> void:
 	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
 	
 	GlobalReference.Player.process = true
+	GlobalReference.Player.set_speed_multiplier(1.0)
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	
+	if GlobalReference.Player._interaction_object != null:
+		if GlobalReference.Player._interaction_object.has_method("_let_go_interaction"):
+			GlobalReference.Player._interaction_object._let_go_interaction(true)
+	
 	await get_tree().create_timer(0.3).timeout
 	internal_scene_change_cooldown = false
 	is_respawning = false
@@ -261,7 +290,12 @@ func save_nodes() -> void:
 				break
 		
 		SaveData.push_back(new_data)
-		
+
+func remove_nodes() -> void:
+	var remove_nodes = get_tree().get_nodes_in_group("RemoveOnLoad")
+	for node in remove_nodes:
+		node.queue_free()
+
 func load_nodes() -> void:
 	var save_nodes = get_tree().get_nodes_in_group("Save")
 	for node in save_nodes:

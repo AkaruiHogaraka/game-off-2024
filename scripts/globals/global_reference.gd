@@ -21,6 +21,7 @@ func _ready() -> void:
 func start_game_time() -> void:
 	GameTime = 0
 	_start_game = true
+	jump_toggle = true
 
 func end_game_time() -> void:
 	_start_game = false

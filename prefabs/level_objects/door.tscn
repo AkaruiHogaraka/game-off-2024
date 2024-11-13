@@ -13,8 +13,9 @@ use_parent_material = true
 [node name="SceneConnection" type="Node" parent="."]
 script = ExtResource("1_lhr1r")
 
-[node name="Interaction" type="Node" parent="."]
+[node name="Interaction" type="Node" parent="." node_paths=PackedStringArray("scene_connection")]
 script = ExtResource("3_7qiik")
+scene_connection = NodePath("../SceneConnection")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

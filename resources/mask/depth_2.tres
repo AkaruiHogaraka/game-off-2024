@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_pstqb")
-noise_fps = 12
+next_noise_frame_count = 10.0
 radius_inner = 0.25
 radius_middle = 0.35
 radius_outer = 0.4

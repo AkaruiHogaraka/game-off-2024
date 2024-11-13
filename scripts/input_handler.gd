@@ -6,6 +6,8 @@ signal Interaction()
 signal InteractionLetGo()
 signal DirectionInput(_direction: float)
 signal Jumping(_jump: bool, _direction: float)
+signal CycleItem()
+signal UseItem()
 
 @export var jump_buffer: float = 0.2
 @export var coyote_buffer: float = 0.2
@@ -30,6 +32,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		Interaction.emit()
 	if event.is_action_released("interact"):
 		InteractionLetGo.emit()
+	
+	if event.is_action_pressed("cycle_item"):
+		CycleItem.emit()
+	
+	if event.is_action_pressed("use_item"):
+		UseItem.emit()
 		
 	if Input.is_action_pressed("move_up") and Input.is_action_just_pressed("jump") and _can_jump:
 		if _dream_cooldown <= 0:

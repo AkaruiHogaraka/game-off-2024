@@ -27,6 +27,7 @@ var _is_interacting: bool
 var _is_in_interaction_area: bool
 var _current_area: Node
 var _is_currently_interacting: bool = false
+var _interaction_object: BaseInteraction
 
 var mask: Sprite2D
 
@@ -38,6 +39,7 @@ var last_door_scene: String
 var process: bool
 
 @onready var Input_Handler: InputHandler = $Input
+@onready var Inventory: ItemInventory = $Inventory
 
 @onready var _jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -59,8 +61,6 @@ func _process(delta):
 	if not process: return
 	$Fog/BackBufferCopy2/Mask.call_deferred("set_global_position", round($FogFollowPoint.global_position))
 	
-	animate_sprite()
-	
 	if not Input_Handler._can_input: 
 		reset_velocities()
 	
@@ -69,10 +69,25 @@ func _process(delta):
 	
 	update_last_safe_position()
 	
+	animate_sprite()
+	
 	if _raw_input == Vector2.ZERO:
 		global_position = round(global_position)
 
 func animate_sprite() -> void:
+	if not is_on_floor() and not $RayCast2D.is_colliding():
+		if _gravity_velocity.y < 0:
+			sprite.play("jump")
+		if _gravity_velocity.y >= 0 and sprite.get_animation() != "fall":
+			sprite.play("fall")
+		
+		return
+	
+	if $Sprite.scale.x != _raw_input.x: # Push and pull objects
+		sprite.play("default")
+		
+		return
+	
 	if _raw_input.x != 0: sprite.play("walk")
 	elif _raw_input.x == 0: sprite.play("default")
 
@@ -182,7 +197,7 @@ func on_interaction_let_go() -> void:
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
-	if direction != 0: $Sprite.scale.x = $Sprite.scale.y * direction
+	if direction != 0 and not _is_currently_interacting: $Sprite.scale.x = $Sprite.scale.y * direction
 
 func on_jump(is_jumping: bool, direction: float) -> void:
 	_is_jumping = is_jumping
