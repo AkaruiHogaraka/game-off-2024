@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bu8vqwb5tvm8n"]
+[gd_scene load_steps=10 format=4 uid="uid://bu8vqwb5tvm8n"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_ln8p5"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_ahdf1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="6_6gbcj"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="7_u8t1d"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="8_wgml0"]
+[ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="9_qih2k"]
 
 [node name="Tutorial04Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -53,6 +54,13 @@ position = Vector2(8, 16)
 scene_path = "res://scenes/reality/layer_one_01_reality.tscn"
 node_path = "Door"
 
+[node name="ItemChest" parent="." instance=ExtResource("9_qih2k")]
+position = Vector2(-88, 48)
+
+[node name="Pickup" parent="ItemChest" index="1"]
+item_path = "res://resources/items/block_wand.tscn"
+
 [editable path="WalkLoadRight"]
 [editable path="WalkLoadLeft"]
 [editable path="Door"]
+[editable path="ItemChest"]

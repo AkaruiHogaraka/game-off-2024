@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs8gqjok5fm3t"]
+
+[ext_resource type="Script" path="res://scripts/block_wand.gd" id="1_dacwo"]
+[ext_resource type="PackedScene" uid="uid://67fgfij3dqpo" path="res://prefabs/misc/spawnable_block.tscn" id="2_rh3km"]
+[ext_resource type="Texture2D" uid="uid://bvi58elo0cl7b" path="res://sprites/wand.png" id="3_e23ju"]
+[ext_resource type="Texture2D" uid="uid://b87a7ey8pemrq" path="res://sprites/wand_pickup.png" id="3_uvqnm"]
+[ext_resource type="Texture2D" uid="uid://dulsl01nd5t28" path="res://sprites/object_spawn_indicator.png" id="4_ipe2g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvwv5"]
+atlas = ExtResource("3_uvqnm")
+region = Rect2(2, 3, 9, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c672u"]
+size = Vector2(8, 8)
+
+[node name="Block Wand" type="Node2D"]
+use_parent_material = true
+script = ExtResource("1_dacwo")
+block_prefab = ExtResource("2_rh3km")
+pickup_texture = SubResource("AtlasTexture_dvwv5")
+ui_texture = ExtResource("3_e23ju")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+use_parent_material = true
+position = Vector2(11, -8)
+collision_mask = 185
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+shape = SubResource("RectangleShape2D_c672u")
+
+[node name="Spawn" type="Marker2D" parent="SpawnArea"]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpawnArea"]
+use_parent_material = true
+texture = ExtResource("4_ipe2g")

@@ -253,6 +253,7 @@ offset_bottom = 70.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="RealityShaderController/RealityUI/Control2"]
 use_parent_material = true
+layout_mode = 0
 offset_left = -160.0
 offset_top = 63.0
 offset_right = -144.0

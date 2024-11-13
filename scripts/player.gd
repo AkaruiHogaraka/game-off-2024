@@ -40,6 +40,7 @@ var process: bool
 
 @onready var Input_Handler: InputHandler = $Input
 @onready var Inventory: ItemInventory = $Inventory
+@onready var sprite_parent: Node2D = $Sprite
 
 @onready var _jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -197,7 +198,7 @@ func on_interaction_let_go() -> void:
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
-	if direction != 0 and not _is_currently_interacting: $Sprite.scale.x = $Sprite.scale.y * direction
+	if direction != 0 and not _is_currently_interacting: sprite_parent.scale.x = sprite_parent.scale.y * direction
 
 func on_jump(is_jumping: bool, direction: float) -> void:
 	_is_jumping = is_jumping

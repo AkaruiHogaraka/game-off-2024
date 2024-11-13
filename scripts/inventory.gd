@@ -19,10 +19,11 @@ func on_cycle_items() -> void:
 	
 	item_index += 1 % items.size()
 	
-	GlobalReference.Game.reality_inventory_ui.set_texture(items[item_index].texture)
-	GlobalReference.Game.dream_inventory_ui.set_texture(items[item_index].texture)
+	GlobalReference.Game.reality_inventory_ui.set_texture(items[item_index].ui_texture)
+	GlobalReference.Game.dream_inventory_ui.set_texture(items[item_index].ui_texture)
 
 func add_item_to_inventory(item: BaseInventoryItem) -> void:
 	items.append(item)
+	add_child(item)
 	on_cycle_items()
 	

@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func initialise() -> void:
 	GlobalReference.Player.Input_Handler.DirectionInput.connect(_on_move)
+	set_scale(GlobalReference.Player.sprite_parent.get_scale())
 
 func _physics_process(delta: float) -> void:
 	if spawned_objects.size() > 3:
@@ -29,7 +30,7 @@ func on_item_use() -> void:
 	
 	var block = block_prefab.duplicate().instantiate()
 	GlobalReference.PlayerParent.add_child(block)
-	block.set_global_position($Spawn.global_position)
+	block.set_global_position($SpawnArea/Spawn.global_position)
 	spawned_objects.append(block)
 
 func _on_move(direction: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=33 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
@@ -11,9 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://d2c4473xu60u2" path="res://sprites/240x160.png" id="11_5chh3"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="11_b4h4m"]
 [ext_resource type="Material" uid="uid://di6ccivy4cvxe" path="res://materials/banded_circular_noise_mask.tres" id="12_jb7s0"]
-[ext_resource type="Script" path="res://scripts/block_wand.gd" id="13_ncqfa"]
-[ext_resource type="Texture2D" uid="uid://mrt58kkku1dk" path="res://sprites/tileset.png" id="14_es6cq"]
-[ext_resource type="PackedScene" uid="uid://67fgfij3dqpo" path="res://prefabs/misc/spawnable_block.tscn" id="14_sh7b2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hicwl"]
 atlas = ExtResource("6_k1tnb")
@@ -172,13 +169,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c0ufl"]
-atlas = ExtResource("14_es6cq")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c672u"]
-size = Vector2(8, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(8, 15)
 
@@ -280,22 +270,8 @@ texture = ExtResource("11_5chh3")
 position = Vector2(0, -7)
 
 [node name="Inventory" type="Node2D" parent="."]
+use_parent_material = true
 script = ExtResource("11_b4h4m")
-
-[node name="BlockWand" type="Node2D" parent="Inventory"]
-script = ExtResource("13_ncqfa")
-block_prefab = ExtResource("14_sh7b2")
-texture = SubResource("AtlasTexture_c0ufl")
-
-[node name="SpawnArea" type="Area2D" parent="Inventory/BlockWand"]
-collision_mask = 185
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inventory/BlockWand/SpawnArea"]
-position = Vector2(14, -8)
-shape = SubResource("RectangleShape2D_c672u")
-
-[node name="Spawn" type="Marker2D" parent="Inventory/BlockWand"]
-position = Vector2(14, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
