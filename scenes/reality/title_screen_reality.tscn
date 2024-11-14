@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=17 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://dlna8d8mwb4sh" path="res://resources/gems/green_gem.tres" id="11_va6uf"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_0hycc"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_lrgmm"]
+[ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
 
@@ -51,8 +52,8 @@ tile_set = ExtResource("2_0g32y")
 position = Vector2(-40, 32)
 
 [node name="SceneConnection" parent="Door" index="0"]
-scene_path = "res://scenes/reality/tutorial_01_reality.tscn"
-node_path = "WalkLoadRight"
+scene_path = "res://scenes/reality/end_reality.tscn"
+node_path = "Door"
 
 [node name="CameraPosition" type="Marker2D" parent="."]
 
@@ -90,6 +91,7 @@ position = Vector2(-56, 48)
 gem = ExtResource("11_va6uf")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 use_parent_material = true
 offset_left = -25.0
 offset_top = -20.0
@@ -100,6 +102,14 @@ theme_override_font_sizes/font_size = 8
 text = "A D - Move
 z - Interact"
 horizontal_alignment = 1
+
+[node name="GameStartDialogue" parent="." instance=ExtResource("15_irscf")]
+position = Vector2(-2, 22)
+
+[node name="Dialogue" parent="GameStartDialogue" index="0" node_paths=PackedStringArray("tutorial")]
+tutorial = NodePath("../../Label")
+
+[node name="Area2D" parent="GameStartDialogue" index="1" groups=["Save"]]
 
 [node name="DisableTutorialTrigger" parent="." instance=ExtResource("14_lrgmm")]
 position = Vector2(-40, 27)
@@ -113,4 +123,5 @@ tutorial = NodePath("../../Label")
 [editable path="HiddenArea"]
 [editable path="Chest"]
 [editable path="Chest2"]
+[editable path="GameStartDialogue"]
 [editable path="DisableTutorialTrigger"]

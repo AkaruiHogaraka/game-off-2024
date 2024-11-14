@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=38 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://d2c4473xu60u2" path="res://sprites/240x160.png" id="11_5chh3"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="11_b4h4m"]
 [ext_resource type="Material" uid="uid://di6ccivy4cvxe" path="res://materials/banded_circular_noise_mask.tres" id="12_jb7s0"]
+[ext_resource type="Script" path="res://scripts/dialogue_writer.gd" id="12_nfomw"]
+[ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_wcurr"]
+[ext_resource type="Texture2D" uid="uid://dfvoiojl3kjdf" path="res://sprites/nine-rect.png" id="14_v8hho"]
+[ext_resource type="Texture2D" uid="uid://k4wb8qddqycn" path="res://sprites/z_continue.png" id="15_kroog"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hicwl"]
 atlas = ExtResource("6_k1tnb")
@@ -169,6 +173,10 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g6iq"]
+atlas = ExtResource("15_kroog")
+region = Rect2(3, 3, 10, 10)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(8, 15)
 
@@ -272,6 +280,79 @@ position = Vector2(0, -7)
 [node name="Inventory" type="Node2D" parent="."]
 use_parent_material = true
 script = ExtResource("11_b4h4m")
+
+[node name="Writer" type="Control" parent="." node_paths=PackedStringArray("dialogue_label", "continue_texture")]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_nfomw")
+base_write_time = 0.05
+dialogue_label = NodePath("Label")
+continue_texture = NodePath("Label/NinePatchRect/TextureRect")
+
+[node name="Label" type="Label" parent="Writer"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -4.0
+offset_right = 0.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("13_wcurr")
+theme_override_font_sizes/font_size = 8
+text = "Text"
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Writer/Label"]
+show_behind_parent = true
+use_parent_material = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_v8hho")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="TextureRect" type="TextureRect" parent="Writer/Label/NinePatchRect"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_8g6iq")
+stretch_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)

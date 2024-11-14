@@ -6,12 +6,15 @@ var Player: PlayerController
 var PlayerParent: Node2D
 var PlayerRealityPosition: Vector2
 var PlayerRealityReference: Node2D
+var Writer: DialogueWriter
 
 var DreamMaterial: Material
 var RealityMaterial: Material
 
 var Game: GameManager
 var GameTime: float
+
+var temp_game_screen: CanvasLayer
 
 var _start_game: bool
 

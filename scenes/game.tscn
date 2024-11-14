@@ -41,9 +41,11 @@ resource_local_to_scene = true
 shader = ExtResource("2_y5a2i")
 shader_parameter/main_texture = SubResource("ViewportTexture_efxym")
 
-[node name="Game" type="Node" node_paths=PackedStringArray("screen", "reality_viewport", "reality_node", "reality_display", "reality_gem_count", "reality_heart_ui", "reality_inventory_ui", "dream_viewport", "dream_node", "dream_display", "dream_gem_count", "dream_heart_ui", "dream_inventory_ui", "transition_node", "reality_reference")]
+[node name="Game" type="Node" node_paths=PackedStringArray("main_screen", "screen", "combined_viewport", "reality_viewport", "reality_node", "reality_display", "reality_gem_count", "reality_heart_ui", "reality_inventory_ui", "dream_viewport", "dream_node", "dream_display", "dream_gem_count", "dream_heart_ui", "dream_inventory_ui", "transition_node", "reality_reference")]
 script = ExtResource("1_rtecv")
+main_screen = NodePath("GameScreen")
 screen = NodePath("CombinedViewportContainer/CombinedViewprot/Combined")
+combined_viewport = NodePath("CombinedViewportContainer/CombinedViewprot")
 reality_viewport = NodePath("RealityContainer/Reality")
 reality_node = NodePath("RealityShaderController")
 reality_display = NodePath("CombinedViewportContainer/CombinedViewprot/Combined/Control/BackBufferCopy2/RealityDisplay")
@@ -58,7 +60,7 @@ dream_heart_ui = NodePath("DreamShaderController/DreamUI/Control2/HeartContainer
 dream_inventory_ui = NodePath("DreamShaderController/DreamUI/Control2/NinePatchRect/TextureRect")
 transition_node = NodePath("CombinedViewportContainer/CombinedViewprot/Combined/Control/BackBufferCopy2/Transition")
 reality_reference = NodePath("DreamShaderController/RealityReference")
-camera_come_from = Vector2(0, 200)
+camera_come_from = Vector2(0, -400)
 camera_tween_time = 1.0
 
 [node name="GameScreen" type="CanvasLayer" parent="."]
@@ -89,6 +91,7 @@ disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
+render_target_clear_mode = 2
 render_target_update_mode = 4
 
 [node name="Combined" type="CanvasLayer" parent="CombinedViewportContainer/CombinedViewprot"]
@@ -402,6 +405,7 @@ disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
+render_target_clear_mode = 2
 render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="RealityContainer/Reality"]
@@ -437,6 +441,7 @@ disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
+render_target_clear_mode = 2
 render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="DreamContainer/Dream"]

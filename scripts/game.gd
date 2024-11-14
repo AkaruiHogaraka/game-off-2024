@@ -1,6 +1,9 @@
 class_name GameManager extends Node
 
+@export var main_screen: CanvasLayer
+
 @export var screen: CanvasLayer
+@export var combined_viewport: SubViewport
 
 @export var reality_viewport: SubViewport
 @export var reality_node: Node2D
@@ -39,13 +42,14 @@ func _ready() -> void:
 	dream_viewport.size = dream_display.size
 	
 	screen.set_visible(true)
-	get_tree().set_current_scene(self)
 	
 	transition_node.mask.get_parent().set_position(((get_tree().root.get_final_transform() * GlobalReference.Player.get_global_transform_with_canvas()).origin))
 	transition_node.transition(0, 1, 0, Tween.EASE_IN, Tween.TRANS_EXPO)
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
-	if GlobalScene.IsRestarting: pan_camera()
+	if GlobalScene.IsRestarting: 
+		pan_camera()
+		call_deferred("clear_previous_game")
 	
 	dream_gem_count.text = "x%s" % GlobalItems.gems
 	reality_gem_count.text = "x%s" % GlobalItems.dream_gems
@@ -57,3 +61,11 @@ func pan_camera() -> void:
 	GlobalScene.CurrentScene.scene_camera.global_position.y = camera_come_from.y
 	tween.tween_property(GlobalScene.CurrentScene.scene_camera, "global_position:y", destination.y, camera_tween_time)
 	tween.set_ease(Tween.EASE_IN_OUT)
+
+func clear_previous_game() -> void:
+	get_tree().current_scene.queue_free()
+	GlobalScene.IsRestarting = false
+	
+	await get_tree().physics_frame
+	
+	GlobalReference.temp_game_screen.queue_free()

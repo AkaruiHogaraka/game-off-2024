@@ -139,20 +139,22 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	
 	load_nodes()
 	
-	GlobalReference.Player.set_collision_layer_value(3, true)
-	GlobalReference.Player.set_collision_layer_value(6, true)
-	GlobalReference.Player.set_speed_multiplier(1.0)
-	
-	if GlobalReference.Player._interaction_object != null:
-		if GlobalReference.Player._interaction_object.has_method("_let_go_interaction"):
-			GlobalReference.Player._interaction_object._let_go_interaction(true)
-	
-	if not reality: GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	if not initial_setup:
+		
+		GlobalReference.Player.set_collision_layer_value(3, true)
+		GlobalReference.Player.set_collision_layer_value(6, true)
+		GlobalReference.Player.set_speed_multiplier(1.0)
+		
+		if GlobalReference.Player._interaction_object != null:
+			if GlobalReference.Player._interaction_object.has_method("_let_go_interaction"):
+				GlobalReference.Player._interaction_object._let_go_interaction(true)
+		
+		if not reality: GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
 	await tween.finished
 	
 	remove_nodes()
-	if reality: GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	if reality and not initial_setup: GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
 	internal_scene_change_cooldown = false
 	

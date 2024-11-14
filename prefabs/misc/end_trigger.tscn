@@ -26,6 +26,9 @@ shape = SubResource("RectangleShape2D_3gqeu")
 [node name="Camera2D" parent="Camera" index="0"]
 enabled = false
 
+[node name="ColorRect" parent="Camera" index="1"]
+color = Color(0.2, 0.168627, 0.309804, 1)
+
 [node name="CameraDestination" type="Marker2D" parent="."]
 position = Vector2(0, -360)
 

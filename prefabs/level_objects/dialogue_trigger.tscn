@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctbhj78u27ycv"]
+
+[ext_resource type="Script" path="res://scripts/base_dialogue_writer.gd" id="1_emr36"]
+
+[node name="DialogueTrigger" type="Node2D"]
+
+[node name="Dialogue" type="Node" parent="."]
+script = ExtResource("1_emr36")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

@@ -39,6 +39,8 @@ func _play_end_scene() -> void:
 	can_continue = true
 
 func reset_game() -> void:
+	get_tree().set_current_scene(GlobalReference.Game)
+	
 	var colour_one: Color = GlobalReference.DreamMaterial.get("shader_parameter/replace_one")
 	var colour_two: Color = GlobalReference.DreamMaterial.get("shader_parameter/replace_two")
 	var colour_three: Color = GlobalReference.DreamMaterial.get("shader_parameter/replace_three")
@@ -61,18 +63,28 @@ func reset_game() -> void:
 	GlobalReference.PlayerRealityPosition = Vector2.ZERO
 	GlobalScene.CurrentScene = null
 	
-	GlobalItems.reset_items()
-	GlobalReference.end_game_time()
+	next_label.get_parent().queue_free()
 	
-	GlobalScene.IsRestarting = true
-	get_tree().current_scene.queue_free()
+	await get_tree().physics_frame
+	
 	var game = load("res://scenes/game.tscn").instantiate()
-	get_tree().root.add_child(game)
+	get_tree().root.call_deferred("add_child", game)
+	
+	var screen = GlobalReference.Game.main_screen.duplicate()
+	get_tree().root.add_child(screen)
+	GlobalReference.temp_game_screen = screen
+	
+	screen.get_child(0).get_child(0).get_material().set("shader_parameter/main_texture", ImageTexture.create_from_image(GlobalReference.Game.combined_viewport.get_texture().get_image()))
 	
 	GlobalReference.DreamMaterial.set("shader_parameter/replace_two", colour_two)
 	GlobalReference.DreamMaterial.set("shader_parameter/replace_three", colour_three)
 	GlobalReference.DreamMaterial.set("shader_parameter/replace_four", colour_four)
 	
+	GlobalItems.reset_items()
+	GlobalReference.end_game_time()
+	GlobalScene.IsRestarting = true
+	
+	await get_tree().physics_frame
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
