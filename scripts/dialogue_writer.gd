@@ -21,10 +21,8 @@ func force_write_end_line(chrs: PackedStringArray) -> void:
 		dialogue_label.text += chr
 	
 	continue_texture.set_visible(true)
-	
-	await get_tree().create_timer(0.2).timeout
-	
 	EndWritingCurrentLine.emit()
+	await get_tree().create_timer(0.2).timeout
 
 func write_line(chrs: PackedStringArray, speed: float) -> void:
 	continue_texture.set_visible(false)

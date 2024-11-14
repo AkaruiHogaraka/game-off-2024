@@ -1,8 +1,12 @@
 class_name BaseDialogueReader extends Node
 
+signal StartDialogue()
+signal EndDialogue()
+
 @export var lines: Array[String]
 @export var line_speed: Array[float]
 @export var custom_writer_target: DialogueWriter
+@export var skip_cooldown: float = 0.2
 
 @onready var current_line_index: int = 0
 
@@ -10,6 +14,12 @@ var is_writing_line: bool
 var is_force_skipping: bool
 
 var writer: DialogueWriter
+
+var can_input: bool
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interact") and can_input:
+		on_read_line()
 
 func _ready() -> void:
 	if custom_writer_target != null: writer = custom_writer_target
@@ -27,18 +37,21 @@ func on_read_line() -> void:
 	if is_force_skipping: return
 	
 	if current_line_index >= lines.size(): 
+		EndDialogue.emit()
 		_on_end_writing()
-		is_force_skipping = true
 		return
 	
 	var line_chrs: PackedStringArray = lines[current_line_index].split()
 	
-	if current_line_index == 0: _on_start_writing()
+	if current_line_index == 0: 
+		StartDialogue.emit()
+		_on_start_writing()
 	
 	if is_writing_line:
 		is_force_skipping = true
 		
 		await writer.force_write_end_line(line_chrs)
+		await get_tree().create_timer(skip_cooldown).timeout
 		
 		is_writing_line = false
 		is_force_skipping = false
@@ -48,6 +61,12 @@ func on_read_line() -> void:
 	
 	is_writing_line = true
 
+func reset_dialogue() -> void:
+	current_line_index = 0
+	is_force_skipping = false
+	is_writing_line = false
+	can_input = false
+
 func _on_start_writing() -> void:
 	pass
 
@@ -55,7 +74,8 @@ func _on_start_writing_current_line() -> void:
 	pass
 
 func _on_end_writing() -> void:
-	pass
+	writer.hide_dialogue_box()
 
 func _on_end_writing_current_line() -> void:
-	pass
+	is_writing_line = false
+	current_line_index += 1

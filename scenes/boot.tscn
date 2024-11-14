@@ -21,6 +21,7 @@ scene_path = "res://scenes/game.tscn"
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
+wait_time = 0.001
 one_shot = true
 autostart = true
 
@@ -54,6 +55,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(1e-05, 1e-05)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/Transition/Circle"]
 material = ExtResource("5_evgic")
@@ -100,6 +102,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(1e-05, 1e-05)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/Transition2/Circle"]
 material = ExtResource("5_evgic")

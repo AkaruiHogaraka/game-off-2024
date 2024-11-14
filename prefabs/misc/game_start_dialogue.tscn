@@ -10,7 +10,7 @@
 [node name="Dialogue" type="Node" parent="." node_paths=PackedStringArray("area")]
 script = ExtResource("1_6rubk")
 area = NodePath("../Area2D")
-lines = Array[String](["...", "Ellie isn't here..", "I should go find her"])
+lines = Array[String](["...", "Ellie isn't here", "I should go find her"])
 line_speed = Array[float]([2.0, 1.0, 1.0])
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("dialogue")]
