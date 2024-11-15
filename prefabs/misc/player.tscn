@@ -255,9 +255,8 @@ use_parent_material = true
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_qbbpi")
-animation = &"walk"
+animation = &"fall"
 autoplay = "default"
-frame_progress = 0.375268
 
 [node name="LeftArm" type="Node2D" parent="Sprite"]
 visible = false

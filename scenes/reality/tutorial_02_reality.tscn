@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_qk3yu"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_cvvfq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_ocrn6"]
-[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="3_hdptf"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="3_hdptf"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="4_f8e2q"]
 [ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/level_objects/alternate_platform.tscn" id="5_poxdu"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="6_o6vbl"]

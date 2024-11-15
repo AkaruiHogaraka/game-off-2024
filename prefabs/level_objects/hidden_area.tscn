@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5kw2mxa4tdfb"]
 
 [ext_resource type="Script" path="res://scripts/hidden_area.gd" id="1_dxyh4"]
-[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="2_tn4o3"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="2_tn4o3"]
 
 [node name="HiddenArea" type="Node2D"]
 use_parent_material = true

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ban8rwomfkgij"]
 
-[ext_resource type="Shader" path="res://circular_noise.gdshader" id="1_47oo8"]
+[ext_resource type="Shader" path="res://shaders/circular_noise.gdshader" id="1_47oo8"]
 
 [resource]
 shader = ExtResource("1_47oo8")

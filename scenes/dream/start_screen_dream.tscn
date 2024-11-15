@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_2bcbt"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_mscbn"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="3_367df"]
-[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="4_s3tjp"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_s3tjp"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="5_cwqbn"]
 
 [node name="start_screen_dream" type="Node2D" node_paths=PackedStringArray("alternate_scene")]

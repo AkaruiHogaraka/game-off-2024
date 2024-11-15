@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://clppcvnfhiaja"]
 
-[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="1_1ormn"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5t00n"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="2_3rp26"]

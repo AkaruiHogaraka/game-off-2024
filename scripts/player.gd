@@ -72,7 +72,7 @@ func _process(delta):
 	
 	animate_sprite()
 	
-	if _raw_input == Vector2.ZERO:
+	if _raw_input.x == 0 and is_on_floor():
 		global_position = round(global_position)
 
 func animate_sprite() -> void:

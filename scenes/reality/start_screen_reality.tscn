@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://8qk6vlxtge0"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_c5whi"]
-[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://game_tileset.tres" id="2_7o7vx"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="2_7o7vx"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_jykn3"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="3_vamp0"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="4_n1yxc"]
