@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=18 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_0hycc"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_lrgmm"]
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
+[ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="16_gf072"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
 
@@ -117,6 +118,18 @@ position = Vector2(-40, 27)
 [node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
 tutorial = NodePath("../../Label")
 
+[node name="ItemChest" parent="." instance=ExtResource("16_gf072")]
+position = Vector2(88, 0)
+
+[node name="Pickup" parent="ItemChest" index="1"]
+item_path = "res://resources/items/block_wand.tscn"
+
+[node name="ItemChest2" parent="." instance=ExtResource("16_gf072")]
+position = Vector2(-72, 0)
+
+[node name="Pickup" parent="ItemChest2" index="1"]
+item_path = "res://resources/items/lantern.tscn"
+
 [editable path="Door"]
 [editable path="Moveable"]
 [editable path="OneWayPlatform"]
@@ -125,3 +138,5 @@ tutorial = NodePath("../../Label")
 [editable path="Chest2"]
 [editable path="GameStartDialogue"]
 [editable path="DisableTutorialTrigger"]
+[editable path="ItemChest"]
+[editable path="ItemChest2"]

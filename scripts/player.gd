@@ -42,6 +42,7 @@ var process: bool
 @onready var Input_Handler: InputHandler = $Input
 @onready var Inventory: ItemInventory = $Inventory
 @onready var sprite_parent: Node2D = $Sprite
+@onready var arm_sprite_parent: Node2D = $Sprite/LeftArm
 
 @onready var _jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
