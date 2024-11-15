@@ -13,6 +13,7 @@ signal Dead()
 
 @export var interaction_sprite: Sprite2D
 @export var sprite: AnimatedSprite2D
+@export var left_arm_sprite: AnimatedSprite2D
 
 var _speed_multiplier: float = 1.0
 
@@ -71,6 +72,7 @@ func _process(delta):
 	update_last_safe_position()
 	
 	animate_sprite()
+	animate_left_arm()
 	
 	if _raw_input.x == 0 and is_on_floor():
 		global_position = round(global_position)
@@ -91,6 +93,10 @@ func animate_sprite() -> void:
 	
 	if _raw_input.x != 0: sprite.play("walk")
 	elif _raw_input.x == 0: sprite.play("default")
+
+func animate_left_arm() -> void:
+	left_arm_sprite.play(sprite.get_animation())
+	left_arm_sprite.set_frame_and_progress(sprite.get_frame(), sprite.get_frame_progress())
 
 func _walk() -> Vector2:
 	_walk_velocity = _walk_velocity.move_toward(Vector2(_raw_input.x, 0) * (move_speed * _speed_multiplier), acceleration * get_process_delta_time())
