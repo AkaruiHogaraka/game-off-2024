@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccm1p5wqw6lxo"]
+[gd_scene load_steps=3 format=3 uid="uid://ccm1p5wqw6lxo"]
 
 [ext_resource type="AudioStream" uid="uid://dbvygo8u0oei1" path="res://audio/samples/sfx/jump.wav" id="1_qkxnc"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_0w16i"]
 
 [node name="Jump" type="AudioStreamPlayer"]
 stream = ExtResource("1_qkxnc")
 bus = &"SFX"
+script = ExtResource("2_0w16i")
+max = 1.1
+min = 0.9
