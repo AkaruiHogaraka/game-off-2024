@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=19 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://bfuwg0b2s4tk8" path="res://resources/gems/red_gem.tres" id="10_dbg65"]
 [ext_resource type="Resource" uid="uid://dlna8d8mwb4sh" path="res://resources/gems/green_gem.tres" id="11_va6uf"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_0hycc"]
+[ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="14_61a3i"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_lrgmm"]
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
 [ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="16_gf072"]
@@ -91,24 +92,50 @@ position = Vector2(-56, 48)
 [node name="Pickup" parent="Chest2" index="1"]
 gem = ExtResource("11_va6uf")
 
-[node name="Label" type="Label" parent="."]
+[node name="Control" type="Control" parent="."]
 visible = false
 use_parent_material = true
-offset_left = -25.0
-offset_top = -20.0
-offset_right = 27.0
-offset_bottom = 3.0
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_right = 24.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+use_parent_material = true
+offset_right = 52.0
+offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("13_0hycc")
 theme_override_font_sizes/font_size = 8
-text = "A D - Move
-z - Interact"
+text = "- Move"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+use_parent_material = true
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("14_61a3i")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+use_parent_material = true
+layout_mode = 0
+offset_left = -13.0
+offset_top = -4.0
+offset_right = 3.0
+offset_bottom = 12.0
+texture = ExtResource("14_61a3i")
+stretch_mode = 2
+flip_h = true
 
 [node name="GameStartDialogue" parent="." instance=ExtResource("15_irscf")]
 position = Vector2(-2, 22)
 
 [node name="Dialogue" parent="GameStartDialogue" index="0" node_paths=PackedStringArray("tutorial")]
-tutorial = NodePath("../../Label")
+tutorial = NodePath("../../Control")
 
 [node name="Area2D" parent="GameStartDialogue" index="1" groups=["Save"]]
 
@@ -116,7 +143,7 @@ tutorial = NodePath("../../Label")
 position = Vector2(-40, 27)
 
 [node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
-tutorial = NodePath("../../Label")
+tutorial = NodePath("../../Control")
 
 [node name="ItemChest" parent="." instance=ExtResource("16_gf072")]
 position = Vector2(88, 0)

@@ -6,6 +6,7 @@ signal EndWritingCurrentLine()
 @export var base_write_time: float
 @export var dialogue_label: Label
 @export var continue_texture: TextureRect
+@export var speak_sfx: AudioStreamPlayer
 
 var force_skipping: bool
 
@@ -35,6 +36,7 @@ func write_line(chrs: PackedStringArray, speed: float) -> void:
 	for chr in chrs:
 		if force_skipping: return
 		dialogue_label.text += chr
+		GlobalAudio.play_sfx(speak_sfx)
 		await get_tree().create_timer(base_write_time * speed).timeout
 	
 	force_write_end_line(chrs)

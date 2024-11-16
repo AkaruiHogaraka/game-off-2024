@@ -1,7 +1,7 @@
 extends BaseDialogueReader
 
 @export var area: Area2D
-@export var tutorial: Label
+@export var tutorial: Control
 
 func _on_end_writing() -> void:
 	area.disable(true)
