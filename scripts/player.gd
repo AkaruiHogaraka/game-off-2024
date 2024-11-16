@@ -31,13 +31,13 @@ var _is_in_interaction_area: bool
 var _current_area: Node
 var _is_currently_interacting: bool = false
 var _interaction_object: BaseInteraction
-
 var mask: Sprite2D
 
 var current_health: int
 
 var last_safe_position: Vector2
 var last_door_position: Vector2
+var jump_position: Vector2
 var last_door_scene: String
 var process: bool
 
@@ -45,6 +45,7 @@ var process: bool
 @onready var Inventory: ItemInventory = $Inventory
 @onready var sprite_parent: Node2D = $Sprite
 @onready var arm_sprite_parent: Node2D = $Sprite/LeftArm
+@onready var safe_ground_raycast: RayCast2D = $SafeGround
 
 @onready var _jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -81,7 +82,7 @@ func _process(delta):
 		global_position = round(global_position)
 
 func animate_sprite() -> void:
-	if not is_on_floor() and not $RayCast2D.is_colliding():
+	if not is_on_floor() and not safe_ground_raycast.is_colliding():
 		if _gravity_velocity.y < 0:
 			sprite.play("jump")
 		if _gravity_velocity.y >= 0 and sprite.get_animation() != "fall":
@@ -94,7 +95,8 @@ func animate_sprite() -> void:
 		
 		return
 	
-	if _raw_input.x != 0: sprite.play("walk")
+	if _raw_input.x != 0: 
+		sprite.play("walk")
 	elif _raw_input.x == 0: sprite.play("default")
 
 func animate_left_arm() -> void:
@@ -218,4 +220,5 @@ func on_jump(is_jumping: bool, direction: float) -> void:
 	
 	if _is_jumping: 
 		_gravity_velocity.y = _jump_velocity
+		jump_position = get_global_position()
 		GlobalAudio.play_sfx(jump_sfx, true)

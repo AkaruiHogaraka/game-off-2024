@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://k7lo725ukae7"]
+
+[ext_resource type="AudioStream" uid="uid://sui2e0v7gekd" path="res://audio/samples/sfx/land.wav" id="1_i3bka"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_1b478"]
+
+[node name="PlayerGroundImpact" type="AudioStreamPlayer"]
+stream = ExtResource("1_i3bka")
+bus = &"SFX"
+script = ExtResource("2_1b478")
+max = 1.1
+min = 0.9

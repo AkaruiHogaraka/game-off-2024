@@ -103,6 +103,7 @@ offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="Control"]
 use_parent_material = true
+layout_mode = 0
 offset_right = 52.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("13_0hycc")

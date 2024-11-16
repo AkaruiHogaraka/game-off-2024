@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8f2gf5papuwe"]
+
+[ext_resource type="AudioStream" uid="uid://co8g7ndw2jkki" path="res://audio/samples/sfx/spawn_block.wav" id="1_rah8l"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_t2nvj"]
+
+[node name="SpawnBlock" type="AudioStreamPlayer"]
+stream = ExtResource("1_rah8l")
+bus = &"SFX"
+script = ExtResource("2_t2nvj")
+max = 1.1
+min = 0.9

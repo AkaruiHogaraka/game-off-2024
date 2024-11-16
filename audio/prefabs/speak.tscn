@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckey3awf3arh8"]
 
-[ext_resource type="AudioStream" uid="uid://85i4ma5u7rsd" path="res://audio/samples/sfx/sfx_menu_move2.wav" id="1_6t78f"]
+[ext_resource type="AudioStream" uid="uid://85i4ma5u7rsd" path="res://audio/samples/sfx/move.wav" id="1_6t78f"]
 [ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_k22pf"]
 
 [node name="Speak" type="AudioStreamPlayer"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgdgv74rby0jh"]
+
+[ext_resource type="AudioStream" uid="uid://dv7yyg100r36s" path="res://audio/samples/sfx/get_item.wav" id="1_jqk6u"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_rogp5"]
+
+[node name="GetItem" type="AudioStreamPlayer"]
+stream = ExtResource("1_jqk6u")
+bus = &"SFX"
+script = ExtResource("2_rogp5")
+max = 1.1
+min = 0.9

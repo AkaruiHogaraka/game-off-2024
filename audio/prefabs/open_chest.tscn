@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhvsuvnoa0256"]
+
+[ext_resource type="AudioStream" uid="uid://3xq47xjwvu45" path="res://audio/samples/sfx/open_chest.wav" id="1_vyc7l"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_yd34o"]
+
+[node name="OpenChest" type="AudioStreamPlayer"]
+stream = ExtResource("1_vyc7l")
+volume_db = 8.0
+bus = &"SFX"
+script = ExtResource("2_yd34o")
+max = 1.1
+min = 0.9

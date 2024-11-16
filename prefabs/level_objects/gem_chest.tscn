@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://de2gkqkiailjq"]
+[gd_scene load_steps=8 format=3 uid="uid://de2gkqkiailjq"]
 
 [ext_resource type="Script" path="res://scripts/interactable_pickup.gd" id="1_81gmj"]
 [ext_resource type="Texture2D" uid="uid://bso22ca4w6k5" path="res://sprites/chest.png" id="2_8s1uw"]
 [ext_resource type="Script" path="res://scripts/gem_pickup.gd" id="2_w2sx7"]
 [ext_resource type="PackedScene" uid="uid://buao37mj0e24d" path="res://prefabs/misc/item_pickup_ui.tscn" id="4_btw0m"]
+[ext_resource type="PackedScene" uid="uid://dhvsuvnoa0256" path="res://audio/prefabs/open_chest.tscn" id="5_g7da5"]
+[ext_resource type="PackedScene" uid="uid://bgdgv74rby0jh" path="res://audio/prefabs/get_item.tscn" id="6_wmt0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_il8xv"]
 size = Vector2(10, 10)
@@ -11,10 +13,12 @@ size = Vector2(10, 10)
 [node name="GemChest" type="Node2D"]
 use_parent_material = true
 
-[node name="InteractablePickup" type="Node" parent="." node_paths=PackedStringArray("collision", "item") groups=["Save"]]
+[node name="InteractablePickup" type="Node" parent="." node_paths=PackedStringArray("collision", "item", "open_sfx", "pickup_sfx") groups=["Save"]]
 script = ExtResource("1_81gmj")
 collision = NodePath("../Area2D/CollisionShape2D")
 item = NodePath("../Pickup")
+open_sfx = NodePath("../Audio/OpenChest")
+pickup_sfx = NodePath("../Audio/GetItem")
 
 [node name="Pickup" type="Node" parent="." node_paths=PackedStringArray("ui")]
 script = ExtResource("2_w2sx7")
@@ -34,6 +38,12 @@ shape = SubResource("RectangleShape2D_il8xv")
 [node name="ItemPickupUI" parent="." instance=ExtResource("4_btw0m")]
 offset_top = -32.0
 offset_bottom = -32.0
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="OpenChest" parent="Audio" instance=ExtResource("5_g7da5")]
+
+[node name="GetItem" parent="Audio" instance=ExtResource("6_wmt0e")]
 
 [connection signal="body_entered" from="Area2D" to="InteractablePickup" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="InteractablePickup" method="_on_body_exited"]

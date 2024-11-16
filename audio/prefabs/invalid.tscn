@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4kfokdutmir2"]
+
+[ext_resource type="AudioStream" uid="uid://ujs7o2hg8gkm" path="res://audio/samples/sfx/invalid.wav" id="1_rx1r7"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_2dlpo"]
+
+[node name="Invalid" type="AudioStreamPlayer"]
+stream = ExtResource("1_rx1r7")
+bus = &"SFX"
+script = ExtResource("2_2dlpo")
+max = 1.1
+min = 0.9
