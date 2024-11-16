@@ -21,6 +21,7 @@ config/icon="res://sprites/icon.svg"
 GlobalReference="*res://scripts/globals/global_reference.gd"
 GlobalScene="*res://scripts/globals/global_scene.gd"
 GlobalItems="*res://scripts/globals/global_items.gd"
+GlobalAudio="*res://scripts/globals/global_audio.gd"
 
 [display]
 

@@ -15,6 +15,8 @@ signal Dead()
 @export var sprite: AnimatedSprite2D
 @export var left_arm_sprite: AnimatedSprite2D
 
+@export var jump_sfx: AudioStreamPlayer
+
 var _speed_multiplier: float = 1.0
 
 var _raw_input: Vector2
@@ -114,6 +116,10 @@ func _gravity() -> Vector2:
 	if is_on_ceiling_only():
 		_gravity_velocity = Vector2.ZERO
 	
+	if _gravity_velocity.y > 0.0:
+		GlobalAudio.stop_sfx(jump_sfx)
+		Input_Handler.set_can_jump(true)
+	
 	_gravity_velocity += Vector2(0, _jump_gravity if _gravity_velocity.y < 0.0 else _fall_gravity) * get_process_delta_time()
 	return _gravity_velocity
 
@@ -211,4 +217,6 @@ func on_jump(is_jumping: bool, direction: float) -> void:
 	_is_jumping = is_jumping
 	_raw_input.y = direction
 	
-	if _is_jumping: _gravity_velocity.y = _jump_velocity
+	if _is_jumping: 
+		_gravity_velocity.y = _jump_velocity
+		GlobalAudio.play_sfx(jump_sfx)

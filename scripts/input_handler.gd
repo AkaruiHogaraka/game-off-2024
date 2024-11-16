@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if not GlobalReference.Player.is_on_floor():
 		_coyote_buffer_timer += delta
 	
-	if GlobalReference.Player.is_on_floor():
+	if GlobalReference.Player.is_on_floor() and _can_jump:
 		if _buffer_jump: _signal_jump()
 		_coyote_buffer_timer = 0
 	
@@ -89,6 +89,7 @@ func set_can_jump(value: bool) -> void:
 
 func _signal_jump() -> void:
 	_raw_input.y = 1
+	set_can_jump(false)
 	Jumping.emit(true, _raw_input.y)
 	_buffer_jump = false
 	

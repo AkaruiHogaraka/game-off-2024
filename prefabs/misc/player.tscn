@@ -1,6 +1,7 @@
-[gd_scene load_steps=68 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=69 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
+[ext_resource type="PackedScene" uid="uid://ccm1p5wqw6lxo" path="res://audio/prefabs/jump.tscn" id="2_3ewxr"]
 [ext_resource type="Script" path="res://scripts/input_handler.gd" id="3_bhfk3"]
 [ext_resource type="Texture2D" uid="uid://1epcqatw5430" path="res://sprites/player_arm_empty_spritesheet.png" id="3_pkmqr"]
 [ext_resource type="Texture2D" uid="uid://cdrq636sukls2" path="res://sprites/player_spritesheet.png" id="6_k1tnb"]
@@ -406,7 +407,7 @@ region = Rect2(3, 3, 10, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8pn"]
 size = Vector2(8, 15)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("interaction_sprite", "sprite", "left_arm_sprite") groups=["Player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("interaction_sprite", "sprite", "left_arm_sprite", "jump_sfx") groups=["Player"]]
 z_index = 5
 use_parent_material = true
 collision_layer = 37
@@ -420,6 +421,7 @@ jump_time_to_descent = 0.25
 interaction_sprite = NodePath("Sprite/Interaction")
 sprite = NodePath("Sprite/MainSprite")
 left_arm_sprite = NodePath("Sprite/LeftArm/Sprite")
+jump_sfx = NodePath("Audio/Jump")
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("3_bhfk3")
@@ -581,6 +583,10 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = SubResource("AtlasTexture_8g6iq")
 stretch_mode = 2
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Jump" parent="Audio" instance=ExtResource("2_3ewxr")]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, -1)
