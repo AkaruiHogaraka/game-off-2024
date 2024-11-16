@@ -54,8 +54,8 @@ tile_set = ExtResource("2_0g32y")
 position = Vector2(-40, 32)
 
 [node name="SceneConnection" parent="Door" index="0"]
-scene_path = "res://scenes/reality/end_reality.tscn"
-node_path = "Door"
+scene_path = "res://scenes/reality/tutorial_01_reality.tscn"
+node_path = "WalkLoadRight"
 
 [node name="CameraPosition" type="Marker2D" parent="."]
 
