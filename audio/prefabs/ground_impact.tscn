@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://6erjt2y5cmwe"]
+
+[ext_resource type="AudioStream" uid="uid://ldv7weo4347b" path="res://audio/samples/sfx/ground_impact.wav" id="1_ttfa8"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_xvydt"]
+
+[node name="GroundImpact" type="AudioStreamPlayer"]
+stream = ExtResource("1_ttfa8")
+bus = &"SFX"
+script = ExtResource("2_xvydt")
+max = 1.1
+min = 0.9

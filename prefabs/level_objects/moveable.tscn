@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdwpalvuv5n77"]
+[gd_scene load_steps=9 format=3 uid="uid://cdwpalvuv5n77"]
 
 [ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_lh5xt"]
 [ext_resource type="Script" path="res://scripts/moveable_object.gd" id="2_2g878"]
+[ext_resource type="PackedScene" uid="uid://6erjt2y5cmwe" path="res://audio/prefabs/ground_impact.tscn" id="3_lw4m4"]
 [ext_resource type="Texture2D" uid="uid://bmujdb5i8gs74" path="res://sprites/moveable.png" id="3_x1h62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mawdp"]
@@ -26,7 +27,7 @@ script = ExtResource("1_lh5xt")
 collision = NodePath("../OneWayReferences/StaticBody2D/CollisionShape2D")
 platform_position = NodePath("../OneWayReferences/Marker2D")
 
-[node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent", "left_ray", "right_ray", "ground_ray")]
+[node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent", "left_ray", "right_ray", "ground_ray", "ground_impact_sfx")]
 script = ExtResource("2_2g878")
 parent_radius = 4.0
 moveable_parent = NodePath("..")
@@ -34,6 +35,11 @@ speed_penalty_multiplier = 0.5
 left_ray = NodePath("../MoveableReferences/LeftRay")
 right_ray = NodePath("../MoveableReferences/RightRay")
 ground_ray = NodePath("../GroundRay")
+ground_impact_sfx = NodePath("../Audio/GroundImpact")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="GroundImpact" parent="Audio" instance=ExtResource("3_lw4m4")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

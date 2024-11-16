@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://67fgfij3dqpo"]
+[gd_scene load_steps=10 format=3 uid="uid://67fgfij3dqpo"]
 
 [ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_21ein"]
 [ext_resource type="Script" path="res://scripts/moveable_object.gd" id="2_raml8"]
+[ext_resource type="PackedScene" uid="uid://6erjt2y5cmwe" path="res://audio/prefabs/ground_impact.tscn" id="3_e71f3"]
 [ext_resource type="Texture2D" uid="uid://mrt58kkku1dk" path="res://sprites/tileset.png" id="3_oec7r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ci844"]
@@ -30,7 +31,7 @@ script = ExtResource("1_21ein")
 collision = NodePath("../OneWayReferences/StaticBody2D/CollisionShape2D")
 platform_position = NodePath("../OneWayReferences/Marker2D")
 
-[node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent", "left_ray", "right_ray", "ground_ray")]
+[node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent", "left_ray", "right_ray", "ground_ray", "ground_impact_sfx")]
 script = ExtResource("2_raml8")
 parent_radius = 4.0
 moveable_parent = NodePath("..")
@@ -38,6 +39,11 @@ speed_penalty_multiplier = 0.5
 left_ray = NodePath("../MoveableReferences/LeftRay")
 right_ray = NodePath("../MoveableReferences/RightRay")
 ground_ray = NodePath("../GroundRay")
+ground_impact_sfx = NodePath("../Audio/GroundImpact")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="GroundImpact" parent="Audio" instance=ExtResource("3_e71f3")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -90,7 +96,7 @@ shape = SubResource("RectangleShape2D_minoj")
 
 [node name="GroundRay" type="RayCast2D" parent="."]
 position = Vector2(0, -2)
-target_position = Vector2(0, 2)
+target_position = Vector2(0, 2.1)
 collision_mask = 152
 
 [connection signal="body_entered" from="OneWayReferences/Area2D" to="OneWayPlatform" method="_on_body_entered"]
