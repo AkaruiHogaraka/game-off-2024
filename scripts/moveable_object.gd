@@ -33,6 +33,7 @@ func _physics_process(delta: float) -> void:
 		initialise_delay -= delta
 	
 	if _is_on_floor():
+		gravity = 0.0
 		moveable_parent.global_position = round(moveable_parent.global_position)
 		
 		if impact_once: 
@@ -60,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		#if GlobalReference.Player._raw_input.x == 0: return
 		
 		fall_let_go_once = false
-		gravity = 0
+		gravity = 0.0
 		
 		if moveable_parent.test_move(moveable_parent.transform, GlobalReference.Player._raw_input.x * Vector2(0.5, 0), collision_info):
 			GlobalReference.Player.set_speed_multiplier(0.0)

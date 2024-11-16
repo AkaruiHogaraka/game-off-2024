@@ -117,7 +117,6 @@ func _gravity() -> Vector2:
 		_gravity_velocity = Vector2.ZERO
 	
 	if _gravity_velocity.y > 0.0:
-		GlobalAudio.stop_sfx(jump_sfx)
 		Input_Handler.set_can_jump(true)
 	
 	_gravity_velocity += Vector2(0, _jump_gravity if _gravity_velocity.y < 0.0 else _fall_gravity) * get_process_delta_time()
@@ -219,4 +218,4 @@ func on_jump(is_jumping: bool, direction: float) -> void:
 	
 	if _is_jumping: 
 		_gravity_velocity.y = _jump_velocity
-		GlobalAudio.play_sfx(jump_sfx)
+		GlobalAudio.play_sfx(jump_sfx, true)
