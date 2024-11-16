@@ -9,6 +9,7 @@ extends BaseInventoryItem
 @onready var spawn_area: Area2D = $SpawnArea
 
 var spawned_objects: Array[Node2D]
+var is_despawning: bool
 
 func _ready() -> void:
 	call_deferred("initialise")
@@ -18,13 +19,18 @@ func initialise() -> void:
 	set_scale(GlobalReference.Player.sprite_parent.get_scale())
 
 func _physics_process(delta: float) -> void:
-	if spawned_objects.size() > 3:
+	if spawned_objects.size() > 3 and not is_despawning:
 		if spawned_objects[0] == null: 
 			spawned_objects.remove_at(0)
 			return
 		
+		is_despawning = true
+		
+		await spawned_objects[0].on_despawn()
+		
 		spawned_objects[0].queue_free()
 		spawned_objects.remove_at(0)
+		is_despawning = false
 
 func on_item_use() -> void:
 	if GlobalReference.Player._is_currently_interacting: return
@@ -38,7 +44,7 @@ func on_item_use() -> void:
 	block.set_global_position($SpawnArea/Spawn.global_position)
 	spawned_objects.append(block)
 	
-	GlobalAudio.play_sfx(spawn_sfx, true)
+	GlobalAudio.play_sfx(spawn_sfx)
 
 func _on_move(direction: float) -> void:
 	if direction != 0: scale.x = scale.y * direction

@@ -1,13 +1,58 @@
-[gd_scene load_steps=10 format=3 uid="uid://67fgfij3dqpo"]
+[gd_scene load_steps=16 format=3 uid="uid://67fgfij3dqpo"]
 
 [ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_21ein"]
+[ext_resource type="Script" path="res://scripts/spawnable_block.gd" id="1_r3yhi"]
 [ext_resource type="Script" path="res://scripts/moveable_object.gd" id="2_raml8"]
 [ext_resource type="PackedScene" uid="uid://6erjt2y5cmwe" path="res://audio/prefabs/ground_impact.tscn" id="3_e71f3"]
-[ext_resource type="Texture2D" uid="uid://mrt58kkku1dk" path="res://sprites/tileset.png" id="3_oec7r"]
+[ext_resource type="Texture2D" uid="uid://bmb1gqmatcnyc" path="res://sprites/block.png" id="5_akeeu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ci844"]
-atlas = ExtResource("3_oec7r")
-region = Rect2(96, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_an0dm"]
+atlas = ExtResource("5_akeeu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gs15"]
+atlas = ExtResource("5_akeeu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um6lv"]
+atlas = ExtResource("5_akeeu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qgv0"]
+atlas = ExtResource("5_akeeu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc4t3"]
+atlas = ExtResource("5_akeeu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmggb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an0dm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gs15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_um6lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qgv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc4t3")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 15.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mawdp"]
 size = Vector2(8, 1)
@@ -21,10 +66,13 @@ size = Vector2(10, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_minoj"]
 size = Vector2(8, 7)
 
-[node name="Body" type="StaticBody2D" groups=["RemoveOnLoad"]]
+[node name="Body" type="StaticBody2D" node_paths=PackedStringArray("sprite", "moveable") groups=["RemoveOnLoad"]]
 use_parent_material = true
 collision_layer = 128
 collision_mask = 136
+script = ExtResource("1_r3yhi")
+sprite = NodePath("Sprite2D")
+moveable = NodePath("Moveable")
 
 [node name="OneWayPlatform" type="Node" parent="." node_paths=PackedStringArray("collision", "platform_position")]
 script = ExtResource("1_21ein")
@@ -45,9 +93,10 @@ ground_impact_sfx = NodePath("../Audio/GroundImpact")
 
 [node name="GroundImpact" parent="Audio" instance=ExtResource("3_e71f3")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-texture = SubResource("AtlasTexture_ci844")
+sprite_frames = SubResource("SpriteFrames_pmggb")
+animation = &"spawn"
 offset = Vector2(0, -8)
 
 [node name="OneWayReferences" type="Node2D" parent="."]

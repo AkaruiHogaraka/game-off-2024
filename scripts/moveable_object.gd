@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	
 	if _is_on_floor():
 		gravity = 0.0
-		moveable_parent.global_position = round(moveable_parent.global_position)
+		moveable_parent.global_position = floor(moveable_parent.global_position) if moveable_parent.test_move(moveable_parent.transform, Vector2.DOWN) else ceil(moveable_parent.global_position)
 		
 		if impact_once: 
 			GlobalAudio.play_sfx(ground_impact_sfx)
