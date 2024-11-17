@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=71 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="PackedScene" uid="uid://ccm1p5wqw6lxo" path="res://audio/prefabs/jump.tscn" id="2_3ewxr"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dfvoiojl3kjdf" path="res://sprites/nine-rect.png" id="14_v8hho"]
 [ext_resource type="Texture2D" uid="uid://k4wb8qddqycn" path="res://sprites/z_continue.png" id="15_kroog"]
 [ext_resource type="PackedScene" uid="uid://ckey3awf3arh8" path="res://audio/prefabs/speak.tscn" id="17_as2ar"]
+[ext_resource type="PackedScene" uid="uid://cabr43jxhoc3y" path="res://audio/prefabs/cycle.tscn" id="18_ikxh6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vslhc"]
 atlas = ExtResource("6_k1tnb")
@@ -508,9 +509,10 @@ texture = ExtResource("11_5chh3")
 [node name="FogFollowPoint" type="Node2D" parent="."]
 position = Vector2(0, -7)
 
-[node name="Inventory" type="Node2D" parent="."]
+[node name="Inventory" type="Node2D" parent="." node_paths=PackedStringArray("cycle_sfx")]
 use_parent_material = true
 script = ExtResource("11_b4h4m")
+cycle_sfx = NodePath("../Audio/Cycle")
 
 [node name="Writer" type="Control" parent="." node_paths=PackedStringArray("dialogue_label", "continue_texture", "speak_sfx")]
 use_parent_material = true
@@ -591,6 +593,8 @@ stretch_mode = 2
 [node name="Jump" parent="Audio" instance=ExtResource("2_3ewxr")]
 
 [node name="Speak" parent="Audio" instance=ExtResource("17_as2ar")]
+
+[node name="Cycle" parent="Audio" instance=ExtResource("18_ikxh6")]
 
 [node name="SafeGround" type="RayCast2D" parent="."]
 position = Vector2(0, -1)

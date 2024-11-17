@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cabr43jxhoc3y"]
+
+[ext_resource type="AudioStream" uid="uid://8v2aku4jr5fg" path="res://audio/samples/sfx/cycle_inventory.wav" id="1_bw7d2"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_nmmc4"]
+
+[node name="Cycle" type="AudioStreamPlayer"]
+stream = ExtResource("1_bw7d2")
+bus = &"SFX"
+script = ExtResource("2_nmmc4")
+max = 1.1
+min = 0.9
