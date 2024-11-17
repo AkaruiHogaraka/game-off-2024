@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cl4d4xy1m4xlh"]
+[gd_scene load_steps=13 format=4 uid="uid://cl4d4xy1m4xlh"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_ge8jf"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_nnrvd"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/level_objects/one_way_platform.tscn" id="5_2moix"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="6_n7ipc"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_7qv2s"]
+[ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="8_njdqt"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="8_xmmfa"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="10_75fwq"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="11_4g0vb"]
@@ -40,20 +41,37 @@ tile_set = ExtResource("3_qtvv1")
 [node name="OneWayPlatform" parent="." instance=ExtResource("5_2moix")]
 position = Vector2(-24, 27)
 
-[node name="Label" type="Label" parent="."]
+[node name="Control" type="Control" parent="."]
 use_parent_material = true
-offset_left = -23.0
-offset_top = -15.0
-offset_right = 48.0
-offset_bottom = 8.0
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+use_parent_material = true
+offset_left = 8.0
+offset_top = -12.0
+offset_right = 79.0
+offset_bottom = 11.0
 theme_override_fonts/font = ExtResource("6_n7ipc")
 theme_override_font_sizes/font_size = 8
-text = "Spacebar - Jump"
+text = " - Jump"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+use_parent_material = true
+layout_mode = 0
+offset_left = -7.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = 23.0
+texture = ExtResource("8_njdqt")
+stretch_mode = 2
 
 [node name="DisableTutorialTrigger" parent="." instance=ExtResource("10_75fwq")]
 
 [node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
-tutorial = NodePath("../../Label")
+tutorial = NodePath("../../Control")
 
 [node name="Area2D" parent="DisableTutorialTrigger" index="1"]
 position = Vector2(-24, 17)

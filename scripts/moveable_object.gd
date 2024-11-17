@@ -100,7 +100,7 @@ func _let_go_interaction(override: bool = false) -> void:
 	GlobalReference.Player.set_speed_multiplier(1.0)
 	GlobalReference.Player._interaction_object = null
 	GlobalReference.Player.Input_Handler.set_can_jump(true)
-	GlobalReference.Player.set_interaction_display(true)
+	GlobalReference.Player.set_interaction_display(in_area)
 	GlobalReference.Player.set_is_in_interaction_area(true, self, false)
 	
 	moveable_parent.global_position = round(moveable_parent.global_position)

@@ -2,29 +2,19 @@ extends Control
 
 var menu_active: bool = true
 
-@export var markers: Array[Control]
-@export var buttons: Array[Button]
-@export var menu_cusor: Control
+@export var camera_position: Marker2D
+@export var camera: Node2D
 
-var index: int
+var delay_free: bool
 
 func _ready() -> void:
-	menu_cusor.set_global_position(markers[index].global_position)
+	pass
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not menu_active: return
-	
-	if Input.is_action_just_pressed("move_up"):
-		index -= 1
-	if Input.is_action_just_pressed("move_down"):
-		index += 1
 		
-	if Input.is_action_just_pressed("interact"):
-		buttons[index].pressed.emit()
-	
-	index = index % markers.size()
-	
-	menu_cusor.set_global_position(markers[index].global_position)
+	if Input.is_action_pressed("move_up") and Input.is_action_pressed("jump"):
+		_on_wake_up()
 
 func save_data() -> Dictionary:
 	var data: Dictionary = {
@@ -37,16 +27,16 @@ func save_data() -> Dictionary:
 func load_data(data: Dictionary) -> void:
 	menu_active = data["menu_active"]
 	if not menu_active:
+		if delay_free:
+			await get_tree().create_timer(0.5).timeout
+		
 		queue_free()
 
-func _on_quit_pressed() -> void:
-	get_tree().quit()
-
-func _on_settings_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_play_pressed() -> void:
+func _on_wake_up() -> void:
 	menu_active = false
 	set_process_unhandled_input(false)
+	
+	delay_free = true
+	
 	GlobalScene.change_dream_scene(get_parent().alternate_scene, true, true)
 	GlobalReference.start_game_time()

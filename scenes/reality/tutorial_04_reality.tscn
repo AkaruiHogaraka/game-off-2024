@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bu8vqwb5tvm8n"]
+[gd_scene load_steps=11 format=4 uid="uid://bu8vqwb5tvm8n"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_ln8p5"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_ahdf1"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="6_6gbcj"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="7_u8t1d"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="8_wgml0"]
-[ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="9_qih2k"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="9_277fk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqof1"]
 
 [node name="Tutorial04Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -22,17 +24,17 @@ script = ExtResource("3_n7alc")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAIAP//AgAAAAAAAQAHAP//AgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQD//wEAAgAAAAAAAQD3/wMAAgAAAAAAAQACAAUACAAAAAAAAQADAAUACAAAAAAAAQAGAAUACAAAAAAAAQAFAAUACAAAAAAAAQD7/wUACAAAAAAAAQD8/wUACAAAAAAAAQD4/wMAAgAAAAAAAQD5/wMAAgAAAAAAAQD6/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQD+/wMAAgAAAAAAAQAEAAAAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAIAP//AgAAAAAAAQAHAP//AgAAAAAAAQAAAAEAAgAAAAAAAQD//wEAAgAAAAAAAQD3/wMAAgAAAAAAAQD4/wMAAgAAAAAAAQD5/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQAEAAAAAgAAAAAAAQAFAAUACAAAAAAAAQACAAUACAAAAAAAAQABAAUACAAAAAAAAQD8/wMAAgAAAAAAAQD+/wEAAgAAAAAAAQADAAAAAgAAAAAAAQAGAAUACAAAAAAAAQAIAAIACgAAAAAAAQAHAAIACgAAAAAAAQD6/wMAAgAAAAAAAQD7/wMAAgAAAAAAAQA=")
 tile_set = ExtResource("4_h05lt")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAHAP//BgAAAAAAAgAHAAAABgAAAAAAAgAHAAEABgAAAAAAAgAHAAIABgAAAAAAAgAHAAMABgAAAAAAAgAHAAQABgAAAAAAAgAEAAAABwAAAAAAAgAEAAEABwAAAAAAAgAEAAIABwAAAAAAAgAEAAMABwAAAAAAAgAEAAQABwAAAAAAAgD//wEABgAAAAAAAgABAAEABwAAAAAAAgABAAQABwAAAAAAAgABAAUABwAAAAAAAgAEAAUABwAAAAAAAgAHAAUABgAAAAAAAgD9/wQABgAAAAAAAgD6/wQABwAAAAAAAgD6/wUABwAAAAAAAgD9/wUABgAAAAAAAgABAAIABwAAAAAAAgABAAMABwAAAAAAAgD9/wMABgAAAAAAAgD//wIABgAAAAAAAgD6/wMABwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAHAP//BgAAAAAAAgAHAAMABgAAAAAAAgAHAAQABgAAAAAAAgAEAAAABwAAAAAAAgAEAAEABwAAAAAAAgAEAAIABwAAAAAAAgAEAAMABwAAAAAAAgAEAAQABwAAAAAAAgAEAAUABwAAAAAAAgAHAAUABgAAAAAAAgADAAUABgAAAAAAAgADAAQABgAAAAAAAgADAAMABgAAAAAAAgADAAIABgAAAAAAAgADAAEABgAAAAAAAgADAAAABgAAAAAAAgD+/wEABgAAAAAAAgD+/wIABgAAAAAAAgAAAAEABwAAAAAAAgAAAAIABwAAAAAAAgAAAAMABwAAAAAAAgAAAAQABwAAAAAAAgAAAAUABwAAAAAAAgAHAAIABgAAAAAAAgAHAAAACQAAAAAAAQAIAAAACQAAAAAAAQA=")
 tile_set = ExtResource("4_h05lt")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAHAP//AAABAAEAAAD3/wMAAAACAAEAAAAHAAAAAAABAAMAAAAHAAEAAAABAAIAAAAHAAIAAAABAAMAAAAHAAMAAAABAAIAAAAHAAQAAAAEAAQAAAAIAP//AAADAAEAAAD3/wIAAAADAAAAAAAIAP7/AAADAAAAAAAHAP7/AAACAAAAAAABAAQAAAACAAQAAAABAAUAAAADAAMAAAAEAAUAAAADAAMAAAAHAAUAAAADAAMAAAABAAMAAAAFAAMAAAABAAIAAAAFAAIAAAABAAEAAAAFAAEAAAD//wEAAAABAAEAAAAAAAEAAAACAAEAAAD//wIAAAABAAMAAAD//wMAAAAEAAQAAAD+/wMAAAADAAEAAAD9/wMAAAABAAEAAAD6/wMAAAAFAAEAAAD5/wMAAAADAAEAAAD4/wMAAAADAAEAAAD4/wIAAAACAAAAAAD+/wIAAAADAAAAAAD9/wIAAAACAAAAAAD9/wQAAAAEAAQAAAD6/wQAAAACAAQAAAD9/wUAAAADAAMAAAD6/wUAAAADAAMAAAA=")
+tile_map_data = PackedByteArray("AAAHAP//AAABAAEAAAD3/wMAAAACAAEAAAAHAAMAAAABAAIAAAAHAAQAAAAEAAQAAAAIAP//AAADAAEAAAD3/wIAAAADAAAAAAAIAP7/AAADAAAAAAAHAP7/AAACAAAAAAD4/wMAAAADAAEAAAD4/wIAAAACAAAAAAAAAAEAAAAFAAEAAAAEAAAAAAAFAAEAAAD+/wEAAAABAAEAAAADAAAAAAABAAEAAAD9/wMAAAADAAEAAAD//wEAAAACAAEAAAAEAAUAAAADAAMAAAADAAUAAAADAAMAAAAHAAUAAAADAAMAAAAAAAUAAAADAAMAAAD8/wUAAAADAAMAAAD5/wUAAAADAAMAAAAEAAQAAAACAAQAAAADAAQAAAAEAAQAAAAAAAQAAAACAAQAAAD+/wIAAAABAAMAAAAAAAIAAAAFAAIAAAAAAAMAAAAFAAIAAAAEAAMAAAAFAAMAAAAEAAIAAAAFAAMAAAAEAAEAAAAFAAIAAAADAAMAAAABAAMAAAADAAIAAAABAAIAAAADAAEAAAABAAMAAAD+/wMAAAAEAAQAAAAIAAAAAAACAAUAAAAHAAAAAAABAAUAAAAHAAIAAAABAAEAAAAIAAIAAAADAAEAAAD8/wMAAAADAAEAAAD7/wMAAAACAAEAAAD6/wMAAAACAAEAAAD5/wMAAAADAAEAAAD9/wIAAAADAAAAAAD8/wIAAAADAAAAAAD7/wIAAAACAAAAAAA=")
 tile_set = ExtResource("4_h05lt")
 
 [node name="Camera" parent="." instance=ExtResource("5_ng1bq")]
@@ -44,23 +46,39 @@ position = Vector2(139, -16)
 scene_path = "res://scenes/reality/tutorial_03_reality.tscn"
 node_path = "WalkLoadLeft"
 
+[node name="WalkLoadRight2" parent="." instance=ExtResource("6_6gbcj")]
+position = Vector2(139, 32)
+
+[node name="SceneConnection" parent="WalkLoadRight2" index="0"]
+scene_path = "res://scenes/reality/tutorial_03_reality.tscn"
+node_path = "WalkLoadLeft2"
+
 [node name="WalkLoadLeft" parent="." instance=ExtResource("7_u8t1d")]
 position = Vector2(-139, 48)
 
+[node name="SceneConnection" parent="WalkLoadLeft" index="0"]
+scene_path = "res://scenes/reality/block_wand_reality.tscn"
+node_path = "WalkLoadRight"
+
 [node name="Door" parent="." instance=ExtResource("8_wgml0")]
-position = Vector2(8, 16)
+position = Vector2(-8, 16)
 
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/layer_one_01_reality.tscn"
 node_path = "Door"
 
-[node name="ItemChest" parent="." instance=ExtResource("9_qih2k")]
-position = Vector2(-88, 48)
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("9_277fk")]
+visible = false
 
-[node name="Pickup" parent="ItemChest" index="1"]
-item_path = "res://resources/items/block_wand.tscn"
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAAHAAIAAAABAAMAAAAHAAEAAAABAAIAAAAHAAAAAAABAAMAAAAIAAIAAAADAAMAAAAIAAEAAAADAAMAAAAIAAAAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(123, 20)
+shape = SubResource("RectangleShape2D_eqof1")
 
 [editable path="WalkLoadRight"]
+[editable path="WalkLoadRight2"]
 [editable path="WalkLoadLeft"]
 [editable path="Door"]
-[editable path="ItemChest"]
+[editable path="HiddenArea"]

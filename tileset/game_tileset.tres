@@ -1,14 +1,16 @@
-[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://p6g573vayl4o"]
+[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://p6g573vayl4o"]
 
 [ext_resource type="PackedScene" uid="uid://oy4xjxihtqas" path="res://prefabs/tileset/floor.tscn" id="1_166ev"]
 [ext_resource type="Texture2D" uid="uid://mrt58kkku1dk" path="res://sprites/tileset.png" id="1_c6dof"]
 [ext_resource type="Texture2D" uid="uid://bs1hhimrv5g1p" path="res://sprites/black_tile.png" id="1_p1luq"]
 [ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/level_objects/one_way_platform.tscn" id="1_uubik"]
 [ext_resource type="PackedScene" uid="uid://dtihb1xej0822" path="res://prefabs/tileset/left_wall.tscn" id="2_ddnlk"]
+[ext_resource type="PackedScene" uid="uid://6h3pv1ekt517" path="res://prefabs/tileset/unsafe_floor.tscn" id="3_3a3qj"]
 [ext_resource type="PackedScene" uid="uid://bp7kon05qm12x" path="res://prefabs/tileset/right_wall.tscn" id="3_3tkyl"]
 [ext_resource type="PackedScene" uid="uid://cjd6aqjidkk65" path="res://prefabs/tileset/hazard_zone.tscn" id="5_46ff7"]
 [ext_resource type="PackedScene" uid="uid://di337idydf06p" path="res://prefabs/tileset/invisible_moveable_block_wall.tscn" id="6_myarc"]
 [ext_resource type="PackedScene" uid="uid://blxe0gnol0xmc" path="res://prefabs/tileset/invis_hazard_zone.tscn" id="9_icgbw"]
+[ext_resource type="PackedScene" uid="uid://dhtkyx105ybpc" path="res://prefabs/tileset/roof.tscn" id="10_b4puu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ge7fm"]
 texture = ExtResource("1_c6dof")
@@ -48,6 +50,10 @@ texture = ExtResource("1_c6dof")
 resource_name = "One Way"
 scenes/1/scene = ExtResource("1_uubik")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1pgmh"]
+resource_name = "Floor unsafe"
+scenes/1/scene = ExtResource("3_3a3qj")
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ppg1w"]
 resource_name = "Floor"
 scenes/1/scene = ExtResource("1_166ev")
@@ -76,6 +82,10 @@ scenes/2/scene = ExtResource("2_ddnlk")
 resource_name = "Invis Hazard Zone"
 scenes/1/scene = ExtResource("9_icgbw")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1pibv"]
+resource_name = "Roof"
+scenes/1/scene = ExtResource("10_b4puu")
+
 [resource]
 sources/2 = SubResource("TileSetScenesCollectionSource_ppg1w")
 sources/6 = SubResource("TileSetScenesCollectionSource_tbdsx")
@@ -86,3 +96,5 @@ sources/0 = SubResource("TileSetAtlasSource_ge7fm")
 sources/4 = SubResource("TileSetScenesCollectionSource_0x6t0")
 sources/5 = SubResource("TileSetScenesCollectionSource_oxx4o")
 sources/8 = SubResource("TileSetScenesCollectionSource_hq1vd")
+sources/9 = SubResource("TileSetScenesCollectionSource_1pibv")
+sources/10 = SubResource("TileSetScenesCollectionSource_1pgmh")

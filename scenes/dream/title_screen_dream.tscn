@@ -1,21 +1,14 @@
-[gd_scene load_steps=16 format=4 uid="uid://clppcvnfhiaja"]
+[gd_scene load_steps=10 format=4 uid="uid://clppcvnfhiaja"]
 
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_5t00n"]
-[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="2_3rp26"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_an1rl"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_iswqo"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="4_61ka4"]
-[ext_resource type="Texture2D" uid="uid://bhv7qvsuhuk3j" path="res://sprites/circle.png" id="4_pshte"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="7_7nbnc"]
-[ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="8_8iaug"]
-[ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/level_objects/one_way_platform.tscn" id="10_wxac7"]
-[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="11_57pea"]
-[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="12_5x1x4"]
-[ext_resource type="Resource" uid="uid://k5ijowqaw4i1" path="res://resources/gems/dream_gem.tres" id="13_0wo8m"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mk4j"]
+[ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="7_sn0r2"]
+[ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="8_yrlmv"]
 
 [node name="TitleScreenDream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -28,17 +21,37 @@ mask_settings = ExtResource("2_an1rl")
 script = ExtResource("2_iswqo")
 scene_path = "res://scenes/reality/title_screen_reality.tscn"
 
-[node name="Menu" type="Control" parent="." node_paths=PackedStringArray("markers", "buttons", "menu_cusor") groups=["Save"]]
+[node name="Ground" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAFAPr/AgAAAAAAAQAEAP7/AgAAAAAAAQA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAFAP3/BgAAAAAAAgAFAPz/BgAAAAAAAgAFAPv/BgAAAAAAAgAFAPr/BgAAAAAAAgAGAPn/BgAAAAAAAgAGAPj/BgAAAAAAAgD2////BwAAAAAAAgD2//7/BwAAAAAAAgD2//3/BwAAAAAAAgD2//z/BwAAAAAAAgD2//v/BwAAAAAAAgD2//r/BwAAAAAAAgD2//n/BwAAAAAAAgD2//j/BwAAAAAAAgA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAADAAAAAAADAAEAAAACAAAAAAADAAEAAAABAAAAAAACAAEAAAAAAAAAAAADAAEAAAD//wAAAAADAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAADAAEAAAD3/wAAAAADAAEAAAAEAP7/AAABAAEAAAAFAPr/AAABAAEAAAAFAP3/AAABAAMAAAAFAPz/AAABAAIAAAAFAPv/AAABAAMAAAAGAPn/AAABAAMAAAAGAPj/AAABAAIAAAAEAP//AAABAAIAAAAEAAAAAAAEAAQAAAAFAP7/AAAEAAQAAAAGAPr/AAAEAAQAAAADAP//AAADAAAAAAACAP//AAACAAAAAAD3////AAADAAAAAAD4////AAADAAAAAAD5////AAADAAAAAAD6////AAACAAAAAAAEAP3/AAACAAAAAAAFAPn/AAACAAAAAAAGAPf/AAABAAQAAAAFAPX/AAAFAAQAAAAGAPT/AAAEAAQAAAAHAPL/AAACAAQAAAA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="Menu" type="Control" parent="." node_paths=PackedStringArray("camera_position", "camera") groups=["Save"]]
+z_as_relative = false
+use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_top = 40.0
-offset_bottom = 40.0
+offset_top = 70.0
+offset_bottom = 70.0
 script = ExtResource("1_5t00n")
-markers = [NodePath("Control/Marker1"), NodePath("Control/Marker2"), NodePath("Control/Marker3")]
-buttons = [NodePath("Control/Play"), NodePath("Control/Settings"), NodePath("Control/Quit")]
-menu_cusor = NodePath("Cursor")
+camera_position = NodePath("../CameraPosition")
+camera = NodePath("../Camera")
 
 [node name="Label" type="Label" parent="Menu"]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,190 +68,45 @@ theme_override_fonts/font = ExtResource("4_61ka4")
 theme_override_font_sizes/font_size = 16
 text = "Dreamers Wake"
 
-[node name="Control" type="Control" parent="Menu"]
+[node name="Label2" type="Label" parent="Menu"]
+use_parent_material = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
 offset_top = -75.0
-offset_bottom = -75.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Marker1" type="Control" parent="Menu/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_right = -27.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Marker2" type="Control" parent="Menu/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = 17.0
-offset_right = -27.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Marker3" type="Control" parent="Menu/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = 34.0
-offset_right = -27.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Play" type="Button" parent="Menu/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = -8.0
-offset_right = 22.0
-offset_bottom = 8.0
+offset_right = 124.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_61ka4")
 theme_override_font_sizes/font_size = 8
-text = "Wake Up"
+text = "+"
 
-[node name="Settings" type="Button" parent="Menu/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = 9.0
-offset_right = 22.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_61ka4")
-theme_override_font_sizes/font_size = 8
-text = "Settings"
-
-[node name="Quit" type="Button" parent="Menu/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = 26.0
-offset_right = 22.0
-offset_bottom = 42.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_61ka4")
-theme_override_font_sizes/font_size = 8
-text = "Exit"
-
-[node name="Cursor" type="Control" parent="Menu"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 518.0
-offset_top = 195.0
-offset_right = 558.0
-offset_bottom = 235.0
-scale = Vector2(0.04, 0.04)
-
-[node name="TextureRect" type="TextureRect" parent="Menu/Cursor"]
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+use_parent_material = true
 layout_mode = 0
-offset_left = -64.0
+offset_left = -18.0
 offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-texture = ExtResource("4_pshte")
+offset_right = -2.0
+offset_bottom = -48.0
+rotation = -1.57079
+texture = ExtResource("7_sn0r2")
+stretch_mode = 2
 
-[node name="Ground" type="TileMapLayer" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="Menu"]
 use_parent_material = true
-position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7//7/AgAAAAAAAQD6//3/AgAAAAAAAQD5//3/AgAAAAAAAQD8/wEAAgAAAAAAAQD9/wAAAgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQD8/wAABQAAAAAAAQA=")
-tile_set = ExtResource("1_1ormn")
-
-[node name="Walls" type="TileMapLayer" parent="."]
-use_parent_material = true
-position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgD7//7/BwAAAAAAAgD7////BwAAAAAAAgD6//3/BwAAAAAAAgD4//z/BwAAAAAAAgD4//j/BwAAAAAAAgAHAPj/BgAAAAAAAgD9/wAABgAAAAAAAgD7/wAABwAAAAAAAgA=")
-tile_set = ExtResource("1_1ormn")
-
-[node name="Overlay" type="TileMapLayer" parent="."]
-use_parent_material = true
-position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAAEAP//AAABAAEAAAAFAP7/AAABAAEAAAAGAPz/AAABAAEAAAD6//3/AAAFAAEAAAD7//7/AAAFAAEAAAAEAAAAAAAEAAQAAAAFAP//AAAEAAQAAAAGAP7/AAAEAAQAAAD6//7/AAACAAQAAAD4//3/AAACAAQAAAAGAP3/AAABAAIAAAAHAPj/AAABAAIAAAADAAAAAAADAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAAAAAAAAAACAAEAAAD//wAAAAADAAEAAAD+/wAAAAADAAEAAAD9/wAAAAABAAEAAAADAP//AAADAAAAAAACAP//AAADAAAAAAABAP//AAACAAAAAAD+////AAADAAAAAAD/////AAACAAAAAAD7////AAAFAAIAAAD5//3/AAACAAEAAAD4//z/AAAFAAIAAAD4//v/AAAFAAMAAAD4//r/AAAFAAIAAAD4//n/AAAFAAIAAAD4//j/AAAFAAIAAAAHAPz/AAACAAEAAAAIAPz/AAADAAEAAAAIAPv/AAADAAAAAAAHAPv/AAADAAAAAAAGAPv/AAACAAAAAAAFAP3/AAACAAAAAAAEAP7/AAADAAAAAAD7//3/AAACAAAAAAD5//z/AAADAAAAAAD8/wEAAAADAAEAAAD7/wAAAAAFAAMAAAD9/wEAAAAEAAQAAAD7/wEAAAACAAQAAAD8////AAACAAAAAAAHAPn/AAABAAUAAAAIAPn/AAACAAUAAAD4//f/AAAFAAQAAAAHAPf/AAABAAQAAAAHAPb/AAAEAAQAAAAHAPP/AAAEAAQAAAAGAPX/AAACAAQAAAD4//b/AAACAAQAAAD4//T/AAACAAQAAAA=")
-tile_set = ExtResource("1_1ormn")
-
-[node name="Door" parent="." instance=ExtResource("2_3rp26")]
-position = Vector2(-40, 32)
-
-[node name="CollisionShape2D" parent="Door/Area2D" index="0"]
-disabled = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = -81.0
+offset_right = 17.0
+offset_bottom = -65.0
+texture = ExtResource("8_yrlmv")
+stretch_mode = 2
 
 [node name="CameraPosition" type="Marker2D" parent="."]
-position = Vector2(0, 32)
 
 [node name="Camera" parent="." instance=ExtResource("7_7nbnc")]
-
-[node name="Moveable" parent="." instance=ExtResource("8_8iaug")]
-position = Vector2(-59, 32)
-
-[node name="OneWayPlatform" parent="." instance=ExtResource("10_wxac7")]
-position = Vector2(-56, 40)
-
-[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("11_57pea")]
-visible = false
-position = Vector2(0, 32)
-
-[node name="TileMapLayer" parent="HiddenArea" index="0"]
-tile_map_data = PackedByteArray("AAD8/wEAAwAAAAAAAAD9/wEAAwAAAAAAAAD7/wEAAwAAAAAAAAD7/wAAAAACAAQAAAD8/wAAAAADAAEAAAD9/wAAAAACAAEAAAA=")
-
-[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
-position = Vector2(-57, 12)
-shape = SubResource("RectangleShape2D_7mk4j")
-
-[node name="Chest" parent="." instance=ExtResource("12_5x1x4")]
-position = Vector2(-98, -16)
-
-[node name="Pickup" parent="Chest" index="1"]
-gem = ExtResource("13_0wo8m")
-dream_gem = true
-
-[node name="Chest2" parent="." instance=ExtResource("12_5x1x4")]
-position = Vector2(-56, 48)
-
-[node name="Pickup" parent="Chest2" index="1"]
-gem = ExtResource("13_0wo8m")
-dream_gem = true
-
-[connection signal="pressed" from="Menu/Control/Play" to="Menu" method="_on_play_pressed"]
-[connection signal="pressed" from="Menu/Control/Settings" to="Menu" method="_on_settings_pressed"]
-[connection signal="pressed" from="Menu/Control/Quit" to="Menu" method="_on_quit_pressed"]
-
-[editable path="Door"]
-[editable path="Moveable"]
-[editable path="HiddenArea"]
-[editable path="Chest"]
-[editable path="Chest2"]

@@ -1,24 +1,15 @@
-[gd_scene load_steps=19 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=11 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="2_0g32y"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_f2243"]
-[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="3_qoxx3"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_vqsba"]
-[ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="6_bxn3r"]
-[ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/level_objects/one_way_platform.tscn" id="7_2pbud"]
-[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="8_cdvcs"]
-[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_4l5rm"]
-[ext_resource type="Resource" uid="uid://bfuwg0b2s4tk8" path="res://resources/gems/red_gem.tres" id="10_dbg65"]
-[ext_resource type="Resource" uid="uid://dlna8d8mwb4sh" path="res://resources/gems/green_gem.tres" id="11_va6uf"]
+[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="10_0xq3g"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_0hycc"]
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="14_61a3i"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_lrgmm"]
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
-[ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="16_gf072"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
 
 [node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -35,62 +26,24 @@ scene_path = "res://scenes/dream/title_screen_dream.tscn"
 [node name="Ground" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7//7/AgAAAAAAAQD6//3/AgAAAAAAAQD5//3/AgAAAAAAAQD8/wEAAgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQD8/wAABQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAFAPr/AgAAAAAAAQAEAP7/AgAAAAAAAQA=")
 tile_set = ExtResource("2_0g32y")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgD7//7/BwAAAAAAAgD7////BwAAAAAAAgD6//3/BwAAAAAAAgD4//z/BwAAAAAAAgD9/wAABgAAAAAAAgD7/wAABwAAAAAAAgAHAPj/BgAAAAAAAgD4//j/BwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAFAP3/BgAAAAAAAgAFAPz/BgAAAAAAAgAFAPv/BgAAAAAAAgAFAPr/BgAAAAAAAgAGAPn/BgAAAAAAAgAGAPj/BgAAAAAAAgA=")
 tile_set = ExtResource("2_0g32y")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAAEAP//AAABAAEAAAAFAP7/AAABAAEAAAAGAPz/AAABAAEAAAD6//3/AAAFAAEAAAD7//7/AAAFAAEAAAAEAAAAAAAEAAQAAAAFAP//AAAEAAQAAAAGAP7/AAAEAAQAAAD6//7/AAACAAQAAAD4//3/AAACAAQAAAAGAP3/AAABAAIAAAAHAPj/AAABAAIAAAADAAAAAAADAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAAAAAAAAAACAAEAAAD//wAAAAADAAEAAAD+/wAAAAADAAEAAAD9/wAAAAABAAEAAAADAP//AAADAAAAAAACAP//AAADAAAAAAABAP//AAACAAAAAAD+////AAADAAAAAAD/////AAACAAAAAAD7////AAAFAAIAAAD5//3/AAACAAEAAAD4//z/AAAFAAIAAAD4//v/AAAFAAMAAAD4//r/AAAFAAIAAAD4//n/AAAFAAIAAAD4//j/AAAFAAIAAAAHAPz/AAACAAEAAAAIAPz/AAADAAEAAAAIAPv/AAADAAAAAAAHAPv/AAADAAAAAAAGAPv/AAACAAAAAAAFAP3/AAACAAAAAAAEAP7/AAADAAAAAAD7//3/AAACAAAAAAD5//z/AAADAAAAAAD8/wEAAAADAAEAAAD7/wAAAAAFAAMAAAD9/wEAAAAEAAQAAAD7/wEAAAACAAQAAAD8////AAACAAAAAAAHAPn/AAABAAUAAAAIAPn/AAACAAUAAAA=")
+tile_map_data = PackedByteArray("AAADAAAAAAADAAEAAAACAAAAAAADAAEAAAABAAAAAAACAAEAAAAAAAAAAAADAAEAAAD//wAAAAADAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAADAAEAAAD3/wAAAAADAAEAAAAEAP7/AAABAAEAAAAFAPr/AAABAAEAAAAFAP3/AAABAAMAAAAFAPz/AAABAAIAAAAFAPv/AAABAAMAAAAGAPn/AAABAAMAAAAGAPj/AAABAAIAAAAEAP//AAABAAIAAAAEAAAAAAAEAAQAAAAFAP7/AAAEAAQAAAAGAPr/AAAEAAQAAAADAP//AAADAAAAAAACAP//AAACAAAAAAD3////AAADAAAAAAD4////AAADAAAAAAD5////AAADAAAAAAD6////AAACAAAAAAAEAP3/AAACAAAAAAAFAPn/AAACAAAAAAA=")
 tile_set = ExtResource("2_0g32y")
-
-[node name="Door" parent="." instance=ExtResource("3_qoxx3")]
-position = Vector2(-40, 32)
-
-[node name="SceneConnection" parent="Door" index="0"]
-scene_path = "res://scenes/reality/tutorial_01_reality.tscn"
-node_path = "WalkLoadRight"
 
 [node name="CameraPosition" type="Marker2D" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("5_vqsba")]
-
-[node name="Moveable" parent="." instance=ExtResource("6_bxn3r")]
-position = Vector2(59, 32)
-
-[node name="Moveable" parent="Moveable" index="1" groups=["Save"]]
-
-[node name="OneWayPlatform" parent="." instance=ExtResource("7_2pbud")]
-position = Vector2(-56, 40)
-
-[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_cdvcs")]
-visible = false
-position = Vector2(0, 32)
-
-[node name="TileMapLayer" parent="HiddenArea" index="0"]
-tile_map_data = PackedByteArray("AAD8/wAAAAADAAEAAAD9/wAAAAACAAEAAAD9/wEAAwAAAAAAAAD8/wEAAwAAAAAAAAD7/wEAAwAAAAAAAAD7/wAAAAACAAQAAAA=")
-
-[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
-position = Vector2(-57, 12)
-shape = SubResource("RectangleShape2D_1c4al")
-
-[node name="Chest" parent="." instance=ExtResource("9_4l5rm")]
-position = Vector2(-98, -16)
-
-[node name="Pickup" parent="Chest" index="1"]
-gem = ExtResource("10_dbg65")
-
-[node name="Chest2" parent="." instance=ExtResource("9_4l5rm")]
-position = Vector2(-56, 48)
-
-[node name="Pickup" parent="Chest2" index="1"]
-gem = ExtResource("11_va6uf")
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -141,30 +94,18 @@ tutorial = NodePath("../../Control")
 [node name="Area2D" parent="GameStartDialogue" index="1" groups=["Save"]]
 
 [node name="DisableTutorialTrigger" parent="." instance=ExtResource("14_lrgmm")]
-position = Vector2(-40, 27)
+position = Vector2(-90, 26)
 
 [node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
 tutorial = NodePath("../../Control")
 
-[node name="ItemChest" parent="." instance=ExtResource("16_gf072")]
-position = Vector2(88, 0)
+[node name="WalkLoadLeft" parent="." instance=ExtResource("10_0xq3g")]
+position = Vector2(-139, 32)
 
-[node name="Pickup" parent="ItemChest" index="1"]
-item_path = "res://resources/items/block_wand.tscn"
+[node name="SceneConnection" parent="WalkLoadLeft" index="0"]
+scene_path = "res://scenes/reality/tutorial_00_reality.tscn"
+node_path = "WalkLoadRight"
 
-[node name="ItemChest2" parent="." instance=ExtResource("16_gf072")]
-position = Vector2(-72, 0)
-
-[node name="Pickup" parent="ItemChest2" index="1"]
-item_path = "res://resources/items/lantern.tscn"
-
-[editable path="Door"]
-[editable path="Moveable"]
-[editable path="OneWayPlatform"]
-[editable path="HiddenArea"]
-[editable path="Chest"]
-[editable path="Chest2"]
 [editable path="GameStartDialogue"]
 [editable path="DisableTutorialTrigger"]
-[editable path="ItemChest"]
-[editable path="ItemChest2"]
+[editable path="WalkLoadLeft"]

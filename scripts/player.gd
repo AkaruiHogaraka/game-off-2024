@@ -209,6 +209,8 @@ func on_interaction() -> void:
 
 func on_interaction_let_go() -> void:
 	_is_interacting = false
+	if _interaction_object and _interaction_object.has_method("_let_go_interaction"):
+		_interaction_object._let_go_interaction(true)
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
