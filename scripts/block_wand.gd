@@ -19,10 +19,13 @@ func initialise() -> void:
 	set_scale(GlobalReference.Player.sprite_parent.get_scale())
 
 func _physics_process(delta: float) -> void:
-	if spawned_objects.size() > 3 and not is_despawning:
+	if spawned_objects.size() > 3:
 		if spawned_objects[0] == null: 
 			spawned_objects.remove_at(0)
+			is_despawning = false
 			return
+		
+		if is_despawning: return
 		
 		is_despawning = true
 		
