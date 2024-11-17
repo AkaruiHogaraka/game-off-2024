@@ -22,7 +22,7 @@ func on_item_use() -> void:
 	items[item_index].on_item_use()
 
 func on_cycle_items(force_to_index: bool = false, to: int = 0) -> void:
-	if items.size() <= 1: return
+	if items.size() <= 1 and not force_to_index: return
 	
 	if item_index >= 0: items[item_index].on_item_unequip()
 	

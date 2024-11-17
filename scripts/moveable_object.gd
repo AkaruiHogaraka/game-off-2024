@@ -9,6 +9,7 @@ extends BaseInteraction
 @export var ground_ray: RayCast2D
 
 @export var ground_impact_sfx: AudioStreamPlayer
+@export var slide_sfx: AudioStreamPlayer
 
 var holding_interaction: bool
 
@@ -19,6 +20,9 @@ var impact_once: bool
 
 var gravity: float
 var initialise_delay: float
+
+var position_last_frame: Vector2
+var slide_sfx_cooldown: float
 
 func _initialise() -> void:
 	GlobalReference.Player.Input_Handler.InteractionLetGo.connect(_let_go_interaction)
@@ -69,8 +73,15 @@ func _physics_process(delta: float) -> void:
 			
 			return
 		
+		slide_sfx_cooldown -= delta
+		
+		if moveable_parent.global_position.x != position_last_frame.x and slide_sfx_cooldown <= 0 and GlobalReference.Player._raw_input.x != 0:
+			GlobalAudio.play_sfx(slide_sfx)
+			slide_sfx_cooldown = 0.15
+		
 		GlobalReference.Player.set_speed_multiplier(speed_penalty_multiplier)
 		moveable_parent.global_position = moveable_parent.global_position.move_toward(position, 1000 * delta)
+		position_last_frame = moveable_parent.global_position
 
 func _on_interaction() -> void:
 	if not in_area or not GlobalReference.Player.is_on_floor() or GlobalReference.Player._is_currently_interacting: return 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://67fgfij3dqpo"]
+[gd_scene load_steps=17 format=3 uid="uid://67fgfij3dqpo"]
 
 [ext_resource type="Script" path="res://scripts/one_way_platform.gd" id="1_21ein"]
 [ext_resource type="Script" path="res://scripts/spawnable_block.gd" id="1_r3yhi"]
 [ext_resource type="Script" path="res://scripts/moveable_object.gd" id="2_raml8"]
 [ext_resource type="PackedScene" uid="uid://6erjt2y5cmwe" path="res://audio/prefabs/ground_impact.tscn" id="3_e71f3"]
 [ext_resource type="Texture2D" uid="uid://bmb1gqmatcnyc" path="res://sprites/block.png" id="5_akeeu"]
+[ext_resource type="PackedScene" uid="uid://dobav1mee4of1" path="res://audio/prefabs/stone_slide.tscn" id="5_n7guo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_an0dm"]
 atlas = ExtResource("5_akeeu")
@@ -79,7 +80,7 @@ script = ExtResource("1_21ein")
 collision = NodePath("../OneWayReferences/StaticBody2D/CollisionShape2D")
 platform_position = NodePath("../OneWayReferences/Marker2D")
 
-[node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent", "left_ray", "right_ray", "ground_ray", "ground_impact_sfx")]
+[node name="Moveable" type="Node" parent="." node_paths=PackedStringArray("moveable_parent", "left_ray", "right_ray", "ground_ray", "ground_impact_sfx", "slide_sfx")]
 script = ExtResource("2_raml8")
 parent_radius = 4.0
 moveable_parent = NodePath("..")
@@ -88,10 +89,13 @@ left_ray = NodePath("../MoveableReferences/LeftRay")
 right_ray = NodePath("../MoveableReferences/RightRay")
 ground_ray = NodePath("../GroundRay")
 ground_impact_sfx = NodePath("../Audio/GroundImpact")
+slide_sfx = NodePath("../Audio/Moveable")
 
 [node name="Audio" type="Node" parent="."]
 
 [node name="GroundImpact" parent="Audio" instance=ExtResource("3_e71f3")]
+
+[node name="Moveable" parent="Audio" instance=ExtResource("5_n7guo")]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
