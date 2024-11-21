@@ -1,15 +1,24 @@
-[gd_scene load_steps=11 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=16 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="2_0g32y"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_f2243"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_vqsba"]
+[ext_resource type="Script" path="res://scripts/start_cutscene_dialogue.gd" id="8_ftul3"]
+[ext_resource type="Script" path="res://scripts/game_start_dialogue_trigger.gd" id="9_eygch"]
+[ext_resource type="Script" path="res://scripts/dialogue_trigger.gd" id="9_mb62d"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="10_0xq3g"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_0hycc"]
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="14_61a3i"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_lrgmm"]
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
+size = Vector2(15, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qglu"]
+size = Vector2(14, 12)
 
 [node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -50,8 +59,8 @@ visible = false
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -16.0
-offset_right = 24.0
+offset_left = -70.0
+offset_right = -30.0
 offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="Control"]
@@ -86,18 +95,33 @@ stretch_mode = 2
 flip_h = true
 
 [node name="GameStartDialogue" parent="." instance=ExtResource("15_irscf")]
-position = Vector2(-2, 22)
+position = Vector2(-54, 22)
 
-[node name="Dialogue" parent="GameStartDialogue" index="0" node_paths=PackedStringArray("tutorial")]
+[node name="Dialogue" parent="GameStartDialogue" index="0" node_paths=PackedStringArray("tutorial", "enable_areas")]
 tutorial = NodePath("../../Control")
+enable_areas = [NodePath("../../DisableTutorialTrigger/Area2D")]
+lines = Array[String](["Ellie isn't here", "I should go find her"])
+line_speed = Array[float]([1.0, 1.0])
 
 [node name="Area2D" parent="GameStartDialogue" index="1" groups=["Save"]]
+script = ExtResource("9_eygch")
+
+[node name="CollisionShape2D" parent="GameStartDialogue/Area2D" index="0"]
+position = Vector2(-6.5, 0)
+shape = SubResource("RectangleShape2D_sg4w8")
 
 [node name="DisableTutorialTrigger" parent="." instance=ExtResource("14_lrgmm")]
-position = Vector2(-90, 26)
+position = Vector2(-91, 26)
 
 [node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
 tutorial = NodePath("../../Control")
+
+[node name="Area2D" parent="DisableTutorialTrigger" index="1"]
+monitoring = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DisableTutorialTrigger/Area2D" index="1"]
+position = Vector2(70, 0)
+shape = SubResource("RectangleShape2D_6qglu")
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("10_0xq3g")]
 position = Vector2(-139, 32)
@@ -105,6 +129,33 @@ position = Vector2(-139, 32)
 [node name="SceneConnection" parent="WalkLoadLeft" index="0"]
 scene_path = "res://scenes/reality/tutorial_00_reality.tscn"
 node_path = "WalkLoadRight"
+
+[node name="CutsceneReferences" type="Node2D" parent="."]
+
+[node name="CutsceneDialogue" type="Node2D" parent="CutsceneReferences"]
+position = Vector2(28, 22)
+
+[node name="Dialogue" type="Node" parent="CutsceneReferences/CutsceneDialogue" node_paths=PackedStringArray("walk_to")]
+script = ExtResource("8_ftul3")
+walk_to = NodePath("../../Marker2D")
+lines = Array[String](["..."])
+line_speed = Array[float]([2.0])
+
+[node name="Area2D" type="Area2D" parent="CutsceneReferences/CutsceneDialogue" node_paths=PackedStringArray("dialogue") groups=["Save"]]
+position = Vector2(-26, 0)
+collision_layer = 0
+collision_mask = 37
+script = ExtResource("9_mb62d")
+dialogue = NodePath("../Dialogue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneReferences/CutsceneDialogue/Area2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_sg4w8")
+
+[node name="Marker2D" type="Marker2D" parent="CutsceneReferences"]
+position = Vector2(-53, 32)
+
+[connection signal="body_entered" from="CutsceneReferences/CutsceneDialogue/Area2D" to="CutsceneReferences/CutsceneDialogue/Area2D" method="_on_body_entered"]
 
 [editable path="GameStartDialogue"]
 [editable path="DisableTutorialTrigger"]

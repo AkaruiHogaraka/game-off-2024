@@ -1,4 +1,4 @@
-extends Area2D
+class_name DialogueTrigger extends Area2D
 
 @export var dialogue: BaseDialogueReader
 
@@ -25,7 +25,12 @@ func load_data(data: Dictionary):
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and not in_area:
 		in_area = true
-		await get_tree().create_timer(1.0).timeout
 		
+		await _on_body_enter_extra()
+		
+		dialogue.reset_dialogue()
 		dialogue.can_input = true
 		dialogue.on_read_line()
+
+func _on_body_enter_extra() -> void:
+	await get_tree().create_timer(1).timeout

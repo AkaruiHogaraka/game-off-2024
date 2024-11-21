@@ -27,6 +27,7 @@ func _ready() -> void:
 	
 	writer.StartWritingCurrentLine.connect(_on_start_writing_current_line)
 	writer.EndWritingCurrentLine.connect(_on_end_writing_current_line)
+	can_input = false
 	
 	initialise()
 

@@ -64,16 +64,16 @@ func _ready():
 	Dead.connect(_on_dead)
 
 func _process(delta):
-	if not process: return
-	$Fog/BackBufferCopy2/Mask.call_deferred("set_global_position", round($FogFollowPoint.global_position))
-	
-	if not Input_Handler._can_input: 
-		reset_velocities()
-	
-	velocity = _walk() + _gravity()
-	move_and_slide()
-	
-	update_last_safe_position()
+	if process:
+		$Fog/BackBufferCopy2/Mask.call_deferred("set_global_position", round($FogFollowPoint.global_position))
+		
+		if not Input_Handler._can_input: 
+			reset_velocities()
+		
+		velocity = _walk() + _gravity()
+		move_and_slide()
+		
+		update_last_safe_position()
 	
 	animate_sprite()
 	animate_left_arm()
@@ -214,6 +214,9 @@ func on_interaction_let_go() -> void:
 
 func on_move(direction: float) -> void:
 	_raw_input.x = direction
+	set_sprite_direction(direction)
+
+func set_sprite_direction(direction: float) -> void:
 	if direction != 0 and not _is_currently_interacting: sprite_parent.scale.x = sprite_parent.scale.y * direction
 
 func on_jump(is_jumping: bool, direction: float) -> void:

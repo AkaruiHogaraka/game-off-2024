@@ -110,3 +110,11 @@ stretch_mode = 2
 [node name="CameraPosition" type="Marker2D" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("7_7nbnc")]
+
+[node name="CutsceneReferences" type="Node2D" parent="."]
+
+[node name="Point1" type="Marker2D" parent="CutsceneReferences"]
+position = Vector2(-48, 32)
+
+[node name="Point2" type="Marker2D" parent="CutsceneReferences"]
+position = Vector2(-152, 32)

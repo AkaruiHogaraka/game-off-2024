@@ -2,6 +2,7 @@ extends BaseDialogueReader
 
 @export var area: Area2D
 @export var tutorial: Control
+@export var enable_areas: Array[Area2D]
 
 func _on_end_writing() -> void:
 	area.disable(true)
@@ -19,6 +20,9 @@ func _on_end_writing() -> void:
 	
 	tutorial.set_visible(true)
 	can_input = false
+	
+	for area in enable_areas:
+		area.set_monitoring(true)
 	
 	tutorial.set_modulate(Color.GREEN)
 	await get_tree().create_timer(0.24).timeout

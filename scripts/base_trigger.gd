@@ -4,6 +4,8 @@ class_name BaseTrigger extends Node
 
 func is_all_areas_triggered() -> bool:
 	for area in areas: 
-		if not area.has_overlapping_bodies(): 
+		if not area.is_monitoring(): 
+			return false
+		if not area.has_overlapping_bodies():
 			return false
 	return true
