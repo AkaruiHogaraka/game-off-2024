@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bin5ukbk8yfw"]
+[gd_scene load_steps=18 format=4 uid="uid://bin5ukbk8yfw"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6rr4m"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_4rgws"]
@@ -11,11 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="7_jm6ka"]
 [ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="8_6fpy7"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="9_jy6jp"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="12_gl2bx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbyka"]
+size = Vector2(98, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwqxk"]
-size = Vector2(81.5, 20.5)
+size = Vector2(192.75, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3kl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56u6b"]
+size = Vector2(21, 37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7imj"]
 
@@ -46,25 +53,38 @@ tile_set = ExtResource("3_0jpke")
 
 [node name="Camera" parent="." instance=ExtResource("4_3xjy1")]
 
-[node name="HiddenArea2" parent="." groups=["Save"] instance=ExtResource("5_e4rya")]
+[node name="HiddenArea4" parent="." groups=["Save"] instance=ExtResource("5_e4rya")]
 visible = false
 
+[node name="TileMapLayer" parent="HiddenArea4" index="0"]
+tile_map_data = PackedByteArray("AAD9//z/AAAFAAMAAAD9//v/AAAFAAMAAAD9//r/AAAFAAMAAAD9//3/AAACAAQAAAD8//z/AAADAAMAAAD7//z/AAADAAMAAAD6//z/AAADAAMAAAD5//z/AAADAAMAAAD4//z/AAADAAMAAAD3//z/AAADAAMAAAD3//v/AAADAAMAAAD3//r/AAADAAMAAAD4//r/AAADAAMAAAD5//r/AAADAAMAAAD6//r/AAADAAMAAAD7//r/AAADAAMAAAD8//r/AAADAAMAAAD8//v/AAADAAMAAAD7//v/AAADAAMAAAD6//v/AAADAAMAAAD5//v/AAADAAMAAAD4//v/AAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea4/Area2D" index="0"]
+position = Vector2(-83, -53.5)
+shape = SubResource("RectangleShape2D_cbyka")
+
+[node name="HiddenArea2" parent="." groups=["Save"] instance=ExtResource("5_e4rya")]
+
 [node name="TileMapLayer" parent="HiddenArea2" index="0"]
-tile_map_data = PackedByteArray("AAD3//3/AAAFAAQAAAD4//3/AAACAAUAAAD5//3/AAACAAUAAAD6//3/AAACAAUAAAD7//3/AAACAAUAAAD8//3/AAABAAQAAAD8//z/AAADAAMAAAD7//z/AAADAAMAAAD6//z/AAADAAMAAAD5//z/AAADAAMAAAD4//z/AAADAAMAAAD3//z/AAADAAMAAAD3//v/AAADAAMAAAD4//v/AAADAAMAAAD5//v/AAADAAMAAAD6//v/AAADAAMAAAD7//v/AAADAAMAAAD8//v/AAADAAMAAAD9//v/AAADAAMAAAD+//v/AAADAAMAAAD///v/AAADAAMAAAAAAPv/AAADAAMAAAABAPv/AAADAAMAAAACAPv/AAADAAMAAAACAPz/AAADAAMAAAABAPz/AAADAAMAAAAAAPz/AAADAAMAAAD///z/AAADAAMAAAD+//z/AAADAAMAAAD9//z/AAADAAMAAAD9//3/AAADAAMAAAD+//3/AAADAAMAAAD///3/AAADAAMAAAAAAP3/AAADAAMAAAABAP3/AAADAAMAAAACAP3/AAADAAMAAAD9//7/AAADAAMAAAADAP3/AAAFAAMAAAADAPz/AAAFAAMAAAADAPv/AAAFAAMAAAADAPr/AAAFAAMAAAD3//r/AAADAAMAAAD8//7/AAABAAMAAAA=")
+tile_map_data = PackedByteArray("AAD3//3/AAAFAAQAAAD4//3/AAACAAUAAAD5//3/AAACAAUAAAD6//3/AAACAAUAAAD7//3/AAACAAUAAAD8//3/AAABAAQAAAD8//z/AAADAAMAAAD7//z/AAADAAMAAAD6//z/AAADAAMAAAD5//z/AAADAAMAAAD4//z/AAADAAMAAAD3//z/AAADAAMAAAD3//v/AAADAAMAAAD4//v/AAADAAMAAAD5//v/AAADAAMAAAD6//v/AAADAAMAAAD7//v/AAADAAMAAAD8//v/AAADAAMAAAD9//v/AAADAAMAAAD+//v/AAADAAMAAAD///v/AAADAAMAAAAAAPv/AAADAAMAAAABAPv/AAADAAMAAAACAPv/AAADAAMAAAACAPz/AAADAAMAAAABAPz/AAADAAMAAAAAAPz/AAADAAMAAAD///z/AAADAAMAAAD+//z/AAADAAMAAAD9//z/AAADAAMAAAD9//3/AAADAAMAAAD+//3/AAADAAMAAAD///3/AAADAAMAAAAAAP3/AAADAAMAAAABAP3/AAADAAMAAAACAP3/AAADAAMAAAD9//7/AAADAAMAAAADAP3/AAAFAAMAAAADAPz/AAAFAAMAAAADAPv/AAAFAAMAAAADAPr/AAAFAAMAAAD3//r/AAADAAMAAAD8//7/AAABAAMAAAD9//r/AAADAAMAAAD+//r/AAADAAMAAAD///r/AAADAAMAAAAAAPr/AAADAAMAAAABAPr/AAADAAMAAAACAPr/AAADAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea2/Area2D" index="0"]
-position = Vector2(-89, -55.25)
+position = Vector2(-33.375, -64)
 shape = SubResource("RectangleShape2D_rwqxk")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("5_e4rya")]
 visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
-tile_map_data = PackedByteArray("AAD7/wAAAAAFAAMAAAD7/wEAAAACAAQAAAD7////AAAFAAQAAAD8////AAACAAUAAAD6/wEAAAADAAMAAAD5/wEAAAADAAMAAAD5/wAAAAADAAMAAAD4/wAAAAADAAMAAAD4/wEAAAADAAMAAAD3/wAAAAADAAMAAAD3////AAADAAMAAAD3//7/AAADAAMAAAD3//3/AAADAAMAAAD5////AAADAAMAAAD6////AAADAAMAAAD6/wAAAAADAAMAAAD4////AAADAAMAAAD7//7/AAADAAMAAAD6//7/AAADAAMAAAD5//7/AAADAAMAAAD4//7/AAADAAMAAAD8//7/AAADAAMAAAD8//3/AAADAAMAAAD7//3/AAADAAMAAAD6//3/AAADAAMAAAD5//3/AAADAAMAAAD4//3/AAADAAMAAAD9//7/AAADAAMAAAD9//3/AAADAAMAAAA=")
+tile_map_data = PackedByteArray("AAD7/wAAAAAFAAMAAAD7/wEAAAACAAQAAAD7////AAAFAAQAAAD8////AAACAAUAAAD6/wEAAAADAAMAAAD5/wEAAAADAAMAAAD5/wAAAAADAAMAAAD4/wAAAAADAAMAAAD4/wEAAAADAAMAAAD3/wAAAAADAAMAAAD3////AAADAAMAAAD3//7/AAADAAMAAAD3//3/AAADAAMAAAD5////AAADAAMAAAD6////AAADAAMAAAD6/wAAAAADAAMAAAD4////AAADAAMAAAD7//7/AAADAAMAAAD6//7/AAADAAMAAAD5//7/AAADAAMAAAD4//7/AAADAAMAAAD8//7/AAADAAMAAAD5//3/AAADAAMAAAD4//3/AAADAAMAAAD9//7/AAADAAMAAAD8//3/AAADAAMAAAD7//3/AAADAAMAAAD6//3/AAADAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
 position = Vector2(-75, 3)
 shape = SubResource("RectangleShape2D_q3kl6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HiddenArea/Area2D" index="1"]
+position = Vector2(-44.5, -66.5)
+shape = SubResource("RectangleShape2D_56u6b")
 
 [node name="GemChest" parent="." instance=ExtResource("7_jm6ka")]
 position = Vector2(72, 64)
@@ -85,6 +105,10 @@ shape = SubResource("RectangleShape2D_a7imj")
 [node name="WalkLoadRight" parent="." instance=ExtResource("6_nos1c")]
 position = Vector2(139, 32)
 
+[node name="SceneConnection" parent="WalkLoadRight" index="0"]
+scene_path = "res://scenes/reality/tutorial_06_reality.tscn"
+node_path = "WalkLoadLeft"
+
 [node name="ItemChest" parent="." instance=ExtResource("7_1e5qy")]
 position = Vector2(8, 64)
 
@@ -94,9 +118,18 @@ item_path = "res://resources/items/block_wand.tscn"
 [node name="Body" parent="." instance=ExtResource("9_jy6jp")]
 position = Vector2(133, 32)
 
+[node name="Door" parent="." instance=ExtResource("12_gl2bx")]
+position = Vector2(32, -48)
+
+[node name="SceneConnection" parent="Door" index="0"]
+scene_path = "res://scenes/reality/block_wand_05_reality.tscn"
+node_path = "Door"
+
+[editable path="HiddenArea4"]
 [editable path="HiddenArea2"]
 [editable path="HiddenArea"]
 [editable path="GemChest"]
 [editable path="HiddenArea3"]
 [editable path="WalkLoadRight"]
 [editable path="ItemChest"]
+[editable path="Door"]

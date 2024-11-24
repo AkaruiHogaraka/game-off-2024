@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=4 uid="uid://bi7v1yy3q1puc"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_e73j2"]
+[ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_end8n"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_5vkye"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_dbmia"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_6185x"]
+[ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="6_6cfaj"]
+[ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_vv3pk"]
+
+[node name="BlockWand04Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_e73j2")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+mask_settings = ExtResource("2_end8n")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("3_5vkye")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_set = ExtResource("4_dbmia")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("4_dbmia")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("4_dbmia")
+
+[node name="Camera" parent="." instance=ExtResource("5_6185x")]
+
+[node name="WalkLoadLeft" parent="." instance=ExtResource("6_6cfaj")]
+position = Vector2(-139, 16)
+
+[node name="SceneConnection" parent="WalkLoadLeft" index="0"]
+scene_path = "res://scenes/reality/block_wand_05_reality.tscn"
+node_path = "WalkLoadRight"
+
+[node name="WalkLoadRight" parent="." instance=ExtResource("7_vv3pk")]
+position = Vector2(139, 16)
+
+[node name="SceneConnection" parent="WalkLoadRight" index="0"]
+scene_path = "res://scenes/reality/block_wand_03_reality.tscn"
+node_path = "WalkLoadLeft"
+
+[editable path="WalkLoadLeft"]
+[editable path="WalkLoadRight"]

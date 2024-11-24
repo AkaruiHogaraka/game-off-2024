@@ -44,6 +44,7 @@ tile_set = ExtResource("4_jv102")
 position = Vector2(64, 0)
 
 [node name="SceneConnection" parent="Door" index="0"]
+scene_path = "res://scenes/reality/lantern_03_reality.tscn"
 node_path = "Door"
 
 [node name="DialogueTrigger" type="Node2D" parent="."]
