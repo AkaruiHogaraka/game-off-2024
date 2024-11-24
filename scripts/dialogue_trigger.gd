@@ -33,4 +33,4 @@ func _on_body_entered(body: Node2D) -> void:
 		dialogue.on_read_line()
 
 func _on_body_enter_extra() -> void:
-	await get_tree().create_timer(1).timeout
+	pass

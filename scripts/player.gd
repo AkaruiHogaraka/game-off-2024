@@ -40,6 +40,7 @@ var last_door_position: Vector2
 var jump_position: Vector2
 var last_door_scene: String
 var process: bool
+var process_animation: bool
 
 @onready var Input_Handler: InputHandler = $Input
 @onready var Inventory: ItemInventory = $Inventory
@@ -59,6 +60,11 @@ func _ready():
 	mask = $Fog/BackBufferCopy2/Mask/Sprite2D
 	set_interaction_display(false)
 	process = true
+	process_animation = false
+	
+	sprite.play("sleep")
+	left_arm_sprite.play("sleep")
+	
 	_is_currently_interacting = false
 	current_health = starting_health
 	Dead.connect(_on_dead)
@@ -75,8 +81,9 @@ func _process(delta):
 		
 		update_last_safe_position()
 	
-	animate_sprite()
-	animate_left_arm()
+	if process_animation:
+		animate_sprite()
+		animate_left_arm()
 	
 	if _raw_input.x == 0 and is_on_floor():
 		global_position = round(global_position)
@@ -91,13 +98,13 @@ func animate_sprite() -> void:
 		return
 	
 	if $Sprite.scale.x != _raw_input.x: # Push and pull objects
-		sprite.play("default")
+		sprite.play("idle")
 		
 		return
 	
 	if _raw_input.x != 0: 
 		sprite.play("walk")
-	elif _raw_input.x == 0: sprite.play("default")
+	elif _raw_input.x == 0: sprite.play("idle")
 
 func animate_left_arm() -> void:
 	left_arm_sprite.play(sprite.get_animation())

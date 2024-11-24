@@ -1,9 +1,12 @@
 extends BaseDialogueReader
 
 @export var walk_to: Marker2D
+@export var lantern_progress: DialogueTrigger
 
 func _on_end_writing() -> void:
 	writer.hide_dialogue_box()
+	
+	lantern_progress.disable(true)
 	
 	GlobalReference.Player.process = false
 	
@@ -19,3 +22,4 @@ func _on_end_writing() -> void:
 	GlobalReference.Player.set_sprite_direction(-1)
 	GlobalReference.Player.process = true
 	reset_dialogue()
+	lantern_progress.disable(false)

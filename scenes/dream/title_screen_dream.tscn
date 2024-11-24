@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://clppcvnfhiaja"]
+[gd_scene load_steps=14 format=4 uid="uid://clppcvnfhiaja"]
 
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="7_7nbnc"]
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="7_sn0r2"]
 [ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="8_yrlmv"]
+[ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="10_hart2"]
+[ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="11_6a2y4"]
+[ext_resource type="Script" path="res://scripts/dialogue_trigger.gd" id="12_jtonr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbs64"]
 
 [node name="TitleScreenDream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -118,3 +123,27 @@ position = Vector2(-48, 32)
 
 [node name="Point2" type="Marker2D" parent="CutsceneReferences"]
 position = Vector2(-152, 32)
+
+[node name="LanternProgress" parent="." instance=ExtResource("10_hart2")]
+
+[node name="Dialogue" parent="LanternProgress" index="0" node_paths=PackedStringArray("return_marker", "area")]
+script = ExtResource("11_6a2y4")
+return_marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
+lines = Array[String](["I should go find Ellie"])
+line_speed = Array[float]([1.0])
+
+[node name="Area2D" parent="LanternProgress" index="1" node_paths=PackedStringArray("dialogue")]
+script = ExtResource("12_jtonr")
+dialogue = NodePath("../Dialogue")
+
+[node name="CollisionShape2D" parent="LanternProgress/Area2D" index="0"]
+position = Vector2(-22, 26)
+shape = SubResource("RectangleShape2D_dbs64")
+
+[node name="Marker2D" type="Marker2D" parent="LanternProgress"]
+position = Vector2(-53, 32)
+
+[connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
+
+[editable path="LanternProgress"]

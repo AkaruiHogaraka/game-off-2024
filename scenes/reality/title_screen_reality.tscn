@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=19 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -10,15 +10,17 @@
 [ext_resource type="Script" path="res://scripts/dialogue_trigger.gd" id="9_mb62d"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="10_0xq3g"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_0hycc"]
+[ext_resource type="Script" path="res://scripts/wake_up_dialogue_trigger.gd" id="13_s1dfr"]
+[ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="14_3n7c5"]
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="14_61a3i"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_lrgmm"]
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
+[ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="15_pfyoo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
 size = Vector2(15, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qglu"]
-size = Vector2(14, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmx6b"]
 
 [node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -119,10 +121,6 @@ tutorial = NodePath("../../Control")
 [node name="Area2D" parent="DisableTutorialTrigger" index="1"]
 monitoring = false
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DisableTutorialTrigger/Area2D" index="1"]
-position = Vector2(70, 0)
-shape = SubResource("RectangleShape2D_6qglu")
-
 [node name="WalkLoadLeft" parent="." instance=ExtResource("10_0xq3g")]
 position = Vector2(-139, 32)
 
@@ -135,9 +133,10 @@ node_path = "WalkLoadRight"
 [node name="CutsceneDialogue" type="Node2D" parent="CutsceneReferences"]
 position = Vector2(28, 22)
 
-[node name="Dialogue" type="Node" parent="CutsceneReferences/CutsceneDialogue" node_paths=PackedStringArray("walk_to")]
+[node name="Dialogue" type="Node" parent="CutsceneReferences/CutsceneDialogue" node_paths=PackedStringArray("walk_to", "lantern_progress")]
 script = ExtResource("8_ftul3")
 walk_to = NodePath("../../Marker2D")
+lantern_progress = NodePath("../../../LanternProgress/Area2D")
 lines = Array[String](["..."])
 line_speed = Array[float]([2.0])
 
@@ -145,7 +144,7 @@ line_speed = Array[float]([2.0])
 position = Vector2(-26, 0)
 collision_layer = 0
 collision_mask = 37
-script = ExtResource("9_mb62d")
+script = ExtResource("13_s1dfr")
 dialogue = NodePath("../Dialogue")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneReferences/CutsceneDialogue/Area2D"]
@@ -155,8 +154,30 @@ shape = SubResource("RectangleShape2D_sg4w8")
 [node name="Marker2D" type="Marker2D" parent="CutsceneReferences"]
 position = Vector2(-53, 32)
 
+[node name="LanternProgress" parent="." instance=ExtResource("14_3n7c5")]
+
+[node name="Dialogue" parent="LanternProgress" index="0" node_paths=PackedStringArray("return_marker", "area")]
+script = ExtResource("15_pfyoo")
+return_marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
+lines = Array[String](["I should go find Ellie"])
+line_speed = Array[float]([1.0])
+
+[node name="Area2D" parent="LanternProgress" index="1" node_paths=PackedStringArray("dialogue")]
+script = ExtResource("9_mb62d")
+dialogue = NodePath("../Dialogue")
+
+[node name="CollisionShape2D" parent="LanternProgress/Area2D" index="0"]
+position = Vector2(-22, 26)
+shape = SubResource("RectangleShape2D_jmx6b")
+
+[node name="Marker2D" type="Marker2D" parent="LanternProgress"]
+position = Vector2(-53, 32)
+
 [connection signal="body_entered" from="CutsceneReferences/CutsceneDialogue/Area2D" to="CutsceneReferences/CutsceneDialogue/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
 
 [editable path="GameStartDialogue"]
 [editable path="DisableTutorialTrigger"]
 [editable path="WalkLoadLeft"]
+[editable path="LanternProgress"]

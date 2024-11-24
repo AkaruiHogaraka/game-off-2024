@@ -94,9 +94,6 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	var temp_clone = GlobalReference.Player.duplicate(0)
 	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
 	temp_clone.set_collision_layer_value(3, false)
-	var anim: AnimatedSprite2D = temp_clone.get_child(1).get_child(0)
-	
-	anim.set_frame_and_progress(GlobalReference.Player.sprite.get_frame(), GlobalReference.Player.sprite.get_frame_progress())
 	
 	var old_scene: Scene = CurrentScene
 	CurrentScene = scene.scene
@@ -114,6 +111,12 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 		temp_clone.global_position = GlobalReference.Player.global_position
 		GlobalReference.PlayerRealityReference.global_position = GlobalReference.Player.global_position
 		node = GlobalReference.Game.dream_node
+	
+	var anim: AnimatedSprite2D = temp_clone.get_child(1).get_child(0)
+	anim.play(GlobalReference.Player.sprite.get_animation())
+	temp_clone.get_child(1).get_child(1).get_child(0).play(GlobalReference.Player.sprite.get_animation())
+	anim.set_frame_and_progress(GlobalReference.Player.sprite.get_frame(), GlobalReference.Player.sprite.get_frame_progress())
+	temp_clone.get_child(1).get_child(1).get_child(0).set_frame_and_progress(GlobalReference.Player.sprite.get_frame(), GlobalReference.Player.sprite.get_frame_progress())
 	
 	if node == null: 
 		push_warning("Something went wrong while dreaming!")
