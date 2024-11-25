@@ -50,6 +50,8 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	
 	new_scene.set_mask()
 	
+	await get_tree().physics_frame
+	
 	if is_holding_lantern:
 		GlobalReference.Player.Inventory.items[GlobalReference.Player.Inventory.item_index].on_item_equip()
 	

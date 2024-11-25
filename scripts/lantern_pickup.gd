@@ -1,6 +1,8 @@
 extends BasePickupItem
 
 @export var item_path: String
+@export var sprite: Sprite2D
+@export var particles: GPUParticles2D
 
 @onready var item_preload: BaseInventoryItem = load(item_path).instantiate()
 
@@ -11,3 +13,6 @@ func initialise() -> void:
 func on_pickup_extension() -> void:
 	GlobalReference.Player.Inventory.add_item_to_inventory(item_preload)
 	GlobalItems.has_lantern = true
+	
+	sprite.set_visible(false)
+	particles.set_visible(false)

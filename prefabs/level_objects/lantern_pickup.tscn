@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://fwre44wmtfvr"]
 
-[ext_resource type="Script" path="res://scripts/interactable_pickup.gd" id="1_061el"]
+[ext_resource type="Script" path="res://scripts/one_time_interactable_pickup.gd" id="1_ovmlt"]
 [ext_resource type="Script" path="res://scripts/lantern_pickup.gd" id="2_dstmp"]
 [ext_resource type="Texture2D" uid="uid://b8dg8taqnp0sn" path="res://sprites/lantern_pickup.png" id="3_oq4n1"]
 [ext_resource type="PackedScene" uid="uid://buao37mj0e24d" path="res://prefabs/misc/item_pickup_ui.tscn" id="4_00sbb"]
@@ -20,9 +20,6 @@ particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iigvd"]
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(2, 2, 2)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
 gravity = Vector3(0, 0, 0)
 anim_speed_min = 1.0
 anim_speed_max = 1.0
@@ -31,15 +28,17 @@ anim_speed_max = 1.0
 use_parent_material = true
 
 [node name="InteractablePickup" type="Node" parent="." node_paths=PackedStringArray("collision", "item", "open_sfx", "pickup_sfx") groups=["Save"]]
-script = ExtResource("1_061el")
+script = ExtResource("1_ovmlt")
 collision = NodePath("../Area2D/CollisionShape2D")
 item = NodePath("../Pickup")
 open_sfx = NodePath("../Audio/OpenChest")
 pickup_sfx = NodePath("../Audio/GetItem")
 
-[node name="Pickup" type="Node" parent="." node_paths=PackedStringArray("ui")]
+[node name="Pickup" type="Node" parent="." node_paths=PackedStringArray("sprite", "particles", "ui")]
 script = ExtResource("2_dstmp")
 item_path = "res://resources/items/lantern.tscn"
+sprite = NodePath("../Sprite2D")
+particles = NodePath("../GPUParticles2D")
 ui = NodePath("../ItemPickupUI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -66,11 +65,11 @@ offset_bottom = -32.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_6as03")
-position = Vector2(1, -6)
+position = Vector2(3, -5)
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_iigvd")
 texture = ExtResource("7_32gag")
-preprocess = 1.0
+local_coords = true
 
 [connection signal="body_entered" from="Area2D" to="InteractablePickup" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="InteractablePickup" method="_on_body_exited"]
