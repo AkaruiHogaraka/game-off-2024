@@ -30,4 +30,8 @@ func set_mask() -> void:
 	mask_mat.set("shader_parameter/noise_strength_inner", mask_settings.noise_strength_inner)
 	mask_mat.set("shader_parameter/noise_strength_middle", mask_settings.noise_strength_middle)
 	mask_mat.set("shader_parameter/noise_strength_outer", mask_settings.noise_strength_outer)
-	
+
+func disable_collision() -> void:
+	for child in get_children():
+		if child is TileMapLayer:
+			child.set_collision_enabled(false)

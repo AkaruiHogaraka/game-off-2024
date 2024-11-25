@@ -21,6 +21,8 @@ var _coyote_jump: bool
 var _can_input: bool = true
 var _dream_cooldown: float
 var _can_jump: bool = true
+var _movement_held: bool
+var _last_movement: float
 
 func _ready() -> void:
 	Jumping.connect(GlobalReference._toggle_jump)
@@ -53,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if GlobalReference.Player.is_on_floor():
 			DirectionInput.emit(0)
 			return
-		
+	
 	_raw_input.x = Input.get_axis("move_left", "move_right")
 	DirectionInput.emit(_raw_input.x)
 	

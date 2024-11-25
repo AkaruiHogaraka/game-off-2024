@@ -41,9 +41,12 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	else:
 		GlobalReference.Game.dream_node.call_deferred("add_child", new_scene)
 	
+	old_scene.disable_collision()
+	
 	await get_tree().physics_frame
 	
-	GlobalReference.Player.set_global_position(Vector2(position.x, position.y))
+	GlobalReference.Player.reset_velocities()
+	GlobalReference.Player.set_global_position(Vector2(position.x, position.y + 0.01))
 	
 	new_scene.set_mask()
 	
