@@ -6,10 +6,10 @@
 script = ExtResource("1_vgpb2")
 name = "depth_1"
 next_noise_frame_count = 10.0
-radius_inner = 0.25
-radius_middle = 0.35
+radius_inner = 0.35
+radius_middle = 0.37
 radius_outer = 0.4
 noise_strength_inner = 0.0
 noise_strength_middle = 0.02
 noise_strength_outer = 0.03
-max_size = 0.8
+max_size = 0.7
