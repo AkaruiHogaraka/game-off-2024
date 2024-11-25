@@ -8,3 +8,4 @@ class_name MaskPreset extends Resource
 @export var noise_strength_inner: float = 0.05
 @export var noise_strength_middle: float = 0.03
 @export var noise_strength_outer: float = 0.02
+@export var max_size: float = 1.0

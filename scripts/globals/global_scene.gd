@@ -3,7 +3,6 @@ extends Node
 var CurrentScene: Scene
 var NewMask: MaskPreset
 
-
 var SaveData: Array[Dictionary]
 
 var internal_scene_change_cooldown: bool
@@ -32,10 +31,10 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	GlobalReference.Game.reality_node.call_deferred("add_child", transition)
 	await get_tree().physics_frame
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
-	transition.transition(1, 0, 0.3, Tween.EASE_OUT, Tween.TRANS_LINEAR)
+	transition.transition(1.0, 0, 0.5 * CurrentScene.mask_settings.max_size, Tween.EASE_OUT, Tween.TRANS_LINEAR, true, Vector2(CurrentScene.mask_settings.max_size, 1))
 	await get_tree().physics_frame
 	transition.set_visible(true)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.5 * CurrentScene.mask_settings.max_size).timeout
 	
 	if reality:
 		GlobalReference.Game.reality_node.call_deferred("add_child", new_scene)
@@ -46,8 +45,10 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	
 	GlobalReference.Player.set_global_position(Vector2(position.x, position.y))
 	
-	if not is_holding_lantern or (is_holding_lantern and NewMask.name != "depth_3"): 
-		new_scene.set_mask()
+	new_scene.set_mask()
+	
+	if is_holding_lantern:
+		GlobalReference.Player.Inventory.items[GlobalReference.Player.Inventory.item_index].on_item_equip()
 	
 	old_scene.set_visible(false)
 	old_scene.scene_camera.get_child(0).set_enabled(false)
