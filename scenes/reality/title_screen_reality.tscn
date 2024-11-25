@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=20 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="15_pfyoo"]
 [ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="16_dff2u"]
+[ext_resource type="PackedScene" uid="uid://fwre44wmtfvr" path="res://prefabs/level_objects/lantern_pickup.tscn" id="17_g6u8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
 size = Vector2(15, 20)
@@ -173,6 +174,9 @@ shape = SubResource("RectangleShape2D_jmx6b")
 
 [node name="Marker2D" type="Marker2D" parent="LanternProgress"]
 position = Vector2(-53, 32)
+
+[node name="LanternPickup" parent="." instance=ExtResource("17_g6u8m")]
+position = Vector2(18, 31)
 
 [connection signal="body_entered" from="CutsceneReferences/CutsceneDialogue/Area2D" to="CutsceneReferences/CutsceneDialogue/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://clm6cmg5yjf2y"]
+[gd_scene load_steps=15 format=4 uid="uid://clm6cmg5yjf2y"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6xjmt"]
 [ext_resource type="Resource" uid="uid://bbuimr2ci8b2u" path="res://resources/mask/depth_3.tres" id="2_88252"]
@@ -13,7 +13,6 @@
 [ext_resource type="Resource" uid="uid://bfuwg0b2s4tk8" path="res://resources/gems/red_gem.tres" id="11_6tps0"]
 [ext_resource type="Resource" uid="uid://dlna8d8mwb4sh" path="res://resources/gems/green_gem.tres" id="12_kjuyu"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="14_gq4va"]
-[ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="14_kqtay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
 
@@ -95,12 +94,6 @@ position = Vector2(139, -32)
 scene_path = "res://scenes/reality/title_screen_reality.tscn"
 node_path = "WalkLoadLeft"
 
-[node name="ItemChest" parent="." instance=ExtResource("14_kqtay")]
-position = Vector2(0, 32)
-
-[node name="Pickup" parent="ItemChest" index="1"]
-item_path = "res://resources/items/lantern.tscn"
-
 [editable path="Door"]
 [editable path="Moveable"]
 [editable path="OneWayPlatform"]
@@ -108,4 +101,3 @@ item_path = "res://resources/items/lantern.tscn"
 [editable path="Chest"]
 [editable path="Chest2"]
 [editable path="WalkLoadRight"]
-[editable path="ItemChest"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://fwre44wmtfvr"]
+
+[ext_resource type="Script" path="res://scripts/interactable_pickup.gd" id="1_061el"]
+[ext_resource type="Script" path="res://scripts/lantern_pickup.gd" id="2_dstmp"]
+[ext_resource type="Texture2D" uid="uid://b8dg8taqnp0sn" path="res://sprites/lantern_pickup.png" id="3_oq4n1"]
+[ext_resource type="PackedScene" uid="uid://buao37mj0e24d" path="res://prefabs/misc/item_pickup_ui.tscn" id="4_00sbb"]
+[ext_resource type="PackedScene" uid="uid://dhvsuvnoa0256" path="res://audio/prefabs/open_chest.tscn" id="5_epmle"]
+[ext_resource type="PackedScene" uid="uid://bgdgv74rby0jh" path="res://audio/prefabs/get_item.tscn" id="6_48cnh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il8xv"]
+size = Vector2(5, 10)
+
+[node name="LanternPickup" type="Node2D"]
+use_parent_material = true
+
+[node name="InteractablePickup" type="Node" parent="." node_paths=PackedStringArray("collision", "item", "open_sfx", "pickup_sfx") groups=["Save"]]
+script = ExtResource("1_061el")
+collision = NodePath("../Area2D/CollisionShape2D")
+item = NodePath("../Pickup")
+open_sfx = NodePath("../Audio/OpenChest")
+pickup_sfx = NodePath("../Audio/GetItem")
+
+[node name="Pickup" type="Node" parent="." node_paths=PackedStringArray("ui")]
+script = ExtResource("2_dstmp")
+item_path = "res://resources/items/lantern.tscn"
+ui = NodePath("../ItemPickupUI")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, 5)
+texture = ExtResource("3_oq4n1")
+offset = Vector2(0, -8)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -5)
+shape = SubResource("RectangleShape2D_il8xv")
+
+[node name="ItemPickupUI" parent="." instance=ExtResource("4_00sbb")]
+offset_top = -32.0
+offset_bottom = -32.0
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="OpenChest" parent="Audio" instance=ExtResource("5_epmle")]
+
+[node name="GetItem" parent="Audio" instance=ExtResource("6_48cnh")]
+
+[connection signal="body_entered" from="Area2D" to="InteractablePickup" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="InteractablePickup" method="_on_body_exited"]
