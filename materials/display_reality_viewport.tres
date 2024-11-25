@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cd5v1xyh71tpw"]
+
+[ext_resource type="Shader" path="res://shaders/display_viewport.gdshader" id="1_pa5gv"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_pa5gv")
+shader_parameter/colour_one = null
+shader_parameter/replace_one = Color(0.25098, 0.2, 0.184314, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.521569, 0.427451, 0.321569, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.584314, 0.780392, 0.596078, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.984314, 1, 0.878431, 1)

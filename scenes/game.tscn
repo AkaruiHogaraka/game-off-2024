@@ -23,23 +23,47 @@ viewport_path = NodePath("CombinedViewportContainer/CombinedViewprot")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fb68g"]
 resource_local_to_scene = true
 shader = ExtResource("2_y5a2i")
+shader_parameter/colour_one = null
+shader_parameter/replace_one = null
+shader_parameter/colour_two = null
+shader_parameter/replace_two = null
+shader_parameter/colour_three = null
+shader_parameter/replace_three = null
+shader_parameter/colour_four = null
+shader_parameter/replace_four = null
 shader_parameter/main_texture = SubResource("ViewportTexture_bqiy1")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_d1ipr"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_1i2by"]
 viewport_path = NodePath("DreamContainer/Dream")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lie70"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtffc"]
 resource_local_to_scene = true
 shader = ExtResource("2_y5a2i")
-shader_parameter/main_texture = SubResource("ViewportTexture_d1ipr")
+shader_parameter/colour_one = null
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
+shader_parameter/main_texture = SubResource("ViewportTexture_1i2by")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_efxym"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uc5uh"]
 viewport_path = NodePath("RealityContainer/Reality")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_paoke"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbb1k"]
 resource_local_to_scene = true
 shader = ExtResource("2_y5a2i")
-shader_parameter/main_texture = SubResource("ViewportTexture_efxym")
+shader_parameter/colour_one = null
+shader_parameter/replace_one = Color(0.25098, 0.2, 0.184314, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.521569, 0.427451, 0.321569, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.584314, 0.780392, 0.596078, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.984314, 1, 0.878431, 1)
+shader_parameter/main_texture = SubResource("ViewportTexture_uc5uh")
 
 [node name="Game" type="Node" node_paths=PackedStringArray("main_screen", "screen", "combined_viewport", "reality_viewport", "reality_node", "reality_display", "reality_gem_count", "reality_heart_ui", "reality_inventory_ui", "dream_viewport", "dream_node", "dream_display", "dream_gem_count", "dream_heart_ui", "dream_inventory_ui", "transition_node", "reality_reference")]
 script = ExtResource("1_rtecv")
@@ -108,7 +132,7 @@ mouse_filter = 2
 [node name="DreamDisplay" type="ColorRect" parent="CombinedViewportContainer/CombinedViewprot/Combined/Control"]
 light_mask = 0
 texture_filter = 1
-material = SubResource("ShaderMaterial_lie70")
+material = SubResource("ShaderMaterial_wtffc")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,7 +149,7 @@ copy_mode = 2
 [node name="RealityDisplay" type="ColorRect" parent="CombinedViewportContainer/CombinedViewprot/Combined/Control/BackBufferCopy2"]
 light_mask = 0
 texture_filter = 1
-material = SubResource("ShaderMaterial_paoke")
+material = SubResource("ShaderMaterial_hbb1k")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

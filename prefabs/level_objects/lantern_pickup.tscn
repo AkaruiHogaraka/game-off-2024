@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://fwre44wmtfvr"]
+[gd_scene load_steps=11 format=3 uid="uid://fwre44wmtfvr"]
 
 [ext_resource type="Script" path="res://scripts/interactable_pickup.gd" id="1_061el"]
 [ext_resource type="Script" path="res://scripts/lantern_pickup.gd" id="2_dstmp"]
@@ -6,9 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://buao37mj0e24d" path="res://prefabs/misc/item_pickup_ui.tscn" id="4_00sbb"]
 [ext_resource type="PackedScene" uid="uid://dhvsuvnoa0256" path="res://audio/prefabs/open_chest.tscn" id="5_epmle"]
 [ext_resource type="PackedScene" uid="uid://bgdgv74rby0jh" path="res://audio/prefabs/get_item.tscn" id="6_48cnh"]
+[ext_resource type="Texture2D" uid="uid://bwfxwlr5tpeju" path="res://sprites/interactable_particle.png" id="7_32gag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_il8xv"]
 size = Vector2(5, 10)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6as03"]
+light_mode = 1
+particles_animation = true
+particles_anim_h_frames = 9
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iigvd"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2, 2, 2)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [node name="LanternPickup" type="Node2D"]
 use_parent_material = true
@@ -46,6 +63,14 @@ offset_bottom = -32.0
 [node name="OpenChest" parent="Audio" instance=ExtResource("5_epmle")]
 
 [node name="GetItem" parent="Audio" instance=ExtResource("6_48cnh")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_6as03")
+position = Vector2(1, -6)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_iigvd")
+texture = ExtResource("7_32gag")
+preprocess = 1.0
 
 [connection signal="body_entered" from="Area2D" to="InteractablePickup" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="InteractablePickup" method="_on_body_exited"]
