@@ -36,9 +36,9 @@ void fragment() {
     if (dist > noisy_radius) {
         discard; // Only show the screen texture within the noisy circle
     }
-	
+
 	COLOR = vec4(1.0, 1.0, 1.0, 1.0);
-	
+
     // Sample the screen texture for visible areas
     vec4 screen_color = texture(screen_texture, SCREEN_UV);
     COLOR = vec4(screen_color.rgb, 1.0); // Use screen texture's color with full alpha

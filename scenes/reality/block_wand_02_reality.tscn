@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://dmhb34tihc4va"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_xbg66"]
-[ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_bu13n"]
+[ext_resource type="Resource" uid="uid://ca2xshvg42k47" path="res://resources/mask/depth_2.tres" id="2_tdl38"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_toul0"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_hjckd"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_6aapr"]
@@ -13,7 +13,7 @@ use_parent_material = true
 script = ExtResource("1_xbg66")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
-mask_settings = ExtResource("2_bu13n")
+mask_settings = ExtResource("2_tdl38")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("3_toul0")

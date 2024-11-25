@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		spawned_objects.remove_at(0)
 		is_despawning = false
 
-func on_item_use() -> void:
+func on_item_use(_arg = null) -> void:
 	if GlobalReference.Player._is_currently_interacting: return
 	
 	if spawn_area.has_overlapping_bodies(): 

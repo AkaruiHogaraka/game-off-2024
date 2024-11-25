@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MaskPreset" load_steps=2 format=3 uid="uid://c3wx1cx8eddbd"]
+
+[ext_resource type="Script" path="res://resources/mask_preset.gd" id="1_qa48e"]
+
+[resource]
+script = ExtResource("1_qa48e")
+name = "lantern"
+next_noise_frame_count = 20.0
+radius_inner = 0.08
+radius_middle = 0.1
+radius_outer = 0.11
+noise_strength_inner = 0.0
+noise_strength_middle = 0.0
+noise_strength_outer = 0.0

@@ -8,3 +8,4 @@ func reset_items() -> void:
 	dream_gems = 0
 	gems = 0
 	require_lantern = false
+	GlobalScene.is_holding_lantern = false

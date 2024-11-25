@@ -1,6 +1,8 @@
 extends Node
 
 var CurrentScene: Scene
+var NewMask: MaskPreset
+
 
 var SaveData: Array[Dictionary]
 
@@ -8,12 +10,14 @@ var internal_scene_change_cooldown: bool
 var IsRestarting: bool
 var is_soft_respawning: bool
 var is_respawning: bool
+var is_holding_lantern: bool
 
 func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	if internal_scene_change_cooldown or not scene.preload_connected_scene(): return false
 	var position: Vector2 = scene.node.get_global_position()
 	var old_scene: Scene = CurrentScene
 	var new_scene: Scene = scene.scene
+	NewMask = new_scene.mask_settings
 	
 	internal_scene_change_cooldown = true
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
@@ -41,7 +45,9 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	await get_tree().physics_frame
 	
 	GlobalReference.Player.set_global_position(Vector2(position.x, position.y))
-	new_scene.set_mask()
+	
+	if not is_holding_lantern or (is_holding_lantern and NewMask.name != "depth_3"): 
+		new_scene.set_mask()
 	
 	old_scene.set_visible(false)
 	old_scene.scene_camera.get_child(0).set_enabled(false)

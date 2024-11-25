@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 		current_frame = 0
 
 func set_mask() -> void:
+	
 	var mask_mat: Material = GlobalReference.Player.mask.get_material()
 
 	mask_mat.set("shader_parameter/radius_inner", mask_settings.radius_inner)

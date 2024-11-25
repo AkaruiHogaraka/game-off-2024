@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://ckd0m1lj8udjr"]
+[gd_scene load_steps=28 format=3 uid="uid://ckd0m1lj8udjr"]
 
 [ext_resource type="Script" path="res://scripts/lantern.gd" id="1_dyt20"]
 [ext_resource type="Texture2D" uid="uid://r15y2fnmk06l" path="res://sprites/player_arm_lantern_spritesheet.png" id="2_ra2pi"]
+[ext_resource type="Resource" uid="uid://c3wx1cx8eddbd" path="res://resources/mask/lantern.tres" id="2_usxub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unm62"]
 atlas = ExtResource("2_ra2pi")
@@ -196,6 +197,7 @@ animations = [{
 use_parent_material = true
 script = ExtResource("1_dyt20")
 arm_sprite = NodePath("ArmSprite")
+lantern_mask = ExtResource("2_usxub")
 
 [node name="ArmSprite" type="AnimatedSprite2D" parent="."]
 use_parent_material = true

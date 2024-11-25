@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_tf640")
-noise_fps = 12
+name = "depth_0"
+next_noise_frame_count = 40.0
 radius_inner = 1.1
 radius_middle = 1.1
 radius_outer = 1.1

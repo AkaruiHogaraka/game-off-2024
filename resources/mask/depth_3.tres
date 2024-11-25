@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1_jwkqd")
+name = "depth_3"
 next_noise_frame_count = 20.0
-radius_inner = 0.08
-radius_middle = 0.1
-radius_outer = 0.11
+radius_inner = 0.04
+radius_middle = 0.06
+radius_outer = 0.09
 noise_strength_inner = 0.0
 noise_strength_middle = 0.0
 noise_strength_outer = 0.0
