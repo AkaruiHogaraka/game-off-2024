@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cag3q4judbg6u"]
+[gd_scene load_steps=12 format=4 uid="uid://cag3q4judbg6u"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_qob0x"]
 [ext_resource type="Resource" uid="uid://bbuimr2ci8b2u" path="res://resources/mask/depth_3.tres" id="2_ad0nc"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_s3i4f"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="6_ifnws"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="7_v6vdc"]
+[ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="8_8vj4i"]
+[ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="9_blxpc"]
+[ext_resource type="Script" path="res://scripts/require_lantern_block_dialogue_trigger.gd" id="10_dmotr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn7b6"]
 
 [node name="Lantern00Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -47,5 +52,32 @@ position = Vector2(0, 16)
 scene_path = "res://scenes/reality/block_wand_02_reality.tscn"
 node_path = "Door"
 
+[node name="LanternProgress" parent="." instance=ExtResource("8_8vj4i")]
+
+[node name="Dialogue" parent="LanternProgress" index="0" node_paths=PackedStringArray("return_marker", "area")]
+script = ExtResource("9_blxpc")
+return_marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
+lines = Array[String](["It's too dark to see...", "I had a lantern back at camp"])
+line_speed = Array[float]([1.0, 1.0])
+
+[node name="Area2D" parent="LanternProgress" index="1" node_paths=PackedStringArray("dialogue")]
+script = ExtResource("10_dmotr")
+dialogue = NodePath("../Dialogue")
+
+[node name="CollisionShape2D" parent="LanternProgress/Area2D" index="0"]
+position = Vector2(22, 6)
+shape = SubResource("RectangleShape2D_nn7b6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LanternProgress/Area2D" index="1"]
+position = Vector2(-21, 6)
+shape = SubResource("RectangleShape2D_nn7b6")
+
+[node name="Marker2D" type="Marker2D" parent="LanternProgress"]
+position = Vector2(0, 16)
+
+[connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
+
 [editable path="WalkLoadLeft"]
 [editable path="Door"]
+[editable path="LanternProgress"]

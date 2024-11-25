@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="8_yrlmv"]
 [ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="10_hart2"]
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="11_6a2y4"]
-[ext_resource type="Script" path="res://scripts/dialogue_trigger.gd" id="12_jtonr"]
+[ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="12_ovat7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbs64"]
 
@@ -134,7 +134,7 @@ lines = Array[String](["I should go find Ellie"])
 line_speed = Array[float]([1.0])
 
 [node name="Area2D" parent="LanternProgress" index="1" node_paths=PackedStringArray("dialogue")]
-script = ExtResource("12_jtonr")
+script = ExtResource("12_ovat7")
 dialogue = NodePath("../Dialogue")
 
 [node name="CollisionShape2D" parent="LanternProgress/Area2D" index="0"]

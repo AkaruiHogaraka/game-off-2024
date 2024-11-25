@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_vqsba"]
 [ext_resource type="Script" path="res://scripts/start_cutscene_dialogue.gd" id="8_ftul3"]
 [ext_resource type="Script" path="res://scripts/game_start_dialogue_trigger.gd" id="9_eygch"]
-[ext_resource type="Script" path="res://scripts/dialogue_trigger.gd" id="9_mb62d"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="10_0xq3g"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_0hycc"]
 [ext_resource type="Script" path="res://scripts/wake_up_dialogue_trigger.gd" id="13_s1dfr"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_lrgmm"]
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="15_pfyoo"]
+[ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="16_dff2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
 size = Vector2(15, 20)
@@ -164,7 +164,7 @@ lines = Array[String](["I should go find Ellie"])
 line_speed = Array[float]([1.0])
 
 [node name="Area2D" parent="LanternProgress" index="1" node_paths=PackedStringArray("dialogue")]
-script = ExtResource("9_mb62d")
+script = ExtResource("16_dff2u")
 dialogue = NodePath("../Dialogue")
 
 [node name="CollisionShape2D" parent="LanternProgress/Area2D" index="0"]

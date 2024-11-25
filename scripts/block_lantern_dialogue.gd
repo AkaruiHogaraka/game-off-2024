@@ -13,8 +13,8 @@ func _on_end_writing() -> void:
 	
 	GlobalReference.Player.process = false
 	
-	var distance: float = GlobalReference.Player.global_position.x - return_marker.global_position.x
-	var direction: float = -1 if distance > 0 else 1
+	var distance: float = absf(GlobalReference.Player.global_position.x - return_marker.global_position.x)
+	var direction: float = -1 if GlobalReference.Player.global_position.x - return_marker.global_position.x > 0 else 1
 	var speed: float = GlobalReference.Player.move_speed * GlobalReference.Player._speed_multiplier
 	
 	GlobalReference.Player.on_move(direction)
