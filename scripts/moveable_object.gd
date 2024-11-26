@@ -1,7 +1,7 @@
 extends BaseInteraction
 
 @export var parent_radius: float
-@export var moveable_parent: StaticBody2D
+@export var moveable_parent: AnimatableBody2D
 @export var speed_penalty_multiplier: float
 
 @export var left_ray: RayCast2D

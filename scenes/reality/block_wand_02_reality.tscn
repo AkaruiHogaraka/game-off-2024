@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dmhb34tihc4va"]
+[gd_scene load_steps=9 format=4 uid="uid://dmhb34tihc4va"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_xbg66"]
 [ext_resource type="Resource" uid="uid://ca2xshvg42k47" path="res://resources/mask/depth_2.tres" id="2_tdl38"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_6aapr"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="6_ad26p"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="7_38lh5"]
+[ext_resource type="PackedScene" uid="uid://csc7lw3jpec0s" path="res://prefabs/level_objects/button_activated_platform.tscn" id="8_b17ac"]
 
 [node name="BlockWand02Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -20,32 +21,48 @@ script = ExtResource("3_toul0")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD///7/AgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQD+/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQD8/wMAAgAAAAAAAQD7/wMAAgAAAAAAAQD6/wMAAgAAAAAAAQD5/wMAAgAAAAAAAQD4/wMAAgAAAAAAAQD3/wMAAgAAAAAAAQA=")
 tile_set = ExtResource("4_hjckd")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAACAP3/BgAAAAAAAgACAPz/BgAAAAAAAgACAPv/BgAAAAAAAgACAPr/BgAAAAAAAgACAPn/BgAAAAAAAgACAPj/BgAAAAAAAgD///7/BgAAAAAAAgD/////BgAAAAAAAgD//wAABgAAAAAAAgD//wEABgAAAAAAAgD//wIABgAAAAAAAgD2/wIABQAAAAAAAQA=")
 tile_set = ExtResource("4_hjckd")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAD///7/AAABAAEAAAD//wMAAAAEAAQAAAD//wIAAAABAAIAAAD//wEAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAIAAAACAP3/AAABAAIAAAACAPz/AAABAAIAAAACAPv/AAABAAIAAAACAPr/AAABAAIAAAD+/wMAAAADAAEAAAD9/wMAAAACAAEAAAD8/wMAAAADAAEAAAD7/wMAAAACAAEAAAD6/wMAAAADAAEAAAD5/wMAAAADAAEAAAD4/wMAAAACAAEAAAD3/wMAAAACAAEAAAAAAP7/AAADAAEAAAABAP7/AAACAAEAAAACAP7/AAAEAAQAAAD3/wIAAAADAAAAAAD+/wIAAAADAAAAAAABAP3/AAADAAAAAAAAAP3/AAACAAAAAAD4/wIAAAACAAAAAAD9/wIAAAACAAAAAAA=")
 tile_set = ExtResource("4_hjckd")
 
 [node name="Camera" parent="." instance=ExtResource("5_6aapr")]
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("6_ad26p")]
-position = Vector2(-139, 16)
+position = Vector2(-139, 48)
 
 [node name="SceneConnection" parent="WalkLoadLeft" index="0"]
 scene_path = "res://scenes/reality/block_wand_01_reality.tscn"
 node_path = "WalkLoadRight"
 
 [node name="Door" parent="." instance=ExtResource("7_38lh5")]
-position = Vector2(0, 16)
+position = Vector2(0, -32)
 
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/lantern_00_reality.tscn"
 node_path = "Door"
 
+[node name="ButtonPlatform" parent="." instance=ExtResource("8_b17ac")]
+position = Vector2(-40, -8)
+
+[node name="Button" parent="ButtonPlatform" index="3"]
+position = Vector2(-16, 48)
+
+[node name="ButtonPlatform2" parent="." instance=ExtResource("8_b17ac")]
+position = Vector2(-72, 24)
+
+[node name="Button" parent="ButtonPlatform2" index="3"]
+position = Vector2(-32, 16)
+
 [editable path="WalkLoadLeft"]
 [editable path="Door"]
+[editable path="ButtonPlatform"]
+[editable path="ButtonPlatform2"]

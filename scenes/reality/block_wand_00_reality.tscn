@@ -21,7 +21,7 @@ script = ExtResource("3_11ha7")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQD8/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQA=")
 tile_set = ExtResource("4_854rk")
 
 [node name="Walls" type="TileMapLayer" parent="."]
@@ -35,7 +35,7 @@ tile_set = ExtResource("4_854rk")
 [node name="Camera" parent="." instance=ExtResource("5_bpyy2")]
 
 [node name="Door" parent="." instance=ExtResource("6_mus7i")]
-position = Vector2(8, 16)
+position = Vector2(-8, 16)
 
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/tutorial_04_reality.tscn"

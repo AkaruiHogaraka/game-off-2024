@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dr86wvpm28008"]
+[gd_scene load_steps=12 format=4 uid="uid://dr86wvpm28008"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_ehub8"]
 [ext_resource type="Resource" uid="uid://ca2xshvg42k47" path="res://resources/mask/depth_2.tres" id="2_a3155"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_6hrmt"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="6_63mn5"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="7_uwtqg"]
+[ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/level_objects/alternate_platform.tscn" id="8_4tuy8"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_0e0mm"]
+[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="10_4k0du"]
+[ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="11_8yn5c"]
 
 [node name="BlockWand05Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -20,32 +24,50 @@ script = ExtResource("3_dpeb2")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAAAP3/AgAAAAAAAQABAP3/AgAAAAAAAQACAP3/AgAAAAAAAQADAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAIAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQAAAAAAAgAAAAAAAQD//wAAAgAAAAAAAQD+/wUACAAAAAAAAQD9/wUACAAAAAAAAQD7/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQACAP7/CQAAAAAAAQABAP7/CQAAAAAAAQAAAP7/CQAAAAAAAQD///7/CQAAAAAAAQD+//7/CQAAAAAAAQD9//7/CQAAAAAAAQD6//3/CQAAAAAAAQD7//3/CQAAAAAAAQD8//3/CQAAAAAAAQAJAP//BQAAAAAAAQD+////BQAAAAAAAQA=")
 tile_set = ExtResource("4_c7ev0")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAACAP3/BwAAAAAAAgD///v/BwAAAAAAAgD///z/BwAAAAAAAgD///r/BwAAAAAAAgD///n/BwAAAAAAAgD///j/BwAAAAAAAgD///f/BwAAAAAAAgD8/wAABwAAAAAAAgD8/wEABwAAAAAAAgD8/wIABwAAAAAAAgD8/wMABwAAAAAAAgD8/wQABwAAAAAAAgD8/wUABwAAAAAAAgD5//7/BwAAAAAAAgD5////BwAAAAAAAgD5//3/BwAAAAAAAgD9//3/BgAAAAAAAgD//wAABgAAAAAAAgD//wEABgAAAAAAAgD//wIABgAAAAAAAgD//wMABgAAAAAAAgD//wQABgAAAAAAAgD//wUABgAAAAAAAgA=")
 tile_set = ExtResource("4_c7ev0")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAACAP3/AAAFAAEAAAD///3/AAACAAQAAAD///z/AAAFAAIAAAD///v/AAAFAAMAAAD///r/AAAFAAIAAAADAAAAAAADAAEAAAAEAAAAAAADAAEAAAAFAAAAAAACAAEAAAAGAAAAAAACAAEAAAAHAAAAAAADAAEAAAAIAAAAAAACAAEAAAAAAP3/AAACAAEAAAABAP3/AAADAAEAAAAIAP//AAADAAAAAAAHAP//AAADAAAAAAAGAP//AAACAAAAAAAAAPz/AAADAAAAAAABAPz/AAACAAAAAAD8/wUAAAADAAMAAAD8/wQAAAACAAQAAAD8/wMAAAAFAAMAAAD8/wIAAAAFAAMAAAD8/wEAAAAFAAIAAAD5////AAAFAAMAAAD5//7/AAAFAAIAAAD//wUAAAADAAMAAAD//wQAAAAEAAQAAAD//wMAAAABAAMAAAD//wIAAAABAAIAAAD//wEAAAABAAMAAAD//wAAAAABAAEAAAD8/wAAAAAFAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAAAAAAAAAADAAEAAAABAAAAAAADAAEAAAACAAAAAAACAAEAAAACAP7/AAAFAAUAAAABAP7/AAACAAUAAAAAAP7/AAACAAUAAAD///7/AAACAAUAAAD+//7/AAACAAUAAAD9//7/AAABAAUAAAD8//3/AAACAAUAAAD7//3/AAACAAUAAAD6//3/AAACAAUAAAD5//3/AAAFAAQAAAD9//3/AAABAAQAAAD5/wAAAAACAAQAAAADAP//AAADAAAAAAAEAP//AAACAAAAAAACAP//AAADAAAAAAABAP//AAADAAAAAAAAAP//AAACAAAAAAD8////AAACAAAAAAD6////AAADAAAAAAD7////AAADAAAAAAA=")
 tile_set = ExtResource("4_c7ev0")
 
 [node name="Camera" parent="." instance=ExtResource("5_6hrmt")]
 
 [node name="WalkLoadRight" parent="." instance=ExtResource("6_63mn5")]
-position = Vector2(139, 16)
+position = Vector2(139, 0)
 
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
 scene_path = "res://scenes/reality/block_wand_04_reality.tscn"
 node_path = "WalkLoadLeft"
 
 [node name="Door" parent="." instance=ExtResource("7_uwtqg")]
-position = Vector2(0, 16)
+position = Vector2(32, -48)
 
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/block_wand_reality.tscn"
 node_path = "Door"
 
+[node name="AlternatePlatform" parent="." instance=ExtResource("8_4tuy8")]
+position = Vector2(-24, 40)
+
+[node name="AlternatePlatform2" parent="." instance=ExtResource("8_4tuy8")]
+position = Vector2(-40, 40)
+
+[node name="GemChest" parent="." instance=ExtResource("9_0e0mm")]
+position = Vector2(-72, 0)
+
+[node name="Pickup" parent="GemChest" index="1"]
+gem = ExtResource("10_4k0du")
+
+[node name="Body" parent="." instance=ExtResource("11_8yn5c")]
+position = Vector2(88, 1)
+
 [editable path="WalkLoadRight"]
 [editable path="Door"]
+[editable path="GemChest"]

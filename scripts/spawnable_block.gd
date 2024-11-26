@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends AnimatableBody2D
 
 @export var sprite: AnimatedSprite2D
 @export var moveable: BaseInteraction
