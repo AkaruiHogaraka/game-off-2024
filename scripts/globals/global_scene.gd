@@ -297,7 +297,7 @@ func save_nodes() -> void:
 	var save_nodes = get_tree().get_nodes_in_group("Save")
 	for node in save_nodes:
 		if not node.has_method("save_data"): 
-			push_warning("%s is marked to save but doesn't have a save function" % node)
+			push_warning("%s is marked to save but doesn't have a save function" % node.name)
 			continue
 		
 		var new_data = node.call("save_data")
@@ -320,7 +320,7 @@ func load_nodes() -> void:
 	var save_nodes = get_tree().get_nodes_in_group("Save")
 	for node in save_nodes:
 		if not node.has_method("load_data"):
-			push_warning("%s is marked to save but doesn't have a load function" % node)
+			push_warning("%s is marked to save but doesn't have a load function" % node.name)
 			continue
 		
 		for i in SaveData.size():

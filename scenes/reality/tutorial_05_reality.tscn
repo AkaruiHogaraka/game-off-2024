@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cmw8xu1j7h2k"]
+[gd_scene load_steps=17 format=4 uid="uid://cmw8xu1j7h2k"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_cwdp1"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_isi5p"]
@@ -7,6 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_of6s2"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="6_yojoo"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_q6ooh"]
+[ext_resource type="PackedScene" uid="uid://b0xsibskdisxr" path="res://prefabs/level_objects/moving_platform.tscn" id="8_7frb1"]
+[ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="9_dvump"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="10_uotbb"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="11_qmcmu"]
+[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="12_ma0hu"]
+[ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/level_objects/alternate_platform.tscn" id="13_afdcm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xg18k"]
+size = Vector2(62, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34iks"]
+size = Vector2(30, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk6rn"]
+size = Vector2(46, 20)
 
 [node name="Tutorial05Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -20,32 +35,108 @@ script = ExtResource("3_a5m6d")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAIAAMAAgAAAAAAAQAHAAMAAgAAAAAAAQAGAAMAAgAAAAAAAQAFAAMAAgAAAAAAAQAEAAMAAgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQABAP7/AgAAAAAAAQAAAP7/AgAAAAAAAQD9//7/AgAAAAAAAQD8//7/AgAAAAAAAQD5//7/AgAAAAAAAQD4//7/AgAAAAAAAQD3//7/AgAAAAAAAQD3////CQAAAAAAAQD4////CQAAAAAAAQD5////CQAAAAAAAQD8////CQAAAAAAAQD9////CQAAAAAAAQAAAP//CQAAAAAAAQABAP//CQAAAAAAAQACAP//CQAAAAAAAQADAP//CQAAAAAAAQD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD9/wEACgAAAAAAAQD8/wEACgAAAAAAAQADAAEAAgAAAAAAAQACAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQA=")
 tile_set = ExtResource("4_s4tsu")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAD8//7/BgAAAAAAAgD8/wIABgAAAAAAAgD8/wMABgAAAAAAAgD8/wQABgAAAAAAAgD8/wUABgAAAAAAAgAAAP7/BgAAAAAAAgAAAAEABgAAAAAAAgAAAAIABgAAAAAAAgAAAAMABgAAAAAAAgAAAAQABgAAAAAAAgAAAAUABgAAAAAAAgD9//7/BwAAAAAAAgD9/wIABwAAAAAAAgD9/wMABwAAAAAAAgD9/wQABwAAAAAAAgD9/wUABwAAAAAAAgD5//7/BwAAAAAAAgD5/wIABwAAAAAAAgD5/wMABwAAAAAAAgD5/wQABwAAAAAAAgD5/wUABwAAAAAAAgADAP7/BwAAAAAAAgADAAEABwAAAAAAAgADAAIABwAAAAAAAgD6/wUACAAAAAAAAQD7/wUACAAAAAAAAQD+/wUACAAAAAAAAQD//wUACAAAAAAAAQAJAAIABQAAAAAAAQD5/wEABwAAAAAAAgD8/wEABgAAAAAAAgD9/wEABwAAAAAAAgA=")
 tile_set = ExtResource("4_s4tsu")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAAMAAAADAAEAAAAHAAMAAAACAAEAAAAGAAMAAAACAAEAAAAFAAMAAAADAAEAAAAEAAMAAAADAAEAAAADAP7/AAAFAAEAAAACAP7/AAACAAEAAAABAP7/AAADAAEAAAAAAP7/AAABAAEAAAD9//7/AAAFAAEAAAD8//7/AAABAAEAAAD5//7/AAAFAAEAAAD4//7/AAADAAEAAAD3//7/AAACAAEAAAD3/wEAAAACAAEAAAD4/wEAAAADAAEAAAABAAEAAAACAAEAAAACAAEAAAADAAEAAAAAAAEAAAABAAEAAAD8/wEAAAABAAEAAAADAAEAAAAFAAEAAAD9/wEAAAAFAAEAAAD5/wEAAAAFAAEAAAADAP//AAAFAAUAAAD9////AAAFAAUAAAD5////AAAFAAUAAAAAAP//AAABAAUAAAD8////AAABAAUAAAACAP//AAACAAUAAAABAP//AAACAAUAAAD4////AAACAAUAAAD3////AAACAAUAAAADAAIAAAAFAAIAAAD9/wIAAAAFAAMAAAD9/wMAAAAFAAMAAAD9/wQAAAAFAAIAAAD9/wUAAAAFAAIAAAD5/wIAAAAFAAIAAAD5/wMAAAAFAAMAAAD5/wQAAAAFAAMAAAD5/wUAAAAFAAIAAAD8/wIAAAABAAMAAAD8/wMAAAABAAMAAAD8/wQAAAABAAIAAAD8/wUAAAABAAIAAAAAAAIAAAABAAIAAAAAAAMAAAABAAMAAAAAAAQAAAABAAIAAAAAAAUAAAABAAIAAAADAAMAAAACAAQAAAAEAAIAAAADAAAAAAACAP3/AAACAAAAAAD9//3/AAACAAAAAAD4//3/AAACAAAAAAD3//3/AAADAAAAAAD3/wAAAAADAAAAAAD4/wAAAAACAAAAAAAIAAIAAAADAAAAAAAHAAIAAAACAAAAAAAFAAIAAAACAAAAAAA=")
 tile_set = ExtResource("4_s4tsu")
 
 [node name="Camera" parent="." instance=ExtResource("5_of6s2")]
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("6_yojoo")]
-position = Vector2(-139, 16)
+position = Vector2(-139, -32)
 
 [node name="SceneConnection" parent="WalkLoadLeft" index="0"]
 scene_path = "res://scenes/reality/tutorial_06_reality.tscn"
 node_path = "WalkLoadRight"
 
+[node name="WalkLoadLeft2" parent="." instance=ExtResource("6_yojoo")]
+position = Vector2(-139, 16)
+
+[node name="SceneConnection" parent="WalkLoadLeft2" index="0"]
+scene_path = "res://scenes/reality/tutorial_06_reality.tscn"
+node_path = "WalkLoadRight2"
+
 [node name="WalkLoadRight" parent="." instance=ExtResource("7_q6ooh")]
-position = Vector2(139, 16)
+position = Vector2(139, 48)
 
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
 scene_path = "res://scenes/reality/tutorial_04_reality.tscn"
 node_path = "WalkLoadLeft"
 
+[node name="MovingPlatform" parent="." instance=ExtResource("8_7frb1")]
+position = Vector2(104, -16)
+
+[node name="CollisionShape2D" parent="MovingPlatform/Platform/StaticBody2D" index="0"]
+one_way_collision = true
+
+[node name="Area2D" parent="MovingPlatform/Platform" index="2"]
+collision_mask = 129
+
+[node name="Position1" parent="MovingPlatform" index="3"]
+position = Vector2(0, 0)
+
+[node name="Position2" parent="MovingPlatform" index="4"]
+position = Vector2(0, -35)
+
+[node name="Body" parent="." instance=ExtResource("9_dvump")]
+position = Vector2(68, 48)
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("10_uotbb")]
+visible = false
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAABAAEAAAADAAMAAAABAAAAAAADAAMAAAABAP//AAADAAMAAAACAP//AAADAAMAAAACAAAAAAADAAMAAAACAAEAAAADAAMAAAADAAEAAAAFAAMAAAADAAAAAAAFAAIAAAADAP//AAAFAAMAAAAAAAEAAAABAAIAAAAAAAAAAAABAAMAAAAAAP//AAABAAIAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(32, 4)
+shape = SubResource("RectangleShape2D_xg18k")
+
+[node name="HiddenArea2" parent="." groups=["Save"] instance=ExtResource("10_uotbb")]
+visible = false
+
+[node name="TileMapLayer" parent="HiddenArea2" index="0"]
+tile_map_data = PackedByteArray("AAD8/wEAAAABAAIAAAD8/wAAAAABAAMAAAD8////AAABAAIAAAD9/wEAAAAFAAMAAAD9/wAAAAAFAAIAAAD9////AAAFAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea2/Area2D" index="0"]
+position = Vector2(-48, 4)
+shape = SubResource("RectangleShape2D_34iks")
+
+[node name="HiddenArea3" parent="." groups=["Save"] instance=ExtResource("10_uotbb")]
+visible = false
+
+[node name="TileMapLayer" parent="HiddenArea3" index="0"]
+tile_map_data = PackedByteArray("AAD5/wEAAAAFAAMAAAD5/wAAAAAFAAMAAAD5////AAAFAAIAAAD4/wEAAAADAAMAAAD4/wAAAAADAAMAAAD4////AAADAAMAAAD3////AAADAAMAAAD3/wAAAAADAAMAAAD3/wEAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea3/Area2D" index="0"]
+position = Vector2(-120, 4)
+shape = SubResource("RectangleShape2D_yk6rn")
+
+[node name="GemChest" parent="." instance=ExtResource("11_qmcmu")]
+position = Vector2(-48, 16)
+
+[node name="Pickup" parent="GemChest" index="1"]
+gem = ExtResource("12_ma0hu")
+
+[node name="AlternatePlatform" parent="." instance=ExtResource("13_afdcm")]
+position = Vector2(104, 24)
+
+[node name="AlternatePlatform2" parent="." instance=ExtResource("13_afdcm")]
+position = Vector2(104, 8)
+default_on = false
+
 [editable path="WalkLoadLeft"]
+[editable path="WalkLoadLeft2"]
 [editable path="WalkLoadRight"]
+[editable path="MovingPlatform"]
+[editable path="HiddenArea"]
+[editable path="HiddenArea2"]
+[editable path="HiddenArea3"]
+[editable path="GemChest"]
