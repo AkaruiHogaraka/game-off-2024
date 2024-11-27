@@ -28,6 +28,16 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAACAPz/BwAAAAAAAgACAP3/BwAAAAAAAgACAP7/BwAAAAAAAgACAP//BwAAAAAAAgAAAPv/BwAAAAAAAgAAAPr/BwAAAAAAAgAAAPn/BwAAAAAAAgAAAPj/BwAAAAAAAgAAAPf/BwAAAAAAAgA=")
 tile_set = ExtResource("4_70gef")
 
+[node name="LeftGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAFAP//AAAAAAIAAAAHAP//AAAAAAEAAAA=")
+tile_set = ExtResource("4_70gef")
+
+[node name="RightGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAFAP//AAAGAAQAAAAHAP//AAAGAAEAAAA=")
+tile_set = ExtResource("4_70gef")
+
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAACAPz/AAAFAAEAAAAIAAAAAAACAAEAAAAHAAAAAAACAAEAAAAGAAAAAAACAAEAAAAFAAAAAAACAAEAAAAEAAAAAAACAAEAAAADAAAAAAACAAEAAAACAP//AAAFAAIAAAACAP7/AAAFAAIAAAACAP3/AAAFAAIAAAAAAPv/AAAFAAIAAAAAAPr/AAAFAAIAAAAAAPn/AAAFAAIAAAABAPz/AAACAAEAAAACAAAAAAACAAQAAAAAAPz/AAACAAQAAAABAPv/AAADAAAAAAACAPv/AAACAAAAAAAIAP//AAADAAAAAAAHAP//AAADAAAAAAAGAP//AAACAAAAAAA=")
