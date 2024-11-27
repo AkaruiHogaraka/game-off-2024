@@ -20,28 +20,30 @@ script = ExtResource("3_xpn5r")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAIAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQA=")
 tile_set = ExtResource("4_70gef")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAACAPz/BwAAAAAAAgACAP3/BwAAAAAAAgACAP7/BwAAAAAAAgACAP//BwAAAAAAAgAAAPv/BwAAAAAAAgAAAPr/BwAAAAAAAgAAAPn/BwAAAAAAAgAAAPj/BwAAAAAAAgAAAPf/BwAAAAAAAgA=")
 tile_set = ExtResource("4_70gef")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAACAPz/AAAFAAEAAAAIAAAAAAACAAEAAAAHAAAAAAACAAEAAAAGAAAAAAACAAEAAAAFAAAAAAACAAEAAAAEAAAAAAACAAEAAAADAAAAAAACAAEAAAACAP//AAAFAAIAAAACAP7/AAAFAAIAAAACAP3/AAAFAAIAAAAAAPv/AAAFAAIAAAAAAPr/AAAFAAIAAAAAAPn/AAAFAAIAAAABAPz/AAACAAEAAAACAAAAAAACAAQAAAAAAPz/AAACAAQAAAABAPv/AAADAAAAAAACAPv/AAACAAAAAAAIAP//AAADAAAAAAAHAP//AAADAAAAAAAGAP//AAACAAAAAAA=")
 tile_set = ExtResource("4_70gef")
 
 [node name="Camera" parent="." instance=ExtResource("5_3thc0")]
 
 [node name="WalkLoadRight" parent="." instance=ExtResource("6_0fk6i")]
-position = Vector2(139, 16)
+position = Vector2(139, 0)
 
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
 scene_path = "res://scenes/reality/lantern_02_reality.tscn"
 node_path = "WalkLoadLeft"
 
 [node name="Door" parent="." instance=ExtResource("7_yp2ms")]
-position = Vector2(0, 16)
+position = Vector2(64, 0)
 
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/end_reality.tscn"

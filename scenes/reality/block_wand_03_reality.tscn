@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://d27ivqiwdfjbk"]
+[gd_scene load_steps=9 format=4 uid="uid://d27ivqiwdfjbk"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_f1g8s"]
 [ext_resource type="Resource" uid="uid://ca2xshvg42k47" path="res://resources/mask/depth_2.tres" id="2_tv8b2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_q7dmq"]
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="6_ah0jk"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_dqa4k"]
+[ext_resource type="PackedScene" uid="uid://csc7lw3jpec0s" path="res://prefabs/level_objects/button_activated_platform.tscn" id="8_r8aj7"]
 
 [node name="BlockWand03Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -20,21 +21,23 @@ script = ExtResource("3_00ob4")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD+/wQACgAAAAAAAQAAAAQACgAAAAAAAQACAAQACgAAAAAAAQAEAAQACgAAAAAAAQD8/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQD9/wUACAAAAAAAAQD+/wUACAAAAAAAAQD//wUACAAAAAAAAQAAAAUACAAAAAAAAQABAAUACAAAAAAAAQACAAUACAAAAAAAAQADAAUACAAAAAAAAQAEAAUACAAAAAAAAQAFAAUACAAAAAAAAQD4////AgAAAAAAAQD3////AgAAAAAAAQD3//3/CQAAAAAAAQD4//3/CQAAAAAAAQD5//3/CQAAAAAAAQD5//z/BwAAAAAAAgD5//v/BwAAAAAAAgD5//r/BwAAAAAAAgA=")
 tile_set = ExtResource("4_v205w")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAD8/wEABwAAAAAAAgD8/wIABwAAAAAAAgAGAAEABgAAAAAAAgAGAAIABgAAAAAAAgAGAAMABgAAAAAAAgAGAAQABgAAAAAAAgAGAAUABgAAAAAAAgD8/wMABwAAAAAAAgD8/wQABwAAAAAAAgD8/wUABwAAAAAAAgD+/wQABgAAAAAAAgD+/wUABgAAAAAAAgAAAAQABgAAAAAAAgAAAAUABgAAAAAAAgACAAQABgAAAAAAAgACAAUABgAAAAAAAgAEAAQABgAAAAAAAgAEAAUABgAAAAAAAgD4/wAABwAAAAAAAgD4////BwAAAAAAAgA=")
 tile_set = ExtResource("4_v205w")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAD8/wEAAAAFAAEAAAAGAAEAAAABAAEAAAAHAAEAAAACAAEAAAAIAAEAAAACAAEAAAD7/wEAAAACAAEAAAD6/wEAAAACAAEAAAD5/wEAAAACAAEAAAD+/wQAAAACAAEAAAAAAAQAAAACAAEAAAACAAQAAAACAAEAAAAEAAQAAAACAAEAAAD+/wUAAAADAAMAAAAAAAUAAAADAAMAAAACAAUAAAADAAMAAAAEAAUAAAADAAMAAAAGAAQAAAAEAAQAAAD8/wQAAAACAAQAAAD8/wMAAAAFAAIAAAD8/wIAAAAFAAIAAAAGAAMAAAABAAIAAAAGAAIAAAABAAIAAAD5/wAAAAACAAAAAAAIAAAAAAADAAAAAAAHAAAAAAACAAAAAAAEAAMAAAACAAAAAAACAAMAAAADAAAAAAD8/wUAAAADAAMAAAAGAAUAAAADAAMAAAD4////AAAFAAEAAAD3////AAACAAEAAAD4/wAAAAAFAAIAAAD4/wEAAAACAAQAAAD3//7/AAADAAAAAAD4//7/AAACAAAAAAD5//3/AAAFAAUAAAD5//z/AAAFAAIAAAD5//v/AAAFAAMAAAD5//r/AAAFAAIAAAD4//3/AAACAAUAAAD3//3/AAACAAUAAAA=")
 tile_set = ExtResource("4_v205w")
 
 [node name="Camera" parent="." instance=ExtResource("5_q7dmq")]
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("6_ah0jk")]
-position = Vector2(-139, 16)
+position = Vector2(-139, -16)
 
 [node name="SceneConnection" parent="WalkLoadLeft" index="0"]
 scene_path = "res://scenes/reality/block_wand_04_reality.tscn"
@@ -47,5 +50,33 @@ position = Vector2(139, 16)
 scene_path = "res://scenes/reality/block_wand_00_reality.tscn"
 node_path = "WalkLoadLeft"
 
+[node name="ButtonPlatform" parent="." instance=ExtResource("8_r8aj7")]
+position = Vector2(-24, 24)
+
+[node name="Button" parent="ButtonPlatform" index="3"]
+position = Vector2(-64, -16)
+
+[node name="ButtonPlatform2" parent="." instance=ExtResource("8_r8aj7")]
+position = Vector2(8, 24)
+
+[node name="Button" parent="ButtonPlatform2" index="3"]
+position = Vector2(-72, -16)
+
+[node name="ButtonPlatform3" parent="." instance=ExtResource("8_r8aj7")]
+position = Vector2(40, 24)
+
+[node name="Button" parent="ButtonPlatform3" index="3"]
+position = Vector2(-64, 32)
+
+[node name="ButtonPlatform4" parent="." instance=ExtResource("8_r8aj7")]
+position = Vector2(72, 24)
+
+[node name="Button" parent="ButtonPlatform4" index="3"]
+position = Vector2(-64, 32)
+
 [editable path="WalkLoadLeft"]
 [editable path="WalkLoadRight"]
+[editable path="ButtonPlatform"]
+[editable path="ButtonPlatform2"]
+[editable path="ButtonPlatform3"]
+[editable path="ButtonPlatform4"]

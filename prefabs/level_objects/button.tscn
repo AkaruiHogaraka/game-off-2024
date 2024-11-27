@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://s66w8sr6lbkb"]
+
+[ext_resource type="Script" path="res://scripts/button.gd" id="1_2am30"]
+[ext_resource type="Texture2D" uid="uid://cycdsh34d85hy" path="res://sprites/button.png" id="2_ps24h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48q1x"]
+size = Vector2(10, 3)
+
+[node name="Button" type="Node2D" node_paths=PackedStringArray("sprite", "area")]
+use_parent_material = true
+script = ExtResource("1_2am30")
+sprite = NodePath("Sprite")
+area = NodePath("Area2D")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("2_ps24h")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 132
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_48q1x")
+
+[node name="Audio" type="Node" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

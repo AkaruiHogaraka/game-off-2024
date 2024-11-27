@@ -1,16 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://csc7lw3jpec0s"]
+[gd_scene load_steps=6 format=3 uid="uid://csc7lw3jpec0s"]
 
 [ext_resource type="Script" path="res://scripts/button_activated_object.gd" id="1_s4vig"]
 [ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="2_xi1au"]
-[ext_resource type="Script" path="res://scripts/button.gd" id="3_43wrj"]
 [ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="3_biysq"]
-[ext_resource type="Texture2D" uid="uid://cycdsh34d85hy" path="res://sprites/button.png" id="4_7jj3u"]
+[ext_resource type="PackedScene" uid="uid://s66w8sr6lbkb" path="res://prefabs/level_objects/button.tscn" id="4_qba4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gix7a"]
 size = Vector2(16, 4)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_48q1x"]
-size = Vector2(12, 3)
 
 [node name="ButtonPlatform" type="Node2D" node_paths=PackedStringArray("collision", "on_sprite", "off_sprite", "buttons")]
 use_parent_material = true
@@ -37,25 +33,4 @@ position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_gix7a")
 one_way_collision = true
 
-[node name="Button" type="Node2D" parent="." node_paths=PackedStringArray("sprite", "area")]
-use_parent_material = true
-script = ExtResource("3_43wrj")
-sprite = NodePath("Sprite")
-area = NodePath("Area2D")
-
-[node name="Sprite" type="Sprite2D" parent="Button"]
-use_parent_material = true
-texture = ExtResource("4_7jj3u")
-
-[node name="Area2D" type="Area2D" parent="Button"]
-collision_layer = 0
-collision_mask = 132
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D"]
-position = Vector2(0, 6.5)
-shape = SubResource("RectangleShape2D_48q1x")
-
-[node name="Audio" type="Node" parent="Button"]
-
-[connection signal="body_entered" from="Button/Area2D" to="Button" method="_on_body_entered"]
-[connection signal="body_exited" from="Button/Area2D" to="Button" method="_on_body_exited"]
+[node name="Button" parent="." instance=ExtResource("4_qba4w")]

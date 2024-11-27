@@ -143,7 +143,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="BackBufferCopy2" type="BackBufferCopy" parent="CombinedViewportContainer/CombinedViewprot/Combined/Control"]
-modulate = Color(1, 1, 1, 0.105882)
+self_modulate = Color(1, 1, 1, 0)
 copy_mode = 2
 
 [node name="RealityDisplay" type="ColorRect" parent="CombinedViewportContainer/CombinedViewprot/Combined/Control/BackBufferCopy2"]

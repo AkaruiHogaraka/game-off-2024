@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkccp6xocpl0w"]
+
+[ext_resource type="Script" path="res://scripts/button_activated_door.gd" id="1_ej6u4"]
+[ext_resource type="Texture2D" uid="uid://bx0hxrikh8vwb" path="res://sprites/door_close.png" id="2_u23q5"]
+[ext_resource type="Texture2D" uid="uid://dape4xdhwuwrw" path="res://sprites/door_open.png" id="3_52cqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gix7a"]
+size = Vector2(3, 24)
+
+[node name="ButtonDoor" type="Node2D" node_paths=PackedStringArray("collision", "on_sprite", "off_sprite") groups=["Save"]]
+use_parent_material = true
+script = ExtResource("1_ej6u4")
+collision = NodePath("StaticBody2D/CollisionShape2D")
+on_sprite = NodePath("OnSprite")
+off_sprite = NodePath("OffSprite")
+
+[node name="OnSprite" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -16)
+texture = ExtResource("2_u23q5")
+
+[node name="OffSprite" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -16)
+texture = ExtResource("3_52cqk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -12)
+shape = SubResource("RectangleShape2D_gix7a")

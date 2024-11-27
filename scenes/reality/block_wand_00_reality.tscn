@@ -52,7 +52,7 @@ node_path = "WalkLoadRight"
 position = Vector2(139, 16)
 
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
-scene_path = "res://scenes/reality/block_wand_01_reality.tscn"
+scene_path = "res://scenes/reality/block_wand_02_reality.tscn"
 node_path = "WalkLoadLeft"
 
 [editable path="Door"]

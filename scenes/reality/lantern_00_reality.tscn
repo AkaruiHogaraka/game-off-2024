@@ -25,34 +25,37 @@ script = ExtResource("3_1311h")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD///7/AgAAAAAAAQD+//7/AgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAAUACAAAAAAAAQADAAUACAAAAAAAAQD9/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD4////AgAAAAAAAQD3////AgAAAAAAAQD5////AgAAAAAAAQA=")
 tile_set = ExtResource("4_6juke")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAAQABgAAAAAAAgAEAAMABgAAAAAAAgAEAAIABgAAAAAAAgAEAAEABgAAAAAAAgAEAAAABgAAAAAAAgAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAEAP3/BgAAAAAAAgAEAPz/BgAAAAAAAgAEAPv/BgAAAAAAAgAEAPr/BgAAAAAAAgABAP7/BwAAAAAAAgABAP//BwAAAAAAAgABAAAABwAAAAAAAgABAAEABwAAAAAAAgABAAIABwAAAAAAAgABAAMABwAAAAAAAgABAAQABwAAAAAAAgABAAUABwAAAAAAAgAEAAUABgAAAAAAAgD+//7/BgAAAAAAAgD+////BgAAAAAAAgD5////BwAAAAAAAgA=")
 tile_set = ExtResource("4_6juke")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAABAP7/AAAFAAEAAAD5////AAAFAAEAAAD+//7/AAABAAEAAAD+/wAAAAAEAAQAAAD5/wAAAAACAAQAAAABAAQAAAACAAQAAAAEAAQAAAAEAAQAAAAEAAUAAAADAAMAAAABAAUAAAADAAMAAAABAAMAAAAFAAMAAAABAAIAAAAFAAIAAAABAAEAAAAFAAMAAAABAAAAAAAFAAIAAAABAP//AAAFAAMAAAAEAAMAAAABAAMAAAAEAAIAAAABAAMAAAAEAAEAAAABAAIAAAAEAAAAAAABAAMAAAAEAP//AAABAAIAAAAEAP7/AAABAAIAAAAEAP3/AAABAAMAAAAEAPz/AAABAAMAAAAEAPv/AAABAAIAAAAEAPr/AAABAAIAAAD+////AAABAAMAAAD9/wAAAAACAAEAAAD8/wAAAAACAAEAAAD7/wAAAAACAAEAAAD6/wAAAAACAAEAAAD4////AAADAAEAAAD3////AAACAAEAAAAAAP7/AAACAAEAAAD///7/AAADAAEAAAD6////AAADAAAAAAD7////AAACAAAAAAD4//7/AAACAAAAAAD3//7/AAADAAAAAAD///3/AAADAAAAAAAAAP3/AAADAAAAAAABAP3/AAACAAAAAAD+//3/AAACAAAAAAD9////AAACAAAAAAA=")
 tile_set = ExtResource("4_6juke")
 
 [node name="Camera" parent="." instance=ExtResource("5_s3i4f")]
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("6_ifnws")]
-position = Vector2(-139, 16)
+position = Vector2(-139, -16)
 
 [node name="SceneConnection" parent="WalkLoadLeft" index="0"]
 scene_path = "res://scenes/reality/lantern_01_reality.tscn"
 node_path = "WalkLoadRight"
 
 [node name="Door" parent="." instance=ExtResource("7_v6vdc")]
-position = Vector2(0, 16)
+position = Vector2(0, -32)
 
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/block_wand_02_reality.tscn"
 node_path = "Door"
 
 [node name="LanternProgress" parent="." instance=ExtResource("8_8vj4i")]
+position = Vector2(0, -48)
 
 [node name="Dialogue" parent="LanternProgress" index="0" node_paths=PackedStringArray("return_marker", "area")]
 script = ExtResource("9_blxpc")
