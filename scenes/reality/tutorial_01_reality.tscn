@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cl4d4xy1m4xlh"]
+[gd_scene load_steps=18 format=4 uid="uid://cl4d4xy1m4xlh"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_ge8jf"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_nnrvd"]
@@ -12,6 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="8_xmmfa"]
 [ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="10_75fwq"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="11_4g0vb"]
+[ext_resource type="PackedScene" uid="uid://csc7lw3jpec0s" path="res://prefabs/level_objects/button_activated_platform.tscn" id="13_hogey"]
+[ext_resource type="PackedScene" uid="uid://s66w8sr6lbkb" path="res://prefabs/level_objects/button.tscn" id="14_fug2u"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="14_lck8v"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="15_w3umw"]
+[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="16_v3td4"]
 
 [node name="Tutorial01Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -24,16 +29,16 @@ mask_settings = ExtResource("2_nnrvd")
 script = ExtResource("2_vasy4")
 
 [node name="Floor" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAIAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAEAAIAAgAAAAAAAQADAAIAAgAAAAAAAQACAAIAAgAAAAAAAQABAAIAAgAAAAAAAQAAAAIAAgAAAAAAAQD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD//wMAAgAAAAAAAQD+/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQAJAAEABQAAAAAAAQD//wEABQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAIAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQADAAIAAgAAAAAAAQACAAIAAgAAAAAAAQABAAIAAgAAAAAAAQAAAAIAAgAAAAAAAQD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD//wMAAgAAAAAAAQD+/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQAJAAEABQAAAAAAAQD//wEABQAAAAAAAQAEAAMAAgAAAAAAAQAEAAEABQAAAAAAAQA=")
 tile_set = ExtResource("3_qtvv1")
 
 [node name="Walls" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAIABgAAAAAAAgD8/wIABwAAAAAAAgD8/wEABwAAAAAAAgD8/wAABwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAAAAIABgAAAAAAAgD8/wIABwAAAAAAAgD8/wEABwAAAAAAAgD8/wAABwAAAAAAAgAFAAIABgAAAAAAAgADAAIABwAAAAAAAgA=")
 tile_set = ExtResource("3_qtvv1")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAAAAIAAAABAAEAAAD8/wAAAAAFAAEAAAAAAAMAAAAEAAQAAAD8/wMAAAACAAQAAAD8/wIAAAAFAAIAAAD8/wEAAAAFAAIAAAAIAAIAAAADAAEAAAAHAAIAAAACAAEAAAAGAAIAAAACAAEAAAAFAAIAAAADAAEAAAAEAAIAAAACAAEAAAADAAIAAAADAAEAAAACAAIAAAADAAEAAAABAAIAAAACAAEAAAD//wMAAAACAAEAAAD+/wMAAAACAAEAAAD9/wMAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAADAAEAAAD5/wAAAAACAAEAAAD4/wAAAAACAAEAAAD3/wAAAAADAAEAAAD//wIAAAADAAAAAAD+/wIAAAADAAAAAAD9/wIAAAADAAAAAAABAAEAAAADAAAAAAAAAAEAAAACAAAAAAAHAAEAAAADAAAAAAAIAAEAAAADAAAAAAAGAAEAAAACAAAAAAD6////AAACAAAAAAD5////AAADAAAAAAD4////AAADAAAAAAD3////AAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAIAAAABAAEAAAD8/wAAAAAFAAEAAAAAAAMAAAAEAAQAAAD8/wMAAAACAAQAAAD8/wIAAAAFAAIAAAD8/wEAAAAFAAIAAAAIAAIAAAADAAEAAAAHAAIAAAACAAEAAAAGAAIAAAACAAEAAAACAAIAAAADAAEAAAABAAIAAAACAAEAAAD//wMAAAACAAEAAAD+/wMAAAACAAEAAAD9/wMAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAADAAEAAAD5/wAAAAACAAEAAAD4/wAAAAACAAEAAAD3/wAAAAADAAEAAAD//wIAAAADAAAAAAD+/wIAAAADAAAAAAD9/wIAAAADAAAAAAABAAEAAAADAAAAAAAAAAEAAAACAAAAAAAHAAEAAAADAAAAAAAIAAEAAAADAAAAAAAGAAEAAAACAAAAAAD6////AAACAAAAAAD5////AAADAAAAAAD4////AAADAAAAAAD3////AAADAAAAAAADAAIAAAAFAAEAAAAFAAIAAAABAAEAAAADAAMAAAACAAQAAAAFAAMAAAAEAAQAAAAEAAMAAAADAAEAAAA=")
 tile_set = ExtResource("3_qtvv1")
 
 [node name="Camera" parent="." instance=ExtResource("4_27ykw")]
@@ -101,12 +106,39 @@ position = Vector2(48, 32)
 [node name="Moveable" parent="Body" index="1" groups=["Save"]]
 
 [node name="Body2" parent="." groups=["Save"] instance=ExtResource("11_4g0vb")]
-position = Vector2(101, 32)
+position = Vector2(96, 32)
 
 [node name="Moveable" parent="Body2" index="1" groups=["Save"]]
+
+[node name="ButtonPlatform" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("13_hogey")]
+position = Vector2(72, 40)
+all_pressed = false
+buttons = [NodePath("Button"), NodePath("Button2")]
+
+[node name="HiddenArea" parent="ButtonPlatform/StaticBody2D/CollisionShape2D" index="0" instance=ExtResource("14_lck8v")]
+visible = false
+position = Vector2(-8, -2)
+
+[node name="TileMapLayer" parent="ButtonPlatform/StaticBody2D/CollisionShape2D/HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAADAAEAAAD//wAAAAACAAEAAAABAAAAAAADAAEAAAAAAAEAAAADAAMAAAD//wEAAAADAAMAAAABAAEAAAADAAMAAAA=")
+
+[node name="Button" parent="ButtonPlatform" index="3"]
+position = Vector2(24, -16)
+
+[node name="Button2" parent="ButtonPlatform" instance=ExtResource("14_fug2u")]
+position = Vector2(-24, -16)
+
+[node name="GemChest" parent="." instance=ExtResource("15_w3umw")]
+position = Vector2(72, 48)
+
+[node name="Pickup" parent="GemChest" index="1"]
+gem = ExtResource("16_v3td4")
 
 [editable path="DisableTutorialTrigger"]
 [editable path="WalkLoadRight"]
 [editable path="WalkLoadLeft"]
 [editable path="Body"]
 [editable path="Body2"]
+[editable path="ButtonPlatform"]
+[editable path="ButtonPlatform/StaticBody2D/CollisionShape2D/HiddenArea"]
+[editable path="GemChest"]

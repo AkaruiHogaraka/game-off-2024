@@ -20,7 +20,7 @@ script = ExtResource("3_1x5ob")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAgAAAAAAAQD4/wEAAgAAAAAAAQD5/wEAAgAAAAAAAQD6/wEAAgAAAAAAAQD7/wEAAgAAAAAAAQD8/wEAAgAAAAAAAQD9/wEAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD3/wAAAgAAAAAAAQAIAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQD7/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQA=")
 tile_set = ExtResource("4_4pd8j")
 
 [node name="Walls" type="TileMapLayer" parent="."]
@@ -29,19 +29,20 @@ tile_set = ExtResource("4_4pd8j")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAAAAAAADAAEAAAAHAAAAAAADAAEAAAAGAAAAAAACAAEAAAAFAAAAAAADAAEAAAAEAAAAAAADAAEAAAADAAAAAAACAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAAAAAAAAAACAAEAAAD//wAAAAACAAEAAAD+/wAAAAACAAEAAAD9/wAAAAADAAEAAAD8/wAAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAACAAEAAAD3/wAAAAADAAEAAAAIAP//AAADAAAAAAAHAP//AAADAAAAAAD3////AAADAAAAAAD4////AAADAAAAAAD5////AAADAAAAAAD6////AAACAAAAAAAGAP//AAACAAAAAAD/////AAADAAAAAAAAAP//AAADAAAAAAABAP//AAACAAAAAAD9////AAACAAAAAAD+////AAACAAAAAAA=")
 tile_set = ExtResource("4_4pd8j")
 
 [node name="Camera" parent="." instance=ExtResource("5_yewwo")]
 
 [node name="WalkLoadLeft" parent="." instance=ExtResource("6_5wv4n")]
-position = Vector2(-139, 16)
+position = Vector2(-139, 0)
 
 [node name="SceneConnection" parent="WalkLoadLeft" index="0"]
 scene_path = "res://scenes/reality/lantern_03_reality.tscn"
 node_path = "WalkLoadRight"
 
 [node name="WalkLoadRight" parent="." instance=ExtResource("7_cm5x3")]
-position = Vector2(139, 16)
+position = Vector2(139, 0)
 
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
 scene_path = "res://scenes/reality/lantern_01_reality.tscn"

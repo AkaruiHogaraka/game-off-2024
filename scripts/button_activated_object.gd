@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 	off_sprite.set_visible(_is_buttons_pressed() if not turn_on else not _is_buttons_pressed())
 	on_sprite.set_visible(not _is_buttons_pressed() if not turn_on else _is_buttons_pressed())
 	collision.set_disabled(_is_buttons_pressed() if not turn_on else not _is_buttons_pressed())
+	collision.set_visible(not _is_buttons_pressed() if not turn_on else _is_buttons_pressed())
 
 func _is_buttons_pressed() -> bool:
 	for button in buttons:

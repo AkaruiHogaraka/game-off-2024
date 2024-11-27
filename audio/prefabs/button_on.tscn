@@ -5,6 +5,7 @@
 
 [node name="ButtonPress" type="AudioStreamPlayer"]
 stream = ExtResource("1_svara")
+volume_db = 5.0
 bus = &"SFX"
 script = ExtResource("2_i1rsd")
 max = 1.1
