@@ -73,10 +73,13 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 			GlobalReference.Player._interaction_object._let_go_interaction(true)
 	
 	await get_tree().create_timer(0.3).timeout
-	internal_scene_change_cooldown = false
 	old_scene.queue_free()
 	CurrentScene = new_scene
 	transition.queue_free()
+	
+	await get_tree().physics_frame
+	internal_scene_change_cooldown = false
+	
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	GlobalReference.Player._is_currently_interacting = false
 	GlobalReference.Player.set_speed_multiplier(1.0)
@@ -174,10 +177,11 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	remove_nodes()
 	if reality and not initial_setup: GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
-	internal_scene_change_cooldown = false
-	
 	if old_scene != null: old_scene.queue_free()
 	temp_clone.queue_free()
+	
+	await get_tree().physics_frame
+	internal_scene_change_cooldown = false
 
 func soft_respawn(position: Vector2) -> void:
 	if is_soft_respawning: return
@@ -285,12 +289,15 @@ func last_door_respawn(pos, scene_path) -> void:
 			GlobalReference.Player._interaction_object._let_go_interaction(true)
 	
 	await get_tree().create_timer(0.3).timeout
-	internal_scene_change_cooldown = false
 	is_respawning = false
 	is_soft_respawning = false
 	old_scene.queue_free()
 	CurrentScene = new_scene
 	transition.queue_free()
+	
+	await get_tree().physics_frame
+	internal_scene_change_cooldown = false
+	
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 
 func save_nodes() -> void:

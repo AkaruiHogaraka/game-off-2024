@@ -56,7 +56,7 @@ node_path = "WalkLoadRight"
 
 [node name="Camera" parent="." instance=ExtResource("6_40x43")]
 
-[node name="Moveable" parent="." instance=ExtResource("7_oaneu")]
+[node name="Moveable" parent="." groups=["Save"] instance=ExtResource("7_oaneu")]
 position = Vector2(59, 32)
 
 [node name="Moveable" parent="Moveable" index="1" groups=["Save"]]

@@ -119,7 +119,7 @@ position = Vector2(8, 64)
 [node name="Pickup" parent="ItemChest" index="1"]
 item_path = "res://resources/items/block_wand.tscn"
 
-[node name="Body" parent="." instance=ExtResource("9_jy6jp")]
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("9_jy6jp")]
 position = Vector2(133, 32)
 
 [node name="Door" parent="." instance=ExtResource("12_gl2bx")]

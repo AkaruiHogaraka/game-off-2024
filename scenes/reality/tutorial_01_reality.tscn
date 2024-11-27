@@ -95,12 +95,12 @@ position = Vector2(-139, 0)
 scene_path = "res://scenes/reality/tutorial_02_reality.tscn"
 node_path = "WalkLoadRight"
 
-[node name="Body" parent="." instance=ExtResource("11_4g0vb")]
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("11_4g0vb")]
 position = Vector2(48, 32)
 
 [node name="Moveable" parent="Body" index="1" groups=["Save"]]
 
-[node name="Body2" parent="." instance=ExtResource("11_4g0vb")]
+[node name="Body2" parent="." groups=["Save"] instance=ExtResource("11_4g0vb")]
 position = Vector2(101, 32)
 
 [node name="Moveable" parent="Body2" index="1" groups=["Save"]]

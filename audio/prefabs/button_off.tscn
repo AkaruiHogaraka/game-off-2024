@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://0nj1r7d20bo2"]
+
+[ext_resource type="AudioStream" uid="uid://b5f7hw7gj3swj" path="res://audio/samples/sfx/button_off.wav" id="1_4inc6"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_wq8le"]
+
+[node name="ButtonUnpress" type="AudioStreamPlayer"]
+stream = ExtResource("1_4inc6")
+bus = &"SFX"
+script = ExtResource("2_wq8le")
+max = 1.1
+min = 0.9

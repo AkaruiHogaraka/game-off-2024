@@ -14,12 +14,14 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if activated and not area.has_overlapping_bodies():
-		#GlobalAudio.play_sfx(deactivated_sfx)
+		if not GlobalScene.internal_scene_change_cooldown:
+			GlobalAudio.play_sfx(deactivated_sfx)
 		activated = false
 		sprite.set_visible(true)
 
 func _on_body_entered(body: Node2D) -> void:
 	if not activated:
-		#GlobalAudio.play_sfx(activated_sfx)
+		if not GlobalScene.internal_scene_change_cooldown:
+			GlobalAudio.play_sfx(activated_sfx)
 		activated = true
 		sprite.set_visible(false)

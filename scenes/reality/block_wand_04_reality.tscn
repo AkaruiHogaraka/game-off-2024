@@ -69,7 +69,7 @@ position = Vector2(-168, 40)
 [node name="Button4" parent="ButtonDoor" instance=ExtResource("9_d3pht")]
 position = Vector2(-232, 40)
 
-[node name="Body" parent="." instance=ExtResource("10_ip520")]
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("10_ip520")]
 position = Vector2(-123, 32)
 
 [editable path="WalkLoadLeft"]

@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://s66w8sr6lbkb"]
+[gd_scene load_steps=6 format=3 uid="uid://s66w8sr6lbkb"]
 
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_2am30"]
 [ext_resource type="Texture2D" uid="uid://cycdsh34d85hy" path="res://sprites/button.png" id="2_ps24h"]
+[ext_resource type="PackedScene" uid="uid://3y0ihyirlov5" path="res://audio/prefabs/button_on.tscn" id="3_1fifa"]
+[ext_resource type="PackedScene" uid="uid://0nj1r7d20bo2" path="res://audio/prefabs/button_off.tscn" id="4_mobv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48q1x"]
 size = Vector2(10, 3)
 
-[node name="Button" type="Node2D" node_paths=PackedStringArray("sprite", "area")]
+[node name="Button" type="Node2D" node_paths=PackedStringArray("sprite", "area", "activated_sfx", "deactivated_sfx")]
 use_parent_material = true
 script = ExtResource("1_2am30")
 sprite = NodePath("Sprite")
 area = NodePath("Area2D")
+activated_sfx = NodePath("Audio/ButtonPress")
+deactivated_sfx = NodePath("Audio/ButtonUnpress")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -25,6 +29,10 @@ position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_48q1x")
 
 [node name="Audio" type="Node" parent="."]
+
+[node name="ButtonPress" parent="Audio" instance=ExtResource("3_1fifa")]
+
+[node name="ButtonUnpress" parent="Audio" instance=ExtResource("4_mobv6")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

@@ -65,7 +65,7 @@ position = Vector2(-72, 0)
 [node name="Pickup" parent="GemChest" index="1"]
 gem = ExtResource("10_4k0du")
 
-[node name="Body" parent="." instance=ExtResource("11_8yn5c")]
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("11_8yn5c")]
 position = Vector2(88, 1)
 
 [editable path="WalkLoadRight"]

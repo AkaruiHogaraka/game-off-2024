@@ -71,7 +71,7 @@ position = Vector2(139, 48)
 scene_path = "res://scenes/reality/tutorial_04_reality.tscn"
 node_path = "WalkLoadLeft"
 
-[node name="Body" parent="." instance=ExtResource("9_dvump")]
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("9_dvump")]
 position = Vector2(68, 48)
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("10_uotbb")]
