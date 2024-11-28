@@ -96,6 +96,8 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	internal_scene_change_cooldown = true
 	GlobalReference.Game.transition_node.set_visible(true)
 	
+	await get_tree().physics_frame
+	
 	GlobalReference.Player.set_collision_layer_value(3, false)
 	GlobalReference.Player.set_collision_layer_value(6, false)
 	

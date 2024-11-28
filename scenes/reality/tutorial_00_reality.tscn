@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://clm6cmg5yjf2y"]
+[gd_scene load_steps=18 format=4 uid="uid://clm6cmg5yjf2y"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6xjmt"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_8jmch"]
@@ -11,7 +11,11 @@
 [ext_resource type="Resource" uid="uid://bp2nqumb5i07v" path="res://resources/gems/gem3.tres" id="10_3jv2l"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="10_4lvck"]
 [ext_resource type="Resource" uid="uid://d1rxy3c4nnbb7" path="res://resources/gems/gem2.tres" id="11_fwk1p"]
+[ext_resource type="Script" path="res://scripts/dream_tutorial.gd" id="13_4niof"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="14_gq4va"]
+[ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="14_saxly"]
+[ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="15_hkm4y"]
+[ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="16_lgrkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
 
@@ -87,6 +91,71 @@ position = Vector2(139, -32)
 [node name="SceneConnection" parent="WalkLoadRight" index="0"]
 scene_path = "res://scenes/reality/title_screen_reality.tscn"
 node_path = "WalkLoadLeft"
+
+[node name="DreamTutorial" type="Control" parent="." groups=["Save"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = -59.0
+offset_right = 104.0
+offset_bottom = -19.0
+script = ExtResource("13_4niof")
+
+[node name="Label2" type="Label" parent="DreamTutorial"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -26.0
+offset_right = 104.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_saxly")
+theme_override_font_sizes/font_size = 8
+text = "+     - Dream"
+
+[node name="TextureRect" type="TextureRect" parent="DreamTutorial"]
+use_parent_material = true
+layout_mode = 0
+offset_left = -18.0
+offset_top = 6.0
+offset_right = -2.0
+offset_bottom = 22.0
+rotation = -1.57079
+texture = ExtResource("15_hkm4y")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="DreamTutorial"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = -11.0
+offset_right = 17.0
+offset_bottom = 5.0
+texture = ExtResource("16_lgrkq")
+stretch_mode = 2
+
+[node name="Label3" type="Label" parent="DreamTutorial"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -25.0
+offset_right = 104.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_saxly")
+theme_override_font_sizes/font_size = 8
 
 [editable path="Door"]
 [editable path="OneWayPlatform"]
