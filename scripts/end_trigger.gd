@@ -151,10 +151,9 @@ func _on_update_gem_count(value: int) -> void:
 
 func _on_update_game_time(value: int) -> void:
 	if time_label == null: return
-	var hours = value / 3600
-	var minutes = (value % 3600) / 60
+	var minutes = value / 60
 	var seconds = value % 60
-	var formatted_time = "%d:%02d:%02d" % [hours, minutes, seconds]
+	var formatted_time = "%02d:%02d" % [minutes, seconds]
 	time_label.text = formatted_time
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

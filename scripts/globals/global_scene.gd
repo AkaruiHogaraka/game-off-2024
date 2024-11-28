@@ -158,6 +158,9 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	
 	await get_tree().physics_frame
 	
+	if is_holding_lantern:
+		GlobalReference.Player.Inventory.items[GlobalReference.Player.Inventory.item_index].on_item_equip()
+	
 	load_nodes()
 	
 	if not initial_setup:
