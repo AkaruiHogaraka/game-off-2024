@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=4 uid="uid://ueim1yenq8o"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_lepxa"]
+[ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_dj753"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_vj1co"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_5ntr1"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_k6tin"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="6_s2ful"]
+[ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="7_ve5sb"]
+[ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="8_p5rka"]
+[ext_resource type="Script" path="res://scripts/require_lantern_block_dialogue_trigger.gd" id="9_24v1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn7b6"]
+
+[node name="Lantern00Dream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_lepxa")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+mask_settings = ExtResource("2_dj753")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("3_vj1co")
+scene_path = "res://scenes/reality/lantern_00_reality.tscn"
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD///7/AgAAAAAAAQD+//7/AgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAAUACAAAAAAAAQADAAUACAAAAAAAAQD9/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD4////AgAAAAAAAQD3////AgAAAAAAAQD5////AgAAAAAAAQA=")
+tile_set = ExtResource("4_5ntr1")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAAQABgAAAAAAAgAEAAMABgAAAAAAAgAEAAIABgAAAAAAAgAEAAEABgAAAAAAAgAEAAAABgAAAAAAAgAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAEAP3/BgAAAAAAAgAEAPz/BgAAAAAAAgAEAPv/BgAAAAAAAgAEAPr/BgAAAAAAAgABAP7/BwAAAAAAAgABAP//BwAAAAAAAgABAAAABwAAAAAAAgABAAEABwAAAAAAAgABAAIABwAAAAAAAgABAAMABwAAAAAAAgABAAQABwAAAAAAAgABAAUABwAAAAAAAgAEAAUABgAAAAAAAgD+//7/BgAAAAAAAgD+////BgAAAAAAAgD5////BwAAAAAAAgD2//7/BwAAAAAAAgD2//3/BwAAAAAAAgD2//z/BwAAAAAAAgD2//v/BwAAAAAAAgD2//r/BwAAAAAAAgD2//n/BwAAAAAAAgA=")
+tile_set = ExtResource("4_5ntr1")
+
+[node name="LeftGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD8////AAAAAAAAAAD4//7/AAAAAAEAAAD5//7/AAAAAAMAAAA=")
+tile_set = ExtResource("4_5ntr1")
+
+[node name="RightGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD8////AAAGAAIAAAD4//7/AAAGAAMAAAA=")
+tile_set = ExtResource("4_5ntr1")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAABAP7/AAAFAAEAAAD5////AAAFAAEAAAD+//7/AAABAAEAAAD+/wAAAAAEAAQAAAD5/wAAAAACAAQAAAABAAQAAAACAAQAAAAEAAQAAAAEAAQAAAAEAAUAAAADAAMAAAABAAUAAAADAAMAAAABAAMAAAAFAAMAAAABAAIAAAAFAAIAAAABAAEAAAAFAAMAAAABAAAAAAAFAAIAAAABAP//AAAFAAMAAAAEAAMAAAABAAMAAAAEAAIAAAABAAMAAAAEAAEAAAABAAIAAAAEAAAAAAABAAMAAAAEAP//AAABAAIAAAAEAP7/AAABAAIAAAAEAP3/AAABAAMAAAAEAPz/AAABAAMAAAAEAPv/AAABAAIAAAAEAPr/AAABAAIAAAD+////AAABAAMAAAD9/wAAAAACAAEAAAD8/wAAAAACAAEAAAD7/wAAAAACAAEAAAD6/wAAAAACAAEAAAD4////AAADAAEAAAD3////AAACAAEAAAAAAP7/AAACAAEAAAD///7/AAADAAEAAAD6////AAADAAAAAAD7////AAACAAAAAAD4//7/AAACAAAAAAD3//7/AAADAAAAAAD///3/AAADAAAAAAAAAP3/AAADAAAAAAABAP3/AAACAAAAAAD+//3/AAACAAAAAAD9////AAACAAAAAAA=")
+tile_set = ExtResource("4_5ntr1")
+
+[node name="Camera" parent="." instance=ExtResource("5_k6tin")]
+
+[node name="Door" parent="." instance=ExtResource("6_s2ful")]
+position = Vector2(0, -32)
+
+[node name="Area2D" parent="Door" index="3"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="LanternProgress" parent="." instance=ExtResource("7_ve5sb")]
+position = Vector2(0, -48)
+
+[node name="Dialogue" parent="LanternProgress" index="0" node_paths=PackedStringArray("return_marker", "area")]
+script = ExtResource("8_p5rka")
+return_marker = NodePath("../Marker2D")
+area = NodePath("../Area2D")
+lines = Array[String](["It's too dark to see...", "I had a lantern back at camp"])
+line_speed = Array[float]([1.0, 1.0])
+
+[node name="Area2D" parent="LanternProgress" index="1" node_paths=PackedStringArray("dialogue")]
+script = ExtResource("9_24v1x")
+dialogue = NodePath("../Dialogue")
+
+[node name="CollisionShape2D" parent="LanternProgress/Area2D" index="0"]
+position = Vector2(-21, 6)
+shape = SubResource("RectangleShape2D_nn7b6")
+
+[node name="Marker2D" type="Marker2D" parent="LanternProgress"]
+position = Vector2(0, 16)
+
+[connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
+
+[editable path="Door"]
+[editable path="LanternProgress"]

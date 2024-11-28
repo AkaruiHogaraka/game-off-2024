@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=4 uid="uid://bndnhatvwbnb7"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_sc2da"]
+[ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_n8rw7"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_0joh0"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_ax3cg"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_p0bxv"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="6_k888t"]
+
+[node name="Lantern03Dream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_sc2da")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+mask_settings = ExtResource("2_n8rw7")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("3_0joh0")
+scene_path = "res://scenes/reality/lantern_03_reality.tscn"
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQA=")
+tile_set = ExtResource("4_ax3cg")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAACAPz/BwAAAAAAAgACAP3/BwAAAAAAAgACAP7/BwAAAAAAAgACAP//BwAAAAAAAgAAAPv/BwAAAAAAAgAAAPr/BwAAAAAAAgAAAPn/BwAAAAAAAgAAAPj/BwAAAAAAAgAAAPf/BwAAAAAAAgAJAP//BgAAAAAAAgAJAP7/BgAAAAAAAgAJAP3/BgAAAAAAAgAJAPz/BgAAAAAAAgAJAPv/BgAAAAAAAgAJAPr/BgAAAAAAAgAJAPn/BgAAAAAAAgAJAPj/BgAAAAAAAgAJAPf/BgAAAAAAAgAJAPb/BgAAAAAAAgAJAPX/BgAAAAAAAgA=")
+tile_set = ExtResource("4_ax3cg")
+
+[node name="LeftGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAFAP//AAAAAAIAAAAHAP//AAAAAAEAAAA=")
+tile_set = ExtResource("4_ax3cg")
+
+[node name="RightGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAFAP//AAAGAAQAAAAHAP//AAAGAAEAAAA=")
+tile_set = ExtResource("4_ax3cg")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAACAPz/AAAFAAEAAAAIAAAAAAACAAEAAAAHAAAAAAACAAEAAAAGAAAAAAACAAEAAAAFAAAAAAACAAEAAAAEAAAAAAACAAEAAAADAAAAAAACAAEAAAACAP//AAAFAAIAAAACAP7/AAAFAAIAAAACAP3/AAAFAAIAAAAAAPv/AAAFAAIAAAAAAPr/AAAFAAIAAAAAAPn/AAAFAAIAAAABAPz/AAACAAEAAAACAAAAAAACAAQAAAAAAPz/AAACAAQAAAABAPv/AAADAAAAAAACAPv/AAACAAAAAAAIAP//AAADAAAAAAAHAP//AAADAAAAAAAGAP//AAACAAAAAAA=")
+tile_set = ExtResource("4_ax3cg")
+
+[node name="Camera" parent="." instance=ExtResource("5_p0bxv")]
+
+[node name="Door" parent="." instance=ExtResource("6_k888t")]
+position = Vector2(64, 0)
+
+[node name="Area2D" parent="Door" index="3"]
+collision_mask = 0
+
+[editable path="Door"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=4 uid="uid://fafkuk0bti6x"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_ct2vx"]
+[ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_ji7bp"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_aud36"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_ollpp"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_igs0s"]
+
+[node name="Lantern01Dream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_ct2vx")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+mask_settings = ExtResource("2_ji7bp")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("3_aud36")
+scene_path = "res://scenes/reality/lantern_01_reality.tscn"
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAP//AgAAAAAAAQAAAP//AgAAAAAAAQABAP//AgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAFAP//AgAAAAAAAQAGAP//AgAAAAAAAQAHAP//AgAAAAAAAQD//wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD3/wAAAgAAAAAAAQA=")
+tile_set = ExtResource("4_ollpp")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAP//BgAAAAAAAgAJAP7/BgAAAAAAAgAJAP3/BgAAAAAAAgAJAPz/BgAAAAAAAgAJAPv/BgAAAAAAAgAJAPr/BgAAAAAAAgAJAPn/BgAAAAAAAgAJAPj/BgAAAAAAAgD2////BwAAAAAAAgD2//7/BwAAAAAAAgD2//3/BwAAAAAAAgD2//z/BwAAAAAAAgD2//v/BwAAAAAAAgD2//r/BwAAAAAAAgD2//n/BwAAAAAAAgD2//j/BwAAAAAAAgA=")
+tile_set = ExtResource("4_ollpp")
+
+[node name="LeftGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD5////AAAAAAAAAAAGAP7/AAAAAAAAAAD6////AAAAAAEAAAD7////AAAAAAIAAAD4////AAAAAAMAAAAHAP7/AAAAAAMAAAAEAP7/AAAAAAMAAAA=")
+tile_set = ExtResource("4_ollpp")
+
+[node name="RightGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAADAP7/AAAGAAMAAAAGAP7/AAAGAAMAAAAFAP7/AAAGAAIAAAAEAP7/AAAGAAIAAAD7////AAAGAAIAAAD6////AAAGAAQAAAD4////AAAGAAMAAAA=")
+tile_set = ExtResource("4_ollpp")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAP//AAACAAEAAAAHAP//AAACAAEAAAAGAP//AAACAAEAAAAFAP//AAACAAEAAAAEAP//AAACAAEAAAADAP//AAACAAEAAAACAP//AAACAAEAAAABAP//AAACAAEAAAD//wAAAAACAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAACAAEAAAD7/wAAAAACAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAACAAEAAAD3/wAAAAACAAEAAAAAAP//AAABAAEAAAAAAAAAAAAEAAQAAAD/////AAADAAAAAAD+////AAADAAAAAAD9////AAACAAAAAAAIAP7/AAADAAAAAAAHAP7/AAADAAAAAAAGAP7/AAACAAAAAAACAP7/AAADAAAAAAADAP7/AAACAAAAAAABAP7/AAACAAAAAAD4////AAACAAAAAAD3////AAADAAAAAAA=")
+tile_set = ExtResource("4_ollpp")
+
+[node name="Camera" parent="." instance=ExtResource("5_igs0s")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dmhb34tihc4va"]
+[gd_scene load_steps=15 format=4 uid="uid://dmhb34tihc4va"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_xbg66"]
 [ext_resource type="Resource" uid="uid://ca2xshvg42k47" path="res://resources/mask/depth_2.tres" id="2_tdl38"]
@@ -11,9 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_3qrpk"]
 [ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="10_wotg8"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="10_ylcyn"]
+[ext_resource type="Script" path="res://scripts/dream_blocker.gd" id="12_8egg4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxos8"]
 size = Vector2(61, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orct1"]
+size = Vector2(313, 205)
 
 [node name="BlockWand02Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -93,6 +97,17 @@ tile_map_data = PackedByteArray("AAD//wEAAAABAAIAAAD//wAAAAABAAMAAAD/////AAABAAM
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
 position = Vector2(15.5, 4)
 shape = SubResource("RectangleShape2D_pxos8")
+
+[node name="DreamBlocker" type="Area2D" parent="."]
+collision_mask = 4
+script = ExtResource("12_8egg4")
+can_dream = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DreamBlocker"]
+position = Vector2(-1.5, 5.5)
+shape = SubResource("RectangleShape2D_orct1")
+
+[connection signal="body_entered" from="DreamBlocker" to="DreamBlocker" method="_on_body_entered"]
 
 [editable path="WalkLoadLeft"]
 [editable path="Door"]
