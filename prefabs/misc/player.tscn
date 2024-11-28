@@ -564,6 +564,7 @@ coyote_buffer = 0.1
 
 [node name="Sprite" type="Node2D" parent="."]
 use_parent_material = true
+scale = Vector2(-1, 1)
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="Sprite"]
 use_parent_material = true

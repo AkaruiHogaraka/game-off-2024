@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://clppcvnfhiaja"]
+[gd_scene load_steps=29 format=4 uid="uid://clppcvnfhiaja"]
 
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
@@ -17,6 +17,8 @@
 [ext_resource type="Resource" uid="uid://k5ijowqaw4i1" path="res://resources/gems/dream_gem.tres" id="15_gni2h"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="16_20c5x"]
 [ext_resource type="PackedScene" uid="uid://fwre44wmtfvr" path="res://prefabs/level_objects/lantern_pickup.tscn" id="17_8rvcg"]
+[ext_resource type="Texture2D" uid="uid://bbobltpesxnps" path="res://sprites/fire.png" id="18_amr0x"]
+[ext_resource type="Script" path="res://scripts/campfire_sync.gd" id="19_0o3uy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3na1o"]
 shader = ExtResource("6_u1f7g")
@@ -32,6 +34,49 @@ shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbs64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8015"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryq6c"]
+atlas = ExtResource("18_amr0x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6pdt"]
+atlas = ExtResource("18_amr0x")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jug3w"]
+atlas = ExtResource("18_amr0x")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7771t"]
+atlas = ExtResource("18_amr0x")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc1vl"]
+atlas = ExtResource("18_amr0x")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nk5f7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryq6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6pdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jug3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7771t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc1vl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="TitleScreenDream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -193,6 +238,14 @@ position = Vector2(18, 31)
 
 [node name="Area2D" parent="LanternPickup" index="3"]
 collision_mask = 0
+
+[node name="Fire" type="AnimatedSprite2D" parent="." groups=["Campfire"]]
+position = Vector2(-8, 32)
+sprite_frames = SubResource("SpriteFrames_nk5f7")
+autoplay = "default"
+frame_progress = 0.269683
+offset = Vector2(0, -8)
+script = ExtResource("19_0o3uy")
 
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
 

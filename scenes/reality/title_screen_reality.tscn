@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=32 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="18_7jlxy"]
 [ext_resource type="Resource" uid="uid://ci44vig3p3b4d" path="res://resources/gems/gem1.tres" id="19_17wan"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="20_hwgia"]
+[ext_resource type="Texture2D" uid="uid://bbobltpesxnps" path="res://sprites/fire.png" id="21_qjggg"]
+[ext_resource type="Script" path="res://scripts/campfire_sync.gd" id="22_sjc7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
 size = Vector2(15, 20)
@@ -27,6 +29,49 @@ size = Vector2(15, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmx6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bdjw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryq6c"]
+atlas = ExtResource("21_qjggg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6pdt"]
+atlas = ExtResource("21_qjggg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jug3w"]
+atlas = ExtResource("21_qjggg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7771t"]
+atlas = ExtResource("21_qjggg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc1vl"]
+atlas = ExtResource("21_qjggg")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gjo2u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryq6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6pdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jug3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7771t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc1vl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -207,6 +252,13 @@ tile_map_data = PackedByteArray("AAAFAP//AAABAAIAAAAFAP7/AAABAAIAAAAFAAAAAAAEAAQ
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
 position = Vector2(92, -10)
 shape = SubResource("RectangleShape2D_2bdjw")
+
+[node name="Fire" type="AnimatedSprite2D" parent="." groups=["Campfire"]]
+position = Vector2(-8, 32)
+sprite_frames = SubResource("SpriteFrames_gjo2u")
+autoplay = "default"
+offset = Vector2(0, -8)
+script = ExtResource("22_sjc7p")
 
 [connection signal="body_entered" from="CutsceneReferences/CutsceneDialogue/Area2D" to="CutsceneReferences/CutsceneDialogue/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]

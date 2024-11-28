@@ -33,6 +33,7 @@ Player=""
 PlayerClone=""
 Save=""
 RemoveOnLoad=""
+Campfire=""
 
 [input]
 
