@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ca8n40efsbrik"]
+[gd_scene load_steps=19 format=4 uid="uid://ca8n40efsbrik"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_qk3yu"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_cvvfq"]
@@ -11,8 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="8_4777m"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_tw4cf"]
 [ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="10_o1e4f"]
+[ext_resource type="Script" path="res://scripts/button_activated_object.gd" id="12_iwuio"]
+[ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="13_2fsdy"]
+[ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="14_dik57"]
+[ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="15_quosh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgatv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gix7a"]
+size = Vector2(16, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruv1e"]
+size = Vector2(46, 24)
 
 [node name="Tutorial02Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -28,26 +38,29 @@ scene_path = "res://scenes/dream/tutorial_02_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAIAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQD4/wEAAgAAAAAAAQD3/wEAAgAAAAAAAQD8/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD5/wIAAgAAAAAAAQADAAAAAgAAAAAAAQD9/wMABAAAAAAAAQD+/wMABAAAAAAAAQD//wMABAAAAAAAAQAAAAMABAAAAAAAAQABAAMABAAAAAAAAQACAAMABAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAIAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQD4/wEAAgAAAAAAAQD3/wEAAgAAAAAAAQD8/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD5/wIAAgAAAAAAAQD9/wUACAAAAAAAAQD+/wUACAAAAAAAAQD//wUACAAAAAAAAQAAAAUACAAAAAAAAQABAAUACAAAAAAAAQACAAUACAAAAAAAAQAEAAMAAgAAAAAAAQAFAAMAAgAAAAAAAQAGAAMAAgAAAAAAAQAEAAEACQAAAAAAAQAFAAEACQAAAAAAAQA=")
 tile_set = ExtResource("3_hdptf")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD8/wEABwAAAAAAAgD8/wAABwAAAAAAAgD6/wAABgAAAAAAAgD6/wEABgAAAAAAAgD4/wEABwAAAAAAAgADAAAABgAAAAAAAgADAAEABgAAAAAAAgADAAIABgAAAAAAAgADAAMABgAAAAAAAgADAAQABgAAAAAAAgD8/wIABwAAAAAAAgD8/wMABwAAAAAAAgD8/wQABwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAD8/wEABwAAAAAAAgD8/wAABwAAAAAAAgD6/wAABgAAAAAAAgD6/wEABgAAAAAAAgD4/wEABwAAAAAAAgD8/wIABwAAAAAAAgD8/wMABwAAAAAAAgD8/wQABwAAAAAAAgAEAAAABgAAAAAAAgAEAAQABgAAAAAAAgAEAAMABgAAAAAAAgAHAAIABgAAAAAAAgAHAAEABgAAAAAAAgAHAAAABgAAAAAAAgAFAAAABwAAAAAAAgA=")
 tile_set = ExtResource("3_hdptf")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD3/wEAAAACAAEAAAAFAAAAAAACAAEAAAAGAAAAAAADAAEAAAAHAAAAAAADAAEAAAAIAAAAAAACAAEAAAAIAP//AAADAAAAAAAHAP//AAADAAAAAAAGAP//AAACAAAAAAD3/wAAAAADAAAAAAD4/wAAAAADAAAAAAD8/wEAAAAFAAIAAAD8/wAAAAAFAAEAAAD6/wAAAAABAAEAAAD7/wAAAAADAAEAAAD7////AAADAAAAAAD8////AAACAAAAAAD4/wEAAAAFAAEAAAD4/wIAAAACAAQAAAD6/wIAAAAEAAQAAAD5/wIAAAADAAEAAAD6/wEAAAABAAIAAAD5/wEAAAADAAAAAAD5/wAAAAACAAAAAAADAAAAAAABAAEAAAAEAAAAAAADAAEAAAADAP//AAACAAAAAAADAAEAAAABAAIAAAD8/wIAAAAFAAIAAAD8/wMAAAAFAAIAAAD8/wQAAAACAAQAAAADAAQAAAAEAAQAAAADAAMAAAABAAIAAAADAAIAAAABAAIAAAACAAQAAAADAAEAAAABAAQAAAADAAEAAAAAAAQAAAADAAEAAAD//wQAAAADAAEAAAD+/wQAAAADAAEAAAD9/wQAAAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAD3/wEAAAACAAEAAAAIAAAAAAACAAEAAAAIAP//AAADAAAAAAD3/wAAAAADAAAAAAD4/wAAAAADAAAAAAD8/wEAAAAFAAIAAAD8/wAAAAAFAAEAAAD6/wAAAAABAAEAAAD7/wAAAAADAAEAAAD7////AAADAAAAAAD8////AAACAAAAAAD4/wEAAAAFAAEAAAD4/wIAAAACAAQAAAD6/wIAAAAEAAQAAAD5/wIAAAADAAEAAAD6/wEAAAABAAIAAAD5/wEAAAADAAAAAAD5/wAAAAACAAAAAAD8/wIAAAAFAAIAAAD8/wQAAAACAAQAAAD8/wMAAAAFAAIAAAAEAAAAAAABAAEAAAAEAAEAAAABAAUAAAAEAAMAAAABAAEAAAAEAAQAAAAEAAQAAAAHAAMAAAAEAAQAAAAFAAAAAAAFAAEAAAAHAAAAAAABAAEAAAAHAAEAAAABAAIAAAAHAAIAAAABAAIAAAAGAAMAAAACAAEAAAAFAAMAAAACAAEAAAAFAAEAAAAFAAUAAAAHAP//AAACAAAAAAAFAP//AAACAAAAAAAGAAIAAAADAAAAAAAFAAIAAAADAAAAAAAEAAIAAAACAAAAAAA=")
 tile_set = ExtResource("3_hdptf")
 
 [node name="Camera" parent="." instance=ExtResource("4_f8e2q")]
 
 [node name="AlternatePlatform" parent="." instance=ExtResource("5_poxdu")]
-position = Vector2(-16, 8)
+position = Vector2(-24, 8)
+
+[node name="AlternatePlatform3" parent="." instance=ExtResource("5_poxdu")]
+position = Vector2(40, 8)
 
 [node name="AlternatePlatform2" parent="." instance=ExtResource("5_poxdu")]
-position = Vector2(16, 8)
+position = Vector2(8, 8)
 default_on = false
 
 [node name="AlternatePlatform4" parent="." instance=ExtResource("5_poxdu")]
@@ -84,10 +97,82 @@ position = Vector2(-104, 32)
 [node name="Pickup" parent="GemChest2" index="1"]
 gem = ExtResource("10_o1e4f")
 
+[node name="ButtonPlatform" type="Node2D" parent="." node_paths=PackedStringArray("collision", "on_sprite", "off_sprite")]
+use_parent_material = true
+position = Vector2(104, 8)
+script = ExtResource("12_iwuio")
+collision = NodePath("StaticBody2D/CollisionShape2D")
+on_sprite = NodePath("OnSprite")
+off_sprite = NodePath("OffSprite")
+
+[node name="OnSprite" type="Sprite2D" parent="ButtonPlatform"]
+use_parent_material = true
+texture = ExtResource("13_2fsdy")
+
+[node name="OffSprite" type="Sprite2D" parent="ButtonPlatform"]
+use_parent_material = true
+texture = ExtResource("14_dik57")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ButtonPlatform"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonPlatform/StaticBody2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_gix7a")
+one_way_collision = true
+
+[node name="ButtonPlatform2" type="Node2D" parent="." node_paths=PackedStringArray("collision", "on_sprite", "off_sprite")]
+use_parent_material = true
+position = Vector2(104, 29)
+script = ExtResource("12_iwuio")
+collision = NodePath("StaticBody2D/CollisionShape2D")
+on_sprite = NodePath("OnSprite")
+off_sprite = NodePath("OffSprite")
+
+[node name="OnSprite" type="Sprite2D" parent="ButtonPlatform2"]
+use_parent_material = true
+texture = ExtResource("13_2fsdy")
+
+[node name="OffSprite" type="Sprite2D" parent="ButtonPlatform2"]
+use_parent_material = true
+texture = ExtResource("14_dik57")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ButtonPlatform2"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonPlatform2/StaticBody2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_gix7a")
+one_way_collision = true
+
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("15_quosh")]
+position = Vector2(107, 48)
+
+[node name="GemChest" parent="." instance=ExtResource("9_tw4cf")]
+position = Vector2(82, 48)
+
+[node name="Pickup" parent="GemChest" index="1"]
+gem = ExtResource("10_o1e4f")
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_4777m")]
+visible = false
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAAHAAAAAAADAAEAAAAGAAAAAAADAAEAAAAFAAAAAAACAAEAAAAEAAEAAAABAAIAAAAEAAIAAAABAAMAAAAEAAMAAAABAAIAAAAFAAMAAAADAAMAAAAFAAIAAAADAAMAAAAFAAEAAAADAAMAAAAGAAEAAAADAAMAAAAHAAEAAAADAAMAAAAHAAIAAAADAAMAAAAGAAIAAAADAAMAAAAGAAMAAAADAAMAAAAHAAMAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(89, 36)
+shape = SubResource("RectangleShape2D_ruv1e")
+
 [editable path="AlternatePlatform"]
+[editable path="AlternatePlatform3"]
 [editable path="AlternatePlatform2"]
 [editable path="AlternatePlatform4"]
 [editable path="WalkLoadLeft"]
 [editable path="WalkLoadRight"]
 [editable path="HiddenArea2"]
 [editable path="GemChest2"]
+[editable path="GemChest"]
+[editable path="HiddenArea"]

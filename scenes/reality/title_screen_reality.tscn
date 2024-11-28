@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=24 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -17,11 +17,16 @@
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="15_pfyoo"]
 [ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="16_dff2u"]
 [ext_resource type="PackedScene" uid="uid://fwre44wmtfvr" path="res://prefabs/level_objects/lantern_pickup.tscn" id="17_g6u8m"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="18_7jlxy"]
+[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="19_8083s"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="20_hwgia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
 size = Vector2(15, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmx6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bdjw"]
 
 [node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -38,19 +43,27 @@ scene_path = "res://scenes/dream/title_screen_dream.tscn"
 [node name="Ground" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAFAPr/AgAAAAAAAQAEAP7/AgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAFAPr/AgAAAAAAAQAEAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAFAPz/CQAAAAAAAQAGAPz/CQAAAAAAAQA=")
 tile_set = ExtResource("2_0g32y")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAFAP3/BgAAAAAAAgAFAPz/BgAAAAAAAgAFAPv/BgAAAAAAAgAFAPr/BgAAAAAAAgAGAPn/BgAAAAAAAgAGAPj/BgAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAFAPv/BgAAAAAAAgAFAPr/BgAAAAAAAgAGAPn/BgAAAAAAAgAGAPj/BgAAAAAAAgAHAP3/BgAAAAAAAgAHAPz/BgAAAAAAAgA=")
+tile_set = ExtResource("2_0g32y")
+
+[node name="LeftGraves" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAGAP//AAAAAAEAAAAEAP//AAAGAAIAAAA=")
+tile_set = ExtResource("2_0g32y")
+
+[node name="RightGraves" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAGAP//AAAGAAEAAAA=")
 tile_set = ExtResource("2_0g32y")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAADAAAAAAADAAEAAAACAAAAAAADAAEAAAABAAAAAAACAAEAAAAAAAAAAAADAAEAAAD//wAAAAADAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAADAAEAAAD3/wAAAAADAAEAAAAEAP7/AAABAAEAAAAFAPr/AAABAAEAAAAFAP3/AAABAAMAAAAFAPz/AAABAAIAAAAFAPv/AAABAAMAAAAGAPn/AAABAAMAAAAGAPj/AAABAAIAAAAEAP//AAABAAIAAAAEAAAAAAAEAAQAAAAFAP7/AAAEAAQAAAAGAPr/AAAEAAQAAAADAP//AAADAAAAAAACAP//AAACAAAAAAD3////AAADAAAAAAD4////AAADAAAAAAD5////AAADAAAAAAD6////AAACAAAAAAAEAP3/AAACAAAAAAAFAPn/AAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAADAAAAAAADAAEAAAACAAAAAAADAAEAAAABAAAAAAACAAEAAAAAAAAAAAADAAEAAAD//wAAAAADAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAADAAEAAAD3/wAAAAADAAEAAAAEAP7/AAABAAEAAAAFAPr/AAABAAEAAAAFAPv/AAABAAMAAAAGAPn/AAABAAMAAAAGAPj/AAABAAIAAAAEAP//AAABAAIAAAAEAAAAAAAEAAQAAAAFAP7/AAADAAEAAAAGAPr/AAAEAAQAAAADAP//AAADAAAAAAACAP//AAACAAAAAAD3////AAADAAAAAAD4////AAADAAAAAAD5////AAADAAAAAAD6////AAACAAAAAAAEAP3/AAACAAAAAAAFAPn/AAACAAAAAAAFAPz/AAABAAUAAAAGAPz/AAACAAUAAAAHAPz/AAABAAQAAAAHAP7/AAAEAAQAAAAGAP7/AAACAAEAAAAHAP3/AAABAAIAAAAGAP3/AAADAAAAAAA=")
 tile_set = ExtResource("2_0g32y")
 
 [node name="CameraPosition" type="Marker2D" parent="."]
@@ -178,6 +191,22 @@ position = Vector2(-53, 32)
 [node name="LanternPickup" parent="." instance=ExtResource("17_g6u8m")]
 position = Vector2(18, 31)
 
+[node name="GemChest" parent="." instance=ExtResource("18_7jlxy")]
+position = Vector2(88, 0)
+
+[node name="Pickup" parent="GemChest" index="1"]
+gem = ExtResource("19_8083s")
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("20_hwgia")]
+visible = false
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAAFAP//AAABAAIAAAAFAP7/AAABAAIAAAAFAAAAAAAEAAQAAAAGAAAAAAADAAMAAAAGAP//AAADAAMAAAAGAP7/AAADAAMAAAAHAP7/AAADAAMAAAAHAP//AAADAAMAAAAHAAAAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(92, -10)
+shape = SubResource("RectangleShape2D_2bdjw")
+
 [connection signal="body_entered" from="CutsceneReferences/CutsceneDialogue/Area2D" to="CutsceneReferences/CutsceneDialogue/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
 
@@ -185,3 +214,5 @@ position = Vector2(18, 31)
 [editable path="DisableTutorialTrigger"]
 [editable path="WalkLoadLeft"]
 [editable path="LanternProgress"]
+[editable path="GemChest"]
+[editable path="HiddenArea"]
