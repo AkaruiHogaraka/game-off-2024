@@ -43,7 +43,9 @@ position = Vector2(64, 0)
 node_path = "Door"
 
 [node name="EndScene" parent="." instance=ExtResource("4_epejp")]
-position = Vector2(-85, 32)
+
+[node name="Area2D" parent="EndScene" index="0"]
+position = Vector2(-81, 22)
 
 [editable path="Door"]
 [editable path="EndScene"]

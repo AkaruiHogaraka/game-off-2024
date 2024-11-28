@@ -48,24 +48,19 @@ func _ready() -> void:
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	if GlobalScene.IsRestarting: 
-		pan_camera()
 		call_deferred("clear_previous_game")
 	
 	dream_gem_count.text = "x%s" % GlobalItems.gems
 	reality_gem_count.text = "x%s" % GlobalItems.dream_gems
 	dream_gem_count.get_parent().set_visible(false)
 
-func pan_camera() -> void:
-	var tween: Tween = get_tree().create_tween()
-	var destination: Vector2 = GlobalScene.CurrentScene.scene_camera.global_position
-	GlobalScene.CurrentScene.scene_camera.global_position.y = camera_come_from.y
-	tween.tween_property(GlobalScene.CurrentScene.scene_camera, "global_position:y", destination.y, camera_tween_time)
-	tween.set_ease(Tween.EASE_IN_OUT)
-
 func clear_previous_game() -> void:
-	get_tree().current_scene.queue_free()
 	GlobalScene.IsRestarting = false
 	
 	await get_tree().physics_frame
 	
 	GlobalReference.temp_game_screen.queue_free()
+	
+	await get_tree().create_timer(0.24 * 3).timeout
+	
+	get_tree().current_scene.queue_free()

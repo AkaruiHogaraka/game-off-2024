@@ -1,18 +1,77 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0xj0bpy4qsax"]
+[gd_scene load_steps=12 format=3 uid="uid://c0xj0bpy4qsax"]
 
 [ext_resource type="Script" path="res://scripts/end_trigger.gd" id="1_m2nkv"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="2_0ytfn"]
-[ext_resource type="Texture2D" uid="uid://dkbl4r2irkvm4" path="res://sprites/player_lantern.png" id="3_fangi"]
+[ext_resource type="Shader" path="res://shaders/alter_colour.gdshader" id="3_n1348"]
+[ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="3_tp206"]
+[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="4_7bp60"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqeu"]
 
-[node name="EndScene" type="Node2D" node_paths=PackedStringArray("camera", "camera_destination", "time_label", "collectables_label", "next_label")]
-use_parent_material = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0ytk"]
+shader = ExtResource("3_n1348")
+shader_parameter/colour_one = Color(0, 0, 0, 1)
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u16ey"]
+shader = ExtResource("3_n1348")
+shader_parameter/colour_one = Color(0, 0, 0, 1)
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3w27"]
+shader = ExtResource("3_n1348")
+shader_parameter/colour_one = Color(0, 0, 0, 1)
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n68ti"]
+shader = ExtResource("3_n1348")
+shader_parameter/colour_one = Color(0, 0, 0, 1)
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fl2qx"]
+shader = ExtResource("3_n1348")
+shader_parameter/colour_one = Color(0, 0, 0, 1)
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
+
+[node name="EndScene" type="Node2D" node_paths=PackedStringArray("camera", "elements", "title_label", "credit_label", "time_label", "collectable_parent", "collectables_label", "next_label")]
 script = ExtResource("1_m2nkv")
 camera = NodePath("Camera/Camera2D")
-camera_destination = NodePath("CameraDestination")
+elements = NodePath("Elements")
+title_label = NodePath("Elements/Title")
+credit_label = NodePath("Elements/Credit")
 time_label = NodePath("Elements/TimePivot/Time")
-collectables_label = NodePath("Elements/CollectablePivot/HBoxContainer/Collectables")
+collectable_parent = NodePath("Elements/CollectablePivot")
+collectables_label = NodePath("Elements/CollectablePivot/Collectables")
 next_label = NodePath("Elements/Next")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -27,25 +86,40 @@ shape = SubResource("RectangleShape2D_3gqeu")
 enabled = false
 
 [node name="ColorRect" parent="Camera" index="1"]
+visible = false
 color = Color(0.2, 0.168627, 0.309804, 1)
-
-[node name="CameraDestination" type="Marker2D" parent="."]
-position = Vector2(0, -360)
 
 [node name="Elements" type="Control" parent="."]
 z_index = 11
-use_parent_material = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -322.0
-offset_bottom = -322.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Title" type="Label" parent="Elements"]
+material = SubResource("ShaderMaterial_e0ytk")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -36.0
+offset_right = 74.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_tp206")
+theme_override_font_sizes/font_size = 16
+text = "Dreamers Wake"
+horizontal_alignment = 1
+
 [node name="Credit" type="Label" parent="Elements"]
-use_parent_material = true
+material = SubResource("ShaderMaterial_u16ey")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,29 +127,31 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -67.5
-offset_top = -83.0
+offset_top = -19.0
 offset_right = 67.5
-offset_bottom = -60.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_tp206")
+theme_override_font_sizes/font_size = 8
 text = "A game by Akarui"
+horizontal_alignment = 1
 
 [node name="TimePivot" type="Control" parent="Elements"]
-use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -11.0
-offset_bottom = -11.0
+offset_top = 26.0
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Time" type="Label" parent="Elements/TimePivot"]
-visible = false
-use_parent_material = true
+material = SubResource("ShaderMaterial_d3w27")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -88,57 +164,61 @@ offset_right = 35.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_tp206")
+theme_override_font_sizes/font_size = 8
 text = "0:00:00"
 horizontal_alignment = 1
 
 [node name="CollectablePivot" type="Control" parent="Elements"]
-use_parent_material = true
+material = SubResource("ShaderMaterial_n68ti")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -38.0
-offset_bottom = -38.0
+offset_left = -4.0
+offset_top = 9.0
+offset_right = -4.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Elements/CollectablePivot"]
-use_parent_material = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -22.0
-offset_right = 34.0
-offset_bottom = 18.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Elements/CollectablePivot/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Elements/CollectablePivot"]
 use_parent_material = true
 layout_mode = 2
-texture = ExtResource("3_fangi")
+offset_left = -21.0
+offset_top = -7.0
+offset_right = -5.0
+offset_bottom = 33.0
+texture = ExtResource("4_7bp60")
+stretch_mode = 2
 
-[node name="Collectables" type="Label" parent="Elements/CollectablePivot/HBoxContainer"]
-visible = false
+[node name="Collectables" type="Label" parent="Elements/CollectablePivot"]
 use_parent_material = true
 layout_mode = 2
-text = "x 10"
+offset_left = -7.0
+offset_top = -4.0
+offset_right = 23.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_tp206")
+theme_override_font_sizes/font_size = 8
+text = "x 10/15"
 
 [node name="Next" type="Label" parent="Elements"]
-visible = false
-use_parent_material = true
+material = SubResource("ShaderMaterial_fl2qx")
 layout_mode = 0
-offset_left = -52.0
-offset_top = 1.0
-offset_right = 49.0
-offset_bottom = 24.0
+offset_left = -50.0
+offset_top = 31.0
+offset_right = 51.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_tp206")
+theme_override_font_sizes/font_size = 8
 text = "z to continue"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 

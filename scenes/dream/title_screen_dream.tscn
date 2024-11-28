@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://clppcvnfhiaja"]
+[gd_scene load_steps=16 format=4 uid="uid://clppcvnfhiaja"]
 
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
@@ -6,12 +6,24 @@
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_an1rl"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_iswqo"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="4_61ka4"]
+[ext_resource type="Shader" path="res://shaders/alter_colour.gdshader" id="6_u1f7g"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="7_7nbnc"]
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="7_sn0r2"]
 [ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="8_yrlmv"]
 [ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="10_hart2"]
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="11_6a2y4"]
 [ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="12_ovat7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3na1o"]
+shader = ExtResource("6_u1f7g")
+shader_parameter/colour_one = Color(0, 0, 0, 1)
+shader_parameter/replace_one = Color(0.2, 0.172549, 0.313726, 1)
+shader_parameter/colour_two = Color(0, 1, 0, 1)
+shader_parameter/replace_two = Color(0.27451, 0.529412, 0.560784, 1)
+shader_parameter/colour_three = Color(1, 0, 0, 1)
+shader_parameter/replace_three = Color(0.580392, 0.890196, 0.266667, 1)
+shader_parameter/colour_four = Color(1, 1, 1, 1)
+shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbs64"]
 
@@ -49,29 +61,29 @@ z_as_relative = false
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_top = 70.0
-offset_bottom = 70.0
 script = ExtResource("1_5t00n")
 camera_position = NodePath("../CameraPosition")
 camera = NodePath("../Camera")
 
-[node name="Label" type="Label" parent="Menu"]
-use_parent_material = true
+[node name="Title" type="Label" parent="Menu"]
+material = SubResource("ShaderMaterial_3na1o")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -61.0
-offset_top = -107.0
-offset_right = 67.0
-offset_bottom = -84.0
+offset_left = -74.0
+offset_top = -36.0
+offset_right = 74.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_61ka4")
 theme_override_font_sizes/font_size = 16
 text = "Dreamers Wake"
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Menu"]
 use_parent_material = true
@@ -82,9 +94,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -4.0
-offset_top = -75.0
+offset_top = -5.0
 offset_right = 124.0
-offset_bottom = -52.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_61ka4")
@@ -95,9 +107,9 @@ text = "+"
 use_parent_material = true
 layout_mode = 0
 offset_left = -18.0
-offset_top = -64.0
+offset_top = 6.0
 offset_right = -2.0
-offset_bottom = -48.0
+offset_bottom = 22.0
 rotation = -1.57079
 texture = ExtResource("7_sn0r2")
 stretch_mode = 2
@@ -106,9 +118,9 @@ stretch_mode = 2
 use_parent_material = true
 layout_mode = 0
 offset_left = 1.0
-offset_top = -81.0
+offset_top = -11.0
 offset_right = 17.0
-offset_bottom = -65.0
+offset_bottom = 5.0
 texture = ExtResource("8_yrlmv")
 stretch_mode = 2
 
