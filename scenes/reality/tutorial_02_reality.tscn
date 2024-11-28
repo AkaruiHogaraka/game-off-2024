@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ca8n40efsbrik"]
+[gd_scene load_steps=20 format=4 uid="uid://ca8n40efsbrik"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_qk3yu"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_cvvfq"]
@@ -10,11 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_k1whv"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="8_4777m"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_tw4cf"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="10_o1e4f"]
+[ext_resource type="Resource" uid="uid://c5u6t32pjlqrl" path="res://resources/gems/gem6.tres" id="11_6dxau"]
 [ext_resource type="Script" path="res://scripts/button_activated_object.gd" id="12_iwuio"]
 [ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="13_2fsdy"]
 [ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="14_dik57"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="15_quosh"]
+[ext_resource type="Resource" uid="uid://b5eqjy377opdf" path="res://resources/gems/gem5.tres" id="16_up7wv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgatv"]
 
@@ -95,7 +96,7 @@ shape = SubResource("RectangleShape2D_vgatv")
 position = Vector2(-104, 32)
 
 [node name="Pickup" parent="GemChest2" index="1"]
-gem = ExtResource("10_o1e4f")
+gem = ExtResource("11_6dxau")
 
 [node name="ButtonPlatform" type="Node2D" parent="." node_paths=PackedStringArray("collision", "on_sprite", "off_sprite")]
 use_parent_material = true
@@ -156,7 +157,7 @@ position = Vector2(107, 48)
 position = Vector2(82, 48)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("10_o1e4f")
+gem = ExtResource("16_up7wv")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_4777m")]
 visible = false

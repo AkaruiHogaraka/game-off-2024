@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_dqa4k"]
 [ext_resource type="PackedScene" uid="uid://csc7lw3jpec0s" path="res://prefabs/level_objects/button_activated_platform.tscn" id="8_r8aj7"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_e3uav"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="10_b5dx4"]
+[ext_resource type="Resource" uid="uid://y6ar6bt4mss1" path="res://resources/gems/gem14.tres" id="10_m114m"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="11_batu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf2do"]
@@ -94,7 +94,7 @@ position = Vector2(-64, 32)
 position = Vector2(-69, 64)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("10_b5dx4")
+gem = ExtResource("10_m114m")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("11_batu2")]
 visible = false

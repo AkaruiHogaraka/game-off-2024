@@ -9,5 +9,5 @@ region = Rect2(3, 4, 8, 8)
 
 [resource]
 script = ExtResource("1_m173p")
-gem_name = "Dream Gem"
+gem_name = "Dreamlight"
 gem_texture = SubResource("AtlasTexture_6uipi")

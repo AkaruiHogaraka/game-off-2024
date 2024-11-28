@@ -51,7 +51,7 @@ position = Vector2(120, 4)
 shape = SubResource("RectangleShape2D_8caa2")
 
 [node name="GemChest" parent="." instance=ExtResource("7_umm36")]
-position = Vector2(122, 16)
+position = Vector2(106, 16)
 
 [node name="Pickup" parent="GemChest" index="1"]
 gem = ExtResource("8_dc5uk")

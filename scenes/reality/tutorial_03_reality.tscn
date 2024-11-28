@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bysu0ddxpp8o"]
+[gd_scene load_steps=22 format=4 uid="uid://bysu0ddxpp8o"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_0g2n0"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_rghfj"]
@@ -13,7 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bht63idbf1ctw" path="res://prefabs/level_objects/walk_load_left.tscn" id="10_y5cuw"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="11_v212w"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="13_a5dgj"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="14_yihsd"]
+[ext_resource type="Resource" uid="uid://dgp3usf1lscyw" path="res://resources/gems/gem8.tres" id="14_7x6n3"]
+[ext_resource type="Resource" uid="uid://ctsu238ii0srk" path="res://resources/gems/gem7.tres" id="15_ojdmg"]
 [ext_resource type="Script" path="res://scripts/button_activated_object.gd" id="15_pr66h"]
 [ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="16_ntjfm"]
 [ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="17_jhrc2"]
@@ -126,13 +127,13 @@ node_path = "WalkLoadLeft"
 position = Vector2(-112, 32)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("14_yihsd")
+gem = ExtResource("14_7x6n3")
 
 [node name="GemChest2" parent="." instance=ExtResource("13_a5dgj")]
 position = Vector2(0, 64)
 
 [node name="Pickup" parent="GemChest2" index="1"]
-gem = ExtResource("14_yihsd")
+gem = ExtResource("15_ojdmg")
 
 [node name="HiddenArea3" parent="." instance=ExtResource("5_iunhv")]
 

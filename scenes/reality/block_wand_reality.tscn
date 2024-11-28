@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="6_nos1c"]
 [ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="7_1e5qy"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="7_jm6ka"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="8_6fpy7"]
+[ext_resource type="Resource" uid="uid://ddevtvaly06yn" path="res://resources/gems/gem11.tres" id="8_j7awb"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="9_jy6jp"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="12_gl2bx"]
 
@@ -96,7 +96,7 @@ shape = SubResource("RectangleShape2D_56u6b")
 position = Vector2(72, 64)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("8_6fpy7")
+gem = ExtResource("8_j7awb")
 
 [node name="HiddenArea3" parent="." groups=["Save"] instance=ExtResource("5_e4rya")]
 visible = false

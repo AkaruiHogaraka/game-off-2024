@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="6_40x43"]
 [ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/level_objects/one_way_platform.tscn" id="8_wlqr8"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="9_lxju5"]
+[ext_resource type="Resource" uid="uid://bp2nqumb5i07v" path="res://resources/gems/gem3.tres" id="10_3jv2l"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="10_4lvck"]
-[ext_resource type="Resource" uid="uid://bfuwg0b2s4tk8" path="res://resources/gems/red_gem.tres" id="11_6tps0"]
-[ext_resource type="Resource" uid="uid://dlna8d8mwb4sh" path="res://resources/gems/green_gem.tres" id="12_kjuyu"]
+[ext_resource type="Resource" uid="uid://d1rxy3c4nnbb7" path="res://resources/gems/gem2.tres" id="11_fwk1p"]
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="14_gq4va"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
@@ -73,13 +73,13 @@ shape = SubResource("RectangleShape2D_1c4al")
 position = Vector2(-98, -16)
 
 [node name="Pickup" parent="Chest" index="1"]
-gem = ExtResource("11_6tps0")
+gem = ExtResource("10_3jv2l")
 
 [node name="Chest2" parent="." instance=ExtResource("10_4lvck")]
 position = Vector2(-56, 48)
 
 [node name="Pickup" parent="Chest2" index="1"]
-gem = ExtResource("12_kjuyu")
+gem = ExtResource("11_fwk1p")
 
 [node name="WalkLoadRight" parent="." instance=ExtResource("14_gq4va")]
 position = Vector2(139, -32)

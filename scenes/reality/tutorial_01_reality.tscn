@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://s66w8sr6lbkb" path="res://prefabs/level_objects/button.tscn" id="14_fug2u"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="14_lck8v"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="15_w3umw"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="16_v3td4"]
+[ext_resource type="Resource" uid="uid://c6jse2rrswk2h" path="res://resources/gems/gem4.tres" id="17_5qewk"]
 
 [node name="Tutorial01Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -133,7 +133,7 @@ position = Vector2(-24, -16)
 position = Vector2(72, 48)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("16_v3td4")
+gem = ExtResource("17_5qewk")
 
 [editable path="DisableTutorialTrigger"]
 [editable path="WalkLoadRight"]

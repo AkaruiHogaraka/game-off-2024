@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="12_jrdsm"]
 [ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="13_8q3pn"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="14_nw6np"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="15_t5g7f"]
+[ext_resource type="Resource" uid="uid://b8v3iq807cl43" path="res://resources/gems/gem13.tres" id="15_lpkrs"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="16_r3xkf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gix7a"]
@@ -119,7 +119,7 @@ one_way_collision = true
 position = Vector2(40, 16)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("15_t5g7f")
+gem = ExtResource("15_lpkrs")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("16_r3xkf")]
 

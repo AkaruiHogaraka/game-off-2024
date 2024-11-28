@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="16_dff2u"]
 [ext_resource type="PackedScene" uid="uid://fwre44wmtfvr" path="res://prefabs/level_objects/lantern_pickup.tscn" id="17_g6u8m"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="18_7jlxy"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="19_8083s"]
+[ext_resource type="Resource" uid="uid://ci44vig3p3b4d" path="res://resources/gems/gem1.tres" id="19_17wan"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="20_hwgia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
@@ -195,7 +195,7 @@ position = Vector2(18, 31)
 position = Vector2(88, 0)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("19_8083s")
+gem = ExtResource("19_17wan")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("20_hwgia")]
 

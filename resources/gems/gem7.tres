@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Gem" load_steps=4 format=3 uid="uid://ctsu238ii0srk"]
+
+[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_taerj"]
+[ext_resource type="Script" path="res://resources/gem.gd" id="2_hmsup"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fbpk"]
+atlas = ExtResource("1_taerj")
+region = Rect2(3, 4, 8, 8)
+
+[resource]
+script = ExtResource("2_hmsup")
+gem_name = "Gem"
+gem_texture = SubResource("AtlasTexture_3fbpk")

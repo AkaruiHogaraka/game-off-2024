@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="7_38lh5"]
 [ext_resource type="PackedScene" uid="uid://csc7lw3jpec0s" path="res://prefabs/level_objects/button_activated_platform.tscn" id="8_b17ac"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_3qrpk"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="10_wotg8"]
+[ext_resource type="Resource" uid="uid://27dapdl7cekc" path="res://resources/gems/gem15.tres" id="10_udqhl"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="10_ylcyn"]
 [ext_resource type="Script" path="res://scripts/dream_blocker.gd" id="12_8egg4"]
 
@@ -86,7 +86,7 @@ position = Vector2(-32, 16)
 position = Vector2(0, 16)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("10_wotg8")
+gem = ExtResource("10_udqhl")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("10_ylcyn")]
 

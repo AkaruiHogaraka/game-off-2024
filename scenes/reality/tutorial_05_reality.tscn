@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cb8mh3cd7gwav" path="res://prefabs/level_objects/walk_load_right.tscn" id="7_q6ooh"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="9_dvump"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="10_uotbb"]
+[ext_resource type="Resource" uid="uid://ex5cceg0bj6o" path="res://resources/gems/gem9.tres" id="11_etgin"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="11_qmcmu"]
-[ext_resource type="Resource" uid="uid://cgfkgkyvctgsd" path="res://resources/gems/gem.tres" id="12_ma0hu"]
 [ext_resource type="PackedScene" uid="uid://c6vgeehq0fo3e" path="res://prefabs/level_objects/alternate_platform.tscn" id="13_afdcm"]
 [ext_resource type="PackedScene" uid="uid://csc7lw3jpec0s" path="res://prefabs/level_objects/button_activated_platform.tscn" id="13_h7gk8"]
 
@@ -120,7 +120,7 @@ shape = SubResource("RectangleShape2D_yk6rn")
 position = Vector2(-48, 16)
 
 [node name="Pickup" parent="GemChest" index="1"]
-gem = ExtResource("12_ma0hu")
+gem = ExtResource("11_etgin")
 
 [node name="AlternatePlatform" parent="." instance=ExtResource("13_afdcm")]
 position = Vector2(88, 20)
