@@ -33,10 +33,12 @@ tile_map_data = PackedByteArray("AAACAP3/BwAAAAAAAgD///v/BwAAAAAAAgD///z/BwAAAAA
 tile_set = ExtResource("4_wjgo6")
 
 [node name="LeftGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
 tile_map_data = PackedByteArray("AAD6////AAAAAAAAAAA=")
 tile_set = ExtResource("4_wjgo6")
 
 [node name="RightGraves" type="TileMapLayer" parent="."]
+use_parent_material = true
 tile_map_data = PackedByteArray("AAD6////AAAGAAIAAAA=")
 tile_set = ExtResource("4_wjgo6")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://de2gkqkiailjq"]
+[gd_scene load_steps=14 format=3 uid="uid://de2gkqkiailjq"]
 
 [ext_resource type="Script" path="res://scripts/interactable_pickup.gd" id="1_81gmj"]
 [ext_resource type="Texture2D" uid="uid://bso22ca4w6k5" path="res://sprites/chest.png" id="2_8s1uw"]
@@ -7,16 +7,70 @@
 [ext_resource type="PackedScene" uid="uid://dhvsuvnoa0256" path="res://audio/prefabs/open_chest.tscn" id="5_g7da5"]
 [ext_resource type="PackedScene" uid="uid://bgdgv74rby0jh" path="res://audio/prefabs/get_item.tscn" id="6_wmt0e"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_biquk"]
+atlas = ExtResource("2_8s1uw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybl60"]
+atlas = ExtResource("2_8s1uw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47n6y"]
+atlas = ExtResource("2_8s1uw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gutsv"]
+atlas = ExtResource("2_8s1uw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2narb"]
+atlas = ExtResource("2_8s1uw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ukjt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biquk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybl60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47n6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gutsv")
+}],
+"loop": false,
+"name": &"open",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2narb")
+}],
+"loop": false,
+"name": &"pre-open",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_il8xv"]
 size = Vector2(10, 10)
 
 [node name="GemChest" type="Node2D"]
 use_parent_material = true
 
-[node name="InteractablePickup" type="Node" parent="." node_paths=PackedStringArray("collision", "item", "open_sfx", "pickup_sfx") groups=["Save"]]
+[node name="InteractablePickup" type="Node" parent="." node_paths=PackedStringArray("collision", "item", "sprite", "open_sfx", "pickup_sfx") groups=["Save"]]
 script = ExtResource("1_81gmj")
 collision = NodePath("../Area2D/CollisionShape2D")
 item = NodePath("../Pickup")
+sprite = NodePath("../Sprite")
 open_sfx = NodePath("../Audio/OpenChest")
 pickup_sfx = NodePath("../Audio/GetItem")
 
@@ -24,9 +78,11 @@ pickup_sfx = NodePath("../Audio/GetItem")
 script = ExtResource("2_w2sx7")
 ui = NodePath("../ItemPickupUI")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-texture = ExtResource("2_8s1uw")
+sprite_frames = SubResource("SpriteFrames_3ukjt")
+animation = &"open"
+autoplay = "default"
 offset = Vector2(0, -8)
 
 [node name="Area2D" type="Area2D" parent="."]
