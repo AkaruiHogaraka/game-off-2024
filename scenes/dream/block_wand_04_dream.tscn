@@ -1,0 +1,129 @@
+[gd_scene load_steps=18 format=4 uid="uid://ddfnwcsj7ls80"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_nh0kn"]
+[ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_gmcbw"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_pl12v"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_m7snd"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_abjf2"]
+[ext_resource type="PackedScene" uid="uid://dkccp6xocpl0w" path="res://prefabs/level_objects/button_activated_door.tscn" id="6_g2des"]
+[ext_resource type="PackedScene" uid="uid://s66w8sr6lbkb" path="res://prefabs/level_objects/button.tscn" id="7_vuri2"]
+[ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="8_x0546"]
+[ext_resource type="Script" path="res://scripts/button_activated_object.gd" id="9_uq44e"]
+[ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="10_ank03"]
+[ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="11_rxbqq"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="12_vhcuc"]
+[ext_resource type="Resource" uid="uid://k5ijowqaw4i1" path="res://resources/gems/dream_gem.tres" id="13_nqsc7"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="14_1i255"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gix7a"]
+size = Vector2(16, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmd7n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxr85"]
+
+[node name="BlockWand04Dream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_nh0kn")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+mask_settings = ExtResource("2_gmcbw")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("3_pl12v")
+scene_path = "res://scenes/reality/block_wand_04_reality.tscn"
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAP//AgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQAIAP3/CQAAAAAAAQAHAP3/CQAAAAAAAQAHAP//AgAAAAAAAQD5/wIAAgAAAAAAAQD6/wIAAgAAAAAAAQD7/wIAAgAAAAAAAQD8/wIAAgAAAAAAAQD9/wIAAgAAAAAAAQAGAP//AgAAAAAAAQAFAP//AgAAAAAAAQD4/wIAAgAAAAAAAQD3////AgAAAAAAAQD4////AgAAAAAAAQD4/wAACQAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQACAAEAAgAAAAAAAQA=")
+tile_set = ExtResource("4_m7snd")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAHAPz/BgAAAAAAAgAHAPv/BgAAAAAAAgAHAPr/BgAAAAAAAgD+/wAABgAAAAAAAgD+/wEABgAAAAAAAgAFAP//BgAAAAAAAgD4////BwAAAAAAAgD3/wEABwAAAAAAAgD3/wAABwAAAAAAAgADAAAABgAAAAAAAgABAAAABwAAAAAAAgAJAP7/BgAAAAAAAgAJAP3/BgAAAAAAAgD2//7/BwAAAAAAAgD2//3/BwAAAAAAAgD2//z/BwAAAAAAAgD2//v/BwAAAAAAAgD2//r/BwAAAAAAAgD2//n/BwAAAAAAAgA=")
+tile_set = ExtResource("4_m7snd")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD4////AAAFAAEAAAD4/wAAAAAFAAUAAAD3/wAAAAAFAAQAAAD3/wEAAAAFAAIAAAAHAPz/AAABAAIAAAAHAPv/AAABAAIAAAAHAPr/AAABAAIAAAAHAP3/AAABAAUAAAAIAP3/AAACAAUAAAAIAP//AAACAAEAAAAHAP//AAACAAEAAAAGAP//AAADAAEAAAAEAAAAAAACAAEAAAAAAAAAAAACAAEAAAD9/wIAAAADAAEAAAD8/wIAAAADAAEAAAD7/wIAAAACAAEAAAD6/wIAAAADAAEAAAD5/wIAAAACAAEAAAD4/wIAAAADAAEAAAD3/wIAAAACAAQAAAD+/wIAAAAEAAQAAAAFAP//AAABAAEAAAAFAAAAAAAEAAQAAAD3////AAACAAEAAAD3//7/AAADAAAAAAD4//7/AAACAAAAAAD7/wEAAAADAAAAAAD8/wEAAAACAAAAAAD6/wEAAAACAAAAAAD4/wEAAAADAAAAAAAEAP//AAADAAAAAAAIAP7/AAADAAAAAAAHAP7/AAACAAAAAAADAP//AAADAAAAAAD/////AAADAAAAAAD//wAAAAADAAEAAAD+/wEAAAABAAIAAAD+/wAAAAABAAEAAAD+////AAACAAAAAAADAAAAAAABAAEAAAABAAAAAAAFAAEAAAACAAEAAAADAAEAAAADAAEAAAAEAAQAAAABAAEAAAACAAQAAAACAAAAAAADAAAAAAA=")
+tile_set = ExtResource("4_m7snd")
+
+[node name="Camera" parent="." instance=ExtResource("5_abjf2")]
+
+[node name="ButtonDoor" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("6_g2des")]
+position = Vector2(128, -16)
+turn_on = false
+buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3")]
+
+[node name="Button" parent="ButtonDoor" instance=ExtResource("7_vuri2")]
+position = Vector2(-112, 8)
+
+[node name="Button2" parent="ButtonDoor" instance=ExtResource("7_vuri2")]
+position = Vector2(-24, -8)
+
+[node name="Button3" parent="ButtonDoor" instance=ExtResource("7_vuri2")]
+position = Vector2(-168, 40)
+
+[node name="Button4" parent="ButtonDoor" instance=ExtResource("7_vuri2")]
+position = Vector2(-232, 40)
+
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("8_x0546")]
+position = Vector2(-104, 32)
+
+[node name="ButtonPlatform" type="Node2D" parent="." node_paths=PackedStringArray("collision", "on_sprite", "off_sprite", "buttons")]
+use_parent_material = true
+position = Vector2(40, 8)
+script = ExtResource("9_uq44e")
+collision = NodePath("StaticBody2D/CollisionShape2D")
+on_sprite = NodePath("OnSprite")
+off_sprite = NodePath("OffSprite")
+buttons = [NodePath("../ButtonDoor/Button")]
+
+[node name="OnSprite" type="Sprite2D" parent="ButtonPlatform"]
+use_parent_material = true
+texture = ExtResource("10_ank03")
+
+[node name="OffSprite" type="Sprite2D" parent="ButtonPlatform"]
+use_parent_material = true
+texture = ExtResource("11_rxbqq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ButtonPlatform"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonPlatform/StaticBody2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_gix7a")
+one_way_collision = true
+
+[node name="GemChest" parent="." instance=ExtResource("12_vhcuc")]
+position = Vector2(40, 16)
+
+[node name="Pickup" parent="GemChest" index="1"]
+gem = ExtResource("13_nqsc7")
+dream_gem = true
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("14_1i255")]
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAABAAAAAAADAAEAAAADAAAAAAADAAEAAAACAAAAAAADAAEAAAABAAEAAAADAAMAAAACAAEAAAADAAMAAAADAAEAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(40, 12)
+shape = SubResource("RectangleShape2D_mmd7n")
+
+[node name="HiddenArea2" parent="." instance=ExtResource("14_1i255")]
+
+[node name="TileMapLayer" parent="HiddenArea2" index="0"]
+visible = false
+tile_map_data = PackedByteArray("AAD4/wEAAAAFAAIAAAD4/wAAAAAFAAIAAAD4/wIAAAACAAQAAAD3/wIAAAADAAMAAAD3/wEAAAADAAMAAAD3/wAAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea2/Area2D" index="0"]
+position = Vector2(-123, 20)
+shape = SubResource("RectangleShape2D_pxr85")
+
+[editable path="ButtonDoor"]
+[editable path="Body"]
+[editable path="GemChest"]
+[editable path="HiddenArea"]
+[editable path="HiddenArea2"]

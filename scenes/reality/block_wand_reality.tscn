@@ -31,10 +31,12 @@ use_parent_material = true
 script = ExtResource("1_6rr4m")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_4rgws")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("2_jvaxt")
+scene_path = "res://scenes/dream/block_wand_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -122,6 +124,8 @@ item_path = "res://resources/items/block_wand.tscn"
 [node name="Body" parent="." groups=["Save"] instance=ExtResource("9_jy6jp")]
 position = Vector2(133, 32)
 
+[node name="Moveable" parent="Body" index="1" groups=["Save"]]
+
 [node name="Door" parent="." instance=ExtResource("12_gl2bx")]
 position = Vector2(32, -48)
 
@@ -136,4 +140,5 @@ node_path = "Door"
 [editable path="HiddenArea3"]
 [editable path="WalkLoadRight"]
 [editable path="ItemChest"]
+[editable path="Body"]
 [editable path="Door"]

@@ -17,10 +17,12 @@ use_parent_material = true
 script = ExtResource("1_ehub8")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_a3155")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("3_dpeb2")
+scene_path = "res://scenes/dream/block_wand_05_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -76,6 +78,9 @@ gem = ExtResource("10_4k0du")
 [node name="Body" parent="." groups=["Save"] instance=ExtResource("11_8yn5c")]
 position = Vector2(88, 1)
 
+[node name="Moveable" parent="Body" index="1" groups=["Save"]]
+
 [editable path="WalkLoadRight"]
 [editable path="Door"]
 [editable path="GemChest"]
+[editable path="Body"]

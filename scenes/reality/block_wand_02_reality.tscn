@@ -13,16 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="10_ylcyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxos8"]
+size = Vector2(61, 20)
 
 [node name="BlockWand02Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
 script = ExtResource("1_xbg66")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_tdl38")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("3_toul0")
+scene_path = "res://scenes/dream/block_wand_02_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -82,13 +85,13 @@ position = Vector2(0, 16)
 gem = ExtResource("10_wotg8")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("10_ylcyn")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
+visible = false
 tile_map_data = PackedByteArray("AAD//wEAAAABAAIAAAD//wAAAAABAAMAAAD/////AAABAAMAAAAAAAEAAAADAAMAAAABAAEAAAADAAMAAAACAAEAAAADAAMAAAADAAEAAAADAAMAAAADAAAAAAADAAMAAAADAP//AAADAAMAAAACAP//AAADAAMAAAABAP//AAADAAMAAAAAAP//AAADAAMAAAAAAAAAAAADAAMAAAABAAAAAAADAAMAAAACAAAAAAADAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
-position = Vector2(-5, 4)
+position = Vector2(15.5, 4)
 shape = SubResource("RectangleShape2D_pxos8")
 
 [editable path="WalkLoadLeft"]
