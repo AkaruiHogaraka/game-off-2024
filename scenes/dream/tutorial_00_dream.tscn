@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=4 uid="uid://cj4xf6gr7sepi"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_1o5ik"]
+[ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_ypfws"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_nels3"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_ltq3j"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="5_41y8s"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="6_46pit"]
+[ext_resource type="PackedScene" uid="uid://bx5jp6asn06qx" path="res://prefabs/level_objects/one_way_platform.tscn" id="7_u6ogt"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="8_ngvul"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_pd467"]
+[ext_resource type="Resource" uid="uid://k5ijowqaw4i1" path="res://resources/gems/dream_gem.tres" id="10_kmbwr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
+
+[node name="Tutorial00Dream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
+use_parent_material = true
+script = ExtResource("1_1o5ik")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("RealityConnection")
+mask_settings = ExtResource("2_ypfws")
+
+[node name="RealityConnection" type="Node" parent="."]
+script = ExtResource("3_nels3")
+scene_path = "res://scenes/reality/tutorial_00_reality.tscn"
+
+[node name="Ground" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQD+/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAP//AgAAAAAAAQAFAP7/AgAAAAAAAQAGAPz/AgAAAAAAAQD7//7/AgAAAAAAAQD6//3/AgAAAAAAAQD5//3/AgAAAAAAAQD8/wEAAgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQD8/wAABQAAAAAAAQA=")
+tile_set = ExtResource("4_ltq3j")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAFAP7/BgAAAAAAAgAGAP3/BgAAAAAAAgAGAPz/BgAAAAAAAgD4//v/BwAAAAAAAgD4//r/BwAAAAAAAgD4//n/BwAAAAAAAgD7//7/BwAAAAAAAgD7////BwAAAAAAAgD6//3/BwAAAAAAAgD4//z/BwAAAAAAAgD9/wAABgAAAAAAAgD7/wAABwAAAAAAAgAHAPj/BgAAAAAAAgD4//j/BwAAAAAAAgAJAPv/BgAAAAAAAgAJAPr/BgAAAAAAAgAJAPn/BgAAAAAAAgA=")
+tile_set = ExtResource("4_ltq3j")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(0, 32)
+tile_map_data = PackedByteArray("AAAEAP//AAABAAEAAAAFAP7/AAABAAEAAAAGAPz/AAABAAEAAAD6//3/AAAFAAEAAAD7//7/AAAFAAEAAAAEAAAAAAAEAAQAAAAFAP//AAAEAAQAAAAGAP7/AAAEAAQAAAD6//7/AAACAAQAAAD4//3/AAACAAQAAAAGAP3/AAABAAIAAAAHAPj/AAABAAIAAAADAAAAAAADAAEAAAACAAAAAAACAAEAAAABAAAAAAADAAEAAAAAAAAAAAACAAEAAAD//wAAAAADAAEAAAD+/wAAAAADAAEAAAD9/wAAAAABAAEAAAADAP//AAADAAAAAAACAP//AAADAAAAAAABAP//AAACAAAAAAD+////AAADAAAAAAD/////AAACAAAAAAD7////AAAFAAIAAAD5//3/AAACAAEAAAD4//z/AAAFAAIAAAD4//v/AAAFAAMAAAD4//r/AAAFAAIAAAD4//n/AAAFAAIAAAD4//j/AAAFAAIAAAAHAPz/AAACAAEAAAAIAPz/AAADAAEAAAAIAPv/AAADAAAAAAAHAPv/AAADAAAAAAAGAPv/AAACAAAAAAAFAP3/AAACAAAAAAAEAP7/AAADAAAAAAD7//3/AAACAAAAAAD5//z/AAADAAAAAAD8/wEAAAADAAEAAAD7/wAAAAAFAAMAAAD9/wEAAAAEAAQAAAD7/wEAAAACAAQAAAD8////AAACAAAAAAAHAPn/AAABAAUAAAAIAPn/AAACAAUAAAA=")
+tile_set = ExtResource("4_ltq3j")
+
+[node name="Door" parent="." instance=ExtResource("5_41y8s")]
+position = Vector2(-40, 32)
+
+[node name="Area2D" parent="Door" index="3"]
+collision_mask = 0
+
+[node name="CameraPosition" type="Marker2D" parent="."]
+
+[node name="Camera" parent="." instance=ExtResource("6_46pit")]
+
+[node name="OneWayPlatform" parent="." instance=ExtResource("7_u6ogt")]
+position = Vector2(-56, 40)
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_ngvul")]
+position = Vector2(0, 32)
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAD8/wAAAAACAAEAAAD9/wAAAAACAAEAAAD9/wEAAwAAAAAAAAD8/wEAAwAAAAAAAAD7/wEAAwAAAAAAAAD7/wAAAAACAAQAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(-57, 12)
+shape = SubResource("RectangleShape2D_1c4al")
+
+[node name="Chest" parent="." instance=ExtResource("9_pd467")]
+position = Vector2(-98, -16)
+
+[node name="Pickup" parent="Chest" index="1"]
+gem = ExtResource("10_kmbwr")
+dream_gem = true
+
+[node name="Chest2" parent="." instance=ExtResource("9_pd467")]
+position = Vector2(-56, 48)
+
+[node name="Pickup" parent="Chest2" index="1"]
+gem = ExtResource("10_kmbwr")
+dream_gem = true
+
+[editable path="Door"]
+[editable path="OneWayPlatform"]
+[editable path="HiddenArea"]
+[editable path="Chest"]
+[editable path="Chest2"]

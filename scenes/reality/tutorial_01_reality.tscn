@@ -23,10 +23,12 @@ use_parent_material = true
 script = ExtResource("1_ge8jf")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("DreamConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_nnrvd")
 
 [node name="DreamConnection" type="Node" parent="."]
 script = ExtResource("2_vasy4")
+scene_path = "res://scenes/dream/tutorial_01_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAIAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQADAAIAAgAAAAAAAQACAAIAAgAAAAAAAQABAAIAAgAAAAAAAQAAAAIAAgAAAAAAAQD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD//wMAAgAAAAAAAQD+/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQAJAAEABQAAAAAAAQD//wEABQAAAAAAAQAEAAMAAgAAAAAAAQAEAAEABQAAAAAAAQA=")
@@ -116,7 +118,6 @@ all_pressed = false
 buttons = [NodePath("Button"), NodePath("Button2")]
 
 [node name="HiddenArea" parent="ButtonPlatform/StaticBody2D/CollisionShape2D" index="0" instance=ExtResource("14_lck8v")]
-visible = false
 position = Vector2(-8, -2)
 
 [node name="TileMapLayer" parent="ButtonPlatform/StaticBody2D/CollisionShape2D/HiddenArea" index="0"]

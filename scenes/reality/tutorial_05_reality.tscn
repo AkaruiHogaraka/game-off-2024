@@ -28,10 +28,12 @@ use_parent_material = true
 script = ExtResource("1_cwdp1")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_isi5p")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("3_a5m6d")
+scene_path = "res://scenes/dream/tutorial_05_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -82,10 +84,12 @@ node_path = "WalkLoadLeft"
 [node name="Body" parent="." groups=["Save"] instance=ExtResource("9_dvump")]
 position = Vector2(68, 48)
 
+[node name="Moveable" parent="Body" index="1" groups=["Save"]]
+
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("10_uotbb")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
+visible = false
 tile_map_data = PackedByteArray("AAABAAEAAAADAAMAAAABAAAAAAADAAMAAAABAP//AAADAAMAAAACAP//AAADAAMAAAACAAAAAAADAAMAAAACAAEAAAADAAMAAAADAAEAAAAFAAMAAAADAAAAAAAFAAIAAAADAP//AAAFAAMAAAAAAAEAAAABAAIAAAAAAAAAAAABAAMAAAAAAP//AAABAAIAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
@@ -93,9 +97,9 @@ position = Vector2(32, 4)
 shape = SubResource("RectangleShape2D_xg18k")
 
 [node name="HiddenArea2" parent="." groups=["Save"] instance=ExtResource("10_uotbb")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea2" index="0"]
+visible = false
 tile_map_data = PackedByteArray("AAD8/wEAAAABAAIAAAD8/wAAAAABAAMAAAD8////AAABAAIAAAD9/wEAAAAFAAMAAAD9/wAAAAAFAAIAAAD9////AAAFAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea2/Area2D" index="0"]
@@ -103,9 +107,9 @@ position = Vector2(-48, 4)
 shape = SubResource("RectangleShape2D_34iks")
 
 [node name="HiddenArea3" parent="." groups=["Save"] instance=ExtResource("10_uotbb")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea3" index="0"]
+visible = false
 tile_map_data = PackedByteArray("AAD5/wEAAAAFAAMAAAD5/wAAAAAFAAMAAAD5////AAAFAAIAAAD4/wEAAAADAAMAAAD4/wAAAAADAAMAAAD4////AAADAAMAAAD3////AAADAAMAAAD3/wAAAAADAAMAAAD3/wEAAAADAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea3/Area2D" index="0"]
@@ -134,6 +138,7 @@ position = Vector2(16, 64)
 [editable path="WalkLoadLeft"]
 [editable path="WalkLoadLeft2"]
 [editable path="WalkLoadRight"]
+[editable path="Body"]
 [editable path="HiddenArea"]
 [editable path="HiddenArea2"]
 [editable path="HiddenArea3"]

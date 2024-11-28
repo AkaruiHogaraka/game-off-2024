@@ -20,10 +20,12 @@ use_parent_material = true
 script = ExtResource("1_s1jbl")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_hqdvj")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("3_xx12w")
+scene_path = "res://scenes/dream/tutorial_06_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -64,9 +66,9 @@ scene_path = "res://scenes/reality/tutorial_05_reality.tscn"
 node_path = "WalkLoadLeft2"
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_ev5cl")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
+visible = false
 tile_map_data = PackedByteArray("AAAIAAEAAAADAAMAAAAIAAAAAAADAAMAAAAIAP//AAADAAMAAAAHAP//AAADAAMAAAAHAAAAAAADAAMAAAAHAAEAAAADAAMAAAAGAAEAAAAEAAQAAAAGAAAAAAABAAIAAAAGAP//AAABAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]

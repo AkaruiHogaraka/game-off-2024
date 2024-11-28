@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=4 uid="uid://dvkstqfeqbuw8"]
+
+[ext_resource type="Script" path="res://scripts/scene.gd" id="1_40qrx"]
+[ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_2wjqq"]
+[ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_13h43"]
+[ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_ttweo"]
+[ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_7nssn"]
+[ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="8_qi5yh"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="9_kuxd2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqof1"]
+
+[node name="Tutorial04Dream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
+use_parent_material = true
+script = ExtResource("1_40qrx")
+scene_camera = NodePath("Camera")
+alternate_scene = NodePath("AltConnection")
+mask_settings = ExtResource("2_2wjqq")
+
+[node name="AltConnection" type="Node" parent="."]
+script = ExtResource("3_13h43")
+scene_path = "res://scenes/reality/tutorial_04_reality.tscn"
+
+[node name="Floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAIAP//AgAAAAAAAQAHAP//AgAAAAAAAQAAAAEAAgAAAAAAAQD//wEAAgAAAAAAAQD3/wMAAgAAAAAAAQD4/wMAAgAAAAAAAQD5/wMAAgAAAAAAAQD9/wMAAgAAAAAAAQAEAAAAAgAAAAAAAQAFAAUACAAAAAAAAQACAAUACAAAAAAAAQABAAUACAAAAAAAAQD8/wMAAgAAAAAAAQD+/wEAAgAAAAAAAQADAAAAAgAAAAAAAQAGAAUACAAAAAAAAQAIAAIACgAAAAAAAQAHAAIACgAAAAAAAQD6/wMAAgAAAAAAAQD7/wMAAgAAAAAAAQA=")
+tile_set = ExtResource("4_ttweo")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAHAP//BgAAAAAAAgAHAAMABgAAAAAAAgAHAAQABgAAAAAAAgAEAAAABwAAAAAAAgAEAAEABwAAAAAAAgAEAAIABwAAAAAAAgAEAAMABwAAAAAAAgAEAAQABwAAAAAAAgAEAAUABwAAAAAAAgAHAAUABgAAAAAAAgADAAUABgAAAAAAAgADAAQABgAAAAAAAgADAAMABgAAAAAAAgADAAIABgAAAAAAAgADAAEABgAAAAAAAgADAAAABgAAAAAAAgD+/wEABgAAAAAAAgD+/wIABgAAAAAAAgAAAAEABwAAAAAAAgAAAAIABwAAAAAAAgAAAAMABwAAAAAAAgAAAAQABwAAAAAAAgAAAAUABwAAAAAAAgAHAAIABgAAAAAAAgAHAAAACQAAAAAAAQAIAAAACQAAAAAAAQD2/wIABwAAAAAAAgD2/wEABwAAAAAAAgD2/wAABwAAAAAAAgD2////BwAAAAAAAgD2//7/BwAAAAAAAgD2//3/BwAAAAAAAgD2//z/BwAAAAAAAgD2//v/BwAAAAAAAgAJAAEABgAAAAAAAgAJAAAABgAAAAAAAgAJAP7/BgAAAAAAAgAJAP3/BgAAAAAAAgAJAPz/BgAAAAAAAgAJAPv/BgAAAAAAAgAJAPr/BgAAAAAAAgA=")
+tile_set = ExtResource("4_ttweo")
+
+[node name="Overlay" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAHAP//AAABAAEAAAD3/wMAAAACAAEAAAAHAAMAAAABAAIAAAAHAAQAAAAEAAQAAAAIAP//AAADAAEAAAD3/wIAAAADAAAAAAAIAP7/AAADAAAAAAAHAP7/AAACAAAAAAD4/wMAAAADAAEAAAD4/wIAAAACAAAAAAAAAAEAAAAFAAEAAAAEAAAAAAAFAAEAAAD+/wEAAAABAAEAAAADAAAAAAABAAEAAAD9/wMAAAADAAEAAAD//wEAAAACAAEAAAAEAAUAAAADAAMAAAADAAUAAAADAAMAAAAHAAUAAAADAAMAAAAAAAUAAAADAAMAAAD8/wUAAAADAAMAAAD5/wUAAAADAAMAAAADAAQAAAAEAAQAAAD+/wIAAAABAAMAAAAAAAIAAAAFAAIAAAAAAAMAAAAFAAIAAAAEAAMAAAAFAAMAAAAEAAIAAAAFAAMAAAAEAAEAAAAFAAIAAAADAAMAAAABAAMAAAADAAIAAAABAAIAAAADAAEAAAABAAMAAAD+/wMAAAAEAAQAAAAIAAAAAAACAAUAAAAHAAAAAAABAAUAAAAHAAIAAAABAAEAAAAIAAIAAAADAAEAAAD8/wMAAAADAAEAAAD7/wMAAAACAAEAAAD6/wMAAAACAAEAAAD5/wMAAAADAAEAAAD9/wIAAAADAAAAAAD8/wIAAAADAAAAAAD7/wIAAAACAAAAAAAAAAQAAAACAAQAAAAEAAQAAAACAAQAAAADAP//AAACAAAAAAAIAAEAAAADAAAAAAAHAAEAAAACAAAAAAA=")
+tile_set = ExtResource("4_ttweo")
+
+[node name="Camera" parent="." instance=ExtResource("5_7nssn")]
+
+[node name="Door" parent="." instance=ExtResource("8_qi5yh")]
+position = Vector2(-8, 16)
+
+[node name="Area2D" parent="Door" index="3"]
+collision_mask = 0
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("9_kuxd2")]
+visible = false
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAAHAAIAAAABAAMAAAAHAAEAAAABAAMAAAAHAAAAAAABAAIAAAAIAAIAAAADAAMAAAAIAAEAAAADAAMAAAAIAAAAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(123, 20)
+shape = SubResource("RectangleShape2D_eqof1")
+
+[editable path="Door"]
+[editable path="HiddenArea"]

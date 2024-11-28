@@ -17,10 +17,12 @@ use_parent_material = true
 script = ExtResource("1_ln8p5")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_ahdf1")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("3_n7alc")
+scene_path = "res://scenes/dream/tutorial_04_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true

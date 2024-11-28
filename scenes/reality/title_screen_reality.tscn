@@ -198,7 +198,6 @@ position = Vector2(88, 0)
 gem = ExtResource("19_8083s")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("20_hwgia")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
 tile_map_data = PackedByteArray("AAAFAP//AAABAAIAAAAFAP7/AAABAAIAAAAFAAAAAAAEAAQAAAAGAAAAAAADAAMAAAAGAP//AAADAAMAAAAGAP7/AAADAAMAAAAHAP7/AAADAAMAAAAHAP//AAADAAMAAAAHAAAAAAADAAMAAAA=")

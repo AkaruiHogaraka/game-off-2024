@@ -22,7 +22,7 @@
 size = Vector2(79, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihvg7"]
-size = Vector2(20, 2)
+size = Vector2(60, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gix7a"]
 size = Vector2(16, 4)
@@ -32,10 +32,12 @@ use_parent_material = true
 script = ExtResource("1_0g2n0")
 scene_camera = NodePath("Camera")
 alternate_scene = NodePath("AltConnection")
+is_alternate_scene_dream = true
 mask_settings = ExtResource("2_wlpyv")
 
 [node name="AltConnection" type="Node" parent="."]
 script = ExtResource("2_rghfj")
+scene_path = "res://scenes/dream/tutorial_03_dream.tscn"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -133,13 +135,12 @@ position = Vector2(0, 64)
 gem = ExtResource("14_yihsd")
 
 [node name="HiddenArea3" parent="." instance=ExtResource("5_iunhv")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea3" index="0"]
 tile_map_data = PackedByteArray("AAD6/wIAAAADAAMAAAD5/wIAAAADAAMAAAD4/wIAAAADAAMAAAD3/wIAAAADAAMAAAD3/wEAAAADAAMAAAD4/wEAAAADAAMAAAD5/wEAAAADAAMAAAD6/wEAAAADAAMAAAD6/wAAAAADAAMAAAD5/wAAAAADAAMAAAD4/wAAAAADAAMAAAD3/wAAAAADAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea3/Area2D" index="0"]
-position = Vector2(-133, 33)
+position = Vector2(-113, 31.5)
 shape = SubResource("RectangleShape2D_ihvg7")
 
 [node name="ButtonPlatform" type="Node2D" parent="." node_paths=PackedStringArray("collision", "on_sprite", "off_sprite")]

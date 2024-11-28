@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://clppcvnfhiaja"]
+[gd_scene load_steps=21 format=4 uid="uid://clppcvnfhiaja"]
 
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
@@ -13,6 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="10_hart2"]
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="11_6a2y4"]
 [ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="12_ovat7"]
+[ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="14_j2ng3"]
+[ext_resource type="Resource" uid="uid://k5ijowqaw4i1" path="res://resources/gems/dream_gem.tres" id="15_gni2h"]
+[ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="16_20c5x"]
+[ext_resource type="PackedScene" uid="uid://fwre44wmtfvr" path="res://prefabs/level_objects/lantern_pickup.tscn" id="17_8rvcg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3na1o"]
 shader = ExtResource("6_u1f7g")
@@ -26,6 +30,8 @@ shader_parameter/colour_four = Color(1, 1, 1, 1)
 shader_parameter/replace_four = Color(0.886275, 0.952941, 0.894118, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbs64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8015"]
 
 [node name="TitleScreenDream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -41,19 +47,27 @@ scene_path = "res://scenes/reality/title_screen_reality.tscn"
 [node name="Ground" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAFAPr/AgAAAAAAAQAEAP7/AgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAFAPr/AgAAAAAAAQAEAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAFAPz/CQAAAAAAAQAGAPz/CQAAAAAAAQA=")
 tile_set = ExtResource("1_1ormn")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAFAP3/BgAAAAAAAgAFAPz/BgAAAAAAAgAFAPv/BgAAAAAAAgAFAPr/BgAAAAAAAgAGAPn/BgAAAAAAAgAGAPj/BgAAAAAAAgD2////BwAAAAAAAgD2//7/BwAAAAAAAgD2//3/BwAAAAAAAgD2//z/BwAAAAAAAgD2//v/BwAAAAAAAgD2//r/BwAAAAAAAgD2//n/BwAAAAAAAgD2//j/BwAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAAEAP//BgAAAAAAAgAEAP7/BgAAAAAAAgAFAPv/BgAAAAAAAgAFAPr/BgAAAAAAAgAGAPn/BgAAAAAAAgAGAPj/BgAAAAAAAgAHAP3/BgAAAAAAAgAHAPz/BgAAAAAAAgD2////BwAAAAAAAgD2//7/BwAAAAAAAgD2//3/BwAAAAAAAgD2//z/BwAAAAAAAgD2//v/BwAAAAAAAgD2//r/BwAAAAAAAgD2//n/BwAAAAAAAgA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="LeftGraves" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAGAP//AAAAAAEAAAAEAP//AAAGAAIAAAA=")
+tile_set = ExtResource("1_1ormn")
+
+[node name="RightGraves" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAGAP//AAAGAAEAAAA=")
 tile_set = ExtResource("1_1ormn")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 use_parent_material = true
 position = Vector2(0, 32)
-tile_map_data = PackedByteArray("AAADAAAAAAADAAEAAAACAAAAAAADAAEAAAABAAAAAAACAAEAAAAAAAAAAAADAAEAAAD//wAAAAADAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAADAAEAAAD3/wAAAAADAAEAAAAEAP7/AAABAAEAAAAFAPr/AAABAAEAAAAFAP3/AAABAAMAAAAFAPz/AAABAAIAAAAFAPv/AAABAAMAAAAGAPn/AAABAAMAAAAGAPj/AAABAAIAAAAEAP//AAABAAIAAAAEAAAAAAAEAAQAAAAFAP7/AAAEAAQAAAAGAPr/AAAEAAQAAAADAP//AAADAAAAAAACAP//AAACAAAAAAD3////AAADAAAAAAD4////AAADAAAAAAD5////AAADAAAAAAD6////AAACAAAAAAAEAP3/AAACAAAAAAAFAPn/AAACAAAAAAAGAPf/AAABAAQAAAAFAPX/AAAFAAQAAAAGAPT/AAAEAAQAAAAHAPL/AAACAAQAAAA=")
+tile_map_data = PackedByteArray("AAADAAAAAAADAAEAAAACAAAAAAADAAEAAAABAAAAAAACAAEAAAAAAAAAAAADAAEAAAD//wAAAAADAAEAAAD+/wAAAAACAAEAAAD9/wAAAAACAAEAAAD8/wAAAAADAAEAAAD7/wAAAAADAAEAAAD6/wAAAAACAAEAAAD5/wAAAAACAAEAAAD4/wAAAAADAAEAAAD3/wAAAAADAAEAAAAEAP7/AAABAAEAAAAFAPr/AAABAAEAAAAFAPv/AAABAAMAAAAGAPn/AAABAAMAAAAGAPj/AAABAAIAAAAEAP//AAABAAIAAAAEAAAAAAAEAAQAAAAFAP7/AAADAAEAAAAGAPr/AAAEAAQAAAADAP//AAADAAAAAAACAP//AAACAAAAAAD3////AAADAAAAAAD4////AAADAAAAAAD5////AAADAAAAAAD6////AAACAAAAAAAEAP3/AAACAAAAAAAFAPn/AAACAAAAAAAFAPz/AAABAAUAAAAGAPz/AAACAAUAAAAHAPz/AAABAAQAAAAHAP7/AAAEAAQAAAAGAP7/AAACAAEAAAAHAP3/AAABAAIAAAAGAP3/AAADAAAAAAA=")
 tile_set = ExtResource("1_1ormn")
 
 [node name="Menu" type="Control" parent="." node_paths=PackedStringArray("camera_position", "camera") groups=["Save"]]
@@ -156,6 +170,31 @@ shape = SubResource("RectangleShape2D_dbs64")
 [node name="Marker2D" type="Marker2D" parent="LanternProgress"]
 position = Vector2(-53, 32)
 
+[node name="GemChest" parent="." instance=ExtResource("14_j2ng3")]
+position = Vector2(88, 0)
+
+[node name="Pickup" parent="GemChest" index="1"]
+gem = ExtResource("15_gni2h")
+dream_gem = true
+
+[node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("16_20c5x")]
+
+[node name="TileMapLayer" parent="HiddenArea" index="0"]
+tile_map_data = PackedByteArray("AAAFAP//AAABAAMAAAAFAP7/AAABAAMAAAAFAAAAAAAEAAQAAAAGAAAAAAADAAMAAAAGAP//AAADAAMAAAAGAP7/AAADAAMAAAAHAP7/AAADAAMAAAAHAP//AAADAAMAAAAHAAAAAAADAAMAAAA=")
+
+[node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
+position = Vector2(92, -10)
+shape = SubResource("RectangleShape2D_s8015")
+
+[node name="LanternPickup" parent="." instance=ExtResource("17_8rvcg")]
+position = Vector2(18, 31)
+
+[node name="Area2D" parent="LanternPickup" index="3"]
+collision_mask = 0
+
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
 
 [editable path="LanternProgress"]
+[editable path="GemChest"]
+[editable path="HiddenArea"]
+[editable path="LanternPickup"]
