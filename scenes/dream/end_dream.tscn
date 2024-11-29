@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://c5lh836uk0pjq"]
+[gd_scene load_steps=48 format=4 uid="uid://c5lh836uk0pjq"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_l0luh"]
 [ext_resource type="Resource" uid="uid://bbuimr2ci8b2u" path="res://resources/mask/depth_3.tres" id="2_irmlu"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://dfvoiojl3kjdf" path="res://sprites/nine-rect.png" id="11_s0apf"]
 [ext_resource type="Texture2D" uid="uid://k4wb8qddqycn" path="res://sprites/z_continue.png" id="12_u2y6j"]
 [ext_resource type="PackedScene" uid="uid://ckey3awf3arh8" path="res://audio/prefabs/speak.tscn" id="14_yfxiy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wx1ve"]
+size = Vector2(5, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7leli"]
 atlas = ExtResource("8_sbf1w")
@@ -311,7 +314,8 @@ dialogue = NodePath("../Dialogue")
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="EndScene/DialogueTrigger/Area2D" index="0"]
-position = Vector2(-66, 22)
+position = Vector2(-58.5, 22)
+shape = SubResource("RectangleShape2D_wx1ve")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true

@@ -154,6 +154,9 @@ text = "Wake up"
 [node name="FollowDream" parent="." instance=ExtResource("15_jq7kt")]
 position = Vector2(47, 32)
 
+[node name="MainSprite" parent="FollowDream" index="0"]
+animation = &"walk"
+
 [node name="Marker2D" parent="FollowDream" index="1"]
 position = Vector2(-87, 0)
 
