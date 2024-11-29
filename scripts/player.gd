@@ -98,7 +98,7 @@ func animate_sprite() -> void:
 		return
 	
 	if $Sprite.scale.x != _raw_input.x and _raw_input.x != 0: # Pull objects
-		sprite.play("idle")
+		sprite.play("pull")
 		
 		return
 	

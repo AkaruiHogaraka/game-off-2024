@@ -89,7 +89,7 @@ func _on_interaction() -> void:
 	GlobalReference.Player.Input_Handler.set_can_jump(false)
 	GlobalReference.Player._is_currently_interacting = true
 	GlobalReference.Player._interaction_object = self
-	distance_to_maintain = moveable_parent.global_position - GlobalReference.Player.global_position
+	distance_to_maintain = round(moveable_parent.global_position - GlobalReference.Player.global_position)
 	GlobalReference.Player.set_is_in_interaction_area(false, self, false)
 	GlobalReference.Player.set_interaction_display(false)
 
