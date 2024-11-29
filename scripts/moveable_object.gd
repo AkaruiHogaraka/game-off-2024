@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		gravity = 0.0
 		moveable_parent.global_position = floor(moveable_parent.global_position) if moveable_parent.test_move(moveable_parent.transform, Vector2.DOWN) else ceil(moveable_parent.global_position)
 		
-		if impact_once: 
+		if impact_once and not GlobalScene.internal_scene_change_cooldown: 
 			GlobalAudio.play_sfx(ground_impact_sfx)
 			impact_once = false
 	

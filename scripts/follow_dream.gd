@@ -6,6 +6,8 @@ extends Node2D
 
 var was_seen: bool
 var direction: float
+var enter: bool
+var enter_once: bool
 
 func _ready() -> void:
 	walk()
@@ -14,6 +16,12 @@ func _physics_process(delta: float) -> void:
 	animate_sprite()
 
 func animate_sprite() -> void:
+	if enter: 
+		if not enter_once:
+			enter_once = true
+			sprite.play("enter")
+		return
+	
 	if direction != 0.0:
 		sprite.play("walk")
 	else:
@@ -47,9 +55,13 @@ func walk() -> void:
 	
 	await create_tween().tween_property(sprite, "global_position:x", walk_to.global_position.x, distance / speed).finished
 	
+	await get_tree().create_timer(0.2).timeout
+	
 	direction = 0.0
+	enter = true
 	
 	await get_tree().create_timer(1.0).timeout
+	
 	set_visible(false)
 
 func set_sprite_direction(direction: float) -> void:
