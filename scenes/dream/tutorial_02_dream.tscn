@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://btlciuy36kacc"]
+[gd_scene load_steps=18 format=4 uid="uid://btlciuy36kacc"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_etm0r"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_gdkca"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/button_activated_object.gd" id="12_jw8ut"]
 [ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="13_dekjp"]
 [ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="14_ifhj1"]
+[ext_resource type="PackedScene" uid="uid://byeklpa8rk100" path="res://prefabs/level_objects/follow_dream.tscn" id="14_vyhbb"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="15_720me"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgatv"]
@@ -149,6 +150,12 @@ tile_map_data = PackedByteArray("AAAHAAAAAAADAAEAAAAGAAAAAAACAAEAAAAFAAAAAAACAAE
 position = Vector2(89, 36)
 shape = SubResource("RectangleShape2D_ruv1e")
 
+[node name="FollowDream" parent="." instance=ExtResource("14_vyhbb")]
+position = Vector2(-106, 16)
+
+[node name="Marker2D" parent="FollowDream" index="1"]
+position = Vector2(-54, 0)
+
 [editable path="AlternatePlatform"]
 [editable path="AlternatePlatform3"]
 [editable path="AlternatePlatform2"]
@@ -158,3 +165,4 @@ shape = SubResource("RectangleShape2D_ruv1e")
 [editable path="Body"]
 [editable path="GemChest"]
 [editable path="HiddenArea"]
+[editable path="FollowDream"]

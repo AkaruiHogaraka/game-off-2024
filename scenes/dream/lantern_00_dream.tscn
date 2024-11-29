@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ueim1yenq8o"]
+[gd_scene load_steps=12 format=4 uid="uid://ueim1yenq8o"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_lepxa"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_dj753"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="7_ve5sb"]
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="8_p5rka"]
 [ext_resource type="Script" path="res://scripts/require_lantern_block_dialogue_trigger.gd" id="9_24v1x"]
+[ext_resource type="PackedScene" uid="uid://byeklpa8rk100" path="res://prefabs/level_objects/follow_dream.tscn" id="10_eemh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nn7b6"]
 
@@ -78,7 +79,14 @@ shape = SubResource("RectangleShape2D_nn7b6")
 [node name="Marker2D" type="Marker2D" parent="LanternProgress"]
 position = Vector2(0, 16)
 
+[node name="FollowDream" parent="." instance=ExtResource("10_eemh3")]
+position = Vector2(-104, -16)
+
+[node name="Marker2D" parent="FollowDream" index="1"]
+position = Vector2(-56, 0)
+
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
 
 [editable path="Door"]
 [editable path="LanternProgress"]
+[editable path="FollowDream"]

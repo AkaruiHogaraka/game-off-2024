@@ -254,7 +254,7 @@ position = Vector2(92, -10)
 shape = SubResource("RectangleShape2D_2bdjw")
 
 [node name="Fire" type="AnimatedSprite2D" parent="." groups=["Campfire"]]
-position = Vector2(-8, 32)
+position = Vector2(-16, 32)
 sprite_frames = SubResource("SpriteFrames_gjo2u")
 autoplay = "default"
 offset = Vector2(0, -8)

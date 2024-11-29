@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://fafkuk0bti6x"]
+[gd_scene load_steps=7 format=4 uid="uid://fafkuk0bti6x"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_ct2vx"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_ji7bp"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="3_aud36"]
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="4_ollpp"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="5_igs0s"]
+[ext_resource type="PackedScene" uid="uid://byeklpa8rk100" path="res://prefabs/level_objects/follow_dream.tscn" id="6_bmjbr"]
 
 [node name="Lantern01Dream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -43,3 +44,11 @@ tile_map_data = PackedByteArray("AAAIAP//AAACAAEAAAAHAP//AAACAAEAAAAGAP//AAACAAE
 tile_set = ExtResource("4_ollpp")
 
 [node name="Camera" parent="." instance=ExtResource("5_igs0s")]
+
+[node name="FollowDream" parent="." instance=ExtResource("6_bmjbr")]
+position = Vector2(-53, 0)
+
+[node name="Marker2D" parent="FollowDream" index="1"]
+position = Vector2(-107, 0)
+
+[editable path="FollowDream"]

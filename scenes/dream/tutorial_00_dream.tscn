@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cj4xf6gr7sepi"]
+[gd_scene load_steps=17 format=4 uid="uid://cj4xf6gr7sepi"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_1o5ik"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_ypfws"]
@@ -14,6 +14,7 @@
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="12_kjva7"]
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="13_kj6af"]
 [ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="14_g4fjv"]
+[ext_resource type="PackedScene" uid="uid://byeklpa8rk100" path="res://prefabs/level_objects/follow_dream.tscn" id="15_jq7kt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
 
@@ -149,8 +150,15 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("12_kjva7")
 theme_override_font_sizes/font_size = 8
 
+[node name="FollowDream" parent="." instance=ExtResource("15_jq7kt")]
+position = Vector2(47, 32)
+
+[node name="Marker2D" parent="FollowDream" index="1"]
+position = Vector2(-87, 0)
+
 [editable path="Door"]
 [editable path="OneWayPlatform"]
 [editable path="HiddenArea"]
 [editable path="Chest"]
 [editable path="Chest2"]
+[editable path="FollowDream"]

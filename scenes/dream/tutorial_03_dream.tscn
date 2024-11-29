@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://q3lmpx2nwy1x"]
+[gd_scene load_steps=18 format=4 uid="uid://q3lmpx2nwy1x"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_3qh0n"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_4rb7j"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="8_jfhqu"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="13_ge7ry"]
 [ext_resource type="Resource" uid="uid://k5ijowqaw4i1" path="res://resources/gems/dream_gem.tres" id="14_s56ts"]
+[ext_resource type="PackedScene" uid="uid://byeklpa8rk100" path="res://prefabs/level_objects/follow_dream.tscn" id="14_wduad"]
 [ext_resource type="Script" path="res://scripts/button_activated_object.gd" id="15_wompj"]
 [ext_resource type="Texture2D" uid="uid://bupbf2eu6hdg3" path="res://sprites/alt-platform-on.png" id="16_5t26p"]
 [ext_resource type="Texture2D" uid="uid://djrq3xdq6m8kn" path="res://sprites/alt-platform-off.png" id="17_6q5aj"]
@@ -121,9 +122,16 @@ position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_gix7a")
 one_way_collision = true
 
+[node name="FollowDream" parent="." instance=ExtResource("14_wduad")]
+position = Vector2(-65, -16)
+
+[node name="Marker2D" parent="FollowDream" index="1"]
+position = Vector2(-95, 0)
+
 [editable path="HiddenArea2"]
 [editable path="Body"]
 [editable path="Body2"]
 [editable path="GemChest"]
 [editable path="GemChest2"]
 [editable path="HiddenArea3"]
+[editable path="FollowDream"]
