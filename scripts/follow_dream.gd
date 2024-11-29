@@ -24,8 +24,8 @@ func walk() -> void:
 	
 	was_seen = true
 	
-	var distance: float = sprite.global_position.x - walk_to.global_position.x
-	var direction: float = -1 if distance > 0 else 1
+	var distance: float = absf(global_position.x - walk_to.global_position.x)
+	var direction: float = -1 if global_position.x - walk_to.global_position.x > 0 else 1
 	var speed: float = GlobalReference.Player.move_speed
 	
 	set_sprite_direction(direction)
@@ -51,4 +51,6 @@ func save_data() -> Dictionary:
 
 func load_data(data: Dictionary) -> void:
 	was_seen = data["was_seen"]
-	walk()
+	
+	if not GlobalScene.CurrentScene.is_alternate_scene_dream:
+		walk()
