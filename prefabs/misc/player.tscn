@@ -571,7 +571,7 @@ scale = Vector2(-1, 1)
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_lja5g")
-animation = &"wake_up"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="LeftArm" type="Node2D" parent="Sprite"]
@@ -581,7 +581,7 @@ use_parent_material = true
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_mhs68")
-animation = &"wake_up"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Interaction" type="Sprite2D" parent="Sprite"]

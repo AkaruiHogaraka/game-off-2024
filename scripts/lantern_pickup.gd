@@ -9,6 +9,9 @@ extends BasePickupItem
 func initialise() -> void:
 	ui.item_label.text = item_preload.name
 	ui.item_texture_rect.set_texture(item_preload.pickup_texture)
+	
+	if GlobalItems.has_lantern:
+		get_parent().queue_free()
 
 func on_pickup_extension() -> void:
 	GlobalReference.Player.Inventory.add_item_to_inventory(item_preload)

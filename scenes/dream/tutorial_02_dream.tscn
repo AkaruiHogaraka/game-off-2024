@@ -65,7 +65,7 @@ default_on = false
 position = Vector2(-104, 24)
 default_on = false
 
-[node name="HiddenArea2" parent="." instance=ExtResource("9_tp21w")]
+[node name="HiddenArea2" parent="." groups=["Save"] instance=ExtResource("9_tp21w")]
 
 [node name="TileMapLayer" parent="HiddenArea2" index="0"]
 tile_map_data = PackedByteArray("AAD4/wIAAAADAAMAAAD5/wIAAAADAAMAAAD6/wIAAAADAAMAAAD6/wEAAAAEAAQAAAD5/wEAAAACAAEAAAD4/wEAAAADAAEAAAA=")

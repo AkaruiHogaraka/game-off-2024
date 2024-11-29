@@ -96,6 +96,15 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	internal_scene_change_cooldown = true
 	GlobalReference.Game.transition_node.set_visible(true)
 	
+	var temp_clone = GlobalReference.Player.duplicate(0)
+	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
+	temp_clone.set_collision_layer_value(3, false)
+	
+	if GlobalItems.has_lantern:
+		var lantern = GlobalReference.Player.Inventory.items[0].duplicate(4)
+		temp_clone.add_child(lantern)
+		lantern.on_passive_item_effect()
+	
 	await get_tree().physics_frame
 	
 	GlobalReference.Player.set_collision_layer_value(3, false)
@@ -107,10 +116,6 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	GlobalReference.Player.reset_velocities()
 	
 	save_nodes()
-	
-	var temp_clone = GlobalReference.Player.duplicate(0)
-	temp_clone.remove_child(temp_clone.get_child(temp_clone.get_child_count() - 1))
-	temp_clone.set_collision_layer_value(3, false)
 	
 	var old_scene: Scene = CurrentScene
 	CurrentScene = scene.scene
