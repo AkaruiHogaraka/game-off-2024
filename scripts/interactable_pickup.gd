@@ -20,8 +20,11 @@ func _on_interaction() -> void:
 	GlobalAudio.play_sfx(open_sfx)
 	
 	collision.set_disabled(true)
-	GlobalAudio.play_sfx(pickup_sfx)
 	sprite.play("open")
+	
+	await sprite.animation_finished
+	
+	GlobalAudio.play_sfx(pickup_sfx)
 	item.on_pickup()
 
 func save_data() -> Dictionary:
