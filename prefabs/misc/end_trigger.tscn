@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0xj0bpy4qsax"]
+[gd_scene load_steps=14 format=3 uid="uid://c0xj0bpy4qsax"]
 
 [ext_resource type="Script" path="res://scripts/end_trigger.gd" id="1_m2nkv"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="2_0ytfn"]
+[ext_resource type="Script" path="res://scripts/end_dialogue.gd" id="3_dwkhl"]
 [ext_resource type="Shader" path="res://shaders/alter_colour.gdshader" id="3_n1348"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="3_tp206"]
 [ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="4_7bp60"]
+[ext_resource type="PackedScene" uid="uid://ctbhj78u27ycv" path="res://prefabs/level_objects/dialogue_trigger.tscn" id="6_icvm4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqeu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v26hh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0ytk"]
 shader = ExtResource("3_n1348")
@@ -74,11 +76,16 @@ collectable_parent = NodePath("Elements/CollectablePivot")
 collectables_label = NodePath("Elements/CollectablePivot/Collectables")
 next_label = NodePath("Elements/Next")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -10)
+[node name="DialogueTrigger" parent="." instance=ExtResource("6_icvm4")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_3gqeu")
+[node name="Dialogue" parent="DialogueTrigger" index="0" node_paths=PackedStringArray("end_scene")]
+script = ExtResource("3_dwkhl")
+end_scene = NodePath("../..")
+lines = Array[String](["...", "Thank you for visiting me"])
+line_speed = Array[float]([2.0, 1.0])
+
+[node name="CollisionShape2D" parent="DialogueTrigger/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_v26hh")
 
 [node name="Camera" parent="." instance=ExtResource("2_0ytfn")]
 
@@ -220,6 +227,5 @@ theme_override_font_sizes/font_size = 8
 text = "z to continue"
 horizontal_alignment = 1
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-
+[editable path="DialogueTrigger"]
 [editable path="Camera"]

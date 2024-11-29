@@ -24,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		can_continue = false
 		reset_game()
 
-func _play_end_scene() -> void:
+func play_end_scene() -> void:
 	GlobalScene.CurrentScene.scene_camera.get_child(0).set_enabled(false)
 	camera.set_enabled(true)
 	
@@ -155,9 +155,3 @@ func _on_update_game_time(value: int) -> void:
 	var seconds = value % 60
 	var formatted_time = "%02d:%02d" % [minutes, seconds]
 	time_label.text = formatted_time
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		GlobalReference.Player.Input_Handler.toggle_inputs(false)
-		GlobalReference.Player.reset_velocities()
-		_play_end_scene()
