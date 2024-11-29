@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ckd0m1lj8udjr"]
+[gd_scene load_steps=36 format=3 uid="uid://ckd0m1lj8udjr"]
 
 [ext_resource type="Script" path="res://scripts/lantern.gd" id="1_dyt20"]
 [ext_resource type="Texture2D" uid="uid://r15y2fnmk06l" path="res://sprites/player_arm_lantern_spritesheet.png" id="2_ra2pi"]
@@ -61,6 +61,26 @@ region = Rect2(0, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v3cks"]
 atlas = ExtResource("2_ra2pi")
 region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yjgr"]
+atlas = ExtResource("2_ra2pi")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ykgf"]
+atlas = ExtResource("2_ra2pi")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvfgp"]
+atlas = ExtResource("2_ra2pi")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv4yl"]
+atlas = ExtResource("2_ra2pi")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2b23"]
+atlas = ExtResource("2_ra2pi")
+region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwrje"]
 atlas = ExtResource("2_ra2pi")
@@ -158,6 +178,21 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v3cks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yjgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ykgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvfgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv4yl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2b23")
 }],
 "loop": true,
 "name": &"sleep",
@@ -211,4 +246,4 @@ ui_texture = ExtResource("4_n6kqe")
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_gewxr")
-animation = &"idle"
+animation = &"sleep"

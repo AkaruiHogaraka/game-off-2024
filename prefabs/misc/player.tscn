@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=98 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="PackedScene" uid="uid://ccm1p5wqw6lxo" path="res://audio/prefabs/jump.tscn" id="2_3ewxr"]
@@ -68,9 +68,29 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("6_k1tnb")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ysdm5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci01x"]
 atlas = ExtResource("6_k1tnb")
 region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8oi2"]
+atlas = ExtResource("6_k1tnb")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh4mh"]
+atlas = ExtResource("6_k1tnb")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsax1"]
+atlas = ExtResource("6_k1tnb")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0diaf"]
+atlas = ExtResource("6_k1tnb")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewmyc"]
+atlas = ExtResource("6_k1tnb")
+region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc2p3"]
 atlas = ExtResource("6_k1tnb")
@@ -194,8 +214,23 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_ci01x")
+}, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ysdm5")
+"texture": SubResource("AtlasTexture_e8oi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh4mh")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_bsax1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0diaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewmyc")
 }],
 "loop": true,
 "name": &"sleep",
@@ -311,9 +346,29 @@ region = Rect2(224, 0, 32, 32)
 atlas = ExtResource("3_pkmqr")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uq2ku"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuv71"]
 atlas = ExtResource("3_pkmqr")
-region = Rect2(0, 128, 32, 32)
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpbin"]
+atlas = ExtResource("3_pkmqr")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxr3o"]
+atlas = ExtResource("3_pkmqr")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_475pr"]
+atlas = ExtResource("3_pkmqr")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66of6"]
+atlas = ExtResource("3_pkmqr")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vplto"]
+atlas = ExtResource("3_pkmqr")
+region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8c0k"]
 atlas = ExtResource("3_pkmqr")
@@ -438,7 +493,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uq2ku")
+"texture": SubResource("AtlasTexture_nuv71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpbin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxr3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_475pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66of6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vplto")
 }],
 "loop": true,
 "name": &"sleep",
@@ -571,8 +641,9 @@ scale = Vector2(-1, 1)
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_lja5g")
-animation = &"idle"
+animation = &"sleep"
 autoplay = "idle"
+frame_progress = 0.319633
 
 [node name="LeftArm" type="Node2D" parent="Sprite"]
 use_parent_material = true
@@ -581,7 +652,7 @@ use_parent_material = true
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_mhs68")
-animation = &"idle"
+animation = &"sleep"
 autoplay = "idle"
 
 [node name="Interaction" type="Sprite2D" parent="Sprite"]

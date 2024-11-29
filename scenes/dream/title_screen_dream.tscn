@@ -520,7 +520,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Friend"]
 position = Vector2(-37, 16)
 sprite_frames = SubResource("SpriteFrames_5g4ty")
-animation = &"walk"
+animation = &"sleep"
 autoplay = "sleep"
 
 [node name="CutsceneReferences" type="Node2D" parent="Friend"]
