@@ -18,6 +18,19 @@ var temp_game_screen: CanvasLayer
 
 var _start_game: bool
 
+var friend_seen: Array[bool] = [
+	false, # Tutorial 00
+	false, # Tutorial 01
+	false, # Tutorial 02
+	false, # Tutorial 03
+	false, # Tutorial 04
+	false, # Block 00
+	false, # Block 02
+	false, # Lantern 00
+	false, # Lantern 01
+	false, # Lantern 02
+]
+
 func _ready() -> void:
 	_start_game = false
 
@@ -25,6 +38,9 @@ func start_game_time() -> void:
 	GameTime = 0
 	_start_game = true
 	jump_toggle = true
+	
+	for i in friend_seen.size() - 1:
+		friend_seen[i] = false
 
 func end_game_time() -> void:
 	_start_game = false

@@ -91,6 +91,7 @@ shape = SubResource("RectangleShape2D_pxos8")
 
 [node name="FollowDream" parent="." instance=ExtResource("11_sac2c")]
 position = Vector2(-8, -32)
+index = 6
 
 [node name="Marker2D" parent="FollowDream" index="1"]
 position = Vector2(8, 0)

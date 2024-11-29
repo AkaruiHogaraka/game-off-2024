@@ -81,6 +81,7 @@ position = Vector2(0, 16)
 
 [node name="FollowDream" parent="." instance=ExtResource("10_eemh3")]
 position = Vector2(-104, -16)
+index = 7
 
 [node name="Marker2D" parent="FollowDream" index="1"]
 position = Vector2(-56, 0)

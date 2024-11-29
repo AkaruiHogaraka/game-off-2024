@@ -1,5 +1,6 @@
 extends Node2D
 
+@export_range(0, 9) var index: int
 @export var walk_to: Marker2D
 @export var sprite: AnimatedSprite2D
 
@@ -23,6 +24,19 @@ func walk() -> void:
 	if was_seen: return
 	
 	was_seen = true
+	
+	var size: int = GlobalReference.friend_seen.size() - 1
+	
+	for i in range(index, size):
+		if index + 1 > size:
+			break
+		
+		if GlobalReference.friend_seen[index + 1]:
+			GlobalReference.friend_seen[index] = true
+			set_visible(false)
+			return
+	
+	GlobalReference.friend_seen[index] = true
 	
 	var distance: float = absf(global_position.x - walk_to.global_position.x)
 	var direction: float = -1 if global_position.x - walk_to.global_position.x > 0 else 1

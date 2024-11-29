@@ -47,6 +47,7 @@ tile_set = ExtResource("4_ollpp")
 
 [node name="FollowDream" parent="." instance=ExtResource("6_bmjbr")]
 position = Vector2(-53, 0)
+index = 8
 
 [node name="Marker2D" parent="FollowDream" index="1"]
 position = Vector2(-107, 0)
