@@ -31,7 +31,7 @@ func walk() -> void:
 		if index + 1 > size:
 			break
 		
-		if GlobalReference.friend_seen[index + 1]:
+		if GlobalReference.friend_seen[i]:
 			GlobalReference.friend_seen[index] = true
 			set_visible(false)
 			return
