@@ -35,7 +35,7 @@ func initialise() -> void:
 	pass
 
 func on_read_line() -> void:
-	if is_force_skipping: return
+	if is_force_skipping or GlobalScene.internal_scene_change_cooldown: return
 	
 	if current_line_index >= lines.size(): 
 		EndDialogue.emit()

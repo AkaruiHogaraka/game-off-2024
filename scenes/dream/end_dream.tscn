@@ -311,7 +311,7 @@ dialogue = NodePath("../Dialogue")
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="EndScene/DialogueTrigger/Area2D" index="0"]
-position = Vector2(-81, 22)
+position = Vector2(-66, 22)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true

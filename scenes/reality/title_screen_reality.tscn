@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=34 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="20_hwgia"]
 [ext_resource type="Texture2D" uid="uid://bbobltpesxnps" path="res://sprites/fire.png" id="21_qjggg"]
 [ext_resource type="Script" path="res://scripts/campfire_sync.gd" id="22_sjc7p"]
+[ext_resource type="Script" path="res://scripts/disable_jump.gd" id="23_4d0ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
 size = Vector2(15, 20)
@@ -72,6 +73,9 @@ animations = [{
 "name": &"default",
 "speed": 6.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3n3w"]
+size = Vector2(293, 159)
 
 [node name="TitleScreenReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -260,8 +264,16 @@ autoplay = "default"
 offset = Vector2(0, -8)
 script = ExtResource("22_sjc7p")
 
+[node name="DisableJump" type="Area2D" parent="."]
+script = ExtResource("23_4d0ii")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisableJump"]
+position = Vector2(-11.5, -11.5)
+shape = SubResource("RectangleShape2D_q3n3w")
+
 [connection signal="body_entered" from="CutsceneReferences/CutsceneDialogue/Area2D" to="CutsceneReferences/CutsceneDialogue/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="DisableJump" to="DisableJump" method="_on_body_entered"]
 
 [editable path="GameStartDialogue"]
 [editable path="DisableTutorialTrigger"]

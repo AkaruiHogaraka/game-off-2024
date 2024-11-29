@@ -17,6 +17,7 @@ func _on_end_writing() -> void:
 			GlobalReference.Player._interaction_object._let_go_interaction(true)
 		
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+	GlobalReference.Player.Input_Handler.set_can_jump(false)
 	
 	tutorial.set_visible(true)
 	can_input = false

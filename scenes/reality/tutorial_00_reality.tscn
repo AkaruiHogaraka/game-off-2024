@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://clm6cmg5yjf2y"]
+[gd_scene load_steps=20 format=4 uid="uid://clm6cmg5yjf2y"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6xjmt"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_8jmch"]
@@ -16,8 +16,12 @@
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="14_saxly"]
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="15_hkm4y"]
 [ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="16_lgrkq"]
+[ext_resource type="Script" path="res://scripts/disable_jump.gd" id="17_82hhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqcm3"]
+size = Vector2(293, 159)
 
 [node name="Tutorial00Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene") groups=["Save"]]
 use_parent_material = true
@@ -157,6 +161,17 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("14_saxly")
 theme_override_font_sizes/font_size = 8
 text = "Dream"
+
+[node name="DisableJump" type="Area2D" parent="."]
+position = Vector2(188, -37)
+script = ExtResource("17_82hhm")
+enable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisableJump"]
+position = Vector2(-11.5, -11.5)
+shape = SubResource("RectangleShape2D_bqcm3")
+
+[connection signal="body_entered" from="DisableJump" to="DisableJump" method="_on_body_entered"]
 
 [editable path="Door"]
 [editable path="OneWayPlatform"]

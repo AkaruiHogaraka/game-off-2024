@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdqhjv5ctm2fc"]
+
+[ext_resource type="AudioStream" uid="uid://bov85amc7qdes" path="res://audio/samples/sfx/speak2.wav" id="1_53b8a"]
+[ext_resource type="Script" path="res://scripts/randomise_audio_pitch.gd" id="2_lx0d5"]
+
+[node name="Speak2" type="AudioStreamPlayer"]
+stream = ExtResource("1_53b8a")
+bus = &"SFX"
+script = ExtResource("2_lx0d5")
+max = 1.1
+min = 0.9

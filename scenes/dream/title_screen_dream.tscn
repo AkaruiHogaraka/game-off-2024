@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://clppcvnfhiaja"]
+[gd_scene load_steps=31 format=4 uid="uid://clppcvnfhiaja"]
 
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="1_1ormn"]
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_5n13v"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://fwre44wmtfvr" path="res://prefabs/level_objects/lantern_pickup.tscn" id="17_8rvcg"]
 [ext_resource type="Texture2D" uid="uid://bbobltpesxnps" path="res://sprites/fire.png" id="18_amr0x"]
 [ext_resource type="Script" path="res://scripts/campfire_sync.gd" id="19_0o3uy"]
+[ext_resource type="Script" path="res://scripts/disable_jump.gd" id="20_mb52y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3na1o"]
 shader = ExtResource("6_u1f7g")
@@ -77,6 +78,9 @@ animations = [{
 "name": &"default",
 "speed": 6.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo7ur"]
+size = Vector2(293, 159)
 
 [node name="TitleScreenDream" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -247,7 +251,15 @@ frame_progress = 0.269683
 offset = Vector2(0, -8)
 script = ExtResource("19_0o3uy")
 
+[node name="DisableJump" type="Area2D" parent="."]
+script = ExtResource("20_mb52y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisableJump"]
+position = Vector2(-11.5, -11.5)
+shape = SubResource("RectangleShape2D_vo7ur")
+
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="DisableJump" to="DisableJump" method="_on_body_entered"]
 
 [editable path="LanternProgress"]
 [editable path="GemChest"]

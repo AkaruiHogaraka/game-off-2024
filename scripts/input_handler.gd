@@ -41,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("use_item"):
 		UseItem.emit()
 		
-	if Input.is_action_pressed("move_up") and Input.is_action_just_pressed("jump") and _can_jump:
+	if Input.is_action_pressed("move_up") and Input.is_action_just_pressed("jump"):
 		if _dream_cooldown <= 0:
 			_dream_cooldown = dream_cooldown
 			Dream.emit()

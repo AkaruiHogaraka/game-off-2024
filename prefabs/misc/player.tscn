@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://c45wqwqxdhe8o"]
+[gd_scene load_steps=88 format=3 uid="uid://c45wqwqxdhe8o"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2tfwj"]
 [ext_resource type="PackedScene" uid="uid://ccm1p5wqw6lxo" path="res://audio/prefabs/jump.tscn" id="2_3ewxr"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_wcurr"]
 [ext_resource type="Texture2D" uid="uid://dfvoiojl3kjdf" path="res://sprites/nine-rect.png" id="14_v8hho"]
 [ext_resource type="Texture2D" uid="uid://k4wb8qddqycn" path="res://sprites/z_continue.png" id="15_kroog"]
+[ext_resource type="PackedScene" uid="uid://bdqhjv5ctm2fc" path="res://audio/prefabs/speak2.tscn" id="17_3w788"]
 [ext_resource type="PackedScene" uid="uid://ckey3awf3arh8" path="res://audio/prefabs/speak.tscn" id="17_as2ar"]
 [ext_resource type="PackedScene" uid="uid://cabr43jxhoc3y" path="res://audio/prefabs/cycle.tscn" id="18_ikxh6"]
 
@@ -662,7 +663,7 @@ script = ExtResource("12_nfomw")
 base_write_time = 0.05
 dialogue_label = NodePath("Label")
 continue_texture = NodePath("Label/NinePatchRect/TextureRect")
-speak_sfx = NodePath("../Audio/Speak")
+speak_sfx = NodePath("../Audio/Speak2")
 
 [node name="Label" type="Label" parent="Writer"]
 use_parent_material = true
@@ -725,6 +726,8 @@ stretch_mode = 2
 [node name="Audio" type="Node" parent="."]
 
 [node name="Jump" parent="Audio" instance=ExtResource("2_3ewxr")]
+
+[node name="Speak2" parent="Audio" instance=ExtResource("17_3w788")]
 
 [node name="Speak" parent="Audio" instance=ExtResource("17_as2ar")]
 

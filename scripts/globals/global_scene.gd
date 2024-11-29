@@ -127,6 +127,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 		GlobalReference.Game.reality_node.add_child(temp_clone)
 		temp_clone.global_position = GlobalReference.Player.global_position
 		GlobalReference.PlayerRealityReference.global_position = GlobalReference.Player.global_position
+		GlobalReference.PlayerRealityReference.update_sprite_direction()
 		node = GlobalReference.Game.dream_node
 	
 	var anim: AnimatedSprite2D = temp_clone.get_child(1).get_child(0)
