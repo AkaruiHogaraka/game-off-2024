@@ -10,11 +10,15 @@ func _initialise() -> void:
 func _on_interaction() -> void:
 	if not can_interact or not in_area: return
 	
-	dialogue.can_input = true
+	dialogue.reset_dialogue()
+	
 	dialogue.on_read_line()
 	can_interact = false
 	area.set_monitoring(can_interact)
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
+	
+	await get_tree().physics_frame
+	dialogue.can_input = true
 
 func _on_end_dialogue() -> void:
 	dialogue.reset_dialogue()

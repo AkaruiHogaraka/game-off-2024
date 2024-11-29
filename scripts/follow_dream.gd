@@ -46,14 +46,16 @@ func walk() -> void:
 	
 	GlobalReference.friend_seen[index] = true
 	
-	var distance: float = absf(global_position.x - walk_to.global_position.x)
-	var direction: float = -1 if global_position.x - walk_to.global_position.x > 0 else 1
+	var distance: float = absf(sprite.global_position.x - walk_to.global_position.x)
+	var direction: float = -1 if sprite.global_position.x - walk_to.global_position.x > 0 else 1
 	var speed: float = GlobalReference.Player.move_speed
 	
 	set_sprite_direction(direction)
 	self.direction = direction
 	
-	await create_tween().tween_property(sprite, "global_position:x", walk_to.global_position.x, distance / speed).finished
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	await tween.tween_property(sprite, "global_position:x", walk_to.global_position.x, distance / speed).finished
 	
 	await get_tree().create_timer(0.2).timeout
 	

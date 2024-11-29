@@ -155,6 +155,7 @@ text = "Wake up"
 position = Vector2(47, 32)
 
 [node name="MainSprite" parent="FollowDream" index="0"]
+position = Vector2(-39, -16)
 animation = &"walk"
 
 [node name="Marker2D" parent="FollowDream" index="1"]
