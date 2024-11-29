@@ -5,6 +5,7 @@ extends BaseInteraction
 @export var sprite: AnimatedSprite2D
 @export var open_sfx: AudioStreamPlayer
 @export var pickup_sfx: AudioStreamPlayer
+@export var invalid_sfx: AudioStreamPlayer
 
 var has_interacted: bool
 
@@ -13,6 +14,10 @@ func _initialise() -> void:
 	if has_interacted: sprite.play("pre-open")
 
 func _on_interaction() -> void:
+	if in_area and invalid_sfx:
+		GlobalAudio.play_sfx(invalid_sfx)
+		return
+	
 	if not in_area or has_interacted: return
 	has_interacted = true
 	can_interact = false

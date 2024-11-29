@@ -7,7 +7,7 @@
 [ext_resource type="TileSet" uid="uid://p6g573vayl4o" path="res://tileset/game_tileset.tres" id="5_j0nxd"]
 [ext_resource type="PackedScene" uid="uid://cuguybm5sutw1" path="res://prefabs/level_objects/camera.tscn" id="6_5ywwy"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="7_4di10"]
-[ext_resource type="Script" path="res://scripts/dialogue_interaction.gd" id="8_13h1s"]
+[ext_resource type="Texture2D" uid="uid://b4ci4w3xbiuxq" path="res://sprites/friend_grave.png" id="9_hr3u0"]
 [ext_resource type="SpriteFrames" uid="uid://guya4dpxcw7j" path="res://resources/friend_sprite_frames.tres" id="9_oji5s"]
 [ext_resource type="Script" path="res://scripts/dialogue_writer.gd" id="9_rdfn1"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="10_ywiws"]
@@ -58,25 +58,25 @@ node_path = "Door"
 
 [node name="EndScene" parent="." instance=ExtResource("4_epejp")]
 
-[node name="Dialogue" parent="EndScene/DialogueTrigger" index="0" node_paths=PackedStringArray("collision", "custom_writer_target")]
-collision = NodePath("../Area2D/CollisionShape2D")
+[node name="Dialogue" parent="EndScene/DialogueTrigger" index="0" node_paths=PackedStringArray("custom_writer_target")]
 custom_writer_target = NodePath("../../../AnimatedSprite2D/Writer")
-
-[node name="Interact" type="Node" parent="EndScene/DialogueTrigger" index="1" node_paths=PackedStringArray("area", "dialogue")]
-script = ExtResource("8_13h1s")
-area = NodePath("../Area2D")
-dialogue = NodePath("../Dialogue")
 
 [node name="Area2D" parent="EndScene/DialogueTrigger" index="2"]
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="EndScene/DialogueTrigger/Area2D" index="0"]
-position = Vector2(-58.5, 22)
+position = Vector2(-53, 22)
 shape = SubResource("RectangleShape2D_wx1ve")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-80, 32)
+texture = ExtResource("9_hr3u0")
+offset = Vector2(0, -16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-position = Vector2(-80, 16)
+position = Vector2(-75, 16)
 sprite_frames = ExtResource("9_oji5s")
 animation = &"walk"
 autoplay = "idle"
@@ -161,10 +161,6 @@ stretch_mode = 2
 
 [node name="Speak" parent="AnimatedSprite2D/Writer/Audio" instance=ExtResource("14_yfxiy")]
 
-[connection signal="body_entered" from="EndScene/DialogueTrigger/Area2D" to="EndScene/DialogueTrigger/Interact" method="_on_body_entered"]
-[connection signal="body_exited" from="EndScene/DialogueTrigger/Area2D" to="EndScene/DialogueTrigger/Interact" method="_on_body_exited"]
-
 [editable path="Door"]
 [editable path="EndScene"]
-[editable path="EndScene/DialogueTrigger"]
 [editable path="EndScene/Camera"]

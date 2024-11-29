@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dahccry50sl2n"]
+[gd_scene load_steps=11 format=4 uid="uid://dahccry50sl2n"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_7wipd"]
 [ext_resource type="Resource" uid="uid://bbuimr2ci8b2u" path="res://resources/mask/depth_3.tres" id="2_1m5ix"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="6_5oxme"]
 [ext_resource type="Script" path="res://scripts/dialogue_interaction.gd" id="7_r11jn"]
 [ext_resource type="Script" path="res://scripts/base_dialogue_writer.gd" id="8_bpify"]
+[ext_resource type="Texture2D" uid="uid://b4ci4w3xbiuxq" path="res://sprites/friend_grave.png" id="9_e3oex"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyksf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7de7"]
+size = Vector2(10, 20)
 
 [node name="EndReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -63,7 +65,13 @@ line_speed = Array[float]([2.0])
 [node name="Area2D" type="Area2D" parent="DialogueTrigger"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger/Area2D"]
-shape = SubResource("RectangleShape2D_xyksf")
+shape = SubResource("RectangleShape2D_v7de7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-80, 32)
+texture = ExtResource("9_e3oex")
+offset = Vector2(0, -16)
 
 [connection signal="body_entered" from="DialogueTrigger/Area2D" to="DialogueTrigger/Interaction" method="_on_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger/Area2D" to="DialogueTrigger/Interaction" method="_on_body_exited"]

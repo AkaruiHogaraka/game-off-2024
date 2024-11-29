@@ -64,6 +64,7 @@ offset_bottom = -32.0
 [node name="GetItem" parent="Audio" instance=ExtResource("6_48cnh")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 100
 material = SubResource("CanvasItemMaterial_6as03")
 position = Vector2(3, -5)
 amount = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dal2ygj2mgfes"]
+[gd_scene load_steps=36 format=4 uid="uid://dal2ygj2mgfes"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_05neq"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_en6ue"]
@@ -16,13 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://dsc78hgm60auh" path="res://prefabs/misc/game_start_dialogue.tscn" id="15_irscf"]
 [ext_resource type="Script" path="res://scripts/block_lantern_dialogue.gd" id="15_pfyoo"]
 [ext_resource type="Script" path="res://scripts/lantern_block_dialogue_trigger.gd" id="16_dff2u"]
-[ext_resource type="PackedScene" uid="uid://fwre44wmtfvr" path="res://prefabs/level_objects/lantern_pickup.tscn" id="17_g6u8m"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="18_7jlxy"]
 [ext_resource type="Resource" uid="uid://ci44vig3p3b4d" path="res://resources/gems/gem1.tres" id="19_17wan"]
 [ext_resource type="PackedScene" uid="uid://c5kw2mxa4tdfb" path="res://prefabs/level_objects/hidden_area.tscn" id="20_hwgia"]
 [ext_resource type="Texture2D" uid="uid://bbobltpesxnps" path="res://sprites/fire.png" id="21_qjggg"]
 [ext_resource type="Script" path="res://scripts/campfire_sync.gd" id="22_sjc7p"]
 [ext_resource type="Script" path="res://scripts/disable_jump.gd" id="23_4d0ii"]
+[ext_resource type="Script" path="res://scripts/interact_scene_connection.gd" id="23_d71ja"]
+[ext_resource type="Texture2D" uid="uid://bg1tferaidi4s" path="res://sprites/camp_outside.png" id="24_4wiv1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg4w8"]
 size = Vector2(15, 20)
@@ -30,6 +31,9 @@ size = Vector2(15, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmx6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bdjw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lll0c"]
+size = Vector2(8, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryq6c"]
 atlas = ExtResource("21_qjggg")
@@ -239,9 +243,6 @@ shape = SubResource("RectangleShape2D_jmx6b")
 [node name="Marker2D" type="Marker2D" parent="LanternProgress"]
 position = Vector2(-53, 32)
 
-[node name="LanternPickup" parent="." instance=ExtResource("17_g6u8m")]
-position = Vector2(18, 31)
-
 [node name="GemChest" parent="." instance=ExtResource("18_7jlxy")]
 position = Vector2(88, 0)
 
@@ -256,6 +257,31 @@ tile_map_data = PackedByteArray("AAAFAP//AAABAAIAAAAFAP7/AAABAAIAAAAFAAAAAAAEAAQ
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
 position = Vector2(92, -10)
 shape = SubResource("RectangleShape2D_2bdjw")
+
+[node name="Door" type="Node2D" parent="."]
+use_parent_material = true
+position = Vector2(24, 32)
+
+[node name="SceneConnection" type="Node" parent="Door"]
+script = ExtResource("1_en6ue")
+scene_path = "res://scenes/reality/camp_inside_reality.tscn"
+node_path = "WalkLoadLeft"
+
+[node name="Interaction" type="Node" parent="Door" node_paths=PackedStringArray("scene_connection")]
+script = ExtResource("23_d71ja")
+scene_connection = NodePath("../SceneConnection")
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+use_parent_material = true
+position = Vector2(13, 0)
+texture = ExtResource("24_4wiv1")
+offset = Vector2(0, -16)
+
+[node name="Area2D" type="Area2D" parent="Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_lll0c")
 
 [node name="Fire" type="AnimatedSprite2D" parent="." groups=["Campfire"]]
 position = Vector2(-16, 32)
@@ -273,6 +299,8 @@ shape = SubResource("RectangleShape2D_q3n3w")
 
 [connection signal="body_entered" from="CutsceneReferences/CutsceneDialogue/Area2D" to="CutsceneReferences/CutsceneDialogue/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="LanternProgress/Area2D" to="LanternProgress/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Door/Area2D" to="Door/Interaction" method="_on_body_entered"]
+[connection signal="body_exited" from="Door/Area2D" to="Door/Interaction" method="_on_body_exited"]
 [connection signal="body_entered" from="DisableJump" to="DisableJump" method="_on_body_entered"]
 
 [editable path="GameStartDialogue"]

@@ -23,7 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	if custom_writer_target != null: writer = custom_writer_target
-	else: writer = GlobalReference.Writer
+	else: writer = GlobalReference.Player.get_writer()
 	
 	writer.StartWritingCurrentLine.connect(_on_start_writing_current_line)
 	writer.EndWritingCurrentLine.connect(_on_end_writing_current_line)

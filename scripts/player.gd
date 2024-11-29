@@ -42,6 +42,9 @@ var last_door_scene: String
 var process: bool
 var process_animation: bool
 
+func get_writer() -> DialogueWriter:
+	return $Writer
+
 @onready var Input_Handler: InputHandler = $Input
 @onready var Inventory: ItemInventory = $Inventory
 @onready var sprite_parent: Node2D = $Sprite

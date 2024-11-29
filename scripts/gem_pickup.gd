@@ -4,6 +4,8 @@ extends BasePickupItem
 @export var dream_gem: bool
 
 func initialise() -> void:
+	if gem == null: return
+	
 	ui.item_label.text = gem.gem_name + " "
 	ui.item_texture_rect.set_texture(gem.gem_texture)
 

@@ -12,7 +12,7 @@ sprite = NodePath("MainSprite")
 use_parent_material = true
 position = Vector2(0, -16)
 sprite_frames = ExtResource("2_p4hqj")
-animation = &"enter"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Marker2D" type="Marker2D" parent="."]

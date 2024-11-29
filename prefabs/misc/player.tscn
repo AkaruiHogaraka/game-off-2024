@@ -927,6 +927,7 @@ animation = &"pull"
 autoplay = "idle"
 
 [node name="Interaction" type="Sprite2D" parent="Sprite"]
+z_index = 100
 use_parent_material = true
 position = Vector2(1, -24)
 texture = ExtResource("6_pffbp")
