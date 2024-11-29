@@ -295,8 +295,10 @@ shape = SubResource("RectangleShape2D_vo7ur")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Friend" type="Node2D" parent="."]
+use_parent_material = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Friend"]
+use_parent_material = true
 position = Vector2(-37, 16)
 sprite_frames = ExtResource("21_oojb6")
 animation = &"idle"

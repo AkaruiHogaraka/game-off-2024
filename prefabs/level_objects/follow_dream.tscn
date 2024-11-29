@@ -4,6 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://guya4dpxcw7j" path="res://resources/friend_sprite_frames.tres" id="2_p4hqj"]
 
 [node name="FollowDream" type="Node2D" node_paths=PackedStringArray("walk_to", "sprite") groups=["Save"]]
+use_parent_material = true
 script = ExtResource("1_63e7a")
 walk_to = NodePath("Marker2D")
 sprite = NodePath("MainSprite")
