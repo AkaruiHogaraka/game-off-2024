@@ -101,7 +101,7 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	temp_clone.set_collision_layer_value(3, false)
 	
 	if GlobalItems.has_lantern:
-		var lantern = GlobalReference.Player.Inventory.items[0].duplicate(4)
+		var lantern = GlobalReference.Player.Inventory.items[1].duplicate(4)
 		temp_clone.add_child(lantern)
 		lantern.on_passive_item_effect()
 	
