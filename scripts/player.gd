@@ -97,8 +97,13 @@ func animate_sprite() -> void:
 		
 		return
 	
-	if $Sprite.scale.x != _raw_input.x: # Push and pull objects
+	if $Sprite.scale.x != _raw_input.x and _raw_input.x != 0: # Pull objects
 		sprite.play("idle")
+		
+		return
+	
+	if _is_currently_interacting and _interaction_object and _raw_input.x != 0: # Push objects
+		sprite.play("push")
 		
 		return
 	
