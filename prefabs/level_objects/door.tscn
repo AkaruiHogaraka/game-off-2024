@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmg5x4vwwctan"]
+[gd_scene load_steps=6 format=3 uid="uid://cmg5x4vwwctan"]
 
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="1_lhr1r"]
 [ext_resource type="Texture2D" uid="uid://dg88s60g8tqxy" path="res://sprites/door.png" id="2_mjb6b"]
 [ext_resource type="Script" path="res://scripts/interact_scene_connection.gd" id="3_7qiik"]
+[ext_resource type="PackedScene" uid="uid://b4kfokdutmir2" path="res://audio/prefabs/invalid.tscn" id="3_eap34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lll0c"]
 size = Vector2(8, 26)
@@ -13,9 +14,14 @@ use_parent_material = true
 [node name="SceneConnection" type="Node" parent="."]
 script = ExtResource("1_lhr1r")
 
-[node name="Interaction" type="Node" parent="." node_paths=PackedStringArray("scene_connection")]
+[node name="Interaction" type="Node" parent="." node_paths=PackedStringArray("scene_connection", "invalid_sfx")]
 script = ExtResource("3_7qiik")
 scene_connection = NodePath("../SceneConnection")
+invalid_sfx = NodePath("../Audio/Invalid")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Invalid" parent="Audio" instance=ExtResource("3_eap34")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

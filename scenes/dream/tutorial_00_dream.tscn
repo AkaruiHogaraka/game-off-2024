@@ -50,9 +50,6 @@ tile_set = ExtResource("4_ltq3j")
 [node name="Door" parent="." instance=ExtResource("5_41y8s")]
 position = Vector2(-40, 32)
 
-[node name="Area2D" parent="Door" index="3"]
-collision_mask = 0
-
 [node name="CameraPosition" type="Marker2D" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("6_46pit")]

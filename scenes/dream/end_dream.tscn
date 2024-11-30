@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ckey3awf3arh8" path="res://audio/prefabs/speak.tscn" id="14_yfxiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wx1ve"]
-size = Vector2(5, 20)
+size = Vector2(8.5, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyybe"]
 atlas = ExtResource("12_u2y6j")
@@ -59,13 +59,15 @@ node_path = "Door"
 [node name="EndScene" parent="." instance=ExtResource("4_epejp")]
 
 [node name="Dialogue" parent="EndScene/DialogueTrigger" index="0" node_paths=PackedStringArray("custom_writer_target")]
+lines = Array[String](["...", "Thank you", "For always visiting me"])
+line_speed = Array[float]([2.0, 1.0, 1.0])
 custom_writer_target = NodePath("../../../AnimatedSprite2D/Writer")
 
 [node name="Area2D" parent="EndScene/DialogueTrigger" index="2"]
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="EndScene/DialogueTrigger/Area2D" index="0"]
-position = Vector2(-53, 22)
+position = Vector2(-54.75, 22)
 shape = SubResource("RectangleShape2D_wx1ve")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

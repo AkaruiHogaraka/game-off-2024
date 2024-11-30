@@ -56,10 +56,6 @@ tile_set = ExtResource("4_xums4")
 [node name="Door" parent="." instance=ExtResource("6_c5gkf")]
 position = Vector2(0, -32)
 
-[node name="Area2D" parent="Door" index="3"]
-collision_layer = 0
-collision_mask = 0
-
 [node name="ButtonPlatform" parent="." instance=ExtResource("7_pvr5l")]
 position = Vector2(-40, -8)
 

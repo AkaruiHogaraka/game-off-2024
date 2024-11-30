@@ -16,6 +16,7 @@ signal Dead()
 @export var left_arm_sprite: AnimatedSprite2D
 
 @export var jump_sfx: AudioStreamPlayer
+@export var invalid_sfx: AudioStreamPlayer
 
 var _speed_multiplier: float = 1.0
 
@@ -150,8 +151,11 @@ func set_can_dream(value: bool) -> void:
 	_can_dream = value
 
 func _on_dream() -> void:
-	if is_on_floor() and _raw_input.x == 0 and _can_dream:
-		GlobalScene.change_dream_scene(GlobalScene.CurrentScene.alternate_scene, not GlobalScene.CurrentScene.is_alternate_scene_dream)
+	if is_on_floor() and _raw_input.x == 0:
+		if _can_dream:
+			GlobalScene.change_dream_scene(GlobalScene.CurrentScene.alternate_scene, not GlobalScene.CurrentScene.is_alternate_scene_dream)
+		else:
+			GlobalAudio.play_sfx(invalid_sfx)
 
 func toggle_fog(value: bool) -> void:
 	$Fog.set_visible(value)

@@ -42,9 +42,6 @@ tile_set = ExtResource("4_ttweo")
 [node name="Door" parent="." instance=ExtResource("8_qi5yh")]
 position = Vector2(-8, 16)
 
-[node name="Area2D" parent="Door" index="3"]
-collision_mask = 0
-
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("9_kuxd2")]
 visible = false
 

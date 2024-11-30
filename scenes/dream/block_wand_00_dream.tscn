@@ -39,10 +39,6 @@ tile_set = ExtResource("4_5eveg")
 [node name="Door" parent="." instance=ExtResource("6_t6fc5")]
 position = Vector2(-8, 16)
 
-[node name="Area2D" parent="Door" index="3"]
-collision_layer = 0
-collision_mask = 0
-
 [node name="FollowDream" parent="." instance=ExtResource("7_jf5lo")]
 position = Vector2(90, 48)
 index = 5

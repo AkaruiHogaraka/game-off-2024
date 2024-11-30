@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dahccry50sl2n"]
+[gd_scene load_steps=13 format=4 uid="uid://dahccry50sl2n"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_7wipd"]
 [ext_resource type="Resource" uid="uid://bbuimr2ci8b2u" path="res://resources/mask/depth_3.tres" id="2_1m5ix"]
@@ -9,9 +9,13 @@
 [ext_resource type="Script" path="res://scripts/dialogue_interaction.gd" id="7_r11jn"]
 [ext_resource type="Script" path="res://scripts/base_dialogue_writer.gd" id="8_bpify"]
 [ext_resource type="Texture2D" uid="uid://b4ci4w3xbiuxq" path="res://sprites/friend_grave.png" id="9_e3oex"]
+[ext_resource type="Script" path="res://scripts/dream_blocker.gd" id="10_dufbb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7de7"]
 size = Vector2(10, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp37o"]
+size = Vector2(103, 205)
 
 [node name="EndReality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -73,7 +77,27 @@ position = Vector2(-80, 32)
 texture = ExtResource("9_e3oex")
 offset = Vector2(0, -16)
 
+[node name="DreamBlocker" type="Area2D" parent="."]
+collision_mask = 4
+script = ExtResource("10_dufbb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DreamBlocker"]
+position = Vector2(-115.5, 5.5)
+shape = SubResource("RectangleShape2D_pp37o")
+
+[node name="DreamBlocker2" type="Area2D" parent="."]
+position = Vector2(117, 0)
+collision_mask = 4
+script = ExtResource("10_dufbb")
+can_dream = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DreamBlocker2"]
+position = Vector2(-115.5, 5.5)
+shape = SubResource("RectangleShape2D_pp37o")
+
 [connection signal="body_entered" from="DialogueTrigger/Area2D" to="DialogueTrigger/Interaction" method="_on_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger/Area2D" to="DialogueTrigger/Interaction" method="_on_body_exited"]
+[connection signal="body_entered" from="DreamBlocker" to="DreamBlocker" method="_on_body_entered"]
+[connection signal="body_entered" from="DreamBlocker2" to="DreamBlocker2" method="_on_body_entered"]
 
 [editable path="Door"]
