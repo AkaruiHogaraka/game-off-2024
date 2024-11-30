@@ -995,6 +995,7 @@ texture = ExtResource("11_5chh3")
 position = Vector2(0, -7)
 
 [node name="Writer" type="Control" parent="." node_paths=PackedStringArray("dialogue_label", "continue_texture", "speak_sfx")]
+z_index = 10
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 15

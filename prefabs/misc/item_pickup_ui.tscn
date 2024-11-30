@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://buao37mj0e24d"]
 
-[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_3ybvd"]
 [ext_resource type="Script" path="res://scripts/pickup_ui_adjust.gd" id="1_aw5qc"]
+[ext_resource type="Texture2D" uid="uid://cxgsbwaks6148" path="res://sprites/gems.png" id="2_tnwke"]
 [ext_resource type="Texture2D" uid="uid://dfvoiojl3kjdf" path="res://sprites/nine-rect.png" id="2_vlxdb"]
 [ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="3_f4dyt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ctke"]
-atlas = ExtResource("1_3ybvd")
-region = Rect2(2, 4, 9, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx7wx"]
+atlas = ExtResource("2_tnwke")
+region = Rect2(8, 0, 7, 8)
 
 [node name="ItemPickupUI" type="Control" node_paths=PackedStringArray("item_texture_rect", "item_label", "text_nine_rect", "texture_nine_rect", "main_container")]
 z_index = 10
@@ -29,16 +29,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -28.75
+offset_left = -28.25
 offset_top = -8.0
-offset_right = 31.25
+offset_right = 31.75
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
 use_parent_material = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_4ctke")
+texture = SubResource("AtlasTexture_jx7wx")
 stretch_mode = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer2/TextureRect"]

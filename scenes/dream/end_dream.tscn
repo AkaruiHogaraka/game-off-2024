@@ -80,10 +80,11 @@ offset = Vector2(0, -16)
 use_parent_material = true
 position = Vector2(-75, 16)
 sprite_frames = ExtResource("9_oji5s")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Writer" type="Control" parent="AnimatedSprite2D" node_paths=PackedStringArray("dialogue_label", "continue_texture", "speak_sfx")]
+z_index = 10
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 15

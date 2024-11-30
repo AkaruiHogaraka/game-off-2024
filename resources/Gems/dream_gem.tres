@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Gem" load_steps=4 format=3 uid="uid://k5ijowqaw4i1"]
 
 [ext_resource type="Script" path="res://resources/gem.gd" id="1_m173p"]
-[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_swmut"]
+[ext_resource type="Texture2D" uid="uid://cxgsbwaks6148" path="res://sprites/gems.png" id="1_rgtyo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6uipi"]
-atlas = ExtResource("1_swmut")
-region = Rect2(3, 4, 8, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ay53"]
+atlas = ExtResource("1_rgtyo")
+region = Rect2(-1, 0, 9, 8)
 
 [resource]
 script = ExtResource("1_m173p")
-gem_name = "Dreamlight"
-gem_texture = SubResource("AtlasTexture_6uipi")
+gem_name = "Dream Gem"
+gem_texture = SubResource("AtlasTexture_8ay53")

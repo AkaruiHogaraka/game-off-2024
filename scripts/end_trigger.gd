@@ -33,7 +33,9 @@ func play_end_scene() -> void:
 	var colour_three: Color = GlobalReference.DreamMaterial.get("shader_parameter/replace_three")
 	var colour_four: Color = GlobalReference.DreamMaterial.get("shader_parameter/replace_four")
 	
-	await fade_out_shader(GlobalReference.DreamMaterial, colour_one, colour_two, colour_three, colour_four, 1.0)
+	await get_tree().create_timer(0.5).timeout
+	
+	await fade_out_shader(GlobalReference.DreamMaterial, colour_one, colour_two, colour_three, colour_four, 0.24)
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -50,13 +52,13 @@ func play_end_scene() -> void:
 	exponential_count(GlobalItems.gems, 1.0, _on_update_gem_count)
 	await fade_in_shader(collectable_parent.get_material(), colour_one, colour_two, colour_three, colour_four, 0.24)
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.3).timeout
 	
 	time_label.set_visible(true)
 	exponential_count(round(GlobalReference.GameTime), 1.0, _on_update_game_time)
 	await fade_in_shader(time_label.get_material(), colour_one, colour_two, colour_three, colour_four, 0.24)
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(2.0).timeout
 	
 	next_label.set_visible(true)
 	await fade_in_shader(next_label.get_material(), colour_one, colour_two, colour_three, colour_four, 0.24)
@@ -81,6 +83,8 @@ func reset_game() -> void:
 	
 	next_label.set_visible(true)
 	await fade_out_shader(next_label.get_material(), colour_one, colour_two, colour_three, colour_four, 0.24)
+	
+	await get_tree().create_timer(1.0)
 	
 	GlobalScene.SaveData = []
 	GlobalReference.PlayerRealityPosition = Vector2.ZERO

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Gem" load_steps=4 format=3 uid="uid://y6ar6bt4mss1"]
 
-[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_3myje"]
+[ext_resource type="Texture2D" uid="uid://cxgsbwaks6148" path="res://sprites/gems.png" id="1_qv3wy"]
 [ext_resource type="Script" path="res://resources/gem.gd" id="2_hh7tc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3fbpk"]
-atlas = ExtResource("1_3myje")
-region = Rect2(3, 4, 8, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p08j5"]
+atlas = ExtResource("1_qv3wy")
+region = Rect2(22, 0, 9, 8)
 
 [resource]
 script = ExtResource("2_hh7tc")
-gem_name = "Gem"
-gem_texture = SubResource("AtlasTexture_3fbpk")
+gem_name = "Hollow Gem"
+gem_texture = SubResource("AtlasTexture_p08j5")

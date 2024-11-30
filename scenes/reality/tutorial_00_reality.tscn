@@ -60,13 +60,6 @@ position = Vector2(-40, 32)
 scene_path = "res://scenes/reality/tutorial_01_reality.tscn"
 node_path = "WalkLoadRight"
 
-[node name="Door2" parent="." instance=ExtResource("5_3kug5")]
-position = Vector2(8, 33)
-
-[node name="SceneConnection" parent="Door2" index="0"]
-scene_path = "res://scenes/reality/end_reality.tscn"
-node_path = "Door"
-
 [node name="CameraPosition" type="Marker2D" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("6_40x43")]
@@ -181,7 +174,6 @@ shape = SubResource("RectangleShape2D_bqcm3")
 [connection signal="body_entered" from="DisableJump" to="DisableJump" method="_on_body_entered"]
 
 [editable path="Door"]
-[editable path="Door2"]
 [editable path="OneWayPlatform"]
 [editable path="HiddenArea"]
 [editable path="Chest"]

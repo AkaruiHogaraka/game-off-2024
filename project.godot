@@ -10,11 +10,14 @@ config_version=5
 
 [application]
 
-config/name="game-off-2024"
+config/name="Dreamers Wake"
+config/description="Game Submisson for the Game Off 2024 game jam."
 run/main_scene="res://scenes/boot.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=120
-config/icon="res://sprites/icon.svg"
+config/icon="res://sprites/game_icon.png"
+config/windows_native_icon="res://sprites/game_icon.ico"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
@@ -26,6 +29,10 @@ GlobalAudio="*res://scripts/globals/global_audio.gd"
 [display]
 
 window/size/resizable=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_icon/plugin.cfg")
 
 [global_group]
 

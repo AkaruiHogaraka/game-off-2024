@@ -23,7 +23,7 @@
 size = Vector2(16, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ruv1e"]
-size = Vector2(46, 24)
+size = Vector2(46, 43)
 
 [node name="Tutorial02Reality" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -160,13 +160,13 @@ position = Vector2(82, 48)
 gem = ExtResource("16_up7wv")
 
 [node name="HiddenArea" parent="." groups=["Save"] instance=ExtResource("8_4777m")]
-visible = false
 
 [node name="TileMapLayer" parent="HiddenArea" index="0"]
+visible = false
 tile_map_data = PackedByteArray("AAAHAAAAAAADAAEAAAAGAAAAAAADAAEAAAAFAAAAAAACAAEAAAAEAAEAAAABAAIAAAAEAAIAAAABAAMAAAAEAAMAAAABAAIAAAAFAAMAAAADAAMAAAAFAAIAAAADAAMAAAAFAAEAAAADAAMAAAAGAAEAAAADAAMAAAAHAAEAAAADAAMAAAAHAAIAAAADAAMAAAAGAAIAAAADAAMAAAAGAAMAAAADAAMAAAAHAAMAAAADAAMAAAA=")
 
 [node name="CollisionShape2D" parent="HiddenArea/Area2D" index="0"]
-position = Vector2(89, 36)
+position = Vector2(89, 26.5)
 shape = SubResource("RectangleShape2D_ruv1e")
 
 [editable path="AlternatePlatform"]

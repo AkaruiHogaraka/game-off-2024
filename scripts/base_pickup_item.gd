@@ -1,5 +1,7 @@
 class_name BasePickupItem extends Node
 
+signal Pickup()
+
 @export var item_name: String
 @export var item_texture: Texture2D
 @export var ui: ItemPickupUI
@@ -20,6 +22,7 @@ func on_pickup() -> void:
 	ui.set_visible(true)
 	
 	on_pickup_extension()
+	Pickup.emit()
 	
 	await get_tree().create_timer(1.0).timeout
 	

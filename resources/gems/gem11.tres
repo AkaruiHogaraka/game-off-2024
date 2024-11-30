@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Gem" load_steps=4 format=3 uid="uid://ddevtvaly06yn"]
 
-[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_jsw8m"]
+[ext_resource type="Texture2D" uid="uid://cxgsbwaks6148" path="res://sprites/gems.png" id="1_ch07w"]
 [ext_resource type="Script" path="res://resources/gem.gd" id="2_pkv4j"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3fbpk"]
-atlas = ExtResource("1_jsw8m")
-region = Rect2(3, 4, 8, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo3k5"]
+atlas = ExtResource("1_ch07w")
+region = Rect2(-1, 0, 9, 8)
 
 [resource]
 script = ExtResource("2_pkv4j")
-gem_name = "Gem"
-gem_texture = SubResource("AtlasTexture_3fbpk")
+gem_name = "Remnant Gem"
+gem_texture = SubResource("AtlasTexture_mo3k5")

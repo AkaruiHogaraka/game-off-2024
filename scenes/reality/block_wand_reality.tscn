@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bin5ukbk8yfw"]
+[gd_scene load_steps=21 format=4 uid="uid://bin5ukbk8yfw"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6rr4m"]
 [ext_resource type="Resource" uid="uid://c4s2jip021v2v" path="res://resources/mask/depth_1.tres" id="2_4rgws"]
@@ -12,6 +12,9 @@
 [ext_resource type="Resource" uid="uid://ddevtvaly06yn" path="res://resources/gems/gem11.tres" id="8_j7awb"]
 [ext_resource type="PackedScene" uid="uid://cdwpalvuv5n77" path="res://prefabs/level_objects/moveable.tscn" id="9_jy6jp"]
 [ext_resource type="PackedScene" uid="uid://cmg5x4vwwctan" path="res://prefabs/level_objects/door.tscn" id="12_gl2bx"]
+[ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="13_2vh0y"]
+[ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="14_tf8fc"]
+[ext_resource type="Script" path="res://scripts/enable_tutorial.gd" id="15_lhf0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbyka"]
 size = Vector2(98, 33)
@@ -133,6 +136,41 @@ position = Vector2(32, -48)
 scene_path = "res://scenes/reality/block_wand_05_reality.tscn"
 node_path = "Door"
 
+[node name="Control" type="Control" parent="."]
+visible = false
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+use_parent_material = true
+layout_mode = 0
+offset_left = -18.0
+offset_top = 6.0
+offset_right = 53.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("13_2vh0y")
+theme_override_font_sizes/font_size = 8
+text = "c - use item"
+
+[node name="DisableTutorialTrigger" parent="." instance=ExtResource("14_tf8fc")]
+position = Vector2(-56, 6)
+
+[node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
+tutorial = NodePath("../../Control")
+
+[node name="CollisionShape2D" parent="DisableTutorialTrigger/Area2D" index="0"]
+disabled = true
+
+[node name="EnableTutorial" type="Node2D" parent="." node_paths=PackedStringArray("tutorial", "disable_hitbox")]
+script = ExtResource("15_lhf0s")
+tutorial = NodePath("../Control")
+disable_hitbox = NodePath("../DisableTutorialTrigger/Area2D/CollisionShape2D")
+
+[connection signal="Pickup" from="ItemChest/Pickup" to="EnableTutorial" method="enable_tutorial"]
+
 [editable path="HiddenArea4"]
 [editable path="HiddenArea2"]
 [editable path="HiddenArea"]
@@ -142,3 +180,4 @@ node_path = "Door"
 [editable path="ItemChest"]
 [editable path="Body"]
 [editable path="Door"]
+[editable path="DisableTutorialTrigger"]

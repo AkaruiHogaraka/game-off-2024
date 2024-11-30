@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Gem" load_steps=4 format=3 uid="uid://bp2nqumb5i07v"]
 
-[ext_resource type="Texture2D" uid="uid://bbljr0mkqurbp" path="res://sprites/gem.png" id="1_vsbce"]
+[ext_resource type="Texture2D" uid="uid://cxgsbwaks6148" path="res://sprites/gems.png" id="1_5jfbe"]
 [ext_resource type="Script" path="res://resources/gem.gd" id="2_tnjnn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3fbpk"]
-atlas = ExtResource("1_vsbce")
-region = Rect2(3, 4, 8, 8)
+atlas = ExtResource("1_5jfbe")
+region = Rect2(16, 0, 7, 8)
 
 [resource]
 script = ExtResource("2_tnjnn")
-gem_name = "Gem"
+gem_name = "Faint Gem"
 gem_texture = SubResource("AtlasTexture_3fbpk")

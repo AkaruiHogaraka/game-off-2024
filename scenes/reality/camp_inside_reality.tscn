@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://d11l0412cm0dj"]
+[gd_scene load_steps=14 format=4 uid="uid://d11l0412cm0dj"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_adj3i"]
 [ext_resource type="Script" path="res://scripts/scene_connection.gd" id="2_6xgss"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bcg5lhlaqp60o" path="res://sprites/camp_inside.png" id="8_teee1"]
 [ext_resource type="PackedScene" uid="uid://de2gkqkiailjq" path="res://prefabs/level_objects/gem_chest.tscn" id="9_1jn8v"]
 [ext_resource type="PackedScene" uid="uid://b4kfokdutmir2" path="res://audio/prefabs/invalid.tscn" id="10_3kkcg"]
+[ext_resource type="FontFile" uid="uid://bbp8fqpdwwrye" path="res://fonts/04B_03__.TTF" id="11_5oovd"]
+[ext_resource type="PackedScene" uid="uid://b5fu8emxebicb" path="res://prefabs/level_objects/tutorial_disable_trigger.tscn" id="12_pr2vj"]
+[ext_resource type="Script" path="res://scripts/enable_tutorial.gd" id="13_kl1cx"]
 
 [node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("scene_camera", "alternate_scene")]
 use_parent_material = true
@@ -64,5 +67,43 @@ invalid_sfx = NodePath("../Audio/Invalid")
 
 [node name="Invalid" parent="GemChest/Audio" index="2" instance=ExtResource("10_3kkcg")]
 
+[node name="Control" type="Control" parent="."]
+visible = false
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+z_index = 100
+use_parent_material = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 41.0
+offset_right = 91.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("11_5oovd")
+theme_override_font_sizes/font_size = 8
+text = "x - cycle items"
+
+[node name="DisableTutorialTrigger" parent="." instance=ExtResource("12_pr2vj")]
+position = Vector2(17, 26)
+
+[node name="Trigger" parent="DisableTutorialTrigger" index="0" node_paths=PackedStringArray("tutorial")]
+tutorial = NodePath("../../Control")
+
+[node name="CollisionShape2D" parent="DisableTutorialTrigger/Area2D" index="0"]
+disabled = true
+
+[node name="EnableTutorial" type="Node2D" parent="." node_paths=PackedStringArray("tutorial", "disable_hitbox")]
+script = ExtResource("13_kl1cx")
+tutorial = NodePath("../Control")
+disable_hitbox = NodePath("../DisableTutorialTrigger/Area2D/CollisionShape2D")
+
+[connection signal="Pickup" from="LanternPickup/Pickup" to="EnableTutorial" method="enable_tutorial"]
+
 [editable path="WalkLoadLeft"]
+[editable path="LanternPickup"]
 [editable path="GemChest"]
+[editable path="DisableTutorialTrigger"]

@@ -90,9 +90,6 @@ dream_gem = true
 
 [node name="HiddenArea3" parent="." instance=ExtResource("6_jeil1")]
 
-[node name="TileMapLayer" parent="HiddenArea3" index="0"]
-tile_map_data = PackedByteArray("AAD6/wIAAAADAAMAAAD5/wIAAAADAAMAAAD4/wIAAAADAAMAAAD3/wIAAAADAAMAAAD3/wEAAAADAAMAAAD4/wEAAAADAAMAAAD5/wEAAAADAAMAAAD6/wEAAAADAAMAAAD6/wAAAAADAAMAAAD5/wAAAAADAAMAAAD4/wAAAAADAAMAAAD3/wAAAAADAAMAAAA=")
-
 [node name="CollisionShape2D" parent="HiddenArea3/Area2D" index="0"]
 position = Vector2(-113, 28)
 shape = SubResource("RectangleShape2D_ihvg7")
