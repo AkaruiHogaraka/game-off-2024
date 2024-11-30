@@ -72,11 +72,9 @@ func _on_wake_up() -> void:
 	GlobalReference.start_game_time()
 
 func _friend_walk_to(walk_to: Marker2D) -> void:
-	var distance: float = absf(friend.global_position.x - walk_to.global_position.x)
-	var direction: float = -1 if friend.global_position.x - walk_to.global_position.x > 0 else 1
-	var speed: float = GlobalReference.Player.move_speed * 1.8
-	
-	print(speed)
+	var distance: float = absf(friend.get_child(0).global_position.x - walk_to.global_position.x)
+	var direction: float = -1 if friend.get_child(0).global_position.x - walk_to.global_position.x > 0 else 1
+	var speed: float = GlobalReference.Player.move_speed * 0.8
 	
 	_set_friend_sprite_direction(direction)
 	self.direction = direction

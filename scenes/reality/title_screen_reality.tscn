@@ -278,6 +278,7 @@ texture = ExtResource("24_4wiv1")
 offset = Vector2(0, -16)
 
 [node name="Area2D" type="Area2D" parent="Door"]
+position = Vector2(5, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
 position = Vector2(0, -13)

@@ -48,7 +48,7 @@ func walk() -> void:
 	
 	var distance: float = absf(sprite.global_position.x - walk_to.global_position.x)
 	var direction: float = -1 if sprite.global_position.x - walk_to.global_position.x > 0 else 1
-	var speed: float = GlobalReference.Player.move_speed
+	var speed: float = GlobalReference.Player.move_speed * 0.8
 	
 	set_sprite_direction(direction)
 	self.direction = direction

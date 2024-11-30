@@ -272,6 +272,7 @@ texture = ExtResource("23_huhdu")
 offset = Vector2(0, -16)
 
 [node name="Area2D" type="Area2D" parent="Door"]
+position = Vector2(5, 0)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
@@ -299,10 +300,11 @@ use_parent_material = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Friend"]
 use_parent_material = true
-position = Vector2(-37, 16)
+position = Vector2(-32, 16)
 sprite_frames = ExtResource("21_oojb6")
-animation = &"idle"
+animation = &"sleep"
 autoplay = "sleep"
+frame_progress = 0.728139
 
 [node name="CutsceneReferences" type="Node2D" parent="Friend"]
 
