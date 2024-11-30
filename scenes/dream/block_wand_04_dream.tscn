@@ -112,7 +112,7 @@ tile_map_data = PackedByteArray("AAABAAAAAAADAAEAAAADAAAAAAADAAEAAAACAAAAAAADAAE
 position = Vector2(40, 12)
 shape = SubResource("RectangleShape2D_mmd7n")
 
-[node name="HiddenArea2" parent="." instance=ExtResource("14_1i255")]
+[node name="HiddenArea2" parent="." groups=["Save"] instance=ExtResource("14_1i255")]
 
 [node name="TileMapLayer" parent="HiddenArea2" index="0"]
 visible = false
