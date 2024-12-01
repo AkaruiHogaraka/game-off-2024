@@ -37,7 +37,7 @@ func write_line(chrs: PackedStringArray, speed: float) -> void:
 		if force_skipping: return
 		dialogue_label.text += chr
 		GlobalAudio.play_sfx(speak_sfx, true)
-		await get_tree().create_timer(base_write_time * speed).timeout
+		await get_tree().create_timer(base_write_time * speed * get_physics_process_delta_time()).timeout
 	
 	force_write_end_line(chrs)
 

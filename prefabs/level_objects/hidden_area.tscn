@@ -8,7 +8,7 @@ use_parent_material = true
 script = ExtResource("1_dxyh4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-z_index = 3
+z_index = 2
 use_parent_material = true
 tile_set = ExtResource("2_tn4o3")
 

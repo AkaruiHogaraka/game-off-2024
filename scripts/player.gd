@@ -73,7 +73,7 @@ func _ready():
 	current_health = starting_health
 	Dead.connect(_on_dead)
 
-func _process(delta):
+func _physics_process(delta):
 	if process:
 		$Fog/BackBufferCopy2/Mask.call_deferred("set_global_position", round($FogFollowPoint.global_position))
 		
@@ -120,7 +120,7 @@ func animate_left_arm() -> void:
 	left_arm_sprite.set_frame_and_progress(sprite.get_frame(), sprite.get_frame_progress())
 
 func _walk() -> Vector2:
-	_walk_velocity = _walk_velocity.move_toward(Vector2(_raw_input.x, 0) * (move_speed * _speed_multiplier), acceleration * get_process_delta_time())
+	_walk_velocity = _walk_velocity.move_toward(Vector2(_raw_input.x, 0) * (move_speed * _speed_multiplier), acceleration)
 	return _walk_velocity
 	
 func _gravity() -> Vector2:
@@ -137,7 +137,7 @@ func _gravity() -> Vector2:
 	if _gravity_velocity.y > 0.0:
 		Input_Handler.set_can_jump(true)
 	
-	_gravity_velocity += Vector2(0, _jump_gravity if _gravity_velocity.y < 0.0 else _fall_gravity) * get_process_delta_time()
+	_gravity_velocity += Vector2(0, _jump_gravity if _gravity_velocity.y < 0.0 else _fall_gravity) * get_physics_process_delta_time()
 	return _gravity_velocity
 
 func is_valid_jump() -> bool:

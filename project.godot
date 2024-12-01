@@ -32,7 +32,7 @@ window/size/resizable=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_icon/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 
@@ -97,6 +97,7 @@ cycle_item={
 
 [physics]
 
+common/physics_ticks_per_second=180
 common/physics_jitter_fix=0.0
 common/physics_interpolation=true
 
