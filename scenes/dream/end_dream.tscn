@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ckey3awf3arh8" path="res://audio/prefabs/speak.tscn" id="14_yfxiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wx1ve"]
-size = Vector2(8.5, 20)
+size = Vector2(52, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyybe"]
 atlas = ExtResource("12_u2y6j")
@@ -67,16 +67,21 @@ custom_writer_target = NodePath("../../../AnimatedSprite2D/Writer")
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="EndScene/DialogueTrigger/Area2D" index="0"]
-position = Vector2(-54.75, 22)
+position = Vector2(-66, 22)
 shape = SubResource("RectangleShape2D_wx1ve")
 
+[node name="Marker2D" parent="EndScene" index="3"]
+position = Vector2(-56, 32)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4
 use_parent_material = true
 position = Vector2(-80, 32)
 texture = ExtResource("9_hr3u0")
 offset = Vector2(0, -16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
 use_parent_material = true
 position = Vector2(-75, 16)
 sprite_frames = ExtResource("9_oji5s")

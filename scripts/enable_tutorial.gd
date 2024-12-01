@@ -2,8 +2,11 @@ extends Node2D
 
 @export var tutorial: Control
 @export var disable_hitbox: CollisionShape2D
+@export var enable_delay: float = 0.0
 
 func enable_tutorial() -> void:
+	await get_tree().create_timer(enable_delay).timeout
+	
 	tutorial.set_visible(true)
 	disable_hitbox.set_disabled(false)
 	tutorial.set_modulate(Color.GREEN)

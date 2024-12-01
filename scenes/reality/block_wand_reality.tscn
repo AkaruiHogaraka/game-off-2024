@@ -141,8 +141,9 @@ visible = false
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
+offset_top = 21.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 61.0
 
 [node name="Label" type="Label" parent="Control"]
 use_parent_material = true
@@ -168,6 +169,7 @@ disabled = true
 script = ExtResource("15_lhf0s")
 tutorial = NodePath("../Control")
 disable_hitbox = NodePath("../DisableTutorialTrigger/Area2D/CollisionShape2D")
+enable_delay = 1.5
 
 [connection signal="Pickup" from="ItemChest/Pickup" to="EnableTutorial" method="enable_tutorial"]
 

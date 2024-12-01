@@ -941,6 +941,7 @@ cycle_sfx = NodePath("../Audio/Cycle")
 
 [node name="Fog" type="Node2D" parent="."]
 visible = false
+z_index = -2
 use_parent_material = true
 position = Vector2(0, -7)
 

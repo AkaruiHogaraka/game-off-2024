@@ -78,8 +78,9 @@ next_label = NodePath("Elements/Next")
 
 [node name="DialogueTrigger" type="Node2D" parent="."]
 
-[node name="Dialogue" type="Node" parent="DialogueTrigger" node_paths=PackedStringArray("end_scene", "collision")]
+[node name="Dialogue" type="Node" parent="DialogueTrigger" node_paths=PackedStringArray("walk_to", "end_scene", "collision")]
 script = ExtResource("3_dwkhl")
+walk_to = NodePath("../../Marker2D")
 end_scene = NodePath("../..")
 collision = NodePath("../Area2D/CollisionShape2D")
 lines = Array[String](["...", "Thank you for visiting me"])
@@ -234,6 +235,8 @@ theme_override_fonts/font = ExtResource("3_tp206")
 theme_override_font_sizes/font_size = 8
 text = "z to continue"
 horizontal_alignment = 1
+
+[node name="Marker2D" type="Marker2D" parent="."]
 
 [connection signal="body_entered" from="DialogueTrigger/Area2D" to="DialogueTrigger/Interact" method="_on_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger/Area2D" to="DialogueTrigger/Interact" method="_on_body_exited"]
