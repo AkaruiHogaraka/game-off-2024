@@ -26,7 +26,7 @@ var slide_sfx_cooldown: float
 
 func _initialise() -> void:
 	GlobalReference.Player.Input_Handler.InteractionLetGo.connect(_let_go_interaction)
-	initialise_delay = 0.1
+	initialise_delay = 0.2
 
 func _physics_process(delta: float) -> void:
 	if holding_interaction and not GlobalReference.Player.is_on_floor():
@@ -35,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	
 	if initialise_delay >= 0:
 		initialise_delay -= delta
+		return
 	
 	if _is_on_floor():
 		gravity = 0.0
@@ -52,7 +53,7 @@ func _physics_process(delta: float) -> void:
 				
 				impact_once = true
 		
-		gravity += 4 * delta
+		gravity += 1.8 * delta
 		
 		moveable_parent.move_and_collide(Vector2.DOWN * gravity)
 	
