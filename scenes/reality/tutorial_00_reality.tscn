@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://clm6cmg5yjf2y"]
+[gd_scene load_steps=20 format=4 uid="uid://clm6cmg5yjf2y"]
 
 [ext_resource type="Script" path="res://scripts/scene.gd" id="1_6xjmt"]
 [ext_resource type="Resource" uid="uid://cphi1hyuc6wnq" path="res://resources/mask/depth_0.tres" id="2_8jmch"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://78cofglxu3d1" path="res://sprites/move_arrow.png" id="15_hkm4y"]
 [ext_resource type="Texture2D" uid="uid://ivlk3vlonqjt" path="res://sprites/spacebar.png" id="16_lgrkq"]
 [ext_resource type="Script" path="res://scripts/disable_jump.gd" id="17_82hhm"]
-[ext_resource type="PackedScene" uid="uid://dxryidl61svk1" path="res://prefabs/level_objects/item_chest.tscn" id="18_4jgcg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1c4al"]
 
@@ -60,13 +59,6 @@ position = Vector2(-40, 32)
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/tutorial_01_reality.tscn"
 node_path = "WalkLoadRight"
-
-[node name="Door2" parent="." instance=ExtResource("5_3kug5")]
-position = Vector2(0, 32)
-
-[node name="SceneConnection" parent="Door2" index="0"]
-scene_path = "res://scenes/reality/block_wand_04_reality.tscn"
-node_path = "WalkLoadLeft"
 
 [node name="CameraPosition" type="Marker2D" parent="."]
 
@@ -179,19 +171,11 @@ enable = true
 position = Vector2(-11.5, -11.5)
 shape = SubResource("RectangleShape2D_bqcm3")
 
-[node name="ItemChest" parent="." instance=ExtResource("18_4jgcg")]
-position = Vector2(21, 32)
-
-[node name="Pickup" parent="ItemChest" index="1"]
-item_path = "res://resources/items/block_wand.tscn"
-
 [connection signal="body_entered" from="DisableJump" to="DisableJump" method="_on_body_entered"]
 
 [editable path="Door"]
-[editable path="Door2"]
 [editable path="OneWayPlatform"]
 [editable path="HiddenArea"]
 [editable path="Chest"]
 [editable path="Chest2"]
 [editable path="WalkLoadRight"]
-[editable path="ItemChest"]
