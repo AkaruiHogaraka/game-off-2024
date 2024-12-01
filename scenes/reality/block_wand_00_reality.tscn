@@ -39,7 +39,7 @@ tile_set = ExtResource("4_854rk")
 [node name="Camera" parent="." instance=ExtResource("5_bpyy2")]
 
 [node name="Door" parent="." instance=ExtResource("6_mus7i")]
-position = Vector2(-8, 16)
+position = Vector2(-24, 16)
 
 [node name="SceneConnection" parent="Door" index="0"]
 scene_path = "res://scenes/reality/tutorial_04_reality.tscn"

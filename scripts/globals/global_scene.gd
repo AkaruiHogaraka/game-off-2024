@@ -81,7 +81,6 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	await get_tree().physics_frame
 	internal_scene_change_cooldown = false
 	
-	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	GlobalReference.Player._is_currently_interacting = false
 	GlobalReference.Player.set_speed_multiplier(1.0)
 	GlobalReference.Player.Input_Handler.set_can_jump(true)

@@ -23,6 +23,7 @@ var _dream_cooldown: float
 var _can_jump: bool = true
 var _movement_held: bool
 var _last_movement: float
+var _request_input_release: bool
 
 func _ready() -> void:
 	Jumping.connect(GlobalReference._toggle_jump)
@@ -57,7 +58,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 	
 	_raw_input.x = Input.get_axis("move_left", "move_right")
-	DirectionInput.emit(_raw_input.x)
+	
+	if _request_input_release:
+		if _raw_input.x == 0:
+			_request_input_release = false
+	
+	DirectionInput.emit(_raw_input.x if not _request_input_release else 0)
 	
 	if Input.is_action_just_pressed("jump") and _can_jump:
 		if _can_coyote_jump(): _signal_jump()
@@ -66,6 +72,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			_jump_buffer_timer = 0
 
 func _physics_process(delta: float) -> void:
+	if _request_input_release:
+		if _raw_input.x == 0 or Input.get_axis("move_left", "move_right") == 0:
+			_request_input_release = false
+	
 	_dream_cooldown -= delta
 	
 	if not GlobalReference.Player.is_on_floor():
@@ -85,6 +95,7 @@ func _can_coyote_jump() -> bool:
 
 func toggle_inputs(enabled: bool) -> void:
 	_can_input = enabled
+	_request_input_release = enabled
 
 func set_can_jump(value: bool) -> void:
 	_can_jump = value
