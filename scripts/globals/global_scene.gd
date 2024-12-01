@@ -4,6 +4,7 @@ var CurrentScene: Scene
 var NewMask: MaskPreset
 
 var SaveData: Array[Dictionary]
+var SavedSpawnedObjects: Array[Node2D]
 
 var internal_scene_change_cooldown: bool
 var IsRestarting: bool
@@ -42,6 +43,7 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	else:
 		GlobalReference.Game.dream_node.call_deferred("add_child", new_scene)
 	
+	GlobalReference.Player.set_collision_layer_value(3, true)
 	old_scene.disable_collision()
 	
 	await get_tree().physics_frame
@@ -65,7 +67,6 @@ func change_scene(scene: SceneConnection, reality: bool = true) -> bool:
 	transition.global_position = GlobalReference.Player.global_position + (Vector2.UP * 8)
 	transition.transition(0, 1, 0.3, Tween.EASE_OUT, Tween.TRANS_EXPO)
 	
-	GlobalReference.Player.set_collision_layer_value(3, true)
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	GlobalReference.Player.set_speed_multiplier(1.0)
 	
@@ -118,6 +119,8 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	GlobalReference.Player.reset_velocities()
 	
 	save_nodes()
+	if not reality:
+		save_spawned_objects()
 	
 	var old_scene: Scene = CurrentScene
 	CurrentScene = scene.scene
@@ -172,6 +175,8 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 		GlobalReference.Player.Inventory.items[GlobalReference.Player.Inventory.item_index].on_item_equip()
 	
 	load_nodes()
+	if reality:
+		load_spawned_objects()
 	
 	if not initial_setup:
 		
@@ -190,11 +195,13 @@ func change_dream_scene(scene: SceneConnection, reality: bool, initial_setup: bo
 	remove_nodes()
 	if reality and not initial_setup: GlobalReference.Player.Input_Handler.toggle_inputs(true)
 	
-	if old_scene != null: old_scene.queue_free()
+	if old_scene != null: old_scene.free()
 	temp_clone.queue_free()
 	
 	await get_tree().physics_frame
 	internal_scene_change_cooldown = false
+	if reality:
+		adjust_spawned_objects()
 
 func soft_respawn(position: Vector2) -> void:
 	if is_soft_respawning: return
@@ -312,6 +319,37 @@ func last_door_respawn(pos, scene_path) -> void:
 	internal_scene_change_cooldown = false
 	
 	GlobalReference.Player.Input_Handler.toggle_inputs(true)
+
+func save_spawned_objects() -> void:
+	SavedSpawnedObjects.clear()
+	for item in GlobalReference.Player.Inventory.items:
+		if item.name == "Block Wand":
+			for i in range(0, 3):
+				if i > item.spawned_objects.size() - 1: 
+					break
+				var block_object = item.spawned_objects[item.spawned_objects.size() - 1 - i]
+				if block_object == null: continue
+				var object = block_object.duplicate()
+				block_object.get_parent().add_child(object)
+				object.remove_from_group("RemoveOnLoad")
+				object.moveable = object.get_child(1)
+				object.void_block = true
+				object.set_visible(false)
+				object.set_collision_layer(0)
+				SavedSpawnedObjects.push_front(object)
+
+func load_spawned_objects() -> void:
+	for item in GlobalReference.Player.Inventory.items:
+		if item.name == "Block Wand":
+			for object in SavedSpawnedObjects:
+				item.spawned_objects.push_back(object)
+				object.void_block = false
+				object.set_visible(true)
+				object.set_collision_layer_value(8, true)
+
+func adjust_spawned_objects() -> void:
+	for object in SavedSpawnedObjects:
+		object.add_to_group("RemoveOnLoad")
 
 func save_nodes() -> void:
 	var save_nodes = get_tree().get_nodes_in_group("Save")

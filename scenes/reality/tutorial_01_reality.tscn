@@ -102,16 +102,6 @@ position = Vector2(-139, 0)
 scene_path = "res://scenes/reality/tutorial_02_reality.tscn"
 node_path = "WalkLoadRight"
 
-[node name="Body" parent="." groups=["Save"] instance=ExtResource("11_4g0vb")]
-position = Vector2(48, 32)
-
-[node name="Moveable" parent="Body" index="1" groups=["Save"]]
-
-[node name="Body2" parent="." groups=["Save"] instance=ExtResource("11_4g0vb")]
-position = Vector2(96, 32)
-
-[node name="Moveable" parent="Body2" index="1" groups=["Save"]]
-
 [node name="ButtonPlatform" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("13_hogey")]
 position = Vector2(72, 40)
 all_pressed = false
@@ -129,6 +119,16 @@ position = Vector2(24, -16)
 [node name="Button2" parent="ButtonPlatform" instance=ExtResource("14_fug2u")]
 position = Vector2(-24, -16)
 
+[node name="Body" parent="." groups=["Save"] instance=ExtResource("11_4g0vb")]
+position = Vector2(48, 32)
+
+[node name="Moveable" parent="Body" index="1" groups=["Save"]]
+
+[node name="Body2" parent="." groups=["Save"] instance=ExtResource("11_4g0vb")]
+position = Vector2(96, 32)
+
+[node name="Moveable" parent="Body2" index="1" groups=["Save"]]
+
 [node name="GemChest" parent="." instance=ExtResource("15_w3umw")]
 position = Vector2(72, 48)
 
@@ -138,8 +138,8 @@ gem = ExtResource("17_5qewk")
 [editable path="DisableTutorialTrigger"]
 [editable path="WalkLoadRight"]
 [editable path="WalkLoadLeft"]
-[editable path="Body"]
-[editable path="Body2"]
 [editable path="ButtonPlatform"]
 [editable path="ButtonPlatform/StaticBody2D/CollisionShape2D/HiddenArea"]
+[editable path="Body"]
+[editable path="Body2"]
 [editable path="GemChest"]

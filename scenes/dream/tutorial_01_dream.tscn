@@ -43,12 +43,6 @@ tile_set = ExtResource("4_6m01p")
 [node name="OneWayPlatform" parent="." instance=ExtResource("6_8qniv")]
 position = Vector2(-24, 27)
 
-[node name="Body" parent="." instance=ExtResource("12_xhfd2")]
-position = Vector2(36, 32)
-
-[node name="Body2" parent="." instance=ExtResource("12_xhfd2")]
-position = Vector2(108, 32)
-
 [node name="ButtonPlatform" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("13_dalsv")]
 position = Vector2(72, 40)
 all_pressed = false
@@ -65,6 +59,12 @@ position = Vector2(24, -16)
 
 [node name="Button2" parent="ButtonPlatform" instance=ExtResource("15_hgxjr")]
 position = Vector2(-24, -16)
+
+[node name="Body" parent="." instance=ExtResource("12_xhfd2")]
+position = Vector2(36, 32)
+
+[node name="Body2" parent="." instance=ExtResource("12_xhfd2")]
+position = Vector2(108, 32)
 
 [node name="GemChest" parent="." instance=ExtResource("16_tsruc")]
 position = Vector2(72, 48)
@@ -83,9 +83,9 @@ position = Vector2(-10, -16)
 [node name="Marker2D" parent="FollowDream" index="1"]
 position = Vector2(-101, 0)
 
-[editable path="Body"]
-[editable path="Body2"]
 [editable path="ButtonPlatform"]
 [editable path="ButtonPlatform/StaticBody2D/CollisionShape2D/HiddenArea"]
+[editable path="Body"]
+[editable path="Body2"]
 [editable path="GemChest"]
 [editable path="FollowDream"]

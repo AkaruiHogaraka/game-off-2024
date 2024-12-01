@@ -4,7 +4,6 @@ extends BaseDialogueReader
 @export var area: DialogueTrigger
 
 func _on_start_writing() -> void:
-	GlobalReference.Player.process = false
 	GlobalReference.Player.Input_Handler.toggle_inputs(false)
 	GlobalReference.Player.on_move(0)
 

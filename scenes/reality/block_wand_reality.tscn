@@ -169,7 +169,7 @@ disabled = true
 script = ExtResource("15_lhf0s")
 tutorial = NodePath("../Control")
 disable_hitbox = NodePath("../DisableTutorialTrigger/Area2D/CollisionShape2D")
-enable_delay = 1.5
+enable_delay = 1.1
 
 [connection signal="Pickup" from="ItemChest/Pickup" to="EnableTutorial" method="enable_tutorial"]
 

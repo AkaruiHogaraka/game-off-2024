@@ -29,6 +29,10 @@ func _initialise() -> void:
 	initialise_delay = 0.2
 
 func _physics_process(delta: float) -> void:
+	if get_parent().has_method("is_suspended"):
+		if get_parent().is_suspended():
+			return
+	
 	if holding_interaction and not GlobalReference.Player.is_on_floor():
 		_let_go_interaction()
 		return
