@@ -70,7 +70,7 @@ node_path = "WalkLoadLeft"
 [node name="ButtonDoor" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("8_yf2bl")]
 position = Vector2(128, -16)
 turn_on = false
-buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3")]
+buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3"), NodePath("Button4")]
 
 [node name="Button" parent="ButtonDoor" instance=ExtResource("9_d3pht")]
 position = Vector2(-112, 8)

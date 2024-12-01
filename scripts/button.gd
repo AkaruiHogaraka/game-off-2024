@@ -9,7 +9,7 @@ class_name ActivateButton extends Node2D
 var activated: bool
 
 func _physics_process(delta: float) -> void:
-	if activated and not area.has_overlapping_areas():
+	if activated and not area.has_overlapping_bodies():
 		_on_body_exited(self)
 
 func _on_body_exited(body: Node2D) -> void:
